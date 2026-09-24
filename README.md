@@ -4,20 +4,20 @@ A phone-first fridge assistant.
 
 1. Record what food you have
 2. Estimate a use-by date from a shelf-life table (edit it if the pack has a printed date)
-3. Suggest what to cook, preferring food that should be used within 3 days
-4. Show the missing ingredients for that meal
+3. Suggest what to cook. Choose how strongly the fridge beats the cuisines you like. Food due soon still shows up.
+4. Search a dish you want now. The shopping list is what that dish still needs.
 
 Photos are identified on the server. You tick the list before anything is saved. Inventory stays on this phone.
 
 ## Use it
 
-- **Tonight** — the best matching dish, steps, and what is still missing
+- **Tonight** — priority (fridge, fridge first, mixed, favorites), dish search, steps, and the shopping list
 - **Fridge** — add, search, and edit items
 - **Scan** — photo of a shelf, a shopping bag, or the puck’s last door photo, then confirm
-- **Shop** — gap list for tonight, plus notes
-- **Settings** — sample kitchen, vegetarian filter, 6pm reminder, export / import
+- **Shop** — ideas, the gap list, and notes
+- **Settings** — sample kitchen, vegetarian filter, language, 6pm reminder, export / import
 
-The reminder only fires while the app is open.
+English and Traditional Chinese. The 中 button in the header switches the page. The reminder only fires while the app is open.
 
 Expiry is a guideline after purchase or opening, not a test of the food.
 

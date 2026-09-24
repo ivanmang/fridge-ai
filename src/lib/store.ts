@@ -1,11 +1,14 @@
 import { create } from "zustand"
 import { persist, createJSONStorage } from "zustand/middleware"
+import type { Locale } from "@/lib/i18n"
 import {
   defaultExpiry,
   findShelf,
   sampleItems,
   todayISO,
   type FoodItem,
+  type Priority,
+  type SuggestMode,
 } from "@/lib/logic"
 
 export type ShopNote = { id: string; text: string; done: boolean }
@@ -16,6 +19,11 @@ export type FridgeSettings = {
   remindHour: number
   lastPing: string
   puckHost: string
+  locale: Locale
+  suggest: SuggestMode
+  priority: Priority
+  favorites: string[]
+  wanted: string[]
 }
 
 type FridgeState = {
@@ -26,6 +34,7 @@ type FridgeState = {
   addMany: (items: Omit<FoodItem, "id">[]) => void
   updateItem: (id: string, patch: Partial<FoodItem>) => void
   removeItem: (id: string) => void
+  removeMany: (ids: string[]) => void
   loadSample: () => void
   clearItems: () => void
   replaceAll: (items: FoodItem[]) => void
@@ -41,6 +50,11 @@ const emptySettings: FridgeSettings = {
   remindHour: 18,
   lastPing: "",
   puckHost: "http://fridgesnap.local",
+  locale: "en",
+  suggest: "strict",
+  priority: 0,
+  favorites: [],
+  wanted: [],
 }
 
 export const useFridge = create<FridgeState>()(
@@ -60,6 +74,8 @@ export const useFridge = create<FridgeState>()(
           items: s.items.map((item) => (item.id === id ? { ...item, ...patch } : item)),
         })),
       removeItem: (id) => set((s) => ({ items: s.items.filter((item) => item.id !== id) })),
+      removeMany: (ids) =>
+        set((s) => ({ items: s.items.filter((item) => !ids.includes(item.id)) })),
       loadSample: () => set({ items: sampleItems() }),
       clearItems: () => set({ items: [] }),
       replaceAll: (items) => set({ items }),
