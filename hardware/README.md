@@ -32,8 +32,11 @@ It does **not** replace a Samsung Family Hub. It is a puck that:
 
 Food recognition runs in FridgeAI (browser + optional Gemini/OpenAI), not on the $8 camera. The ESP32 is a shutter. That keeps the puck small, cold-tolerant, and easy to replace.
 
+On-device TinyML (Edge Impulse, as in DecayDock) is a later upgrade if you want names without sending photos off the device.
+
 ## Safety
 
 - Thin USB cable only through the **hinge** fold, never across the main gasket face
 - No mains voltage in the cabinet
 - Charge lithium packs **outside** the fridge
+- If the door no longer seals (frost on the freezer wall), the cable is too thick — switch to a flat ribbon or the clip-off battery

@@ -1,9 +1,16 @@
 /*
   FridgeSnap — door-close camera for FridgeAI
-  Board: Seeed XIAO ESP32S3 Sense (also works on AI-Thinker ESP32-CAM with pin edits)
+  Board: Seeed XIAO ESP32S3 Sense  (also works on AI-Thinker ESP32-CAM with pin edits)
 
-  Sleeps, then on reed-switch door close takes one LED-flash photo
-  and serves it at http://fridgesnap.local/latest.jpg
+  Behaviour
+  - Sleeps most of the time
+  - Reed switch LOW = door closed
+  - After the door has been closed for CLOSE_SETTLE_MS, take one photo with LED flash
+  - Save to LittleFS / SD and serve as http://fridgesnap.local/latest.jpg
+  - Optional POST to your phone/laptop ingest URL
+
+  Install Arduino core "esp32" by Espressif.
+  XIAO ESP32S3 Sense: enable PSRAM, USB CDC, camera.
 */
 
 #include <WiFi.h>
@@ -11,13 +18,15 @@
 #include <ESPmDNS.h>
 #include <esp_camera.h>
 
+// ---------- edit me ----------
 const char* WIFI_SSID = "YOUR_WIFI";
 const char* WIFI_PASS = "YOUR_PASSWORD";
-const char* INGEST_URL = "";
-const int   REED_PIN   = 2;
-const int   LED_PIN    = 21;
+const char* INGEST_URL = "";   // e.g. "http://192.168.1.20:8766/ingest" or leave empty
+const int   REED_PIN   = 2;    // D1 on XIAO; use GPIO13 on ESP32-CAM
+const int   LED_PIN    = 21;   // onboard or external flash LED
 const uint32_t CLOSE_SETTLE_MS = 1200;
-const uint32_t MIN_GAP_MS      = 8000;
+const uint32_t MIN_GAP_MS      = 8000;  // ignore door bounce
+// -----------------------------
 
 WebServer server(80);
 camera_fb_t* lastFb = nullptr;
@@ -25,6 +34,7 @@ uint32_t lastShot = 0;
 bool armed = true;
 
 #if defined(BOARD_HAS_PSRAM) || defined(CAMERA_MODEL_XIAO_ESP32S3)
+  // XIAO ESP32S3 Sense pinout
   #define PWDN_GPIO_NUM  -1
   #define RESET_GPIO_NUM -1
   #define XCLK_GPIO_NUM  10
@@ -42,6 +52,7 @@ bool armed = true;
   #define HREF_GPIO_NUM  47
   #define PCLK_GPIO_NUM  13
 #else
+  // AI-Thinker ESP32-CAM
   #define PWDN_GPIO_NUM  32
   #define RESET_GPIO_NUM -1
   #define XCLK_GPIO_NUM  0
@@ -108,6 +119,7 @@ void handleRoot() {
     "<!doctype html><meta name=viewport content='width=device-width,initial-scale=1'>"
     "<body style='font-family:sans-serif;background:#071018;color:#e8f4f2'>"
     "<h1>FridgeSnap</h1>"
+    "<p>Last photo (door-close triggered).</p>"
     "<p><a href='/latest.jpg'>latest.jpg</a> · <a href='/snap'>force snap</a></p>"
     "<img src='/latest.jpg' style='max-width:100%;border-radius:12px'>"
     "</body>");
@@ -131,23 +143,32 @@ void setup() {
   Serial.begin(115200);
   pinMode(REED_PIN, INPUT_PULLUP);
   flash(false);
-  if (!initCam()) { delay(3000); ESP.restart(); }
+  if (!initCam()) {
+    Serial.println("camera init failed");
+    delay(3000);
+    ESP.restart();
+  }
+
   WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   for (int i = 0; i < 40 && WiFi.status() != WL_CONNECTED; i++) delay(250);
   MDNS.begin("fridgesnap");
+
   server.on("/", handleRoot);
   server.on("/latest.jpg", handleJpg);
   server.on("/snap", handleSnap);
   server.begin();
-  snap();
+
+  snap();  // one boot photo so you can aim
 }
 
 void loop() {
   server.handleClient();
+
   const bool closed = digitalRead(REED_PIN) == LOW;
   static uint32_t closedSince = 0;
   static bool wasClosed = false;
+
   if (closed) {
     if (!wasClosed) closedSince = millis();
     if (armed && millis() - closedSince > CLOSE_SETTLE_MS && millis() - lastShot > MIN_GAP_MS) {
@@ -155,7 +176,7 @@ void loop() {
       armed = false;
     }
   } else {
-    armed = true;
+    armed = true;  // re-arm when the door opens
   }
   wasClosed = closed;
 }

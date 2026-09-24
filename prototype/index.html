@@ -24,12 +24,14 @@
         <button data-page="settings">Settings</button>
       </nav>
     </header>
+
     <section class="stats">
       <div class="stat"><b id="stat-total">0</b><span>Items tracked</span></div>
       <div class="stat warn"><b id="stat-soon">0</b><span>Use soon (≤3 days)</span></div>
       <div class="stat danger"><b id="stat-expired">0</b><span>Expired</span></div>
       <div class="stat ok"><b id="stat-fresh">0</b><span>Still fresh</span></div>
     </section>
+
     <section id="view-fridge">
       <div class="toolbar">
         <input id="search" class="search" placeholder="Search fridge…" />
@@ -47,6 +49,7 @@
       <div class="priority" id="priority-box"></div>
       <div class="grid" id="item-grid"></div>
     </section>
+
     <section id="view-recipes" style="display:none">
       <div class="toolbar">
         <select id="recipe-cuisine">
@@ -67,6 +70,7 @@
       <div class="priority" id="recipe-priority"></div>
       <div class="grid" id="recipe-grid"></div>
     </section>
+
     <section id="view-settings" style="display:none">
       <div class="card" style="max-width:640px">
         <h2>Kitchen preferences</h2>
@@ -104,11 +108,13 @@
         </div>
       </div>
     </section>
+
     <footer class="note">
       FridgeAI is a local prototype. Expiry dates are typical fridge times after purchase/opening (USDA-style averages), not a lab test of your specific pack.
       Always trust package dates and smell/look. Vision APIs send the photo to the provider you choose.
     </footer>
   </div>
+
   <div class="modal-back" id="modal-add">
     <div class="modal">
       <h2>Add food</h2>
@@ -151,6 +157,7 @@
       </form>
     </div>
   </div>
+
   <div class="modal-back" id="modal-scan">
     <div class="modal">
       <h2>Scan fridge photo</h2>
@@ -168,6 +175,7 @@
       </div>
     </div>
   </div>
+
   <script src="data/shelf-life.js"></script>
   <script src="data/recipes.js"></script>
   <script src="js/app.js"></script>

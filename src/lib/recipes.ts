@@ -1,0 +1,610 @@
+export type Recipe = {
+  id: string
+  name: string
+  cuisine: string
+  time: number
+  servings: number
+  need: string[]
+  optional: string[]
+  steps: string[]
+}
+
+export const RECIPES: Recipe[] = [
+  {
+    "id": "tomato-eggs",
+    "name": "Tomato & Egg Stir-Fry",
+    "cuisine": "Cantonese",
+    "time": 15,
+    "servings": 2,
+    "need": [
+      "eggs",
+      "tomato"
+    ],
+    "optional": [
+      "spring onion",
+      "sugar",
+      "salt"
+    ],
+    "steps": [
+      "Beat eggs with a pinch of salt.",
+      "Cut tomatoes into wedges.",
+      "Scramble eggs in hot oil until just set; remove.",
+      "Stir-fry tomatoes until juicy, add a pinch of sugar and salt.",
+      "Return eggs, toss 20 seconds. Finish with spring onion."
+    ]
+  },
+  {
+    "id": "garlic-choi-sum",
+    "name": "Garlic Choi Sum",
+    "cuisine": "Cantonese",
+    "time": 10,
+    "servings": 2,
+    "need": [
+      "choi sum",
+      "garlic"
+    ],
+    "optional": [
+      "oyster sauce",
+      "soy sauce"
+    ],
+    "steps": [
+      "Blanch choi sum in boiling salted water 45–60 seconds.",
+      "Drain well.",
+      "Sizzle minced garlic in oil, splash oyster sauce + dash of water.",
+      "Pour sauce over greens."
+    ]
+  },
+  {
+    "id": "pak-choi-oyster",
+    "name": "Pak Choi with Oyster Sauce",
+    "cuisine": "Cantonese",
+    "time": 10,
+    "servings": 2,
+    "need": [
+      "pak choi",
+      "garlic"
+    ],
+    "optional": [
+      "oyster sauce"
+    ],
+    "steps": [
+      "Halve pak choi lengthwise and rinse well.",
+      "Stir-fry garlic, add pak choi and a splash of water, cover 2 minutes.",
+      "Season with oyster sauce."
+    ]
+  },
+  {
+    "id": "steamed-fish",
+    "name": "Steamed Fish with Ginger & Spring Onion",
+    "cuisine": "Cantonese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "white fish",
+      "ginger",
+      "spring onion"
+    ],
+    "optional": [
+      "soy sauce",
+      "sesame oil"
+    ],
+    "steps": [
+      "Lay fish on a plate with ginger julienne.",
+      "Steam 8–12 minutes depending on thickness.",
+      "Top with spring onion. Heat oil and soy sauce, pour over."
+    ]
+  },
+  {
+    "id": "soy-chicken",
+    "name": "Simple Soy Sauce Chicken Pieces",
+    "cuisine": "Cantonese",
+    "time": 35,
+    "servings": 3,
+    "need": [
+      "chicken thighs",
+      "soy sauce",
+      "ginger"
+    ],
+    "optional": [
+      "garlic",
+      "spring onion",
+      "sugar"
+    ],
+    "steps": [
+      "Brown chicken pieces.",
+      "Add soy sauce, ginger, a little sugar and water to come halfway up.",
+      "Simmer covered 20–25 minutes until glossy and cooked through."
+    ]
+  },
+  {
+    "id": "egg-fried-rice",
+    "name": "Egg Fried Rice",
+    "cuisine": "Cantonese",
+    "time": 12,
+    "servings": 2,
+    "need": [
+      "cooked rice",
+      "eggs"
+    ],
+    "optional": [
+      "spring onion",
+      "soy sauce",
+      "carrot",
+      "ham",
+      "shrimp"
+    ],
+    "steps": [
+      "Scramble eggs, set aside.",
+      "Stir-fry cold leftover rice to break clumps.",
+      "Add diced extras, soy sauce, then eggs and spring onion."
+    ]
+  },
+  {
+    "id": "congee",
+    "name": "Rice Congee",
+    "cuisine": "Cantonese",
+    "time": 50,
+    "servings": 3,
+    "need": [
+      "rice"
+    ],
+    "optional": [
+      "ginger",
+      "spring onion",
+      "chicken breast",
+      "white fish",
+      "century egg"
+    ],
+    "steps": [
+      "Rinse rice. Simmer in plenty of water, stirring occasionally, 40–50 min.",
+      "Add sliced ginger and any protein in the last 10 minutes.",
+      "Season and top with spring onion."
+    ]
+  },
+  {
+    "id": "mapo-tofu",
+    "name": "Weeknight Mapo Tofu",
+    "cuisine": "Sichuan",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "tofu",
+      "garlic"
+    ],
+    "optional": [
+      "ginger",
+      "ground beef",
+      "spring onion",
+      "chili oil",
+      "soy sauce"
+    ],
+    "steps": [
+      "Cube tofu; blanch briefly in salted water.",
+      "Fry garlic/ginger (and mince if using) until fragrant.",
+      "Add chili oil, soy, a splash of water; simmer tofu 3 minutes.",
+      "Thicken slightly and finish with spring onion."
+    ]
+  },
+  {
+    "id": "stirfry-beef-onion",
+    "name": "Beef & Onion Stir-Fry",
+    "cuisine": "Cantonese",
+    "time": 18,
+    "servings": 2,
+    "need": [
+      "beef steak",
+      "onion"
+    ],
+    "optional": [
+      "soy sauce",
+      "garlic",
+      "ginger"
+    ],
+    "steps": [
+      "Slice beef thin against the grain; toss with a little soy.",
+      "Sear beef hot and fast; remove.",
+      "Stir-fry onion until edges brown, return beef, splash soy."
+    ]
+  },
+  {
+    "id": "garlic-broccoli",
+    "name": "Garlic Broccoli",
+    "cuisine": "Chinese",
+    "time": 12,
+    "servings": 2,
+    "need": [
+      "broccoli",
+      "garlic"
+    ],
+    "optional": [
+      "oyster sauce",
+      "soy sauce"
+    ],
+    "steps": [
+      "Cut broccoli into florets; blanch 1 minute.",
+      "Stir-fry garlic, add broccoli and oyster/soy sauce."
+    ]
+  },
+  {
+    "id": "tomato-pasta",
+    "name": "Quick Tomato Pasta",
+    "cuisine": "Italian",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "pasta",
+      "tomato",
+      "garlic"
+    ],
+    "optional": [
+      "onion",
+      "olive oil",
+      "cheddar",
+      "basil"
+    ],
+    "steps": [
+      "Boil pasta in salted water.",
+      "Sauté garlic (and onion), add chopped tomatoes, simmer 8 minutes.",
+      "Toss with pasta and a little cheese."
+    ]
+  },
+  {
+    "id": "omelette",
+    "name": "Fridge-Clear Omelette",
+    "cuisine": "Western",
+    "time": 10,
+    "servings": 1,
+    "need": [
+      "eggs"
+    ],
+    "optional": [
+      "cheddar",
+      "ham",
+      "spinach",
+      "mushroom",
+      "spring onion",
+      "tomato"
+    ],
+    "steps": [
+      "Beat eggs with salt.",
+      "Sauté any leftover veg/ham.",
+      "Pour eggs, add cheese, fold when just set."
+    ]
+  },
+  {
+    "id": "chicken-rice-bowl",
+    "name": "Ginger Chicken Rice Bowl",
+    "cuisine": "Asian",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "chicken breast",
+      "rice",
+      "ginger"
+    ],
+    "optional": [
+      "soy sauce",
+      "spring onion",
+      "cucumber"
+    ],
+    "steps": [
+      "Slice chicken; marinate with soy and ginger.",
+      "Pan-fry until cooked.",
+      "Serve over rice with cucumber and spring onion."
+    ]
+  },
+  {
+    "id": "salmon-soy",
+    "name": "Pan-Seared Soy Salmon",
+    "cuisine": "Japanese",
+    "time": 15,
+    "servings": 2,
+    "need": [
+      "salmon",
+      "soy sauce"
+    ],
+    "optional": [
+      "ginger",
+      "garlic",
+      "sesame oil",
+      "rice"
+    ],
+    "steps": [
+      "Pat salmon dry; sear skin-side down 4 minutes.",
+      "Flip, add soy + ginger, baste 3 minutes.",
+      "Serve with rice."
+    ]
+  },
+  {
+    "id": "shrimp-eggs",
+    "name": "Shrimp & Egg Stir-Fry",
+    "cuisine": "Cantonese",
+    "time": 12,
+    "servings": 2,
+    "need": [
+      "shrimp",
+      "eggs"
+    ],
+    "optional": [
+      "spring onion",
+      "salt"
+    ],
+    "steps": [
+      "Pat shrimp dry; season.",
+      "Scramble eggs softly; remove.",
+      "Flash-fry shrimp, fold eggs back in with spring onion."
+    ]
+  },
+  {
+    "id": "miso-ish-soup",
+    "name": "Tofu Ginger Soup",
+    "cuisine": "Japanese",
+    "time": 15,
+    "servings": 2,
+    "need": [
+      "tofu",
+      "ginger"
+    ],
+    "optional": [
+      "mushroom",
+      "spring onion",
+      "soy sauce",
+      "spinach"
+    ],
+    "steps": [
+      "Simmer sliced ginger in water 5 minutes.",
+      "Add tofu cubes and mushrooms; cook 4 minutes.",
+      "Season with soy; add greens and spring onion."
+    ]
+  },
+  {
+    "id": "veggie-stirfry",
+    "name": "Mixed Vegetable Stir-Fry",
+    "cuisine": "Chinese",
+    "time": 15,
+    "servings": 2,
+    "need": [
+      "garlic"
+    ],
+    "optional": [
+      "broccoli",
+      "carrot",
+      "bell pepper",
+      "mushroom",
+      "cabbage",
+      "pak choi",
+      "soy sauce"
+    ],
+    "steps": [
+      "Cut veg into similar sizes.",
+      "Stir-fry hard veg first, then tender greens.",
+      "Season with soy/oyster sauce."
+    ]
+  },
+  {
+    "id": "banana-yogurt",
+    "name": "Banana Yogurt Bowl",
+    "cuisine": "Breakfast",
+    "time": 5,
+    "servings": 1,
+    "need": [
+      "banana",
+      "yogurt"
+    ],
+    "optional": [
+      "berries",
+      "honey",
+      "peanut butter"
+    ],
+    "steps": [
+      "Slice banana over yogurt.",
+      "Add berries, honey, or peanut butter if you have them."
+    ]
+  },
+  {
+    "id": "grilled-cheese",
+    "name": "Grilled Cheese",
+    "cuisine": "Western",
+    "time": 8,
+    "servings": 1,
+    "need": [
+      "bread",
+      "cheddar"
+    ],
+    "optional": [
+      "butter",
+      "tomato"
+    ],
+    "steps": [
+      "Butter bread, sandwich cheese (and tomato).",
+      "Toast in a pan until golden and melted."
+    ]
+  },
+  {
+    "id": "tuna-pasta",
+    "name": "Tuna Pasta",
+    "cuisine": "Western",
+    "time": 18,
+    "servings": 2,
+    "need": [
+      "pasta",
+      "canned tuna"
+    ],
+    "optional": [
+      "onion",
+      "garlic",
+      "lemon",
+      "olive oil"
+    ],
+    "steps": [
+      "Boil pasta.",
+      "Sauté onion/garlic, add drained tuna and lemon.",
+      "Toss with pasta."
+    ]
+  },
+  {
+    "id": "potato-egg",
+    "name": "Crispy Potato & Eggs",
+    "cuisine": "Western",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "potato",
+      "eggs"
+    ],
+    "optional": [
+      "onion",
+      "spring onion"
+    ],
+    "steps": [
+      "Dice potato; pan-fry until crisp.",
+      "Push aside, scramble or fry eggs.",
+      "Combine and season."
+    ]
+  },
+  {
+    "id": "kimchi-fried-rice",
+    "name": "Kimchi Fried Rice",
+    "cuisine": "Korean",
+    "time": 15,
+    "servings": 2,
+    "need": [
+      "cooked rice",
+      "kimchi"
+    ],
+    "optional": [
+      "eggs",
+      "spring onion",
+      "luncheon meat",
+      "soy sauce"
+    ],
+    "steps": [
+      "Stir-fry chopped kimchi until fragrant.",
+      "Add rice and a splash of kimchi juice.",
+      "Top with a fried egg."
+    ]
+  },
+  {
+    "id": "spam-eggs-rice",
+    "name": "Spam, Egg & Rice",
+    "cuisine": "Hong Kong",
+    "time": 12,
+    "servings": 1,
+    "need": [
+      "luncheon meat",
+      "eggs",
+      "rice"
+    ],
+    "optional": [
+      "soy sauce",
+      "spring onion"
+    ],
+    "steps": [
+      "Fry luncheon meat slices until browned.",
+      "Fry an egg. Serve over hot rice with soy."
+    ]
+  },
+  {
+    "id": "avocado-toast",
+    "name": "Avocado Toast",
+    "cuisine": "Western",
+    "time": 8,
+    "servings": 1,
+    "need": [
+      "avocado",
+      "bread"
+    ],
+    "optional": [
+      "eggs",
+      "lemon",
+      "tomato"
+    ],
+    "steps": [
+      "Toast bread. Mash avocado with salt and lemon.",
+      "Top with a fried egg if you have one."
+    ]
+  },
+  {
+    "id": "mushroom-garlic",
+    "name": "Garlic Butter Mushrooms",
+    "cuisine": "Western",
+    "time": 12,
+    "servings": 2,
+    "need": [
+      "mushroom",
+      "garlic"
+    ],
+    "optional": [
+      "butter",
+      "soy sauce",
+      "spring onion"
+    ],
+    "steps": [
+      "Sear mushrooms in a hot pan without crowding.",
+      "Add garlic and butter/oil; toss 1 minute."
+    ]
+  },
+  {
+    "id": "cabbage-stirfry",
+    "name": "Stir-Fried Cabbage",
+    "cuisine": "Chinese",
+    "time": 10,
+    "servings": 2,
+    "need": [
+      "cabbage",
+      "garlic"
+    ],
+    "optional": [
+      "chili oil",
+      "soy sauce",
+      "vinegar"
+    ],
+    "steps": [
+      "Slice cabbage.",
+      "Stir-fry garlic, add cabbage on high heat.",
+      "Season with soy and a dash of vinegar."
+    ]
+  },
+  {
+    "id": "carrot-ginger-soup",
+    "name": "Carrot Ginger Soup",
+    "cuisine": "Western",
+    "time": 30,
+    "servings": 3,
+    "need": [
+      "carrot",
+      "ginger",
+      "onion"
+    ],
+    "optional": [
+      "garlic",
+      "milk"
+    ],
+    "steps": [
+      "Sauté onion, add chopped carrot and ginger.",
+      "Cover with water, simmer 20 minutes.",
+      "Blend; loosen with milk if desired."
+    ]
+  },
+  {
+    "id": "lettuce-wrap-idea",
+    "name": "Chicken Lettuce Wraps",
+    "cuisine": "Asian",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "lettuce",
+      "chicken breast"
+    ],
+    "optional": [
+      "garlic",
+      "soy sauce",
+      "spring onion",
+      "mushroom"
+    ],
+    "steps": [
+      "Mince and stir-fry chicken with garlic.",
+      "Season with soy. Spoon into lettuce cups."
+    ]
+  }
+]

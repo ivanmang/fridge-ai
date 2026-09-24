@@ -1,54 +1,36 @@
 # FridgeAI
 
-An AI fridge assistant that:
+A phone-first fridge assistant.
 
-1. Records what food you have
-2. Estimates / stores expiry dates
-3. Suggests cuisine from inventory, using soon-to-expire items first
+1. Record what food you have
+2. Estimate a use-by date from a shelf-life table (edit it if the pack has a printed date)
+3. Suggest what to cook, preferring food that should be used within 3 days
+4. Show the missing ingredients for that meal
 
-This folder is a **working browser prototype**. Open `index.html` — no server required.
+Photos are identified on the server. You tick the list before anything is saved. Inventory stays on this phone.
 
-## Run it
+## Use it
 
-```bash
-# just open the file
-open index.html
+- **Tonight** — the best matching dish, steps, and what is still missing
+- **Fridge** — add, search, and edit items
+- **Scan** — photo of a shelf or shopping bag, then confirm
+- **Shop** — gap list for tonight, plus notes
+- **Settings** — sample kitchen, vegetarian filter, 6pm reminder, export / import
 
-# or serve locally (needed if you later add ES modules / CORS APIs)
-python3 -m http.server 8765
-# then visit http://localhost:8765
-```
+The reminder only fires while the app is open.
 
-### First-run demo
+Expiry is a guideline after purchase or opening, not a test of the food.
 
-1. Click **Load sample fridge**
-2. Open **Cuisine** — recipes rank tomato-egg, garlic greens, leftover fried rice, etc.
-3. Click **Scan photo** to try the detect flow
-4. In **Settings**, paste an OpenAI or Gemini key to turn the photo into real detections
+## What is in this repo
 
-Data stays in `localStorage` on this device. Export JSON from Settings for a backup.
-
-## What the prototype already does
-
-| Feature | How |
+| Path | What |
 |---|---|
-| Inventory | Add / search / remove items |
-| Auto expiry | USDA-style shelf-life table by food name |
-| Status | Fresh / use soon / use today / expired |
-| Photo scan | Demo review list, or OpenAI / Gemini vision |
-| Recipes | 28 dishes, many Cantonese / HK cafe style |
-| Ranking | Prefer recipes that consume food expiring ≤ 3 days |
-| Diet filter | Vegetarian option |
-| Backup | Export / import JSON |
+| `src/` | The phone app (TanStack Start) |
+| `prototype/` | Earlier static version. Open `prototype/index.html`. Full shelf list and 28 recipes. |
+| `hardware/` | FridgeSnap clip-on camera: BOM, install, clip, firmware |
 
-Expiry is a **guideline after purchase or opening**, not a chemical test of your pack. Trust printed dates and your senses.
+The camera does not write into the inventory yet. It takes one photo when the door closes. Recognition stays in the phone app.
 
-## Hardware
+## Hardware, short version
 
-See [`hardware/`](hardware/README.md) for FridgeSnap: a clip-on door-bin camera that photographs the fridge when the door closes. No screws. Inner liners are plastic, so magnets go on the steel frame only.
-
-## Privacy
-
-- Demo mode never uploads photos.
-- OpenAI / Gemini mode sends the image to that vendor.
-- Inventory is local unless you add your own backend.
+Clip the puck to a door bin. Do not rely on magnets on the plastic liner. Route a thin USB cable through the hinge, not across the gasket. Details are in [hardware/README.md](hardware/README.md).
