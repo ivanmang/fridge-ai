@@ -13,7 +13,7 @@ Photos are identified on the server. You tick the list before anything is saved.
 
 - **Tonight** — the best matching dish, steps, and what is still missing
 - **Fridge** — add, search, and edit items
-- **Scan** — photo of a shelf or shopping bag, then confirm
+- **Scan** — photo of a shelf, a shopping bag, or the puck’s last door photo, then confirm
 - **Shop** — gap list for tonight, plus notes
 - **Settings** — sample kitchen, vegetarian filter, 6pm reminder, export / import
 
@@ -29,7 +29,7 @@ Expiry is a guideline after purchase or opening, not a test of the food.
 | `prototype/` | Earlier static version. Open `prototype/index.html`. Full shelf list and 28 recipes. |
 | `hardware/` | FridgeSnap clip-on camera: BOM, install, clip, firmware |
 
-The camera does not write into the inventory yet. It takes one photo when the door closes. Recognition stays in the phone app.
+The camera takes one photo when the door closes and keeps it on your home Wi-Fi. Scan pulls that photo. It does not upload by itself. Recognition stays in the phone app.
 
 ## Hardware, short version
 

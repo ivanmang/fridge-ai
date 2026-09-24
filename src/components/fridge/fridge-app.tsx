@@ -341,9 +341,11 @@ function FridgeList({
 
 function ScanPanel() {
   const addMany = useFridge((s) => s.addMany)
+  const puckHost = useFridge((s) => s.settings.puckHost || "http://fridgesnap.local")
   const [preview, setPreview] = useState("")
   const [rows, setRows] = useState<ScanRow[]>([])
   const [busy, setBusy] = useState(false)
+  const [pulling, setPulling] = useState(false)
   const [error, setError] = useState("")
   const [saved, setSaved] = useState("")
 
@@ -358,6 +360,21 @@ function ScanPanel() {
       return
     }
     setPreview(image)
+  }
+
+  async function pullDoor() {
+    setPulling(true)
+    setError("")
+    setSaved("")
+    setRows([])
+    try {
+      const file = await fetchDoorPhoto(puckHost)
+      await onFile(file)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not reach the puck.")
+    } finally {
+      setPulling(false)
+    }
   }
 
   async function identify() {
@@ -400,7 +417,7 @@ function ScanPanel() {
   return (
     <section className="space-y-4">
       <p className="text-sm text-muted">
-        Take a photo of the shelf or the shopping bag. Review the list. Nothing is stored until you tick and save.
+        Take a photo, or pull the one the puck took when the door shut. Review the list. Nothing is stored until you tick and save.
       </p>
       <label className="flex min-h-28 cursor-pointer flex-col items-center justify-center rounded-card border border-dashed border-line bg-surface px-4 py-6 text-center">
         <Camera className="size-6 text-mint" />
@@ -413,6 +430,14 @@ function ScanPanel() {
           onChange={(e) => void onFile(e.target.files?.[0])}
         />
       </label>
+      <button
+        type="button"
+        disabled={pulling || busy}
+        onClick={() => void pullDoor()}
+        className="h-11 w-full rounded-card border border-line bg-surface font-semibold disabled:opacity-60"
+      >
+        {pulling ? "Asking the puck…" : "Last door photo"}
+      </button>
       {preview && <img src={preview} alt="Shelf to scan" className="max-h-56 w-full rounded-card object-cover" />}
       {preview && (
         <button
@@ -793,8 +818,19 @@ function SettingsSheet({ onClose }: { onClose: () => void }) {
           ))}
         </select>
       </label>
+      <p className="mt-2 text-xs text-muted">The reminder fires while this app is open, after the hour you pick.</p>
+      <label className="mt-3 block text-sm text-muted">
+        Door camera address
+        <input
+          value={settings.puckHost ?? "http://fridgesnap.local"}
+          onChange={(e) => setSettings({ puckHost: e.target.value })}
+          spellCheck={false}
+          autoCapitalize="off"
+          className={cn(fieldClass, "mt-1")}
+        />
+      </label>
       <p className="mt-2 text-xs text-muted">
-        The reminder fires while this app is open, after the hour you pick. Install it to keep it one tap away.
+        Used by Last door photo. Same Wi-Fi as the puck. Allow local network access if the phone asks.
       </p>
       <div className="mt-4 grid grid-cols-2 gap-2">
         <button type="button" onClick={() => loadSample()} className="h-11 rounded-card border border-line text-sm font-semibold">
@@ -867,6 +903,42 @@ function Empty({ title, body }: { title: string; body: string }) {
       <p className="mt-1 text-sm text-muted">{body}</p>
     </div>
   )
+}
+
+async function fetchDoorPhoto(host: string) {
+  const url = doorPhotoUrl(host)
+  if (!url) throw new Error("Set the puck address in Settings. Use http://fridgesnap.local or its IP address.")
+  let res: Response
+  try {
+    res = await fetch(url, {
+      mode: "cors",
+      cache: "no-store",
+      targetAddressSpace: "local",
+    } as RequestInit)
+  } catch {
+    throw new Error("Could not reach the puck. Join its Wi-Fi and allow local network access if the phone asks.")
+  }
+  if (res.status === 404) throw new Error("The puck has no photo yet. Close the fridge door once.")
+  if (!res.ok) throw new Error("The puck answered, but not with a photo.")
+  const blob = await res.blob()
+  if (!blob.size) throw new Error("The puck sent an empty photo.")
+  return new File([blob], "door.jpg", { type: blob.type || "image/jpeg" })
+}
+
+function doorPhotoUrl(host: string) {
+  const trimmed = host.trim()
+  if (!trimmed) return ""
+  let url: URL
+  try {
+    url = new URL(trimmed.includes("://") ? trimmed : `http://${trimmed}`)
+  } catch {
+    return ""
+  }
+  if (url.protocol !== "http:" && url.protocol !== "https:") return ""
+  url.pathname = "/latest.jpg"
+  url.search = ""
+  url.hash = ""
+  return url.toString()
 }
 
 async function shrinkImage(file: File) {

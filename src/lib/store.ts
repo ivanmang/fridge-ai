@@ -15,6 +15,7 @@ export type FridgeSettings = {
   notify: boolean
   remindHour: number
   lastPing: string
+  puckHost: string
 }
 
 type FridgeState = {
@@ -39,6 +40,7 @@ const emptySettings: FridgeSettings = {
   notify: false,
   remindHour: 18,
   lastPing: "",
+  puckHost: "http://fridgesnap.local",
 }
 
 export const useFridge = create<FridgeState>()(

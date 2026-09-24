@@ -36,7 +36,7 @@ Before you stick anything: open the door slowly and watch that the puck will not
 
 ## Install steps
 
-1. **Power first, mount second.** Flash firmware and join Wi-Fi on the table. Confirm you can open `http://fridgesnap.local/` and see a test photo.
+1. **Power first, mount second.** Flash firmware and join Wi-Fi on the table. Confirm you can open `http://fridgesnap.local/` and see a test photo. Then, on the same Wi-Fi, FridgeAI → Scan → **Last door photo**. Allow local-network access if the phone asks.
 2. **Clean** the plastic with alcohol. Let it dry.
 3. **Clip** onto the door bin so the lens clears the bin lip. If the clip is loose, add a wrap of rubber band or switch to tape.
 4. **Aim** with the live preview: door at ~40°. You want milk + two shelves, not a close-up of one yogurt.

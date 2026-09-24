@@ -1,16 +1,16 @@
 /*
   FridgeSnap — door-close camera for FridgeAI
-  Board: Seeed XIAO ESP32S3 Sense  (also works on AI-Thinker ESP32-CAM with pin edits)
+  Board: Seeed XIAO ESP32S3 Sense (ESP32-CAM pinout is the #else block)
 
-  Behaviour
-  - Sleeps most of the time
+  What it actually does
+  - Stays awake and serves Wi-Fi
   - Reed switch LOW = door closed
-  - After the door has been closed for CLOSE_SETTLE_MS, take one photo with LED flash
-  - Save to LittleFS / SD and serve as http://fridgesnap.local/latest.jpg
-  - Optional POST to your phone/laptop ingest URL
+  - After the door has been closed for CLOSE_SETTLE_MS, one JPEG with a short flash
+  - Keeps only that JPEG in memory and serves http://fridgesnap.local/latest.jpg
+  - The phone pulls that photo. This board does not upload it.
 
-  Install Arduino core "esp32" by Espressif.
-  XIAO ESP32S3 Sense: enable PSRAM, USB CDC, camera.
+  It does not deep-sleep and it does not write to an SD card.
+  Arduino core "esp32" by Espressif. On XIAO: enable PSRAM and USB CDC.
 */
 
 #include <WiFi.h>
@@ -21,7 +21,6 @@
 // ---------- edit me ----------
 const char* WIFI_SSID = "YOUR_WIFI";
 const char* WIFI_PASS = "YOUR_PASSWORD";
-const char* INGEST_URL = "";   // e.g. "http://192.168.1.20:8766/ingest" or leave empty
 const int   REED_PIN   = 2;    // D1 on XIAO; use GPIO13 on ESP32-CAM
 const int   LED_PIN    = 21;   // onboard or external flash LED
 const uint32_t CLOSE_SETTLE_MS = 1200;
@@ -125,9 +124,28 @@ void handleRoot() {
     "</body>");
 }
 
-void handleJpg() {
-  if (!lastFb) { server.send(404, "text/plain", "no photo yet"); return; }
+void cors() {
+  String origin = server.header("Origin");
+  server.sendHeader("Access-Control-Allow-Origin", origin.length() ? origin : "*");
+  server.sendHeader("Access-Control-Allow-Private-Network", "true");
+  server.sendHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  server.sendHeader("Access-Control-Allow-Headers", "*");
+  server.sendHeader("Vary", "Origin");
   server.sendHeader("Cache-Control", "no-store");
+}
+
+void handleOptions() {
+  cors();
+  server.send(204);
+}
+
+void handleJpg() {
+  if (!lastFb) {
+    cors();
+    server.send(404, "text/plain", "no photo yet");
+    return;
+  }
+  cors();
   server.setContentLength(lastFb->len);
   server.send(200, "image/jpeg", "");
   server.client().write(lastFb->buf, lastFb->len);
@@ -154,8 +172,11 @@ void setup() {
   for (int i = 0; i < 40 && WiFi.status() != WL_CONNECTED; i++) delay(250);
   MDNS.begin("fridgesnap");
 
+  const char* headerKeys[] = {"Origin", "Access-Control-Request-Private-Network"};
+  server.collectHeaders(headerKeys, 2);
   server.on("/", handleRoot);
-  server.on("/latest.jpg", handleJpg);
+  server.on("/latest.jpg", HTTP_GET, handleJpg);
+  server.on("/latest.jpg", HTTP_OPTIONS, handleOptions);
   server.on("/snap", handleSnap);
   server.begin();
 

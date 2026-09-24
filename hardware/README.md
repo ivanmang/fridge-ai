@@ -30,7 +30,7 @@ It does **not** replace a Samsung Family Hub. It is a puck that:
 
 ## What the firmware does *not* do
 
-Food recognition runs in FridgeAI (browser + optional Gemini/OpenAI), not on the $8 camera. The ESP32 is a shutter. That keeps the puck small, cold-tolerant, and easy to replace.
+Food recognition runs in the FridgeAI phone app, not on the camera. The ESP32 is a shutter. After the door shuts it keeps one JPEG at `http://fridgesnap.local/latest.jpg`. On the same Wi-Fi, Scan → **Last door photo** pulls that picture into the confirm list. The board does not upload it.
 
 On-device TinyML (Edge Impulse, as in DecayDock) is a later upgrade if you want names without sending photos off the device.
 
