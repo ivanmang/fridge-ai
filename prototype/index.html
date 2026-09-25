@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FridgeAI — detect, track expiry, cook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">❄️</div>
+        <div>
+          <h1>FridgeAI</h1>
+          <p>Detect food · track expiry · cook what you have</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <button data-page="fridge" class="active">Fridge</button>
+        <button data-page="recipes">Cuisine</button>
+        <button data-page="settings">Settings</button>
+      </nav>
+    </header>
+
+    <section class="stats">
+      <div class="stat"><b id="stat-total">0</b><span>Items tracked</span></div>
+      <div class="stat warn"><b id="stat-soon">0</b><span>Use soon (≤3 days)</span></div>
+      <div class="stat danger"><b id="stat-expired">0</b><span>Expired</span></div>
+      <div class="stat ok"><b id="stat-fresh">0</b><span>Still fresh</span></div>
+    </section>
+
+    <section id="view-fridge">
+      <div class="toolbar">
+        <input id="search" class="search" placeholder="Search fridge…" />
+        <select id="filter-status">
+          <option value="all">All statuses</option>
+          <option value="soon">Use soon</option>
+          <option value="danger">Today / tomorrow</option>
+          <option value="expired">Expired</option>
+          <option value="ok">Fresh</option>
+        </select>
+        <button class="btn btn-ghost" id="btn-seed">Load sample fridge</button>
+        <button class="btn btn-ghost" id="btn-scan">Scan photo</button>
+        <button class="btn btn-primary" id="btn-add">+ Add item</button>
+      </div>
+      <div class="priority" id="priority-box"></div>
+      <div class="grid" id="item-grid"></div>
+    </section>
+
+    <section id="view-recipes" style="display:none">
+      <div class="toolbar">
+        <select id="recipe-cuisine">
+          <option value="any">All cuisines</option>
+          <option value="Cantonese">Cantonese / HK</option>
+          <option value="Hong Kong">Hong Kong cafe</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Sichuan">Sichuan</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+          <option value="Italian">Italian</option>
+          <option value="Western">Western</option>
+          <option value="Asian">Asian</option>
+          <option value="Breakfast">Breakfast</option>
+        </select>
+        <label class="hint"><input id="recipe-have" type="checkbox" /> Only recipes I can cook now</label>
+      </div>
+      <div class="priority" id="recipe-priority"></div>
+      <div class="grid" id="recipe-grid"></div>
+    </section>
+
+    <section id="view-settings" style="display:none">
+      <div class="card" style="max-width:640px">
+        <h2>Kitchen preferences</h2>
+        <p class="hint">Saved in this browser only. Paste an API key if you want real vision detection from fridge photos.</p>
+        <div class="form-grid" style="margin-top:12px">
+          <div>
+            <label>Diet</label>
+            <select id="set-diet">
+              <option value="any">No restriction</option>
+              <option value="veg">Vegetarian</option>
+            </select>
+          </div>
+          <div>
+            <label>Household size</label>
+            <input id="set-household" type="number" min="1" max="12" />
+          </div>
+          <div class="full">
+            <label>Photo detector</label>
+            <select id="set-provider">
+              <option value="demo">Demo detector (no key, review list)</option>
+              <option value="openai">OpenAI vision (GPT-4o-mini)</option>
+              <option value="gemini">Google Gemini vision</option>
+            </select>
+          </div>
+          <div class="full">
+            <label>API key (optional)</label>
+            <input id="set-apikey" type="password" placeholder="sk-… or Gemini API key" />
+          </div>
+        </div>
+        <div class="card-actions" style="margin-top:14px">
+          <button class="btn btn-primary" id="save-settings">Save settings</button>
+          <button class="btn btn-ghost" id="btn-export">Export JSON</button>
+          <label class="btn btn-ghost">Import JSON<input id="import-file" type="file" accept="application/json" hidden /></label>
+          <button class="btn btn-danger" id="btn-clear">Clear fridge</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="note">
+      FridgeAI is a local prototype. Expiry dates are typical fridge times after purchase/opening (USDA-style averages), not a lab test of your specific pack.
+      Always trust package dates and smell/look. Vision APIs send the photo to the provider you choose.
+    </footer>
+  </div>
+
+  <div class="modal-back" id="modal-add">
+    <div class="modal">
+      <h2>Add food</h2>
+      <form id="form-add">
+        <div class="form-grid">
+          <div class="full">
+            <label>Name</label>
+            <input id="add-name" list="food-list" required placeholder="e.g. Pak choi" />
+            <datalist id="food-list"></datalist>
+          </div>
+          <div>
+            <label>Quantity</label>
+            <input id="add-qty" placeholder="1 pack / 3 pcs" />
+          </div>
+          <div>
+            <label>Location</label>
+            <select id="add-location">
+              <option value="fridge">Fridge</option>
+              <option value="freezer">Freezer</option>
+              <option value="pantry">Pantry</option>
+            </select>
+          </div>
+          <div>
+            <label>Bought</label>
+            <input id="add-bought" type="date" />
+          </div>
+          <div>
+            <label>Expires</label>
+            <input id="add-expires" type="date" required />
+          </div>
+          <div class="full">
+            <label>Notes</label>
+            <input id="add-notes" placeholder="opened, leftover from dinner…" />
+          </div>
+        </div>
+        <div class="card-actions" style="margin-top:14px">
+          <button class="btn btn-ghost" type="button" data-close>Cancel</button>
+          <button class="btn btn-primary" type="submit">Save to fridge</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-back" id="modal-scan">
+    <div class="modal">
+      <h2>Scan fridge photo</h2>
+      <p class="hint">Take a photo of a shelf, grocery bag, or a single item. In Demo mode you review a suggested list. With an OpenAI or Gemini key in Settings, the photo is actually identified.</p>
+      <input id="scan-file" type="file" accept="image/*" capture="environment" style="margin:10px 0" />
+      <img id="scan-preview" class="preview" alt="" style="display:none" />
+      <div class="card-actions">
+        <button class="btn btn-primary" id="btn-detect">Detect food</button>
+      </div>
+      <p class="hint" id="detect-status"></p>
+      <div class="detect-list" id="detect-results"></div>
+      <div class="card-actions">
+        <button class="btn btn-ghost" type="button" data-close>Close</button>
+        <button class="btn btn-primary" id="btn-add-detected">Add checked items</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data/shelf-life.js"></script>
+  <script src="data/recipes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
