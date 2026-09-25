@@ -29,7 +29,7 @@ export function TasteProfile({ onEdit }: { onEdit: () => void }) {
   )
 }
 
-export function SurveyPanel() {
+export function SurveyPanel({ onDone }: { onDone?: () => void }) {
   const locale = (useFridge((s) => s.settings.locale) || "en") as Locale
   const saved = useFridge((s) => s.settings.survey)
   const setSettings = useFridge((s) => s.setSettings)
@@ -53,12 +53,14 @@ export function SurveyPanel() {
               ? { priority: 0 as const }
               : {}),
     })
+    onDone?.()
   }
 
   function skip() {
     setSettings({
       survey: { ...emptySurvey, done: true, skipped: true },
     })
+    onDone?.()
   }
 
   function toggleCuisine(name: string) {
