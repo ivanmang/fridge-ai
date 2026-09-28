@@ -27,6 +27,8 @@ export type FridgeSettings = {
   favorites: string[]
   wanted: string[]
   survey: SurveyAnswers
+  /** True once the user has dismissed the first-run setup. */
+  onboarded: boolean
 }
 
 type FridgeState = {
@@ -61,6 +63,7 @@ const emptySettings: FridgeSettings = {
   favorites: [],
   wanted: [],
   survey: emptySurvey,
+  onboarded: false,
 }
 
 export const useFridge = create<FridgeState>()(
@@ -121,6 +124,7 @@ export function draftFromName(name: string, qty = "1", opened = false): Omit<Foo
     location: shelf?.location ?? "fridge",
     bought,
     expires: defaultExpiry(name, bought, opened),
+    expirySource: "estimated",
     opened,
   }
 }

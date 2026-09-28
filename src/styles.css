@@ -29,6 +29,13 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+  :is(button, a, input, select, summary):focus-visible {
+    outline: 2px solid var(--color-mint);
+    outline-offset: 3px;
+  }
+  nav[aria-label="Primary navigation"] {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
   input,
   select {
     color-scheme: dark;

@@ -12,6 +12,8 @@ export type FoodItem = {
   location: ShelfFood["location"]
   bought: string
   expires: string
+  /** Whether the date came from our estimate or the package/user. */
+  expirySource?: "estimated" | "package"
   opened: boolean
 }
 
@@ -148,7 +150,7 @@ function scoreOne(recipe: Recipe, items: FoodItem[], priority: Priority, favorit
   const missing: string[] = []
   const urgent: string[] = []
   for (const need of recipe.need) {
-    const hit = items.find((item) => sameFood(item.name, need))
+    const hit = items.find((item) => daysUntil(item.expires) >= 0 && sameFood(item.name, need))
     if (hit) {
       matched.push(need)
       if (daysUntil(hit.expires) <= 3) urgent.push(hit.name)
@@ -156,7 +158,7 @@ function scoreOne(recipe: Recipe, items: FoodItem[], priority: Priority, favorit
   }
   let optionalHits = 0
   for (const extra of recipe.optional) {
-    const hit = items.find((item) => sameFood(item.name, extra))
+    const hit = items.find((item) => daysUntil(item.expires) >= 0 && sameFood(item.name, extra))
     if (!hit) continue
     optionalHits += 1
     if (daysUntil(hit.expires) <= 3 && !urgent.includes(hit.name)) urgent.push(hit.name)
@@ -165,7 +167,7 @@ function scoreOne(recipe: Recipe, items: FoodItem[], priority: Priority, favorit
   const missW = [4, 2.5, 0.8, 0.25][priority]
   const matchW = [5, 4, 2, 1][priority]
   const urgentW = [4, 6, 8, 8][priority]
-  const score = favW * (liked ? 1 : 0) + matchW * matched.length + 1.2 * optionalHits + urgentW * urgent.length - missW * missing.length
+  const score = favW * (liked ? 1 : 0) + matchW * matched.length + 1.2 * optionalHits + urgentW * urgent.length - missW * missing.length + (recipe.id.startsWith("home-") ? 12 : 0)
   return { recipe, score, matched, missing, urgent }
 }
 
@@ -259,7 +261,8 @@ export function rankRecipes(
     .sort((a, b) => b.score - a.score || a.recipe.time - b.recipe.time)
 }
 
-export function dishSource(id: string): "lkk" | "knorr" | "guardian" {
+export function dishSource(id: string): "home" | "lkk" | "knorr" | "guardian" {
+  if (id.startsWith("home-")) return "home"
   if (id.startsWith("knorr-")) return "knorr"
   if (id.startsWith("guardian-")) return "guardian"
   return "lkk"
@@ -311,7 +314,7 @@ export function foodsForMeal(recipe: Recipe, items: FoodItem[]): FoodItem[] {
   const used = new Set<string>()
   const out: FoodItem[] = []
   for (const need of [...recipe.need, ...recipe.optional]) {
-    const hit = items.find((item) => !used.has(item.id) && sameFood(item.name, need))
+    const hit = items.find((item) => daysUntil(item.expires) >= 0 && !used.has(item.id) && sameFood(item.name, need))
     if (!hit) continue
     used.add(hit.id)
     out.push(hit)
@@ -332,7 +335,7 @@ export function shopForIdeas(items: FoodItem[], ideas: RankedRecipe[]) {
     for (const need of idea.missing) addName(need)
     for (const name of [...idea.recipe.need, ...idea.recipe.optional]) {
       if (!STAPLES.some((staple) => sameFood(name, staple))) continue
-      if (items.some((item) => sameFood(item.name, name))) continue
+      if (items.some((item) => daysUntil(item.expires) >= 0 && sameFood(item.name, name))) continue
       addName(name)
     }
     for (const [key, name] of names) {
@@ -392,6 +395,7 @@ export function sampleItems(): FoodItem[] {
       location: findShelf(name)?.location ?? "fridge",
       bought,
       expires: addDays(bought, life),
+      expirySource: "estimated",
       opened: false,
     }
   }

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useState, type ReactNode } from "react"
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react"
 import {
   Bell,
   Camera,
@@ -53,7 +53,7 @@ import {
 
 type Tab = "tonight" | "fridge" | "scan" | "shop"
 type Draft = Omit<FoodItem, "id">
-type ScanRow = ScanHit & { on: boolean; expires: string }
+type ScanRow = ScanHit & { on: boolean; expires: string; expirySource: "estimated" | "package" }
 
 const fieldClass =
   "h-11 w-full rounded-card border border-line bg-raised px-3 text-fg outline-none focus-visible:outline-2 focus-visible:outline-mint"
@@ -143,37 +143,30 @@ function DishSearch() {
   const [ingredient, setIngredient] = useState("")
   const [needs, setNeeds] = useState<string[]>([])
   const [warn, setWarn] = useState("")
+  const [stepText, setStepText] = useState("")
+  const requestRef = useRef(0)
   const hits = useMemo(() => searchRecipes(query, items, vegetarian, taste), [query, items, vegetarian, taste])
   const picked = useMemo(() => ideasByIds(wanted, items, extras), [wanted, items, extras])
 
-  useEffect(() => {
+  async function lookUp() {
     const q = query.trim()
-    if (q.length < 2) {
-      setRemote([])
-      setLooking(false)
-      return
+    if (q.length < 2 || looking) return
+    const request = ++requestRef.current
+    setLooking(true)
+    setWarn("")
+    try {
+      const result = await lookupDishes({ data: { query: q, vegetarian, locale } })
+      if (request !== requestRef.current) return
+      if (result.ok) {
+        setRemote(result.dishes)
+        if (!result.dishes.length) setWarn(t("noMoreDishes"))
+      } else setWarn(t("lookupUnavailable"))
+    } catch {
+      if (request === requestRef.current) setWarn(t("lookupUnavailable"))
+    } finally {
+      if (request === requestRef.current) setLooking(false)
     }
-    let cancel = false
-    const timer = window.setTimeout(() => {
-      if (cancel) return
-      setLooking(true)
-      void lookupDishes({ data: { query: q, vegetarian, locale } })
-        .then((result) => {
-          if (cancel || !result.ok) return
-          setRemote(result.dishes)
-        })
-        .catch(() => {
-          if (!cancel) setRemote([])
-        })
-        .finally(() => {
-          if (!cancel) setLooking(false)
-        })
-    }, 400)
-    return () => {
-      cancel = true
-      window.clearTimeout(timer)
-    }
-  }, [query, vegetarian, locale])
+  }
 
   function toggle(id: string) {
     setSettings({ wanted: wanted.includes(id) ? wanted.filter((item) => item !== id) : [...wanted, id] })
@@ -197,6 +190,11 @@ function DishSearch() {
       setWarn(t("needIngredient"))
       return
     }
+    const steps = stepText.split("\n").map((line) => line.trim()).filter(Boolean)
+    if (!steps.length) {
+      setWarn(t("needStep"))
+      return
+    }
     const id = `mine-${crypto.randomUUID()}`
     saveExtra({
       id,
@@ -206,7 +204,7 @@ function DishSearch() {
       servings: 2,
       need: needs,
       optional: [],
-      steps: [],
+      steps,
     })
     if (!wanted.includes(id)) setSettings({ wanted: [...wanted, id] })
     setAdding(false)
@@ -250,10 +248,15 @@ function DishSearch() {
     <div>
       <input
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => { setQuery(e.target.value); setRemote([]); setWarn(""); requestRef.current++ }}
         placeholder={t("searchDish")}
+        aria-label={t("searchDish")}
         className="h-11 w-full rounded-card border border-line bg-surface px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-mint"
       />
+      {query.trim().length >= 2 && (
+        <button type="button" disabled={looking} onClick={() => void lookUp()} className="mt-2 h-11 w-full rounded-card border border-line text-sm font-semibold disabled:opacity-60">{looking ? t("looking") : t("searchMoreDishes")}</button>
+      )}
+      {warn && !adding && <p role="status" className="mt-2 text-sm text-clay">{warn}</p>}
       {query.trim() && (
         <div className="mt-2 space-y-2">
           {!hits.length && !others.length && !looking && <p className="text-sm text-muted">{t("noDish")}</p>}
@@ -274,6 +277,7 @@ function DishSearch() {
             setName(query.trim())
             setNeeds([])
             setIngredient("")
+            setStepText("")
             setWarn("")
             setAdding(true)
           }}
@@ -305,6 +309,7 @@ function DishSearch() {
                 }
               }}
               placeholder={t("ingredient")}
+              aria-label={t("ingredient")}
               className={fieldClass}
             />
             <button type="button" onClick={addNeed} className="h-11 shrink-0 rounded-card border border-line px-3 text-sm font-semibold">
@@ -325,7 +330,11 @@ function DishSearch() {
               ))}
             </div>
           )}
-          {warn && <p className="text-sm text-clay">{warn}</p>}
+          <label className="block text-sm">
+            {t("cookingSteps")}
+            <textarea value={stepText} onChange={(e) => setStepText(e.target.value)} rows={4} placeholder={t("stepsHint")} className="mt-1 w-full rounded-card border border-line bg-raised p-3 text-fg outline-none" />
+          </label>
+          {warn && <p role="alert" className="text-sm text-clay">{warn}</p>}
           <div className="flex gap-2">
             <button type="button" onClick={() => setAdding(false)} className="h-11 rounded-card border border-line px-4 text-sm font-semibold">
               {t("cancel")}
@@ -394,11 +403,13 @@ function useI18n() {
 export function FridgeApp() {
   const [tab, setTab] = useState<Tab>("tonight")
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [onboardingOpen, setOnboardingOpen] = useState(false)
+  const [hydrated, setHydrated] = useState(false)
   const [editing, setEditing] = useState<FoodItem | null>(null)
   const [adding, setAdding] = useState(false)
 
   useLayoutEffect(() => {
-    void useFridge.persist.rehydrate()
+    void Promise.resolve(useFridge.persist.rehydrate()).finally(() => setHydrated(true))
   }, [])
 
   const items = useFridge((s) => s.items)
@@ -411,6 +422,10 @@ export function FridgeApp() {
   }, [locale])
 
   useEffect(() => {
+    if (hydrated && !items.length && !settings.onboarded) setOnboardingOpen(true)
+  }, [hydrated, items.length, settings.onboarded])
+
+  useEffect(() => {
     if (!settings.notify) return
     const tick = () => {
       const state = useFridge.getState()
@@ -419,7 +434,7 @@ export function FridgeApp() {
       if (now.getHours() < state.settings.remindHour) return
       const day = todayISO(now)
       if (state.settings.lastPing === day) return
-      const urgent = state.items.filter((item) => daysUntil(item.expires) <= 0)
+      const urgent = state.items.filter((item) => daysUntil(item.expires) === 0)
       if (!urgent.length) return
       if (typeof Notification !== "undefined" && Notification.permission === "granted") {
         const names = urgent.slice(0, 3).map((item) => foodLabel(state.settings.locale || "en", item.name))
@@ -427,15 +442,15 @@ export function FridgeApp() {
         const lang = (state.settings.locale || "en") as Locale
         const body = extra > 0 ? translate(lang, "notifyMore", { names: names.join("、"), n: extra }) : names.join(lang === "zh" ? "、" : ", ")
         new Notification(translate(lang, "notifyTitle"), { body })
+        state.setSettings({ lastPing: day })
       }
-      state.setSettings({ lastPing: day })
     }
     tick()
     const id = window.setInterval(tick, 60_000)
     return () => window.clearInterval(id)
   }, [settings.notify, settings.remindHour, locale])
 
-  const urgentCount = items.filter((item) => daysUntil(item.expires) <= 0).length
+  const urgentCount = items.filter((item) => daysUntil(item.expires) === 0).length
 
   return (
     <main className="mx-auto min-h-dvh max-w-lg bg-bg pb-28 text-fg">
@@ -449,6 +464,7 @@ export function FridgeApp() {
           </p>
         </div>
         <div className="flex gap-2">
+          <button type="button" onClick={() => setAdding(true)} className="grid size-11 place-items-center rounded-full border border-line bg-surface" aria-label={t("quickAdd")} title={t("quickAdd")}><Plus className="size-5" /></button>
           <button
             type="button"
             onClick={() => setSettings({ locale: locale === "zh" ? "en" : "zh" })}
@@ -484,13 +500,13 @@ export function FridgeApp() {
       )}
 
       <div className="px-5 pt-5">
-        {tab === "tonight" && <Tonight items={items} />}
+        {tab === "tonight" && <Tonight items={items} onAdd={() => setAdding(true)} onPhoto={() => setTab("scan")} onSample={() => useFridge.getState().loadSample()} />}
         {tab === "fridge" && <FridgeList items={items} onAdd={() => setAdding(true)} onOpen={setEditing} />}
-        {tab === "scan" && <ScanPanel />}
+        {tab === "scan" && <ScanPanel onManual={() => setAdding(true)} />}
         {tab === "shop" && <ShopPanel items={items} />}
       </div>
 
-      <nav className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-bg/95 backdrop-blur">
+      <nav aria-label="Primary navigation" className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-bg/95 backdrop-blur">
         <div className="mx-auto grid max-w-lg grid-cols-4">
           {TABS.map((item) => {
             const Icon = item.icon
@@ -500,6 +516,7 @@ export function FridgeApp() {
                 key={item.id}
                 type="button"
                 onClick={() => setTab(item.id)}
+                aria-current={on ? "page" : undefined}
                 className={cn(
                   "flex min-h-16 flex-col items-center justify-center gap-1 text-xs",
                   on ? "text-mint" : "text-muted",
@@ -514,6 +531,29 @@ export function FridgeApp() {
       </nav>
 
       {settingsOpen && <SettingsSheet onClose={() => setSettingsOpen(false)} />}
+      {onboardingOpen && (
+        <WelcomeSheet
+          onClose={() => {
+            setSettings({ onboarded: true })
+            setOnboardingOpen(false)
+          }}
+          onManual={() => {
+            setSettings({ onboarded: true })
+            setOnboardingOpen(false)
+            setAdding(true)
+          }}
+          onPhoto={() => {
+            setSettings({ onboarded: true })
+            setOnboardingOpen(false)
+            setTab("scan")
+          }}
+          onSample={() => {
+            setSettings({ onboarded: true })
+            useFridge.getState().loadSample()
+            setOnboardingOpen(false)
+          }}
+        />
+      )}
       {adding && <ItemSheet onClose={() => setAdding(false)} />}
       {editing && <ItemSheet item={editing} onClose={() => setEditing(null)} />}
     </main>
@@ -524,19 +564,21 @@ function DishCatalog({ onCook }: { onCook: (id: string) => void }) {
   const { locale, t } = useI18n()
   const vegetarian = useFridge((s) => s.settings.vegetarian)
   const taste = useFridge((s) => (surveyReady(s.settings.survey) ? s.settings.survey : null))
-  const [source, setSource] = useState<"all" | "lkk" | "knorr" | "guardian">("all")
+  const [source, setSource] = useState<"all" | "home" | "lkk" | "knorr" | "guardian">("all")
   const [query, setQuery] = useState("")
-  const [shown, setShown] = useState(40)
+  const [shown, setShown] = useState(12)
+  const [showAll, setShowAll] = useState(false)
   const dishes = useMemo(() => listRecipes(vegetarian, taste), [vegetarian, taste])
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     return dishes.filter((recipe) => {
       if (source !== "all" && dishSource(recipe.id) !== source) return false
+      if (!q && source === "all" && !showAll) return recipe.id.startsWith("home-")
       if (!q) return true
       const copy = recipeText(locale, recipe)
       return copy.name.toLowerCase().includes(q) || recipe.name.toLowerCase().includes(q)
     })
-  }, [dishes, source, query, locale])
+  }, [dishes, source, query, locale, showAll])
   const page = filtered.slice(0, shown)
 
   return (
@@ -549,6 +591,7 @@ function DishCatalog({ onCook }: { onCook: (id: string) => void }) {
         {(
           [
             ["all", "sourceAll"],
+            ["home", "sourceHome"],
             ["lkk", "sourceLkk"],
             ["knorr", "sourceKnorr"],
             ["guardian", "sourceGuardian"],
@@ -559,7 +602,8 @@ function DishCatalog({ onCook }: { onCook: (id: string) => void }) {
             type="button"
             onClick={() => {
               setSource(id)
-              setShown(40)
+              setShown(12)
+              setShowAll(id !== "all")
             }}
             className={cn(
               "h-11 shrink-0 rounded-full border px-3 text-sm",
@@ -574,7 +618,7 @@ function DishCatalog({ onCook }: { onCook: (id: string) => void }) {
         value={query}
         onChange={(e) => {
           setQuery(e.target.value)
-          setShown(40)
+          setShown(12)
         }}
         placeholder={t("searchDish")}
         className="h-11 w-full rounded-card border border-line bg-surface px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-mint"
@@ -583,7 +627,7 @@ function DishCatalog({ onCook }: { onCook: (id: string) => void }) {
         {page.map((recipe) => {
           const copy = recipeText(locale, recipe)
           const from = dishSource(recipe.id)
-          const sourceLabel = from === "knorr" ? t("sourceKnorr") : from === "guardian" ? t("sourceGuardian") : t("sourceLkk")
+          const sourceLabel = from === "home" ? t("sourceHome") : from === "knorr" ? t("sourceKnorr") : from === "guardian" ? t("sourceGuardian") : t("sourceLkk")
           return (
             <li key={recipe.id} className="flex items-center gap-3 rounded-card border border-line bg-surface px-4 py-3">
               <div className="min-w-0 flex-1">
@@ -599,8 +643,11 @@ function DishCatalog({ onCook }: { onCook: (id: string) => void }) {
           )
         })}
       </ul>
+      {!query && source === "all" && !showAll && (
+        <button type="button" onClick={() => setShowAll(true)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">{t("browseDishes")}</button>
+      )}
       {shown < filtered.length && (
-        <button type="button" onClick={() => setShown((n) => n + 80)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">
+        <button type="button" onClick={() => setShown((n) => n + 24)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">
           {t("showMoreDishes")}
         </button>
       )}
@@ -608,7 +655,7 @@ function DishCatalog({ onCook }: { onCook: (id: string) => void }) {
   )
 }
 
-function Tonight({ items }: { items: FoodItem[] }) {
+function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]; onAdd: () => void; onPhoto: () => void; onSample: () => void }) {
   const { locale, t } = useI18n()
   const vegetarian = useFridge((s) => s.settings.vegetarian)
   const taste = useFridge((s) => (surveyReady(s.settings.survey) ? s.settings.survey : null))
@@ -628,6 +675,36 @@ function Tonight({ items }: { items: FoodItem[] }) {
   const [checked, setChecked] = useState<string[]>([])
   const [leftovers, setLeftovers] = useState(false)
   const [note, setNote] = useState("")
+  const [surveyOpen, setSurveyOpen] = useState(false)
+  const [browseOpen, setBrowseOpen] = useState(false)
+  const [prefsOpen, setPrefsOpen] = useState(false)
+  const [timerSeconds, setTimerSeconds] = useState(0)
+  const [timerRunning, setTimerRunning] = useState(false)
+  const [timerFinished, setTimerFinished] = useState(false)
+
+  useEffect(() => {
+    if (phase !== "cook") return
+    let lock: WakeLockSentinel | null = null
+    let cancelled = false
+    if ("wakeLock" in navigator) {
+      void navigator.wakeLock.request("screen").then((sentinel) => {
+        if (cancelled) void sentinel.release()
+        else lock = sentinel
+      }).catch(() => undefined)
+    }
+    return () => { cancelled = true; if (lock) void lock.release() }
+  }, [phase])
+
+  useEffect(() => {
+    if (!timerRunning || timerSeconds <= 0) return
+    const id = window.setInterval(() => setTimerSeconds((seconds) => Math.max(0, seconds - 1)), 1000)
+    return () => window.clearInterval(id)
+  }, [timerRunning, timerSeconds])
+
+  useEffect(() => {
+    if (timerRunning && timerSeconds === 0) { setTimerRunning(false); setTimerFinished(true) }
+  }, [timerRunning, timerSeconds])
+
   const all = useMemo(() => rankRecipes(items, vegetarian, priority, favorites, taste), [items, vegetarian, priority, favorites, taste])
   const plan = useMemo(() => planMeals(items, vegetarian, priority, favorites, taste), [items, vegetarian, priority, favorites, taste])
   const picked = useMemo(() => ideasByIds(wanted, items, extras), [wanted, items, extras])
@@ -647,19 +724,21 @@ function Tonight({ items }: { items: FoodItem[] }) {
           }),
         ]
   const active =
-    (mealId ? [...picked, ...all].find((row) => row.recipe.id === mealId) : undefined) ??
+    (mealId ? ideasByIds([mealId], items, extras)[0] : undefined) ??
+    picked[0] ??
     (priority >= 2 ? plan.ideas[0] : undefined) ??
     ranked[0]
-  const rest = ranked.filter((row) => row.recipe.id !== active?.recipe.id).slice(0, 12)
+  const rest = ranked.filter((row) => row.recipe.id !== active?.recipe.id).slice(0, 3)
   const join = (names: string[]) => names.map((name) => foodLabel(locale, name)).join(locale === "zh" ? "、" : ", ")
   const dish = active ? recipeText(locale, active.recipe) : null
+  const isOutline = Boolean(active && !active.recipe.id.startsWith("home-") && active.recipe.steps.some((step) => /cook them until just done|prep the ingredients|season, toss briefly/i.test(step)))
   const used = active ? foodsForMeal(active.recipe, items) : []
 
   function addSuggested() {
     const have = new Set(shop.map((row) => row.text.toLowerCase()))
     for (const row of shopRows) {
       const label = foodLabel(locale, row.name)
-      if (!have.has(label.toLowerCase())) addShop(label)
+      if (!have.has(label.toLowerCase())) { addShop(label); have.add(label.toLowerCase()) }
     }
     setNote(t("onList"))
   }
@@ -667,6 +746,9 @@ function Tonight({ items }: { items: FoodItem[] }) {
   function startCook(id: string) {
     setMealId(id)
     setStepIndex(0)
+    setTimerRunning(false)
+    setTimerSeconds(0)
+    setTimerFinished(false)
     setNote("")
     setPhase("cook")
   }
@@ -695,6 +777,7 @@ function Tonight({ items }: { items: FoodItem[] }) {
         location: "fridge",
         bought: today,
         expires: addDays(today, 3),
+        expirySource: "estimated",
         opened: true,
       })
     }
@@ -708,15 +791,17 @@ function Tonight({ items }: { items: FoodItem[] }) {
     const have = new Set(shop.map((row) => row.text.toLowerCase()))
     for (const name of active.missing) {
       const label = foodLabel(locale, name)
-      if (!have.has(label.toLowerCase())) addShop(label)
+      if (!have.has(label.toLowerCase())) { addShop(label); have.add(label.toLowerCase()) }
     }
     setNote(t("onList"))
   }
 
   return (
     <section className="space-y-4">
-      {!taste && phase === "pick" && <SurveyPanel />}
-      {active && dish && (
+      {phase === "pick" && items.length > 0 && active && (
+        <p className="text-sm text-muted">{t("tonightLead")}</p>
+      )}
+      {active && dish && phase !== "pick" && (
         <ol className="grid grid-cols-3 gap-2 text-center text-xs">
           {(
             [
@@ -748,34 +833,17 @@ function Tonight({ items }: { items: FoodItem[] }) {
         </ol>
       )}
 
-      {phase === "pick" && taste && (
-        <TasteProfile
-          onEdit={() => setSettings({ survey: { ...(useFridge.getState().settings.survey ?? emptySurvey), done: false } })}
-        />
-      )}
-
-      {phase === "pick" && <SuggestControl />}
-      {phase === "pick" && <DishSearch />}
-
-      {phase === "pick" && priority < 2 && (
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {CUISINES.map((name) => (
-            <button
-              key={name}
-              type="button"
-              onClick={() => setCuisine(name)}
-              className={cn(
-                "shrink-0 rounded-full border px-3 py-2 text-sm",
-                cuisine === name ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg",
-              )}
-            >
-              {cuisineLabel(locale, name)}
-            </button>
-          ))}
+      {!items.length && !active && phase === "pick" && (
+        <div className="rounded-card border border-line bg-surface p-5">
+          <h2 className="font-display text-2xl">{t("emptyTitle")}</h2>
+          <p className="mt-2 text-sm text-muted">{t("emptyBody")}</p>
+          <div className="mt-4 grid gap-2">
+            <button type="button" onClick={onAdd} className="h-11 rounded-card bg-mint font-semibold text-mint-ink">{t("addFood")}</button>
+            <button type="button" onClick={onPhoto} className="h-11 rounded-card border border-line font-semibold">{t("welcomePhoto")}</button>
+            <button type="button" onClick={onSample} className="h-11 rounded-card border border-line font-semibold">{t("welcomeSample")}</button>
+          </div>
         </div>
       )}
-
-      {!items.length && !active && phase === "pick" && <Empty title={t("emptyTitle")} body={t("emptyBody")} />}
       {phase === "pick" && taste && items.length > 0 && !active && <p className="text-sm text-muted">{t("surveyEmpty")}</p>}
       {items.length > 0 && !active && <Empty title={t("filterTitle")} body={t("filterBody")} />}
       {note && <p className="text-sm text-mint">{note}</p>}
@@ -789,11 +857,17 @@ function Tonight({ items }: { items: FoodItem[] }) {
             {active.recipe.servings === 1 ? t("serving") : t("servings", { n: active.recipe.servings })}
           </p>
           {active.urgent.length > 0 && <p className="mt-3 text-sm text-clay">{t("usesSoon", { list: join(active.urgent) })}</p>}
-          {active.missing.length > 0 ? (
-            <p className="mt-2 text-sm text-muted">{t("stillNeed", { list: join(active.missing) })}</p>
-          ) : (
-            <p className="mt-2 text-sm text-muted">{t("haveAll")}</p>
-          )}
+          {isOutline && <p className="mt-3 text-xs text-muted">{t("recipeGuideOnly")}</p>}
+          <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("youHave")}</p>
+              <p className="mt-1 text-mint">{active.matched.length ? join(active.matched) : "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("stillNeedLabel")}</p>
+              <p className="mt-1 text-muted">{active.missing.length ? join(active.missing) : t("haveAll")}</p>
+            </div>
+          </div>
           <div className="mt-4 flex gap-2">
             <button type="button" onClick={() => startCook(active.recipe.id)} className="h-11 flex-1 rounded-card bg-mint font-semibold text-mint-ink">
               {t("cookThis")}
@@ -808,10 +882,12 @@ function Tonight({ items }: { items: FoodItem[] }) {
       )}
 
       {active && dish && phase === "cook" && (
-        <article className="rounded-card border border-line bg-surface p-5">
+        <article className="flex min-h-[58dvh] flex-col rounded-card border border-line bg-surface p-5">
+          <button type="button" onClick={() => setPhase("pick")} className="mb-4 h-11 self-start text-sm text-muted underline">{t("exitCook")}</button>
           <p className="text-xs font-medium tracking-wide text-mint uppercase">{dish.name}</p>
+          {isOutline && <p className="mt-2 text-sm text-clay">{t("recipeGuideOnly")}</p>}
           <p className="mt-1 text-sm text-muted">{t("stepOf", { n: stepIndex + 1, m: dish.steps.length })}</p>
-          <ol className="mt-4 space-y-2 text-sm">
+          <ol className="mt-4 flex-1 space-y-4 text-lg leading-relaxed">
             {dish.steps.map((step, i) => (
               <li key={step} className={cn("flex gap-3", i !== stepIndex && "text-muted")}>
                 <span className={cn("tabular-nums", i === stepIndex && "text-mint")}>{i + 1}</span>
@@ -819,6 +895,14 @@ function Tonight({ items }: { items: FoodItem[] }) {
               </li>
             ))}
           </ol>
+          <div className="mt-5 rounded-card border border-line p-3">
+            <p className="text-sm font-semibold">{t("timer")}{timerSeconds > 0 ? ` · ${Math.floor(timerSeconds / 60)}:${String(timerSeconds % 60).padStart(2, "0")}` : ""}</p>
+            {timerFinished && <p role="status" className="mt-1 text-sm text-mint">{t("timerDone")}</p>}
+            <div className="mt-2 flex flex-wrap gap-2">
+              {[5, 10, 15].map((minutes) => <button key={minutes} type="button" onClick={() => { setTimerFinished(false); setTimerSeconds(minutes * 60); setTimerRunning(true) }} className="h-10 rounded-full border border-line px-3 text-sm">{t("minutes", { n: minutes })}</button>)}
+              {timerSeconds > 0 && <button type="button" onClick={() => setTimerRunning((running) => !running)} className="h-10 rounded-full border border-line px-3 text-sm">{timerRunning ? t("pause") : t("resume")}</button>}
+            </div>
+          </div>
           {active.missing.length > 0 && (
             <button type="button" onClick={listMissing} className="mt-4 text-sm text-muted underline">
               {t("addMissing")}
@@ -848,7 +932,7 @@ function Tonight({ items }: { items: FoodItem[] }) {
             )}
           </div>
           {stepIndex < dish.steps.length - 1 && (
-            <button type="button" onClick={openPlate} className="mt-3 w-full text-sm text-muted">
+            <button type="button" onClick={openPlate} className="mt-3 h-11 w-full text-sm text-muted">
               {t("ate")}
             </button>
           )}
@@ -912,7 +996,7 @@ function Tonight({ items }: { items: FoodItem[] }) {
           )}
           {shopRows.length > 0 && (
             <button type="button" onClick={addSuggested} className="mt-4 h-11 w-full rounded-card bg-mint font-semibold text-mint-ink">
-              {t("addToNotes")}
+              {t("addToShoppingList")}
             </button>
           )}
         </article>
@@ -939,7 +1023,34 @@ function Tonight({ items }: { items: FoodItem[] }) {
           })}
         </ul>
       )}
-      {phase === "pick" && <DishCatalog onCook={startCook} />}
+      {phase === "pick" && items.length > 0 && (
+        <div className="grid gap-2">
+          <button type="button" onClick={() => setBrowseOpen(true)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">{t("browseDishes")}</button>
+          <button type="button" onClick={() => setPrefsOpen((open) => !open)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">{t("chooseHow")}</button>
+        </div>
+      )}
+      {phase === "pick" && prefsOpen && (
+        <section className="rounded-card border border-line bg-surface px-4 py-3">
+          <p className="text-sm text-muted">{t("chooseHowBody")}</p>
+          <SuggestControl />
+          {priority < 2 && (
+            <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
+              {CUISINES.map((name) => (
+                <button key={name} type="button" onClick={() => setCuisine(name)} className={cn("shrink-0 rounded-full border px-3 py-2 text-sm", cuisine === name ? "border-mint bg-mint text-mint-ink" : "border-line bg-raised text-fg")}>{cuisineLabel(locale, name)}</button>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
+      {phase === "pick" && items.length > 0 && !taste && !surveyOpen && <TastePrompt onOpen={() => setSurveyOpen(true)} />}
+      {phase === "pick" && surveyOpen && <SurveyPanel onDone={() => setSurveyOpen(false)} />}
+      {phase === "pick" && taste && <TasteProfile onEdit={() => {
+        setSettings({ survey: { ...(useFridge.getState().settings.survey ?? emptySurvey), done: false } })
+        setSurveyOpen(true)
+      }} />}
+      {browseOpen && <Sheet title={t("browseDishes")} onClose={() => setBrowseOpen(false)}>
+        <DishCatalog onCook={(id) => { setBrowseOpen(false); startCook(id) }} />
+      </Sheet>}
     </section>
   )
 }
@@ -1002,11 +1113,15 @@ function FridgeList({
           body={items.length ? t("clearSearch") : t("addOrScan")}
         />
       )}
+      <p className="mt-4 text-xs text-muted">{t("sourceWarning")}</p>
       <ul className="mt-4 space-y-2">
-        {shown.map((item) => {
+        {shown.map((item, index) => {
           const status = statusOf(item.expires)
+          const urgent = daysUntil(item.expires) <= 3
+          const previousUrgent = index > 0 && daysUntil(shown[index - 1].expires) <= 3
           return (
             <li key={item.id}>
+              {(index === 0 || previousUrgent !== urgent) && <h2 className="pb-2 font-display text-xl">{urgent ? t("useOrReplace") : t("fresh")}</h2>}
               <button
                 type="button"
                 onClick={() => onOpen(item)}
@@ -1021,7 +1136,7 @@ function FridgeList({
                 <span className="min-w-0 flex-1">
                   <span className="block truncate font-medium">{foodLabel(locale, item.name)}</span>
                   <span className="block text-sm text-muted">
-                    {item.qty} · {placeLabel(locale, item.location)}
+                    {item.qty} · {placeLabel(locale, item.location)} · {item.expirySource === "package" ? t("packageDate") : t("estimatedDate")}
                   </span>
                 </span>
                 <span
@@ -1030,7 +1145,7 @@ function FridgeList({
                     status === "expired" || status === "today" ? "text-clay" : "text-muted",
                   )}
                 >
-                  <span className="block">{statusText(locale, status)}</span>
+                  <span className="block">{status === "expired" && item.expirySource !== "package" ? t("pastEstimate") : statusText(locale, status)}</span>
                   <span className="block">{whenText(locale, item.expires)}</span>
                 </span>
               </button>
@@ -1042,7 +1157,7 @@ function FridgeList({
   )
 }
 
-function ScanPanel() {
+function ScanPanel({ onManual }: { onManual: () => void }) {
   const addMany = useFridge((s) => s.addMany)
   const puckHost = useFridge((s) => s.settings.puckHost || "http://fridgesnap.local")
   const { locale, t } = useI18n()
@@ -1052,18 +1167,22 @@ function ScanPanel() {
   const [pulling, setPulling] = useState(false)
   const [error, setError] = useState("")
   const [saved, setSaved] = useState("")
+  const [puckReady, setPuckReady] = useState(false)
+  const [setupOpen, setSetupOpen] = useState(false)
+  const setSettings = useFridge((s) => s.setSettings)
 
   async function onFile(file: File | undefined) {
     if (!file) return
     setError("")
     setSaved("")
     setRows([])
-    const image = await shrinkImage(file)
-    if (!image) {
-      setError(t("tooLarge"))
-      return
+    try {
+      const image = await shrinkImage(file)
+      if (!image) { setError(t("tooLarge")); return }
+      setPreview(image)
+    } catch {
+      setError(t("scanFailed"))
     }
-    setPreview(image)
   }
 
   async function pullDoor() {
@@ -1074,7 +1193,9 @@ function ScanPanel() {
     try {
       const file = await fetchDoorPhoto(puckHost)
       await onFile(file)
+      setPuckReady(true)
     } catch (err) {
+      setPuckReady(false)
       setError(puckError(locale, err))
     } finally {
       setPulling(false)
@@ -1098,7 +1219,15 @@ function ScanPanel() {
         setRows([])
         return
       }
-      setRows(result.foods.map((food) => ({ ...food, name: foodLabel(locale, food.name), on: true, expires: defaultExpiry(food.name) })))
+      setRows(
+        result.foods.map((food) => ({
+          ...food,
+          name: foodLabel(locale, food.name),
+          on: true,
+          expires: defaultExpiry(food.name),
+          expirySource: "estimated" as const,
+        })),
+      )
     } catch {
       setError(t("scanFailed"))
     } finally {
@@ -1112,7 +1241,7 @@ function ScanPanel() {
       setError(t("tickOne"))
       return
     }
-    addMany(chosen.map((row) => ({ ...draftFromName(row.name, row.qty), expires: row.expires })))
+    addMany(chosen.map((row) => ({ ...draftFromName(row.name, row.qty), expires: row.expires, expirySource: row.expirySource })))
     setRows([])
     setPreview("")
     setSaved(t("added", { n: chosen.length }))
@@ -1123,25 +1252,32 @@ function ScanPanel() {
       <p className="text-sm text-muted">
         {t("scanIntro")}
       </p>
-      <label className="flex min-h-28 cursor-pointer flex-col items-center justify-center rounded-card border border-dashed border-line bg-surface px-4 py-6 text-center">
-        <Camera className="size-6 text-mint" />
-        <span className="mt-2 text-sm font-medium">{t("takePhoto")}</span>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <label className="flex min-h-32 cursor-pointer flex-col items-center justify-center rounded-card border border-dashed border-line bg-surface px-4 py-6 text-center">
+          <Camera className="size-6 text-mint" />
+          <span className="mt-2 text-sm font-medium">{t("phonePhoto")}</span>
         <input
           type="file"
           accept="image/*"
           capture="environment"
           className="sr-only"
           onChange={(e) => void onFile(e.target.files?.[0])}
-        />
-      </label>
-      <button
-        type="button"
-        disabled={pulling || busy}
-        onClick={() => void pullDoor()}
-        className="h-11 w-full rounded-card border border-line bg-surface font-semibold disabled:opacity-60"
-      >
-        {pulling ? t("askingPuck") : t("lastDoor")}
-      </button>
+          />
+        </label>
+        <button
+          type="button"
+          disabled={pulling || busy}
+          onClick={() => void pullDoor()}
+          className="min-h-32 rounded-card border border-line bg-surface px-4 text-center font-semibold disabled:opacity-60"
+        >
+          <span className="block">{pulling ? t("askingPuck") : t("fridgeSnap")}</span>
+          <span className="mt-1 block text-xs font-normal text-muted">{puckReady ? t("lastDoor") : t("fridgeSnapOffline")}</span>
+        </button>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <button type="button" onClick={onManual} className="min-h-11 rounded-card border border-line p-2 text-sm font-semibold">{t("addManually")}</button>
+        <button type="button" onClick={() => setSetupOpen(true)} className="min-h-11 rounded-card border border-line p-2 text-sm font-semibold">{t("fridgeSnapSetup")}</button>
+      </div>
       {preview && <img src={preview} alt={t("shelfAlt")} className="max-h-56 w-full rounded-card object-cover" />}
       {preview && (
         <button
@@ -1153,10 +1289,30 @@ function ScanPanel() {
           {busy ? t("reading") : t("identify")}
         </button>
       )}
-      {error && <p className="text-sm text-clay">{error}</p>}
-      {saved && <p className="text-sm text-mint">{saved}</p>}
+      {error && <p role="alert" className="text-sm text-clay">{error}</p>}
+      {saved && <p role="status" className="text-sm text-mint">{saved}</p>}
+      {setupOpen && (
+        <Sheet title={t("fridgeSnap")} onClose={() => setSetupOpen(false)}>
+          <p className="text-sm text-muted">{t("doorNote")}</p>
+          <label className="mt-4 block text-sm text-muted">
+            {t("doorAddr")}
+            <input value={puckHost} onChange={(e) => { setSettings({ puckHost: e.target.value }); setPuckReady(false) }} className={cn(fieldClass, "mt-1")} spellCheck={false} />
+          </label>
+          <button type="button" disabled={pulling} onClick={() => void pullDoor()} className="mt-4 h-11 w-full rounded-card bg-mint font-semibold text-mint-ink disabled:opacity-60">{pulling ? t("askingPuck") : t("testConnection")}</button>
+          {error && <p role="alert" className="mt-3 text-sm text-clay">{error}</p>}
+          {puckReady && <p role="status" className="mt-3 text-sm text-mint">{t("connected")}</p>}
+        </Sheet>
+      )}
       {rows.length > 0 && (
         <div className="space-y-3">
+          <div className="rounded-card border border-mint/40 bg-mint/10 px-4 py-3">
+            <p className="font-semibold">{t("reviewCount", { n: rows.length })}</p>
+            <p className="mt-1 text-sm text-muted">{t("nothingSaved")}</p>
+          </div>
+          <div className="flex gap-2">
+            <button type="button" onClick={() => setRows((current) => current.map((row) => ({ ...row, on: true })))} className="h-10 rounded-full border border-line px-3 text-sm">{t("confirmAll")}</button>
+            <button type="button" onClick={() => setRows((current) => current.map((row) => ({ ...row, on: false })))} className="h-10 rounded-full border border-line px-3 text-sm">{t("uncheckAll")}</button>
+          </div>
           <p className="text-sm text-muted">{t("uncheck")}</p>
           {rows.map((row, index) => (
             <div key={`${row.name}-${index}`} className="rounded-card border border-line bg-surface p-3">
@@ -1174,10 +1330,11 @@ function ScanPanel() {
                   onChange={(e) =>
                     setRows((current) =>
                       current.map((item, i) =>
-                        i === index ? { ...item, name: e.target.value, expires: defaultExpiry(e.target.value) } : item,
+                        i === index ? { ...item, name: e.target.value, expires: item.expirySource === "package" ? item.expires : defaultExpiry(e.target.value) } : item,
                       ),
                     )
                   }
+                  aria-label={t("name")}
                   className="h-10 min-w-0 flex-1 bg-transparent font-medium outline-none"
                 />
               </label>
@@ -1190,15 +1347,26 @@ function ScanPanel() {
                   aria-label={t("qty")}
                   className={fieldClass}
                 />
-                <input
-                  type="date"
-                  value={row.expires}
-                  onChange={(e) =>
-                    setRows((current) => current.map((item, i) => (i === index ? { ...item, expires: e.target.value } : item)))
-                  }
-                  aria-label={t("expires")}
-                  className={fieldClass}
-                />
+                <label className="block text-sm text-muted">
+                  {t("dateSource")}
+                  <select
+                    value={row.expirySource}
+                    onChange={(e) => setRows((current) => current.map((item, i) => (i === index ? { ...item, expirySource: e.target.value as ScanRow["expirySource"] } : item)))}
+                    className={fieldClass}
+                  >
+                    <option value="estimated">{t("dateSourceEstimated")}</option>
+                    <option value="package">{t("dateSourcePackage")}</option>
+                  </select>
+                </label>
+                <label className="block text-sm text-muted">
+                  {t("expires")}
+                  <input
+                    type="date"
+                    value={row.expires}
+                    onChange={(e) => setRows((current) => current.map((item, i) => (i === index ? { ...item, expires: e.target.value } : item)))}
+                    className={fieldClass}
+                  />
+                </label>
               </div>
             </div>
           ))}
@@ -1225,51 +1393,29 @@ function ShopPanel({ items }: { items: FoodItem[] }) {
   const extras = useFridge((s) => s.extras) ?? []
   const { locale, t } = useI18n()
   const [note, setNote] = useState("")
+  const [boughtCandidate, setBoughtCandidate] = useState<ShopNote | null>(null)
+  const [searchOpen, setSearchOpen] = useState(false)
   const plan = useMemo(() => planMeals(items, vegetarian, priority, favorites, taste), [items, vegetarian, priority, favorites, taste])
   const picked = useMemo(() => ideasByIds(wanted, items, extras), [wanted, items, extras])
   const focus = picked.length ? picked : plan.ideas
   const shopRows = picked.length ? shopForIdeas(items, picked) : plan.shop
-  const low = items.filter((item) => daysUntil(item.expires) <= 2)
+  const low = items.filter((item) => daysUntil(item.expires) >= 0 && daysUntil(item.expires) <= 2)
   const join = (names: string[]) => names.map((name) => foodLabel(locale, name)).join(locale === "zh" ? "、" : ", ")
 
   function addSuggested() {
     const have = new Set(shop.map((row) => row.text.toLowerCase()))
     for (const row of shopRows) {
       const label = foodLabel(locale, row.name)
-      if (!have.has(label.toLowerCase())) addShop(label)
+      if (!have.has(label.toLowerCase())) { addShop(label); have.add(label.toLowerCase()) }
     }
   }
 
   return (
     <section className="space-y-5">
-      {!taste && <SurveyPanel />}
-      <DishSearch />
-      <div>
-        <h2 className="font-display text-2xl">{picked.length ? t("wantedNow") : t("ideas")}</h2>
-        {!focus.length && <p className="mt-2 text-sm text-muted">{t("shopWait")}</p>}
-        {focus.length > 0 && (
-          <ul className="mt-3 space-y-2">
-            {focus.map((row) => {
-              const copy = recipeText(locale, row.recipe)
-              const gaps = shopRows.filter((item) => item.recipeIds.includes(row.recipe.id)).map((item) => item.name)
-              return (
-                <li key={row.recipe.id} className="rounded-card border border-line bg-surface px-4 py-3">
-                  <p className="font-medium">{copy.name}</p>
-                  <p className="text-sm text-muted">
-                    {copy.cuisine} · {t("minutes", { n: row.recipe.time })}
-                  </p>
-                  {row.urgent.length > 0 && <p className="mt-1 text-sm text-clay">{t("usesSoon", { list: join(row.urgent) })}</p>}
-                  <p className="mt-1 text-sm text-muted">{gaps.length ? t("stillNeed", { list: join(gaps) }) : t("haveAll")}</p>
-                </li>
-              )
-            })}
-          </ul>
-        )}
-      </div>
-
+      <h2 className="font-display text-3xl">{t("shoppingList")}</h2>
       {focus.length > 0 && (
         <div>
-          <h2 className="font-display text-2xl">{t("suggestedList")}</h2>
+          <h2 className="font-display text-2xl">{t("forTonight")}</h2>
           {shopRows.length === 0 ? (
             <p className="mt-2 text-sm text-muted">{t("nothingExtra")}</p>
           ) : (
@@ -1292,33 +1438,22 @@ function ShopPanel({ items }: { items: FoodItem[] }) {
                     </span>
                     <button
                       type="button"
-                      onClick={() => addItem(draftFromName(row.name))}
+                      onClick={() => {
+                        const label = foodLabel(locale, row.name)
+                        if (!shop.some((note) => !note.done && note.text.toLowerCase() === label.toLowerCase())) addShop(label)
+                      }}
                       className="h-10 shrink-0 rounded-full bg-mint px-3 text-sm font-semibold text-mint-ink"
                     >
-                      {t("bought")}
+                      {t("addToShoppingList")}
                     </button>
                   </li>
                 ))}
               </ul>
               <button type="button" onClick={addSuggested} className="mt-3 h-11 w-full rounded-card border border-line text-sm font-semibold">
-                {t("addToNotes")}
+                {t("addToShoppingList")}
               </button>
             </>
           )}
-        </div>
-      )}
-
-      {low.length > 0 && (
-        <div>
-          <h2 className="font-display text-2xl">{t("useOrReplace")}</h2>
-          <ul className="mt-3 space-y-2">
-            {low.map((item) => (
-              <li key={item.id} className="rounded-card border border-line px-4 py-3 text-sm">
-                <span className="font-medium">{foodLabel(locale, item.name)}</span>
-                <span className="text-muted"> · {whenText(locale, item.expires)}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       )}
 
@@ -1341,7 +1476,50 @@ function ShopPanel({ items }: { items: FoodItem[] }) {
           {t("add")}
         </button>
       </form>
-      <ShopNotes notes={shop} onToggle={toggleShop} onClear={clearDoneShop} />
+      <ShopNotes notes={shop} onToggle={(id) => {
+        const found = shop.find((row) => row.id === id)
+        toggleShop(id)
+        if (found && !found.done) setBoughtCandidate(found)
+      }} onClear={clearDoneShop} />
+      <button type="button" onClick={() => setSearchOpen((open) => !open)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">{t("searchDish")}</button>
+      {searchOpen && <DishSearch />}
+      {low.length > 0 && (
+        <div>
+          <h2 className="font-display text-2xl">{t("useOrReplace")}</h2>
+          <ul className="mt-3 space-y-2">
+            {low.map((item) => (
+              <li key={item.id} className="rounded-card border border-line px-4 py-3 text-sm">
+                <span className="font-medium">{foodLabel(locale, item.name)}</span>
+                <span className="text-muted"> · {whenText(locale, item.expires)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {focus.length > 0 && (
+        <details className="rounded-card border border-line bg-surface p-4">
+          <summary className="cursor-pointer font-display text-xl">{picked.length ? t("wantedNow") : t("ideas")}</summary>
+          <ul className="mt-3 space-y-2">
+            {focus.map((row) => {
+              const copy = recipeText(locale, row.recipe)
+              return <li key={row.recipe.id} className="border-t border-line py-2 text-sm">
+                <p className="font-medium">{copy.name} · {t("minutes", { n: row.recipe.time })}</p>
+                <p className="text-muted">{row.missing.length ? t("stillNeed", { list: join(row.missing) }) : t("haveAll")}</p>
+              </li>
+            })}
+          </ul>
+        </details>
+      )}
+      {boughtCandidate && (
+        <Sheet title={t("addToFridge")} onClose={() => setBoughtCandidate(null)}>
+          <p className="text-sm text-muted">{boughtCandidate.text}</p>
+          <p className="mt-2 text-xs text-muted">{t("estimateHint")}</p>
+          <div className="mt-4 flex gap-2">
+            <button type="button" onClick={() => setBoughtCandidate(null)} className="h-11 flex-1 rounded-card border border-line text-sm font-semibold">{t("keepOnList")}</button>
+            <button type="button" onClick={() => { addItem(draftFromName(boughtCandidate.text)); setBoughtCandidate(null) }} className="h-11 flex-1 rounded-card bg-mint text-sm font-semibold text-mint-ink">{t("addToFridge")}</button>
+          </div>
+        </Sheet>
+      )}
     </section>
   )
 }
@@ -1360,9 +1538,9 @@ function ShopNotes({
   return (
     <div>
       <div className="mb-2 flex items-center justify-between">
-        <h2 className="font-display text-2xl">{t("notes")}</h2>
+        <h2 className="font-display text-2xl">{t("shoppingList")}</h2>
         <button type="button" onClick={onClear} className="text-sm text-muted">
-          {t("clearDone")}
+          {t("clearCompleted")}
         </button>
       </div>
       <ul className="space-y-2">
@@ -1392,6 +1570,7 @@ function ShopNotes({
 
 function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => void }) {
   const addItem = useFridge((s) => s.addItem)
+  const existing = useFridge((s) => s.items)
   const updateItem = useFridge((s) => s.updateItem)
   const removeItem = useFridge((s) => s.removeItem)
   const { locale, t } = useI18n()
@@ -1403,6 +1582,7 @@ function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => void }) 
           location: item.location,
           bought: item.bought,
           expires: item.expires,
+          expirySource: item.expirySource ?? "estimated",
           opened: item.opened,
         }
       : draftFromName("")
@@ -1415,7 +1595,7 @@ function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => void }) 
       ...current,
       name,
       location: shelf?.location ?? current.location,
-      expires: name.trim() ? defaultExpiry(name, current.bought, current.opened) : current.expires,
+      expires: current.expirySource === "package" || !name.trim() ? current.expires : defaultExpiry(name, current.bought, current.opened),
     }))
   }
 
@@ -1428,6 +1608,13 @@ function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => void }) 
 
   return (
     <Sheet title={item ? t("editFood") : t("addFood")} onClose={onClose}>
+      {!item && (
+        <div className="mb-4 flex gap-2 overflow-x-auto pb-1" aria-label={t("quickAdd")}>
+          {[...new Set([...existing.slice(0, 3).map((row) => row.name), "Eggs", "Milk", "Tomato", "Chicken breast"])].slice(0, 6).map((name) => (
+            <button key={name} type="button" onClick={() => applyName(foodLabel(locale, name))} className="h-10 shrink-0 rounded-full border border-line bg-raised px-3 text-sm">{foodLabel(locale, name)}</button>
+          ))}
+        </div>
+      )}
       <label className="block text-sm text-muted">
         {t("name")}
         <input list="shelf-names" value={draft.name} onChange={(e) => applyName(e.target.value)} className={cn(fieldClass, "mt-1")} />
@@ -1460,7 +1647,7 @@ function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => void }) 
               setDraft({
                 ...draft,
                 bought: e.target.value,
-                expires: defaultExpiry(draft.name, e.target.value, draft.opened),
+                expires: draft.expirySource === "package" ? draft.expires : defaultExpiry(draft.name, e.target.value, draft.opened),
               })
             }
             className={fieldClass}
@@ -1475,6 +1662,16 @@ function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => void }) 
           />
         </Field>
       </div>
+      <Field label={t("dateSource")}>
+        <select
+          value={draft.expirySource ?? "estimated"}
+          onChange={(e) => setDraft({ ...draft, expirySource: e.target.value as Draft["expirySource"], expires: e.target.value === "estimated" ? defaultExpiry(draft.name, draft.bought, draft.opened) : draft.expires })}
+          className={fieldClass}
+        >
+          <option value="estimated">{t("dateSourceEstimated")}</option>
+          <option value="package">{t("dateSourcePackage")}</option>
+        </select>
+      </Field>
       <label className="mt-3 flex min-h-11 items-center gap-3 text-sm">
         <input
           type="checkbox"
@@ -1483,14 +1680,14 @@ function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => void }) 
             setDraft({
               ...draft,
               opened: e.target.checked,
-              expires: defaultExpiry(draft.name, draft.bought, e.target.checked),
+              expires: draft.expirySource === "package" ? draft.expires : defaultExpiry(draft.name, draft.bought, e.target.checked),
             })
           }
           className="size-5 accent-mint"
         />
         {t("opened")}
       </label>
-      <p className="mt-2 text-xs text-muted">{t("estimate")}</p>
+      <p className="mt-2 text-xs text-muted">{draft.expirySource === "package" ? t("packageDateHint") : t("estimateHint")}</p>
       <div className="mt-4 flex gap-2">
         <button type="button" onClick={save} className="h-11 flex-1 rounded-card bg-mint font-semibold text-mint-ink">
           {t("save")}
@@ -1520,12 +1717,13 @@ function SettingsSheet({ onClose }: { onClose: () => void }) {
   const shop = useFridge((s) => s.shop)
   const loadSample = useFridge((s) => s.loadSample)
   const clearItems = useFridge((s) => s.clearItems)
-  const replaceAll = useFridge((s) => s.replaceAll)
+  const extras = useFridge((s) => s.extras)
+  const [backupMessage, setBackupMessage] = useState("")
 
   const { t } = useI18n()
 
   function exportJson() {
-    const blob = new Blob([JSON.stringify({ items, shop, settings }, null, 2)], { type: "application/json" })
+    const blob = new Blob([JSON.stringify({ items, shop, extras, settings }, null, 2)], { type: "application/json" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
@@ -1536,14 +1734,31 @@ function SettingsSheet({ onClose }: { onClose: () => void }) {
 
   async function onImport(file: File | undefined) {
     if (!file) return
-    const text = await file.text()
-    const data = JSON.parse(text) as { items?: FoodItem[] }
-    if (!Array.isArray(data.items)) return
-    replaceAll(data.items.filter((row) => row && typeof row.name === "string" && typeof row.expires === "string"))
+    try {
+      const data = JSON.parse(await file.text()) as {
+        items?: FoodItem[]
+        shop?: ShopNote[]
+        extras?: RankedRecipe["recipe"][]
+        settings?: Partial<typeof settings>
+      }
+      if (!Array.isArray(data.items) || !data.items.every((row) => row && typeof row.id === "string" && typeof row.name === "string" && typeof row.expires === "string")) throw new Error("Invalid backup")
+      if (data.shop && (!Array.isArray(data.shop) || !data.shop.every((row) => row && typeof row.text === "string" && typeof row.id === "string"))) throw new Error("Invalid shopping list")
+      if (data.extras && (!Array.isArray(data.extras) || !data.extras.every((row) => row && typeof row.name === "string" && Array.isArray(row.need)))) throw new Error("Invalid dishes")
+      useFridge.setState((state) => ({
+        items: data.items,
+        shop: data.shop ?? state.shop,
+        extras: data.extras ?? state.extras,
+        settings: data.settings && typeof data.settings === "object" && !Array.isArray(data.settings) ? { ...state.settings, ...data.settings, onboarded: true } : { ...state.settings, onboarded: true },
+      }))
+      setBackupMessage(t("backupImported"))
+    } catch {
+      setBackupMessage(t("backupFailed"))
+    }
   }
 
   return (
     <Sheet title={t("settings")} onClose={onClose}>
+      <p className="mb-3 text-xs text-muted">{t("chooseHowBody")}</p>
       <label className="flex min-h-11 items-center justify-between gap-3 text-sm">
         {t("veg")}
         <input
@@ -1594,17 +1809,14 @@ function SettingsSheet({ onClose }: { onClose: () => void }) {
         </select>
       </label>
       <p className="mt-2 text-xs text-muted">{t("remindNote")}</p>
-      <label className="mt-3 block text-sm text-muted">
-        {t("doorAddr")}
-        <input
-          value={settings.puckHost ?? "http://fridgesnap.local"}
-          onChange={(e) => setSettings({ puckHost: e.target.value })}
-          spellCheck={false}
-          autoCapitalize="off"
-          className={cn(fieldClass, "mt-1")}
-        />
-      </label>
-      <p className="mt-2 text-xs text-muted">{t("doorNote")}</p>
+      <details className="mt-4 rounded-card border border-line p-3">
+        <summary className="cursor-pointer text-sm font-semibold">{t("fridgeSnap")}</summary>
+        <label className="mt-3 block text-sm text-muted">
+          {t("doorAddr")}
+          <input value={settings.puckHost ?? "http://fridgesnap.local"} onChange={(e) => setSettings({ puckHost: e.target.value })} spellCheck={false} autoCapitalize="off" className={cn(fieldClass, "mt-1")} />
+        </label>
+        <p className="mt-2 text-xs text-muted">{t("doorNote")}</p>
+      </details>
       <div className="mt-4 grid grid-cols-2 gap-2">
         <button type="button" onClick={() => loadSample()} className="h-11 rounded-card border border-line text-sm font-semibold">
           {t("loadSample")}
@@ -1626,23 +1838,43 @@ function SettingsSheet({ onClose }: { onClose: () => void }) {
           {t("clearFridge")}
         </button>
       </div>
+      {backupMessage && <p role="status" className="mt-3 text-sm text-mint">{backupMessage}</p>}
     </Sheet>
   )
 }
 
 function Sheet({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   const { t } = useI18n()
+  const dialog = useRef<HTMLDivElement>(null)
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
   useEffect(() => {
+    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const oldOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    dialog.current?.querySelector<HTMLElement>("button, input, select, [tabindex]")?.focus()
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose()
+      if (event.key === "Escape") onCloseRef.current()
+      if (event.key !== "Tab" || !dialog.current) return
+      const focusable = [...dialog.current.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), select:not(:disabled), [tabindex="0"]')].filter((element) => element.getClientRects().length > 0)
+      if (!focusable.length) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus() }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
     }
     window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
-  }, [onClose])
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      document.body.style.overflow = oldOverflow
+      previous?.focus()
+    }
+  }, [])
 
   return (
     <div className="fixed inset-0 z-30 flex items-end justify-center bg-bg/80 sm:items-center" role="presentation" onClick={onClose}>
       <div
+        ref={dialog}
         role="dialog"
         aria-modal="true"
         aria-label={title}
@@ -1676,6 +1908,56 @@ function Empty({ title, body }: { title: string; body: string }) {
       <p className="font-display text-2xl">{title}</p>
       <p className="mt-1 text-sm text-muted">{body}</p>
     </div>
+  )
+}
+
+function TastePrompt({ onOpen }: { onOpen: () => void }) {
+  const { t } = useI18n()
+  return (
+    <section className="rounded-card border border-line bg-surface px-4 py-4">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <h2 className="font-display text-2xl">{t("improveSuggestions")}</h2>
+          <p className="mt-1 text-sm text-muted">{t("improveSuggestionsBody")}</p>
+        </div>
+        <button type="button" onClick={onOpen} className="h-11 shrink-0 rounded-card border border-line px-3 text-sm font-semibold">
+          {t("improveSuggestions")}
+        </button>
+      </div>
+    </section>
+  )
+}
+
+function WelcomeSheet({
+  onClose,
+  onManual,
+  onPhoto,
+  onSample,
+}: {
+  onClose: () => void
+  onManual: () => void
+  onPhoto: () => void
+  onSample: () => void
+}) {
+  const { t } = useI18n()
+  return (
+    <Sheet title={t("welcomeTitle")} onClose={onClose}>
+      <p className="text-sm text-muted">{t("welcomeBody")}</p>
+      <div className="mt-5 grid gap-2">
+        <button type="button" onClick={onManual} className="h-12 rounded-card bg-mint font-semibold text-mint-ink">
+          {t("welcomeManual")}
+        </button>
+        <button type="button" onClick={onPhoto} className="h-12 rounded-card border border-line font-semibold">
+          {t("welcomePhoto")}
+        </button>
+        <button type="button" onClick={onSample} className="h-12 rounded-card border border-line font-semibold">
+          {t("welcomeSample")}
+        </button>
+        <button type="button" onClick={onClose} className="h-11 text-sm text-muted">
+          {t("welcomeLater")}
+        </button>
+      </div>
+    </Sheet>
   )
 }
 

@@ -70,6 +70,21 @@ export function SurveyPanel({ onDone }: { onDone?: () => void }) {
     })
   }
 
+  function questionView(question: (typeof SURVEY)[number]) {
+    return (
+      <div key={question.id}>
+        <p className="text-sm font-medium">{question.title[locale]}</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          <button type="button" onClick={() => setDraft((current) => ({ ...current, [question.id]: "" }))} className={cn("h-11 rounded-full border px-3 text-sm", !draft[question.id] ? "border-mint bg-mint font-semibold text-mint-ink" : "border-line bg-raised text-fg")}>{t("surveySkipQuestion")}</button>
+          {question.options.map((option) => {
+            const on = draft[question.id] === option.id
+            return <button key={option.id} type="button" onClick={() => setDraft((current) => ({ ...current, [question.id]: option.id }))} className={cn("h-11 rounded-full border px-3 text-sm", on ? "border-mint bg-mint font-semibold text-mint-ink" : "border-line bg-raised text-fg")}>{locale === "zh" ? option.zh : option.en}</button>
+          })}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <section className="space-y-4 rounded-card border border-line bg-surface p-4">
       <div className="flex items-start justify-between gap-3">
@@ -78,39 +93,7 @@ export function SurveyPanel({ onDone }: { onDone?: () => void }) {
           {t("surveySkip")}
         </button>
       </div>
-      {SURVEY.map((question) => (
-        <div key={question.id}>
-          <p className="text-sm font-medium">{question.title[locale]}</p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => setDraft({ ...draft, [question.id]: "" })}
-              className={cn(
-                "h-11 rounded-full border px-3 text-sm",
-                !draft[question.id] ? "border-mint bg-mint font-semibold text-mint-ink" : "border-line bg-raised text-fg",
-              )}
-            >
-              {t("surveySkipQuestion")}
-            </button>
-            {question.options.map((option) => {
-              const on = draft[question.id] === option.id
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  onClick={() => setDraft({ ...draft, [question.id]: option.id })}
-                  className={cn(
-                    "h-11 rounded-full border px-3 text-sm",
-                    on ? "border-mint bg-mint font-semibold text-mint-ink" : "border-line bg-raised text-fg",
-                  )}
-                >
-                  {locale === "zh" ? option.zh : option.en}
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      ))}
+      {SURVEY.filter((question) => ["diet", "pace", "goal"].includes(question.id)).map(questionView)}
       <div>
         <p className="text-sm font-medium">{t("surveyCuisines")}</p>
         <p className="mt-1 text-sm text-muted">{t("surveyCuisinesHint")}</p>
@@ -143,6 +126,10 @@ export function SurveyPanel({ onDone }: { onDone?: () => void }) {
           })}
         </div>
       </div>
+      <details className="rounded-card border border-line bg-raised p-3">
+        <summary className="cursor-pointer text-sm font-semibold">{t("morePreferences")}</summary>
+        <div className="mt-4 space-y-4">{SURVEY.filter((question) => !["diet", "pace", "goal"].includes(question.id)).map(questionView)}</div>
+      </details>
       <button type="button" onClick={finish} className="h-11 w-full rounded-card bg-mint font-semibold text-mint-ink">
         {t("surveySee")}
       </button>
