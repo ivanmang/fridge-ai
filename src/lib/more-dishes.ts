@@ -1,11 +1,12 @@
 import type { Recipe } from "@/lib/recipes"
+import { MORE_EXTRA } from "@/lib/more-dishes-extra"
 
 /**
  * Best cookable Tonight book — searchable home classics only.
- * Prefer dishes people can look up on Made With Lau / Lee Kum Kee HK;
+ * Prefer dishes people can look up on Made With Lau / Lee Kum Kee HK / BBC Food;
  * steps are a quick outline, not the cook-along. `sourceUrl` only when verified.
  */
-export const MORE: Recipe[] = [
+const MORE_CORE: Recipe[] = [
   {
     id: "home-tomato-egg",
     name: "Tomato egg stir-fry",
@@ -1095,6 +1096,8 @@ export const MORE: Recipe[] = [
     sourceName: "BBC Food",
   },
 ]
+
+export const MORE: Recipe[] = [...MORE_CORE, ...MORE_EXTRA]
 
 /** Outline-catalogue ZH name hints (not home recipe titles). */
 export const MORE_ZH: Record<string, string> = {
