@@ -28,6 +28,13 @@ describe("RECIPE_IMAGES", () => {
       const url = RECIPE_IMAGES[recipe.id]
       assert.ok(url.startsWith("https://"), recipe.id)
       assert.ok(!url.includes("images.unsplash.com"), `unsplash bucket forbidden: ${recipe.id}`)
+      // Prefer publisher CDN from the recipe source page (not Flickr/Openverse stand-ins)
+      assert.ok(
+        /thewoksoflife\.com|cdn\.sanity\.io|ichef\.bbci\.co\.uk|cdn-akamai\.lkk\.com|chuimg\.com|xiachufang\.com/i.test(
+          url,
+        ),
+        `expected source-page host for ${recipe.id}: ${url}`,
+      )
     }
   })
 

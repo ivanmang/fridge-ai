@@ -314,8 +314,8 @@ const MORE_CORE: Recipe[] = [
         "加生抽調味，撒蔥花，伴飯吃。",
       ],
     },
-    sourceUrl: "https://www.madewithlau.com/recipes/mapo-tofu-pork",
-    sourceName: "Made With Lau",
+    sourceUrl: "https://thewoksoflife.com/ma-po-tofu-real-deal/",
+    sourceName: "The Woks of Life",
   },
   {
     id: "home-tomato-tofu",
@@ -994,8 +994,8 @@ const MORE_CORE: Recipe[] = [
         "加生抽、蠔油、少許醋和水，拌入茄子炒勻，撒蔥花。",
       ],
     },
-    sourceUrl: "https://www.madewithlau.com/recipes/steamed-chinese-eggplant",
-    sourceName: "Made With Lau",
+    sourceUrl: "https://thewoksoflife.com/chinese-eggplant-garlic-sauce/",
+    sourceName: "The Woks of Life",
   },
   {
     id: "home-cabbage-stirfry",

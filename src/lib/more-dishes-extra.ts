@@ -599,8 +599,8 @@ export const MORE_EXTRA: Recipe[] = [
         "回牛肉加蠔油炒勻。",
       ],
     },
-    sourceUrl: "https://hk.lkk.com/zh-hk/recipes/stir-fried-beef-with-honey-pea-and-lily-bulb",
-    sourceName: "Lee Kum Kee",
+    sourceUrl: "https://thewoksoflife.com/beef-snow-peas/",
+    sourceName: "The Woks of Life",
   },
   {
     id: "home-soy-steamed-fish",
