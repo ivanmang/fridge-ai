@@ -39,14 +39,49 @@ npm run test:logic   # product ranking / expiry / shelf tests only
 | Variable | Required | Purpose |
 |---|---|---|
 | `XAI_API_KEY` | For Identify / online dish lookup | Server-side xAI key. Never put this in the browser. When unset, scan and lookup **fail closed** with a clear message; manual add and local recipes still work. |
+| `VITE_AUTH_ENABLED` | Yes for public FridgeAI deploys | Set to `false`. FridgeAI keeps inventory on-device and does not use accounts. Leaving this unset enables the unused Better Auth UI path. |
+| `DATABASE_URL` | No | Leave unset. Product data is `localStorage`, not Postgres. |
 
-Create a local `.env` (gitignored) or whatever your host uses for secrets:
+Copy [`.env.example`](.env.example) to `.env` for local work:
 
 ```bash
-XAI_API_KEY=xai-...
+cp .env.example .env
+# then set XAI_API_KEY=xai-...
 ```
 
-Scan/lookup are rate-limited per client IP (persisted under `.data/` when the filesystem allows), with a request timeout and a small concurrent-scan cap.
+Scan/lookup are rate-limited per client IP (best-effort persist under `.data/` when the filesystem allows), with a request timeout and a small concurrent-scan cap.
+
+## Deploy (Vercel)
+
+**Chosen host:** [Vercel](https://vercel.com) — this repo already builds with Nitro’s `vercel` preset in `vite.config.ts` (TanStack Start’s supported Vercel path). Cloudflare Workers would mean swapping Nitro for `@cloudflare/vite-plugin` + `wrangler` and more Node-compat work for existing server middleware; Vercel is the least-friction fit.
+
+### One-time setup
+
+1. Import [ivanmang/fridge-ai](https://github.com/ivanmang/fridge-ai) in the Vercel dashboard (or `npx vercel link`).
+2. Set project Environment Variables (Production + Preview):
+
+| Key | Value | Notes |
+|---|---|---|
+| `VITE_AUTH_ENABLED` | `false` | Also set in `vercel.json` as a safe default |
+| `XAI_API_KEY` | `xai-…` | **Required for Identify / dish lookup.** Omit only if you accept those features failing closed |
+
+3. Deploy from Git (push to `main`) or CLI:
+
+```bash
+npx vercel          # preview
+npx vercel --prod   # production
+```
+
+Build uses `npm run build` → Vite + Nitro (`preset: "vercel"`) → Vercel Build Output API. `db:migrate` no-ops without `DATABASE_URL`.
+
+### Production notes
+
+- **Inventory privacy:** food list, shopping list, and settings stay in the browser (`localStorage`). They are not uploaded to Vercel.
+- **Photos leave the device** only when the user taps Identify; the image is sent to xAI via a server function. Document that in any public share of the URL.
+- **`XAI_API_KEY` is required for Identify.** Without it, scan and online dish lookup return a clear error; Tonight / My food / manual Add / Shop still work.
+- **Rate limits are soft on serverless.** Counters are per-instance memory plus best-effort `.data/` writes. On Vercel Fluid / multi-instance deploys, limits reset across cold starts and do not share a global store. Do not treat them as spend protection for a widely shared public URL — use a paid KV/Redis layer (or auth / Turnstile) before heavy public traffic.
+- **FridgeSnap puck:** an HTTPS deploy cannot reliably fetch `http://fridgesnap.local` (mixed content / private network). Prefer the installed PWA on the home LAN, or manual/photo add, when using the puck.
+- **Optional auth/DB scaffolding** in the repo stays disabled when `VITE_AUTH_ENABLED=false` and `DATABASE_URL` is unset.
 
 ## What is in this repo
 

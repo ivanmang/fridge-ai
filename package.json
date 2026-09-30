@@ -20,7 +20,9 @@
     "test:logic": "node --import ./scripts/fridge-test-loader.mjs --experimental-strip-types --test src/lib/logic.test.ts",
     "test:platform": "node --test 'scripts/**/*.test.mjs'",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy:vercel": "npx --yes vercel@latest",
+    "deploy:vercel:prod": "npx --yes vercel@latest --prod"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.4",
