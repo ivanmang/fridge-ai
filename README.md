@@ -49,7 +49,7 @@ cp .env.example .env
 # then set XAI_API_KEY=xai-...
 ```
 
-Scan/lookup are rate-limited per client IP (best-effort persist under `.data/` when the filesystem allows), with a request timeout and a small concurrent-scan cap.
+Scan/lookup are rate-limited per client IP (best-effort persist under `.data/` when the filesystem allows), with a request timeout and a small concurrent-scan cap. **These are soft brakes only** — serverless instances do not share memory or disk. Before circulating a public production URL, add real spend protection (Vercel KV / Upstash, Turnstile, or auth) so `XAI_API_KEY` cannot be drained.
 
 ## Deploy (Vercel)
 

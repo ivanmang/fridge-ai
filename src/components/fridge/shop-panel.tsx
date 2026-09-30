@@ -53,7 +53,7 @@ export function DishSearch() {
       if (result.ok) {
         setRemote(result.dishes)
         if (!result.dishes.length) setWarn(t("noMoreDishes"))
-      } else setWarn(t("lookupUnavailable"))
+      } else setWarn(t(result.error === "limit" ? "lookupLimit" : "lookupUnavailable"))
     } catch {
       if (request === requestRef.current) setWarn(t("lookupUnavailable"))
     } finally {

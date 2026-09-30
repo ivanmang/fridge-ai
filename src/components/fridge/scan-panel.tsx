@@ -3,6 +3,7 @@ import { fieldClass, Sheet, useI18n } from "@/components/fridge/shared"
 import { fetchDoorPhoto, puckError, shrinkImage } from "@/components/fridge/puck"
 import { foodLabel } from "@/lib/i18n"
 import { defaultExpiry } from "@/lib/logic"
+import { scanErrorKey, isScanErrorCode } from "@/lib/scan-errors"
 import { scanFoods } from "@/lib/scan.functions"
 import { draftFromName, useFridge } from "@/lib/store"
 import { cn } from "@/lib/utils"
@@ -62,7 +63,7 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
     try {
       const result = await scanFoods({ data: { image: preview } })
       if (!result.ok) {
-        setError(result.error)
+        setError(t(scanErrorKey(result.error)))
         setRows([])
         return
       }
@@ -80,12 +81,19 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
           expirySource: "estimated" as const,
         })),
       )
-    } catch {
-      setError(t("scanFailed"))
+    } catch (err) {
+      const message = err instanceof Error ? err.message : ""
+      setError(t(isScanErrorCode(message) ? scanErrorKey(message) : "scanFailed"))
     } finally {
       setBusy(false)
     }
   }
+
+  const httpsPuck =
+    typeof window !== "undefined" &&
+    window.location.protocol === "https:" &&
+    /^https?:\/\//i.test(puckHost) &&
+    !/^https:\/\//i.test(puckHost)
 
   function save() {
     const chosen = rows.filter((row) => row.on && row.name.trim())
@@ -131,6 +139,11 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
         <button type="button" onClick={onManual} className="min-h-11 rounded-card border border-line p-2 text-sm font-semibold">{t("addManually")}</button>
         <button type="button" onClick={() => setSetupOpen(true)} className="min-h-11 rounded-card border border-line p-2 text-sm font-semibold">{t("fridgeSnapSetup")}</button>
       </div>
+      {httpsPuck && (
+        <p role="status" className="rounded-card border border-clay/40 bg-clay/10 px-3 py-3 text-xs text-clay">
+          {t("httpsPuckWarn")}
+        </p>
+      )}
       {preview && <img src={preview} alt={t("shelfAlt")} className="max-h-56 w-full rounded-card object-cover" />}
       {preview && (
         <button
@@ -147,6 +160,11 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
       {setupOpen && (
         <Sheet title={t("fridgeSnap")} onClose={() => setSetupOpen(false)}>
           <p className="text-sm text-muted">{t("doorNote")}</p>
+          {httpsPuck && (
+            <p role="alert" className="mt-3 rounded-card border border-clay/40 bg-clay/10 px-3 py-3 text-sm text-clay">
+              {t("httpsPuckWarn")}
+            </p>
+          )}
           <label className="mt-4 block text-sm text-muted">
             {t("doorAddr")}
             <input value={puckHost} onChange={(e) => { setSettings({ puckHost: e.target.value }); setPuckReady(false) }} className={cn(fieldClass, "mt-1")} spellCheck={false} />

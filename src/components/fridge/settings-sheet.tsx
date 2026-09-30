@@ -2,14 +2,14 @@ import { useState } from "react"
 import { Trash2 } from "lucide-react"
 import { Field, Sheet, SuggestControl, fieldClass, useI18n, type Draft } from "@/components/fridge/shared"
 import { TasteProfile } from "@/components/fridge/survey-panel"
+import { BACKUP_VERSION, parseBackup } from "@/lib/backup"
 import { foodLabel } from "@/lib/i18n"
 import {
   defaultExpiry,
   findShelf,
   type FoodItem,
-  type RankedRecipe,
 } from "@/lib/logic"
-import { draftFromName, useFridge, type ShopNote } from "@/lib/store"
+import { draftFromName, useFridge } from "@/lib/store"
 import { emptySurvey } from "@/lib/survey"
 import { SHELF } from "@/lib/shelf"
 import { cn } from "@/lib/utils"
@@ -157,20 +157,30 @@ export function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => v
 }
 
 
-export function SettingsSheet({ onClose }: { onClose: () => void }) {
+export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; onEditTaste?: () => void }) {
   const settings = useFridge((s) => s.settings)
   const setSettings = useFridge((s) => s.setSettings)
   const items = useFridge((s) => s.items)
   const shop = useFridge((s) => s.shop)
-  const loadSample = useFridge((s) => s.loadSample)
-  const clearItems = useFridge((s) => s.clearItems)
   const extras = useFridge((s) => s.extras)
+  const loadSample = useFridge((s) => s.loadSample)
+  const mergeSample = useFridge((s) => s.mergeSample)
+  const clearItems = useFridge((s) => s.clearItems)
   const [backupMessage, setBackupMessage] = useState("")
+  const [sampleOpen, setSampleOpen] = useState(false)
 
   const { t } = useI18n()
+  const httpsPuck =
+    typeof window !== "undefined" &&
+    window.location.protocol === "https:" &&
+    /^https?:\/\//i.test(settings.puckHost || "http://fridgesnap.local") &&
+    !/^https:\/\//i.test(settings.puckHost || "http://fridgesnap.local")
 
   function exportJson() {
-    const blob = new Blob([JSON.stringify({ items, shop, extras, settings }, null, 2)], { type: "application/json" })
+    const blob = new Blob(
+      [JSON.stringify({ version: BACKUP_VERSION, items, shop, extras, settings }, null, 2)],
+      { type: "application/json" },
+    )
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
@@ -182,25 +192,27 @@ export function SettingsSheet({ onClose }: { onClose: () => void }) {
   async function onImport(file: File | undefined) {
     if (!file) return
     try {
-      const data = JSON.parse(await file.text()) as {
-        items?: FoodItem[]
-        shop?: ShopNote[]
-        extras?: RankedRecipe["recipe"][]
-        settings?: Partial<typeof settings>
-      }
-      if (!Array.isArray(data.items) || !data.items.every((row) => row && typeof row.id === "string" && typeof row.name === "string" && typeof row.expires === "string")) throw new Error("Invalid backup")
-      if (data.shop && (!Array.isArray(data.shop) || !data.shop.every((row) => row && typeof row.text === "string" && typeof row.id === "string"))) throw new Error("Invalid shopping list")
-      if (data.extras && (!Array.isArray(data.extras) || !data.extras.every((row) => row && typeof row.name === "string" && Array.isArray(row.need)))) throw new Error("Invalid dishes")
+      const data = parseBackup(JSON.parse(await file.text()))
       useFridge.setState((state) => ({
         items: data.items,
         shop: data.shop ?? state.shop,
         extras: data.extras ?? state.extras,
-        settings: data.settings && typeof data.settings === "object" && !Array.isArray(data.settings) ? { ...state.settings, ...data.settings, onboarded: true } : { ...state.settings, onboarded: true },
+        settings: data.settings
+          ? { ...state.settings, ...data.settings, onboarded: true }
+          : { ...state.settings, onboarded: true },
       }))
       setBackupMessage(t("backupImported"))
     } catch {
       setBackupMessage(t("backupFailed"))
     }
+  }
+
+  function onSampleClick() {
+    if (!items.length) {
+      loadSample()
+      return
+    }
+    setSampleOpen(true)
   }
 
   return (
@@ -223,7 +235,8 @@ export function SettingsSheet({ onClose }: { onClose: () => void }) {
         <TasteProfile
           onEdit={() => {
             setSettings({ survey: { ...(settings.survey ?? emptySurvey), done: false } })
-            onClose()
+            if (onEditTaste) onEditTaste()
+            else onClose()
           }}
         />
       </div>
@@ -257,6 +270,7 @@ export function SettingsSheet({ onClose }: { onClose: () => void }) {
         </select>
       </label>
       <p className="mt-2 text-xs text-muted">{t("remindNote")}</p>
+      <p className="mt-2 text-xs text-muted">{t("remindSpendNote")}</p>
       <details className="mt-4 rounded-card border border-line p-3">
         <summary className="cursor-pointer text-sm font-semibold">{t("fridgeSnap")}</summary>
         <label className="mt-3 block text-sm text-muted">
@@ -264,9 +278,14 @@ export function SettingsSheet({ onClose }: { onClose: () => void }) {
           <input value={settings.puckHost ?? "http://fridgesnap.local"} onChange={(e) => setSettings({ puckHost: e.target.value })} spellCheck={false} autoCapitalize="off" className={cn(fieldClass, "mt-1")} />
         </label>
         <p className="mt-2 text-xs text-muted">{t("doorNote")}</p>
+        {httpsPuck && (
+          <p role="alert" className="mt-2 text-xs text-clay">
+            {t("httpsPuckWarn")}
+          </p>
+        )}
       </details>
       <div className="mt-4 grid grid-cols-2 gap-2">
-        <button type="button" onClick={() => loadSample()} className="h-11 rounded-card border border-line text-sm font-semibold">
+        <button type="button" onClick={onSampleClick} className="h-11 rounded-card border border-line text-sm font-semibold">
           {t("loadSample")}
         </button>
         <button type="button" onClick={exportJson} className="h-11 rounded-card border border-line text-sm font-semibold">
@@ -287,8 +306,36 @@ export function SettingsSheet({ onClose }: { onClose: () => void }) {
         </button>
       </div>
       {backupMessage && <p role="status" className="mt-3 text-sm text-mint">{backupMessage}</p>}
+      {sampleOpen && (
+        <Sheet title={t("loadSample")} onClose={() => setSampleOpen(false)}>
+          <p className="text-sm text-muted">{t("sampleReplaceConfirm")}</p>
+          <div className="mt-4 grid gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                loadSample()
+                setSampleOpen(false)
+              }}
+              className="h-11 rounded-card bg-mint font-semibold text-mint-ink"
+            >
+              {t("sampleReplace")}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                mergeSample()
+                setSampleOpen(false)
+              }}
+              className="h-11 rounded-card border border-line font-semibold"
+            >
+              {t("sampleMerge")}
+            </button>
+            <button type="button" onClick={() => setSampleOpen(false)} className="h-11 text-sm text-muted">
+              {t("cancel")}
+            </button>
+          </div>
+        </Sheet>
+      )}
     </Sheet>
   )
 }
-
-
