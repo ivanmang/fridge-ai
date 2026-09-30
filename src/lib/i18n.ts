@@ -323,9 +323,9 @@ const UI = {
     viewFullRecipe: "Full recipe online",
     viewFullRecipeNamed: "Full recipe · {name}",
     recipePhotoAlt: "Photo of {name}",
-    findRecipesOnline: "Find recipes online",
+    findRecipesOnline: "Find guides (Made With Lau / LKK)",
     aboutDish: "About this dish",
-    aboutDishNamed: "About this dish · {name}",
+    aboutDishNamed: "Full recipe · {name}",
   },
   zh: {
     kicker: "今晚煮什麼",
@@ -644,9 +644,9 @@ const UI = {
     viewFullRecipe: "查看完整食譜",
     viewFullRecipeNamed: "完整食譜 · {name}",
     recipePhotoAlt: "{name} 的相片",
-    findRecipesOnline: "上網搵食譜",
+    findRecipesOnline: "搵食譜（李錦記／Made With Lau）",
     aboutDish: "了解這道菜",
-    aboutDishNamed: "了解這道菜 · {name}",
+    aboutDishNamed: "完整食譜 · {name}",
   },
 } as const
 

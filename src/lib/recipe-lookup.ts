@@ -81,10 +81,14 @@ const WEAK_SOLO = new Set([
   "eggplant",
 ])
 
-/** Locale-aware web search for real cooking guides — always valid, never guessed. */
+/** Trusted publishers for home classics (site-scoped search — never invent per-dish paths). */
+export const RECIPE_GUIDE_SITES = ["madewithlau.com", "hk.lkk.com"] as const
+
+/** Locale-aware search biased to Made With Lau + Lee Kum Kee HK. */
 export function recipeSearchUrl(recipe: Recipe, locale: Locale): string {
   const name = locale === "zh" ? recipe.zh?.name?.trim() || recipe.name : recipe.name
-  const query = locale === "zh" ? `${name} 食譜` : `${name} recipe`
+  const sites = RECIPE_GUIDE_SITES.map((host) => `site:${host}`).join(" OR ")
+  const query = locale === "zh" ? `${sites} ${name}` : `${sites} ${name} recipe`
   return `https://www.google.com/search?q=${encodeURIComponent(query)}`
 }
 
@@ -182,14 +186,17 @@ export async function lookupDish(recipe: Recipe, locale: Locale): Promise<DishLo
   const key = cacheKey(recipe, locale)
   if (cache.has(key)) return cache.get(key) ?? null
 
-  if (recipe.image && recipe.sourceUrl) {
-    const hit: DishLookup = {
-      image: recipe.image,
-      aboutUrl: recipe.sourceUrl,
-      aboutName: recipe.sourceName,
-    }
-    cache.set(key, hit)
-    return hit
+  const trusted: DishLookup | null = recipe.sourceUrl
+    ? {
+        image: recipe.image,
+        aboutUrl: recipe.sourceUrl,
+        aboutName: recipe.sourceName,
+      }
+    : null
+
+  if (trusted?.image && trusted.aboutUrl) {
+    cache.set(key, trusted)
+    return trusted
   }
 
   for (const { lang, query } of searchQueries(recipe)) {
@@ -201,8 +208,9 @@ export async function lookupDish(recipe: Recipe, locale: Locale): Promise<DishLo
         if (!isConfidentDishMatch(recipe, summary.wikiTitle ?? title, summary.description, summary.extract)) continue
         const hit: DishLookup = {
           image: summary.image,
-          aboutUrl: summary.aboutUrl,
-          aboutName: summary.aboutName,
+          // Prefer a hand-verified publisher page over Wikipedia for "about"
+          aboutUrl: trusted?.aboutUrl ?? summary.aboutUrl,
+          aboutName: trusted?.aboutName ?? summary.aboutName,
           wikiTitle: summary.wikiTitle,
         }
         cache.set(key, hit)
@@ -211,6 +219,11 @@ export async function lookupDish(recipe: Recipe, locale: Locale): Promise<DishLo
     } catch {
       /* try next query */
     }
+  }
+
+  if (trusted?.aboutUrl) {
+    cache.set(key, trusted)
+    return trusted
   }
 
   cache.set(key, null)

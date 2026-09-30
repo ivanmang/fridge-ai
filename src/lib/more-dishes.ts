@@ -2,7 +2,8 @@ import type { Recipe } from "@/lib/recipes"
 
 /**
  * Best cookable Tonight book — searchable home classics only.
- * Prefer dishes people can look up online; steps are a quick outline, not the cook-along.
+ * Prefer dishes people can look up on Made With Lau / Lee Kum Kee HK;
+ * steps are a quick outline, not the cook-along. `sourceUrl` only when verified.
  */
 export const MORE: Recipe[] = [
   {
@@ -12,20 +13,22 @@ export const MORE: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Tomato", "Eggs"],
-    optional: ["Spring onion", "Sugar", "Soy sauce"],
+    optional: ["Spring onion", "Sugar", "Soy sauce", "Ginger", "Ketchup"],
     steps: [
       "Cut 2–3 tomatoes into wedges. Beat 3 eggs with a pinch of salt.",
       "Scramble the eggs in a hot, lightly oiled pan until just set; transfer out.",
-      "Cook the tomatoes 3–4 minutes until saucy, then fold the eggs back in. Finish with spring onion.",
+      "Cook the tomatoes 3–4 minutes until saucy (ginger/sugar/ketchup help), then fold the eggs back in. Finish with spring onion.",
     ],
     zh: {
       name: "番茄炒蛋",
       steps: [
         "切開 2–3 個番茄。打散 3 隻蛋，加少許鹽。",
         "熱鑊下油炒蛋至剛凝固，盛起。",
-        "番茄煮 3 至 4 分鐘至出汁，拌回雞蛋，可撒蔥花。",
+        "番茄煮 3 至 4 分鐘至出汁（可加薑絲、糖、茄汁），拌回雞蛋，可撒蔥花。",
       ],
     },
+    sourceUrl: "https://www.madewithlau.com/recipes/tomato-and-eggs",
+    sourceName: "Made With Lau",
   },
   {
     id: "home-tomato-egg-rice",
@@ -92,6 +95,8 @@ export const MORE: Recipe[] = [
         "靜置兩分鐘，可淋生抽、麻油和蔥花。",
       ],
     },
+    sourceUrl: "https://www.madewithlau.com/recipes/steamed-egg",
+    sourceName: "Made With Lau",
   },
   {
     id: "home-egg-drop-soup",
@@ -290,6 +295,8 @@ export const MORE: Recipe[] = [
         "加生抽調味，撒蔥花，伴飯吃。",
       ],
     },
+    sourceUrl: "https://www.madewithlau.com/recipes/mapo-tofu-pork",
+    sourceName: "Made With Lau",
   },
   {
     id: "home-tomato-tofu",
@@ -772,6 +779,266 @@ export const MORE: Recipe[] = [
         "隔夜菜切粒，隔夜飯搓散；打散兩隻蛋。",
         "先炒蛋，再下隔夜菜炒至熱透，拌入飯炒至冒煙。",
         "加生抽和蔥花。隔夜菜必須徹底加熱。",
+      ],
+    },
+  },
+
+  // --- Confident classics from Made With Lau / Lee Kum Kee HK ---
+  {
+    id: "home-steamed-egg-pork",
+    name: "Steamed egg with minced pork",
+    cuisine: "Cantonese",
+    time: 25,
+    servings: 2,
+    need: ["Eggs", "Ground pork"],
+    optional: ["Spring onion", "Oyster sauce", "Soy sauce", "White pepper"],
+    steps: [
+      "Marinate 120 g ground pork with a little oyster sauce and white pepper. Spread in a shallow dish and steam until the pork is cooked through (74°C / 165°F), about 6–8 minutes.",
+      "Beat 3 eggs with about 1 cup warm water and a pinch of salt. Gently pour over the pork.",
+      "Steam covered 10–12 minutes until the egg is just set. Rest, then finish with soy sauce and spring onion.",
+    ],
+    zh: {
+      name: "肉碎蒸蛋",
+      steps: [
+        "約 120 克免治豬肉加蠔油、白胡椒略醃，鋪在深碟大火蒸至全熟（74°C），約 6 至 8 分鐘。",
+        "打散 3 隻蛋，加約 1 杯暖水和少許鹽，慢慢倒在肉碎上。",
+        "加蓋蒸 10 至 12 分鐘至蛋剛凝固，可淋生抽和蔥花。",
+      ],
+    },
+    sourceUrl: "https://www.madewithlau.com/recipes/steamed-egg-minced-pork",
+    sourceName: "Made With Lau",
+  },
+  {
+    id: "home-beef-broccoli",
+    name: "Beef and broccoli",
+    cuisine: "Chinese",
+    time: 25,
+    servings: 2,
+    need: ["Beef steak", "Broccoli"],
+    optional: ["Garlic", "Ginger", "Oyster sauce", "Soy sauce", "Cornstarch"],
+    steps: [
+      "Slice 250 g beef thin against the grain; toss with a little soy sauce and cornstarch. Cut broccoli into florets.",
+      "Blanch or stir-fry broccoli until bright green and tender-crisp; set aside. Sear the beef in a hot oiled pan until just browned and cooked through.",
+      "Return broccoli with oyster sauce, soy sauce, and a splash of water; toss 1 minute until glossy.",
+    ],
+    zh: {
+      name: "西蘭花炒牛肉",
+      steps: [
+        "牛肉約 250 克切薄片，加生抽、生粉略醃。西蘭花切小朵。",
+        "西蘭花焯或快炒至翠綠，盛起。熱鑊下油快炒牛肉至全熟。",
+        "回菜，加蠔油、生抽和少許水炒至上芡。",
+      ],
+    },
+    sourceUrl: "https://www.madewithlau.com/recipes/beef-broccoli",
+    sourceName: "Made With Lau",
+  },
+  {
+    id: "home-salt-pepper-tofu",
+    name: "Salt and pepper tofu",
+    cuisine: "Cantonese",
+    time: 25,
+    servings: 2,
+    need: ["Tofu"],
+    optional: ["Garlic", "Spring onion", "Bell pepper", "White pepper", "Cornstarch", "Eggs"],
+    steps: [
+      "Pat tofu dry and cut into cubes. Dust lightly with cornstarch (dip in a little beaten egg if you want a thicker crust).",
+      "Pan-fry in a thin layer of oil, turning, until golden and crisp on most sides.",
+      "Toss briefly with minced garlic, spring onion, and a mix of salt + white pepper. Serve hot.",
+    ],
+    zh: {
+      name: "椒鹽豆腐",
+      steps: [
+        "豆腐吸乾水切丁，可拍少許生粉（或薄薄裹蛋液）。",
+        "鑊內下油，兩面煎至金黃香脆。",
+        "快炒蒜蓉、蔥段，灑椒鹽（鹽+白胡椒）拌勻即可。",
+      ],
+    },
+    sourceUrl: "https://www.madewithlau.com/recipes/salt-pepper-tofu",
+    sourceName: "Made With Lau",
+  },
+  {
+    id: "home-ginger-fried-rice",
+    name: "Ginger fried rice",
+    cuisine: "Cantonese",
+    time: 20,
+    servings: 2,
+    need: ["Cooked rice", "Eggs", "Ginger"],
+    optional: ["Chicken breast", "Spring onion", "Soy sauce"],
+    steps: [
+      "Mince a thumb of ginger. Break up 2 bowls of cold rice; beat 2 eggs. Dice chicken if using.",
+      "Scramble eggs and set aside. Stir-fry chicken until cooked through (74°C / 165°F) if using, then fry ginger until fragrant.",
+      "Add rice and toss until steaming hot; fold eggs back in. Season and finish with spring onion.",
+    ],
+    zh: {
+      name: "薑炒飯",
+      steps: [
+        "薑切蓉。兩碗隔夜飯搓散；打散兩隻蛋。有雞肉可切粒。",
+        "先炒蛋盛起。雞肉炒至全熟（74°C），爆香薑蓉。",
+        "下飯炒至冒煙，拌回雞蛋，調味後撒蔥花。",
+      ],
+    },
+    sourceUrl: "https://www.madewithlau.com/recipes/ginger-fried-rice",
+    sourceName: "Made With Lau",
+  },
+  {
+    id: "home-tomato-tofu-soup",
+    name: "Tomato tofu soup",
+    cuisine: "Chinese",
+    time: 20,
+    servings: 2,
+    need: ["Tomato", "Tofu", "Eggs"],
+    optional: ["Ginger", "Spring onion", "Mushroom", "Soy sauce"],
+    steps: [
+      "Cut 2 tomatoes into chunks and tofu into cubes. Softly beat 2 eggs.",
+      "Sauté tomato (and ginger) in a little oil until juicy, add 3 cups water or stock and the tofu, and simmer 5–8 minutes.",
+      "Slowly drizzle in the eggs while stirring to make ribbons. Season and finish with spring onion.",
+    ],
+    zh: {
+      name: "番茄豆腐湯",
+      steps: [
+        "兩個番茄切塊，豆腐切丁；打散兩隻蛋。",
+        "略炒番茄（可加薑），加水約三杯和豆腐煮 5 至 8 分鐘。",
+        "邊攪邊倒入蛋液成蛋花，調味後撒蔥花。",
+      ],
+    },
+    sourceUrl: "https://www.madewithlau.com/recipes/tomato-tofu-soup",
+    sourceName: "Made With Lau",
+  },
+  {
+    id: "home-potato-chicken",
+    name: "Potato braised chicken",
+    cuisine: "Hong Kong",
+    time: 35,
+    servings: 3,
+    need: ["Chicken thighs", "Potato", "Garlic"],
+    optional: ["Onion", "Oyster sauce", "Soy sauce", "Sugar", "Spring onion"],
+    steps: [
+      "Cut 400 g chicken thighs into chunks; peel and chunk 2 potatoes. Marinate chicken briefly with oyster sauce if using.",
+      "Brown the chicken in a little oil until the surface is coloured; remove. Soften garlic (and onion), then add potato and a cup of water; cover until potato starts to soften.",
+      "Return chicken, add oyster sauce/soy/sugar to taste, and simmer covered until chicken is cooked through (74°C / 165°F) and sauce thickens. Finish with spring onion.",
+    ],
+    zh: {
+      name: "薯仔炆雞",
+      steps: [
+        "雞脾約 400 克切件，兩個薯仔去皮切角；雞可用蠔油略醃。",
+        "雞件煎至上色盛起。爆香蒜（可加洋蔥），下薯仔加水一碗加蓋煮至開始軟。",
+        "回雞，加蠔油/生抽/糖調味，加蓋炆至雞全熟（74°C）汁濃，撒蔥花。",
+      ],
+    },
+    sourceUrl: "https://hk.lkk.com/zh-hk/recipes/oyster-flavoured-braised-chicken-wings-with-potatoes",
+    sourceName: "Lee Kum Kee",
+  },
+  {
+    id: "home-oyster-tofu",
+    name: "Oyster sauce tofu",
+    cuisine: "Cantonese",
+    time: 20,
+    servings: 2,
+    need: ["Tofu", "Oyster sauce"],
+    optional: ["Eggs", "Spring onion", "Mushroom", "Cornstarch", "Garlic"],
+    steps: [
+      "Cut tofu into thick slices; pat dry. Optionally dust with cornstarch and brush with beaten egg.",
+      "Pan-fry both sides until golden. Add sliced mushroom if using.",
+      "Add oyster sauce loosened with a few tablespoons of water; simmer until glossy. Finish with spring onion.",
+    ],
+    zh: {
+      name: "蠔油豆腐",
+      steps: [
+        "豆腐切厚片吸乾水；可拍生粉或掃薄蛋液。",
+        "兩面煎至金黃，可加入蘑菇片。",
+        "蠔油加少許水煮至收汁上芡，撒蔥花。",
+      ],
+    },
+    sourceUrl: "https://hk.lkk.com/zh-hk/recipes/home-style-oyster-sauce-silken-tofu",
+    sourceName: "Lee Kum Kee",
+  },
+  {
+    id: "home-garlic-eggplant",
+    name: "Garlic eggplant",
+    cuisine: "Chinese",
+    time: 25,
+    servings: 2,
+    need: ["Eggplant", "Garlic"],
+    optional: ["Ground pork", "Soy sauce", "Oyster sauce", "Vinegar", "Spring onion", "Bell pepper"],
+    steps: [
+      "Cut eggplant into bite-size pieces. Steam or pan-fry with a little oil until soft (8–12 minutes).",
+      "In a pan, cook minced pork if using until browned and cooked through (74°C / 165°F), then add lots of garlic.",
+      "Add soy sauce, oyster sauce, a splash of vinegar and water; toss with eggplant until coated. Finish with spring onion.",
+    ],
+    zh: {
+      name: "蒜蓉茄子",
+      steps: [
+        "茄子切件，蒸或少油煎至軟（約 8 至 12 分鐘）。",
+        "有免治豬肉先炒至全熟（74°C），再爆大量蒜蓉。",
+        "加生抽、蠔油、少許醋和水，拌入茄子炒勻，撒蔥花。",
+      ],
+    },
+    sourceUrl: "https://www.madewithlau.com/recipes/steamed-chinese-eggplant",
+    sourceName: "Made With Lau",
+  },
+  {
+    id: "home-cabbage-stirfry",
+    name: "Garlic cabbage",
+    cuisine: "Chinese",
+    time: 12,
+    servings: 2,
+    need: ["Cabbage", "Garlic"],
+    optional: ["Soy sauce", "Spring onion", "Chili oil"],
+    steps: [
+      "Slice 1/4–1/2 cabbage into ribbons. Slice garlic.",
+      "Stir-fry garlic in a hot oiled pan 15 seconds, then add cabbage and a splash of water; cook 3–5 minutes until wilted but still crisp.",
+      "Season with soy sauce (chili oil if you like) and spring onion.",
+    ],
+    zh: {
+      name: "蒜蓉炒椰菜",
+      steps: [
+        "椰菜切絲，蒜切片。",
+        "熱鑊爆香蒜，下椰菜加少許水炒 3 至 5 分鐘至軟脆。",
+        "加生抽調味，可加辣椒油和蔥花。",
+      ],
+    },
+  },
+  {
+    id: "home-bean-sprout-stirfry",
+    name: "Bean sprout stir-fry",
+    cuisine: "Cantonese",
+    time: 10,
+    servings: 2,
+    need: ["Bean sprouts", "Garlic"],
+    optional: ["Spring onion", "Soy sauce", "Eggs", "Carrots"],
+    steps: [
+      "Rinse and drain bean sprouts well. Slice garlic and spring onion.",
+      "Optional: scramble an egg and set aside. Stir-fry garlic, then sprouts (and carrot shreds) on high heat 1–2 minutes so they stay crisp.",
+      "Season lightly with soy sauce; fold egg back in if using. Serve immediately.",
+    ],
+    zh: {
+      name: "銀芽炒",
+      steps: [
+        "芽菜洗淨瀝乾，蒜和蔥切片。",
+        "可先炒一隻蛋盛起。大火爆香蒜，下芽菜（可加紅蘿蔔絲）炒 1 至 2 分鐘保持爽脆。",
+        "少許生抽調味，拌回雞蛋即上碟。",
+      ],
+    },
+  },
+  {
+    id: "home-chicken-mushroom",
+    name: "Chicken and mushroom stir-fry",
+    cuisine: "Chinese",
+    time: 25,
+    servings: 2,
+    need: ["Chicken breast", "Mushroom"],
+    optional: ["Garlic", "Ginger", "Oyster sauce", "Soy sauce", "Spring onion"],
+    steps: [
+      "Slice chicken and mushrooms. Marinate chicken briefly with soy sauce.",
+      "Stir-fry chicken until cooked through (74°C / 165°F); remove. Cook mushrooms until they release moisture, then add garlic/ginger.",
+      "Return chicken with oyster sauce and a splash of water; toss until glossy. Finish with spring onion.",
+    ],
+    zh: {
+      name: "蘑菇炒雞片",
+      steps: [
+        "雞肉和蘑菇切片；雞可用生抽略醃。",
+        "雞片炒至全熟（74°C）盛起。炒香蘑菇出水，可加蒜薑。",
+        "回雞，加蠔油和少許水炒勻，撒蔥花。",
       ],
     },
   },

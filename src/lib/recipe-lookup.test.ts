@@ -23,15 +23,21 @@ const mapo: Recipe = {
 }
 
 describe("recipeSearchUrl", () => {
-  it("builds an EN recipe web search from the dish name", () => {
+  it("scopes EN search to Made With Lau and Lee Kum Kee HK", () => {
     const url = recipeSearchUrl(sample, "en")
     assert.ok(url.startsWith("https://www.google.com/search?q="))
-    assert.ok(url.includes(encodeURIComponent("Tomato & egg rice recipe")))
+    const q = decodeURIComponent(url.split("q=")[1] ?? "")
+    assert.ok(q.includes("site:madewithlau.com"))
+    assert.ok(q.includes("site:hk.lkk.com"))
+    assert.ok(q.includes("Tomato & egg rice recipe"))
   })
 
-  it("builds a ZH recipe web search from the Chinese name", () => {
+  it("scopes ZH search to the same trusted sites with the Chinese name", () => {
     const url = recipeSearchUrl(sample, "zh")
-    assert.ok(url.includes(encodeURIComponent("番茄炒蛋飯 食譜")))
+    const q = decodeURIComponent(url.split("q=")[1] ?? "")
+    assert.ok(q.includes("site:hk.lkk.com"))
+    assert.ok(q.includes("site:madewithlau.com"))
+    assert.ok(q.includes("番茄炒蛋飯"))
   })
 })
 
