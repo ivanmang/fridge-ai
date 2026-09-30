@@ -1,22 +1,27 @@
 import { useMemo, useRef, useState } from "react"
 import { fieldClass, Sheet, useI18n } from "@/components/fridge/shared"
-import { foodLabel, recipeText, whenText } from "@/lib/i18n"
+import { foodLabel, placeLabel, recipeText, whenText } from "@/lib/i18n"
 import {
   daysUntil,
+  defaultExpiry,
+  findShelf,
   fitsTaste,
   ideasByIds,
   isOutlineRecipe,
   planMeals,
   searchRecipes,
   shopForIdeas,
+  todayISO,
   type FoodItem,
   type RankedRecipe,
 } from "@/lib/logic"
 import { lookupDishes } from "@/lib/dish.functions"
-import { draftFromName, useFridge, type ShopNote } from "@/lib/store"
+import { draftFromName, sameShopText, useFridge, type ShopNote } from "@/lib/store"
 import { surveyReady } from "@/lib/survey"
 import { cn } from "@/lib/utils"
-import { Check } from "lucide-react"
+import { Check, Trash2 } from "lucide-react"
+
+const QUICK_STAPLES = ["Eggs", "Milk", "Soy sauce", "Garlic", "Ginger", "Rice", "Onion", "Tomato", "Oyster sauce"]
 
 export function DishSearch() {
   const { locale, t } = useI18n()
@@ -287,11 +292,18 @@ export function DishSearch() {
   )
 }
 
+type BoughtDraft = {
+  note: ShopNote
+  qty: string
+  location: FoodItem["location"]
+  expires: string
+}
 
 export function ShopPanel({ items }: { items: FoodItem[] }) {
   const shop = useFridge((s) => s.shop)
   const addShop = useFridge((s) => s.addShop)
   const toggleShop = useFridge((s) => s.toggleShop)
+  const removeShop = useFridge((s) => s.removeShop)
   const clearDoneShop = useFridge((s) => s.clearDoneShop)
   const addItem = useFridge((s) => s.addItem)
   const vegetarian = useFridge((s) => s.settings.vegetarian)
@@ -302,65 +314,109 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
   const extras = useFridge((s) => s.extras) ?? []
   const { locale, t } = useI18n()
   const [note, setNote] = useState("")
-  const [boughtCandidate, setBoughtCandidate] = useState<ShopNote | null>(null)
+  const [bought, setBought] = useState<BoughtDraft | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
+  const [flash, setFlash] = useState("")
   const plan = useMemo(() => planMeals(items, vegetarian, priority, favorites, taste, extras), [items, vegetarian, priority, favorites, taste, extras])
   const picked = useMemo(() => ideasByIds(wanted, items, extras).filter((row) => !isOutlineRecipe(row.recipe)), [wanted, items, extras])
   const focus = picked.length ? picked : plan.ideas
   const shopRows = picked.length ? shopForIdeas(items, picked) : plan.shop
   const low = items.filter((item) => daysUntil(item.expires) >= 0 && daysUntil(item.expires) <= 2)
   const join = (names: string[]) => names.map((name) => foodLabel(locale, name)).join(locale === "zh" ? "、" : ", ")
+  const openCount = shop.filter((row) => !row.done).length
+  const doneCount = shop.filter((row) => row.done).length
+
+  function onList(label: string) {
+    return shop.some((row) => !row.done && sameShopText(row.text, label))
+  }
 
   function addSuggested() {
-    const have = new Set(shop.map((row) => row.text.toLowerCase()))
     for (const row of shopRows) {
-      const label = foodLabel(locale, row.name)
-      if (!have.has(label.toLowerCase())) { addShop(label); have.add(label.toLowerCase()) }
+      addShop(foodLabel(locale, row.name))
     }
   }
 
+  function openBought(found: ShopNote) {
+    const draft = draftFromName(found.text)
+    setBought({
+      note: found,
+      qty: draft.qty,
+      location: draft.location,
+      expires: draft.expires,
+    })
+  }
+
+  function saveBought() {
+    if (!bought) return
+    const base = draftFromName(bought.note.text, bought.qty)
+    addItem({
+      ...base,
+      location: bought.location,
+      expires: bought.expires,
+      bought: todayISO(),
+    })
+    removeShop(bought.note.id)
+    setBought(null)
+    setFlash(t("boughtSaved"))
+    window.setTimeout(() => setFlash(""), 2200)
+  }
+
+  const staples = QUICK_STAPLES.filter((name) => !onList(foodLabel(locale, name)) && !onList(name))
+
   return (
     <section className="space-y-5">
-      <h2 className="font-display text-3xl">{t("shoppingList")}</h2>
+      <div>
+        <h2 className="font-display text-3xl">{t("shoppingList")}</h2>
+        <p className="mt-1 text-sm text-muted">{t("shopLead")}</p>
+      </div>
+
       {focus.length > 0 && (
         <div>
-          <h2 className="font-display text-2xl">{t("forTonight")}</h2>
+          <h3 className="font-display text-2xl">{t("forTonight")}</h3>
           {shopRows.length === 0 ? (
             <p className="mt-2 text-sm text-muted">{t("nothingExtra")}</p>
           ) : (
             <>
+              <p className="mt-1 text-sm text-muted">{t("tonightGapsLead")}</p>
               <ul className="mt-3 space-y-2">
-                {shopRows.map((row) => (
-                  <li
-                    key={row.name}
-                    className="flex items-center justify-between gap-3 rounded-card border border-line bg-surface px-4 py-3"
-                  >
-                    <span>
-                      <span className="block font-medium">{foodLabel(locale, row.name)}</span>
-                      <span className="text-sm text-muted">
-                        {t("forList", {
-                          list: join(
-                            row.recipeIds.map((id) => recipeText(locale, focus.find((idea) => idea.recipe.id === id)!.recipe).name),
-                          ),
-                        })}
-                      </span>
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const label = foodLabel(locale, row.name)
-                        if (!shop.some((note) => !note.done && note.text.toLowerCase() === label.toLowerCase())) addShop(label)
-                      }}
-                      className="h-10 shrink-0 rounded-full bg-mint px-3 text-sm font-semibold text-mint-ink"
+                {shopRows.map((row) => {
+                  const label = foodLabel(locale, row.name)
+                  const listed = onList(label)
+                  return (
+                    <li
+                      key={row.name}
+                      className="flex items-center justify-between gap-3 rounded-card border border-line bg-surface px-4 py-3"
                     >
-                      {t("addToShoppingList")}
-                    </button>
-                  </li>
-                ))}
+                      <span className="min-w-0">
+                        <span className="block font-medium">{label}</span>
+                        <span className="text-sm text-muted">
+                          {t("forList", {
+                            list: join(
+                              row.recipeIds.map((id) => recipeText(locale, focus.find((idea) => idea.recipe.id === id)!.recipe).name),
+                            ),
+                          })}
+                        </span>
+                      </span>
+                      {listed ? (
+                        <span className="shrink-0 text-sm font-semibold text-mint">{t("alreadyOnList")}</span>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => addShop(label)}
+                          className="h-11 shrink-0 rounded-full bg-mint px-4 text-sm font-semibold text-mint-ink"
+                        >
+                          {t("addOne")}
+                        </button>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
-              <button type="button" onClick={addSuggested} className="mt-3 h-11 w-full rounded-card border border-line text-sm font-semibold">
-                {t("addToShoppingList")}
-              </button>
+              {shopRows.some((row) => !onList(foodLabel(locale, row.name))) && (
+                <button type="button" onClick={addSuggested} className="mt-3 h-11 w-full rounded-card border border-line text-sm font-semibold">
+                  {t("addAllGaps")}
+                </button>
+              )}
             </>
           )}
         </div>
@@ -379,22 +435,60 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
           value={note}
           onChange={(e) => setNote(e.target.value)}
           placeholder={t("shopNote")}
+          aria-label={t("shopNote")}
           className="h-11 min-w-0 flex-1 rounded-card border border-line bg-surface px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-mint"
         />
         <button type="submit" className="h-11 rounded-card bg-raised px-4 text-sm font-semibold">
           {t("add")}
         </button>
       </form>
-      <ShopNotes notes={shop} onToggle={(id) => {
-        const found = shop.find((row) => row.id === id)
-        toggleShop(id)
-        if (found && !found.done) setBoughtCandidate(found)
-      }} onClear={clearDoneShop} />
-      <button type="button" onClick={() => setSearchOpen((open) => !open)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">{t("searchDish")}</button>
+
+      {staples.length > 0 && (
+        <div>
+          <p className="text-sm text-muted">{t("quickStaples")}</p>
+          <div className="mt-2 flex gap-2 overflow-x-auto pb-1" aria-label={t("quickStaples")}>
+            {staples.map((name) => (
+              <button
+                key={name}
+                type="button"
+                onClick={() => addShop(foodLabel(locale, name))}
+                className="h-11 shrink-0 rounded-full border border-line bg-surface px-3 text-sm font-medium"
+              >
+                {foodLabel(locale, name)}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <ShopNotes
+        notes={shop}
+        openCount={openCount}
+        doneCount={doneCount}
+        emptyHint={focus.length === 0 ? t("shopEmptyNoPlan") : t("shopEmptyBody")}
+        onToggle={(id) => {
+          const found = shop.find((row) => row.id === id)
+          toggleShop(id)
+          if (found && !found.done) openBought(found)
+        }}
+        onRemove={removeShop}
+        onClear={clearDoneShop}
+      />
+
+      {flash && (
+        <p role="status" className="text-sm text-mint">
+          {flash}
+        </p>
+      )}
+
+      <button type="button" onClick={() => setSearchOpen((open) => !open)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">
+        {t("findDishShop")}
+      </button>
       {searchOpen && <DishSearch />}
+
       {low.length > 0 && (
         <div>
-          <h2 className="font-display text-2xl">{t("useOrReplace")}</h2>
+          <h3 className="font-display text-2xl">{t("useOrReplace")}</h3>
           <ul className="mt-3 space-y-2">
             {low.map((item) => (
               <li key={item.id} className="rounded-card border border-line px-4 py-3 text-sm">
@@ -405,27 +499,73 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
           </ul>
         </div>
       )}
+
       {focus.length > 0 && (
         <details className="rounded-card border border-line bg-surface p-4">
           <summary className="cursor-pointer font-display text-xl">{picked.length ? t("wantedNow") : t("ideas")}</summary>
           <ul className="mt-3 space-y-2">
             {focus.map((row) => {
               const copy = recipeText(locale, row.recipe)
-              return <li key={row.recipe.id} className="border-t border-line py-2 text-sm">
-                <p className="font-medium">{copy.name} · {t("minutes", { n: row.recipe.time })}</p>
-                <p className="text-muted">{row.missing.length ? t("stillNeed", { list: join(row.missing) }) : t("haveAll")}</p>
-              </li>
+              return (
+                <li key={row.recipe.id} className="border-t border-line py-2 text-sm">
+                  <p className="font-medium">
+                    {copy.name} · {t("minutes", { n: row.recipe.time })}
+                  </p>
+                  <p className="text-muted">{row.missing.length ? t("stillNeed", { list: join(row.missing) }) : t("haveAll")}</p>
+                </li>
+              )
             })}
           </ul>
         </details>
       )}
-      {boughtCandidate && (
-        <Sheet title={t("addToFridge")} onClose={() => setBoughtCandidate(null)}>
-          <p className="text-sm text-muted">{boughtCandidate.text}</p>
-          <p className="mt-2 text-xs text-muted">{t("estimateHint")}</p>
+
+      {bought && (
+        <Sheet title={t("addToFridge")} onClose={() => setBought(null)}>
+          <p className="font-medium">{bought.note.text}</p>
+          <p className="mt-1 text-sm text-muted">{t("boughtPreview")}</p>
+          <p className="mt-1 text-xs text-muted">{t("estimateHint")}</p>
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <label className="block text-sm text-muted">
+              {t("qty")}
+              <input
+                value={bought.qty}
+                onChange={(e) => setBought({ ...bought, qty: e.target.value })}
+                className={cn(fieldClass, "mt-1")}
+              />
+            </label>
+            <label className="block text-sm text-muted">
+              {t("where")}
+              <select
+                value={bought.location}
+                onChange={(e) => setBought({ ...bought, location: e.target.value as FoodItem["location"] })}
+                className={cn(fieldClass, "mt-1")}
+              >
+                <option value="fridge">{t("placeFridge")}</option>
+                <option value="freezer">{t("placeFreezer")}</option>
+                <option value="pantry">{t("placePantry")}</option>
+              </select>
+            </label>
+            <label className="col-span-2 block text-sm text-muted">
+              {t("useBy")}
+              <input
+                type="date"
+                value={bought.expires}
+                onChange={(e) => setBought({ ...bought, expires: e.target.value })}
+                className={cn(fieldClass, "mt-1")}
+              />
+            </label>
+          </div>
+          <p className="mt-2 text-xs text-muted">
+            {placeLabel(locale, bought.location)}
+            {findShelf(bought.note.text) ? ` · ${whenText(locale, bought.expires || defaultExpiry(bought.note.text))}` : ""}
+          </p>
           <div className="mt-4 flex gap-2">
-            <button type="button" onClick={() => setBoughtCandidate(null)} className="h-11 flex-1 rounded-card border border-line text-sm font-semibold">{t("keepOnList")}</button>
-            <button type="button" onClick={() => { addItem(draftFromName(boughtCandidate.text)); setBoughtCandidate(null) }} className="h-11 flex-1 rounded-card bg-mint text-sm font-semibold text-mint-ink">{t("addToFridge")}</button>
+            <button type="button" onClick={() => setBought(null)} className="h-11 flex-1 rounded-card border border-line text-sm font-semibold">
+              {t("keepOnList")}
+            </button>
+            <button type="button" onClick={saveBought} className="h-11 flex-1 rounded-card bg-mint text-sm font-semibold text-mint-ink">
+              {t("addToFridge")}
+            </button>
           </div>
         </Sheet>
       )}
@@ -433,43 +573,75 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
   )
 }
 
-
 export function ShopNotes({
   notes,
+  openCount,
+  doneCount,
+  emptyHint,
   onToggle,
+  onRemove,
   onClear,
 }: {
   notes: ShopNote[]
+  openCount: number
+  doneCount: number
+  emptyHint: string
   onToggle: (id: string) => void
+  onRemove: (id: string) => void
   onClear: () => void
 }) {
   const { t } = useI18n()
-  if (!notes.length) return null
+  if (!notes.length) {
+    return (
+      <div className="rounded-card border border-dashed border-line bg-surface px-4 py-5">
+        <p className="font-display text-xl">{t("shopEmptyTitle")}</p>
+        <p className="mt-2 text-sm text-muted">{emptyHint}</p>
+      </div>
+    )
+  }
+
   return (
     <div>
-      <div className="mb-2 flex items-center justify-between">
-        <h2 className="font-display text-2xl">{t("shoppingList")}</h2>
-        <button type="button" onClick={onClear} className="text-sm text-muted">
-          {t("clearCompleted")}
-        </button>
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <div>
+          <h3 className="font-display text-2xl">{t("yourList")}</h3>
+          <p className="text-xs text-muted">
+            {t("openItems", { n: openCount })}
+            {doneCount > 0 ? ` · ${t("doneItems", { n: doneCount })}` : ""}
+          </p>
+        </div>
+        {doneCount > 0 && (
+          <button type="button" onClick={onClear} className="min-h-11 shrink-0 text-sm font-semibold text-muted">
+            {t("clearDoneCount", { n: doneCount })}
+          </button>
+        )}
       </div>
       <ul className="space-y-2">
         {notes.map((note) => (
-          <li key={note.id}>
+          <li key={note.id} className="flex items-stretch gap-2">
             <button
               type="button"
               onClick={() => onToggle(note.id)}
-              className="flex min-h-11 w-full items-center gap-3 rounded-card border border-line px-4 text-left"
+              className="flex min-h-12 min-w-0 flex-1 items-center gap-3 rounded-card border border-line px-4 text-left"
             >
               <span
                 className={cn(
-                  "grid size-5 place-items-center rounded-full border",
+                  "grid size-6 shrink-0 place-items-center rounded-full border",
                   note.done ? "border-mint bg-mint text-mint-ink" : "border-line",
                 )}
+                aria-hidden
               >
-                {note.done && <Check className="size-3" />}
+                {note.done && <Check className="size-3.5" />}
               </span>
-              <span className={cn(note.done && "text-muted line-through")}>{note.text}</span>
+              <span className={cn("text-sm", note.done && "text-muted line-through")}>{note.text}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onRemove(note.id)}
+              aria-label={t("removeFromList")}
+              className="grid size-12 shrink-0 place-items-center rounded-card border border-line text-muted"
+            >
+              <Trash2 className="size-4" />
             </button>
           </li>
         ))}
@@ -477,5 +649,3 @@ export function ShopNotes({
     </div>
   )
 }
-
-

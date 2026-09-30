@@ -12,8 +12,10 @@ import {
   type Priority,
   type SuggestMode,
 } from "@/lib/logic"
+import { mergeShopNote, type ShopNote } from "@/lib/shop"
 
-export type ShopNote = { id: string; text: string; done: boolean }
+export type { ShopNote } from "@/lib/shop"
+export { mergeShopNote, sameShopText } from "@/lib/shop"
 
 export type FridgeSettings = {
   vegetarian: boolean
@@ -59,6 +61,7 @@ type FridgeState = {
   saveExtra: (recipe: Recipe) => void
   addShop: (text: string) => void
   toggleShop: (id: string) => void
+  removeShop: (id: string) => void
   clearDoneShop: () => void
 }
 
@@ -131,14 +134,12 @@ export const useFridge = create<FridgeState>()(
           const rest = next.filter((item) => !item.id.startsWith("mine-")).slice(0, 12)
           return { extras: [...mine.slice(0, 24), ...rest] }
         }),
-      addShop: (text) =>
-        set((s) => ({
-          shop: [...s.shop, { id: crypto.randomUUID(), text: text.trim(), done: false }],
-        })),
+      addShop: (text) => set((s) => ({ shop: mergeShopNote(s.shop, text) })),
       toggleShop: (id) =>
         set((s) => ({
           shop: s.shop.map((note) => (note.id === id ? { ...note, done: !note.done } : note)),
         })),
+      removeShop: (id) => set((s) => ({ shop: s.shop.filter((note) => note.id !== id) })),
       clearDoneShop: () => set((s) => ({ shop: s.shop.filter((note) => !note.done) })),
     }),
     {
