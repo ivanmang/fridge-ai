@@ -320,6 +320,9 @@ const UI = {
     cannotCookOutline: "Idea only — no full cook steps.",
     showZeroMatch: "Show dishes I’m missing ingredients for",
     lastTonight: "Last pick",
+    viewFullRecipe: "Full recipe online",
+    viewFullRecipeNamed: "Full recipe · {name}",
+    recipePhotoAlt: "Photo of {name}",
   },
   zh: {
     kicker: "今晚煮什麼",
@@ -635,6 +638,9 @@ const UI = {
     cannotCookOutline: "僅靈感——沒有完整煮食步驟。",
     showZeroMatch: "顯示缺少材料的菜式",
     lastTonight: "上次選擇",
+    viewFullRecipe: "查看完整食譜",
+    viewFullRecipeNamed: "完整食譜 · {name}",
+    recipePhotoAlt: "{name} 的相片",
   },
 } as const
 

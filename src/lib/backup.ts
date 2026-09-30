@@ -36,6 +36,9 @@ const recipeSchema = z.object({
       steps: z.array(z.string()),
     })
     .optional(),
+  image: z.string().url().optional(),
+  sourceUrl: z.string().url().optional(),
+  sourceName: z.string().optional(),
 })
 
 const surveySchema = z
