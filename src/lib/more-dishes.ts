@@ -715,6 +715,8 @@ export const MORE: Recipe[] = [
         "可加煎蛋或水煮蛋（蛋白要全熟）。",
       ],
     },
+    sourceUrl: "https://www.bbc.co.uk/food/recipes/smashed_avocado_on_toast_89082",
+    sourceName: "BBC Food",
   },
   {
     id: "home-bacon-egg-rice",
@@ -1041,6 +1043,56 @@ export const MORE: Recipe[] = [
         "回雞，加蠔油和少許水炒勻，撒蔥花。",
       ],
     },
+  },
+
+  // --- Western classics (BBC Food) ---
+  {
+    id: "home-bacon-pasta",
+    name: "Bacon tomato pasta",
+    cuisine: "Western",
+    time: 25,
+    servings: 2,
+    need: ["Pasta", "Bacon", "Tomato"],
+    optional: ["Garlic", "Onion", "Spinach", "Olive oil"],
+    steps: [
+      "Boil pasta in salted water until al dente; reserve a cup of cooking water.",
+      "Fry bacon until crisp; soften onion/garlic if using, then add chopped tomato and cook until saucy.",
+      "Toss pasta with the bacon-tomato mix (spinach if using), loosen with pasta water, and serve.",
+    ],
+    zh: {
+      name: "培根番茄意粉",
+      steps: [
+        "意粉加鹽水煮至彈牙，留一杯煮粉水。",
+        "煎香培根；可炒軟洋蔥蒜蓉，再下番茄煮至出汁。",
+        "拌入意粉（可加菠菜），用煮粉水調稠稀上碟。",
+      ],
+    },
+    sourceUrl: "https://www.bbc.co.uk/food/recipes/one-pot_bacon_spinach_50776",
+    sourceName: "BBC Food",
+  },
+  {
+    id: "home-scrambled-egg-toast",
+    name: "Scrambled eggs on toast",
+    cuisine: "Western",
+    time: 10,
+    servings: 1,
+    need: ["Eggs", "Bread"],
+    optional: ["Butter", "Milk", "Bacon", "Tomato"],
+    steps: [
+      "Toast bread. Softly beat 2 eggs with a splash of milk if using.",
+      "Melt butter on low heat; scramble eggs gently until just set (no raw runny white).",
+      "Serve on toast; add cooked bacon or grilled tomato if you like.",
+    ],
+    zh: {
+      name: "炒蛋多士",
+      steps: [
+        "烤香麵包。打散兩隻蛋，可加少許牛奶。",
+        "小火融化牛油，慢炒蛋至剛好凝固（蛋白要熟）。",
+        "鋪在多士上，可配培根或烤番茄。",
+      ],
+    },
+    sourceUrl: "https://www.bbc.co.uk/food/recipes/scrambledeggandtoast_75736",
+    sourceName: "BBC Food",
   },
 ]
 

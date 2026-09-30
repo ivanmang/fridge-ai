@@ -81,13 +81,26 @@ const WEAK_SOLO = new Set([
   "eggplant",
 ])
 
-/** Trusted publishers for home classics (site-scoped search — never invent per-dish paths). */
-export const RECIPE_GUIDE_SITES = ["madewithlau.com", "hk.lkk.com"] as const
+/** Chinese / HK home guides. */
+export const ASIAN_GUIDE_SITES = ["madewithlau.com", "hk.lkk.com"] as const
+/** Western / breakfast / Italian guides. */
+export const WESTERN_GUIDE_SITES = ["bbc.co.uk/food"] as const
 
-/** Locale-aware search biased to Made With Lau + Lee Kum Kee HK. */
+const WESTERN_CUISINES = new Set(["western", "breakfast", "italian"])
+
+/** Pick trusted publisher sites from cuisine (never invent per-dish paths). */
+export function guideSitesFor(recipe: Recipe): readonly string[] {
+  const cuisine = recipe.cuisine.trim().toLowerCase()
+  if (WESTERN_CUISINES.has(cuisine)) return WESTERN_GUIDE_SITES
+  return ASIAN_GUIDE_SITES
+}
+
+/** Locale-aware search biased to Made With Lau / LKK HK, or BBC Food for Western. */
 export function recipeSearchUrl(recipe: Recipe, locale: Locale): string {
   const name = locale === "zh" ? recipe.zh?.name?.trim() || recipe.name : recipe.name
-  const sites = RECIPE_GUIDE_SITES.map((host) => `site:${host}`).join(" OR ")
+  const sites = guideSitesFor(recipe)
+    .map((host) => `site:${host}`)
+    .join(" OR ")
   const query = locale === "zh" ? `${sites} ${name}` : `${sites} ${name} recipe`
   return `https://www.google.com/search?q=${encodeURIComponent(query)}`
 }

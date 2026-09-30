@@ -1,6 +1,6 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
-import { dishMatchTokens, isConfidentDishMatch, recipeSearchUrl } from "./recipe-lookup.ts"
+import { dishMatchTokens, guideSitesFor, isConfidentDishMatch, recipeSearchUrl } from "./recipe-lookup.ts"
 import type { Recipe } from "./recipes.ts"
 
 const sample: Recipe = {
@@ -22,17 +22,36 @@ const mapo: Recipe = {
   zh: { name: "簡易麻婆豆腐", steps: ["一", "二", "三"] },
 }
 
+const avocado: Recipe = {
+  ...sample,
+  id: "home-avocado-toast",
+  name: "Avocado toast",
+  cuisine: "Western",
+  need: ["Bread", "Avocado"],
+  zh: { name: "牛油果多士", steps: ["一", "二", "三"] },
+}
+
 describe("recipeSearchUrl", () => {
-  it("scopes EN search to Made With Lau and Lee Kum Kee HK", () => {
+  it("scopes Asian dishes to Made With Lau and Lee Kum Kee HK", () => {
     const url = recipeSearchUrl(sample, "en")
     assert.ok(url.startsWith("https://www.google.com/search?q="))
     const q = decodeURIComponent(url.split("q=")[1] ?? "")
     assert.ok(q.includes("site:madewithlau.com"))
     assert.ok(q.includes("site:hk.lkk.com"))
+    assert.ok(!q.includes("bbc.co.uk"))
     assert.ok(q.includes("Tomato & egg rice recipe"))
   })
 
-  it("scopes ZH search to the same trusted sites with the Chinese name", () => {
+  it("scopes Western dishes to BBC Food", () => {
+    assert.deepEqual([...guideSitesFor(avocado)], ["bbc.co.uk/food"])
+    const url = recipeSearchUrl(avocado, "en")
+    const q = decodeURIComponent(url.split("q=")[1] ?? "")
+    assert.ok(q.includes("site:bbc.co.uk/food"))
+    assert.ok(q.includes("Avocado toast recipe"))
+    assert.ok(!q.includes("madewithlau.com"))
+  })
+
+  it("scopes ZH Asian search to trusted Chinese sites with the Chinese name", () => {
     const url = recipeSearchUrl(sample, "zh")
     const q = decodeURIComponent(url.split("q=")[1] ?? "")
     assert.ok(q.includes("site:hk.lkk.com"))
