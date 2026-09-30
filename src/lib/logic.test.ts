@@ -222,7 +222,7 @@ describe("fitsTaste", () => {
 
 describe("home recipe coverage", () => {
   it("ships a cookable core of searchable classics over 100 dishes", () => {
-    assert.ok(MORE.length > 100 && MORE.length <= 160)
+    assert.ok(MORE.length > 100 && MORE.length <= 600)
     const ids = new Set(MORE.map((recipe) => recipe.id))
     assert.equal(ids.size, MORE.length)
     assert.ok(

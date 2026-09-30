@@ -1,0 +1,619 @@
+[
+  {
+    "id": "home-miso-soup",
+    "name": "Miso soup",
+    "cuisine": "Japanese",
+    "time": 12,
+    "servings": 2,
+    "need": [
+      "Miso",
+      "Silken tofu",
+      "Spring onion"
+    ],
+    "optional": [
+      "Nori",
+      "Mushroom"
+    ],
+    "steps": [
+      "Bring 3 cups water to a gentle simmer with sliced mushroom if using.",
+      "Add cubed silken tofu and warm 2 minutes — do not boil hard.",
+      "Off heat, dissolve 2 tbsp miso in a ladle of broth, stir back in; top with spring onion and crumbled nori."
+    ],
+    "zh": {
+      "name": "味噌湯",
+      "steps": [
+        "3 杯水加蘑菇片（如有）小火煮熱。",
+        "下嫩豆腐塊溫熱 2 分鐘，忌大火滾沸。",
+        "熄火，用湯舀開 2 湯匙味噌再倒回鍋，撒蔥和紫菜碎。"
+      ]
+    }
+  },
+  {
+    "id": "home-oyakodon",
+    "name": "Oyakodon",
+    "cuisine": "Japanese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Chicken thighs",
+      "Eggs",
+      "Cooked rice",
+      "Onion"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sugar",
+      "Spring onion",
+      "Ginger"
+    ],
+    "steps": [
+      "Slice chicken and onion. Simmer onion with ½ cup water, 2 tbsp soy sauce, and 1 tsp sugar.",
+      "Add chicken; cook until done (74°C / 165°F), about 6–8 minutes.",
+      "Pour beaten eggs over, cover until just set; spoon over hot rice with spring onion."
+    ],
+    "zh": {
+      "name": "親子丼",
+      "steps": [
+        "雞髀和洋蔥切片。洋蔥加半杯水、2 湯匙生抽、1 茶匙糖煮軟。",
+        "下雞煮至全熟（74°C），約 6 至 8 分鐘。",
+        "淋入打散雞蛋，加蓋至剛凝固，鋪熱飯上，撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-gyudon",
+    "name": "Gyudon",
+    "cuisine": "Japanese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Beef steak",
+      "Onion",
+      "Cooked rice"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sugar",
+      "Ginger",
+      "Spring onion",
+      "Eggs"
+    ],
+    "steps": [
+      "Slice beef thin. Simmer onion in ½ cup water with 2 tbsp soy sauce and 1 tsp sugar.",
+      "Add beef and cook just until no longer pink, about 3–4 minutes.",
+      "Spoon over hot rice; optional soft egg and spring onion on top."
+    ],
+    "zh": {
+      "name": "牛丼",
+      "steps": [
+        "牛肉切薄片。洋蔥加半杯水、2 湯匙生抽、1 茶匙糖煮。",
+        "下牛肉煮至轉色約 3 至 4 分鐘。",
+        "蓋在熱飯上，可加半熟蛋和蔥花。"
+      ]
+    }
+  },
+  {
+    "id": "home-teriyaki-chicken",
+    "name": "Teriyaki chicken",
+    "cuisine": "Japanese",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "Chicken thighs"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sugar",
+      "Honey",
+      "Ginger",
+      "Garlic",
+      "Sesame seeds",
+      "Spring onion"
+    ],
+    "steps": [
+      "Pat 400 g chicken thighs dry; pan-sear skin-side down until golden, then flip.",
+      "Add 2 tbsp soy sauce, 1 tbsp sugar or honey, and a little ginger; simmer until chicken reaches 74°C / 165°F and glaze thickens.",
+      "Rest 2 minutes; slice and sprinkle sesame seeds and spring onion."
+    ],
+    "zh": {
+      "name": "照燒雞",
+      "steps": [
+        "雞髀 400 克抹乾，皮向下煎至金黃再翻面。",
+        "加 2 湯匙生抽、1 湯匙糖或蜜糖和少許薑，炆至全熟（74°C）汁收稠。",
+        "歇 2 分鐘切片，撒芝麻和蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-teriyaki-salmon",
+    "name": "Teriyaki salmon",
+    "cuisine": "Japanese",
+    "time": 18,
+    "servings": 2,
+    "need": [
+      "Salmon"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sugar",
+      "Honey",
+      "Ginger",
+      "Sesame seeds"
+    ],
+    "steps": [
+      "Pan-sear salmon 3–4 minutes skin-side down; flip.",
+      "Add 1 tbsp soy sauce, 1 tsp sugar or honey, and ginger; spoon glaze over fish 2–3 minutes until just opaque.",
+      "Serve with sesame seeds."
+    ],
+    "zh": {
+      "name": "照燒三文魚",
+      "steps": [
+        "三文魚皮向下煎 3 至 4 分鐘，翻面。",
+        "加 1 湯匙生抽、1 茶匙糖或蜜糖和薑，淋汁再煮 2 至 3 分鐘至剛熟。",
+        "撒芝麻上碟。"
+      ]
+    }
+  },
+  {
+    "id": "home-tamago-gohan",
+    "name": "Tamago gohan",
+    "cuisine": "Japanese",
+    "time": 8,
+    "servings": 1,
+    "need": [
+      "Cooked rice",
+      "Eggs"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Spring onion",
+      "Sesame oil",
+      "Nori"
+    ],
+    "steps": [
+      "Put a hot bowl of cooked rice in a serving bowl.",
+      "Crack 1 raw egg yolk (use very fresh eggs) or softly scramble 1 egg; mix into rice with 1 tsp soy sauce.",
+      "Top with spring onion, sesame oil, and nori."
+    ],
+    "zh": {
+      "name": "雞蛋拌飯",
+      "steps": [
+        "熱飯盛碗。",
+        "打入新鮮蛋黃（或炒至半熟），加 1 茶匙生抽拌勻。",
+        "撒蔥、麻油和紫菜。"
+      ]
+    }
+  },
+  {
+    "id": "home-japanese-curry-rice",
+    "name": "Japanese curry rice",
+    "cuisine": "Japanese",
+    "time": 35,
+    "servings": 3,
+    "need": [
+      "Chicken thighs",
+      "Potato",
+      "Carrots",
+      "Onion",
+      "Cooked rice",
+      "Curry powder"
+    ],
+    "optional": [
+      "Garlic",
+      "Soy sauce",
+      "Flour",
+      "Butter"
+    ],
+    "steps": [
+      "Brown diced chicken until cooked through (74°C / 165°F); remove. Sauté onion, potato, and carrot.",
+      "Return chicken, add water to cover, simmer 15 minutes until veg is tender.",
+      "Stir in 1–2 tbsp curry powder (and a flour-butter Roux if using) until thick; serve over rice."
+    ],
+    "zh": {
+      "name": "日式咖哩飯",
+      "steps": [
+        "雞丁炒至全熟（74°C）盛起；炒洋蔥、薯仔、紅蘿蔔。",
+        "回雞加水蓋過，炆 15 分鐘至菜軟。",
+        "拌入 1 至 2 湯匙咖哩粉（可加麵粉牛油勾芡）至稠，配飯。"
+      ]
+    }
+  },
+  {
+    "id": "home-yakisoba",
+    "name": "Yakisoba",
+    "cuisine": "Japanese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Noodles",
+      "Cabbage",
+      "Pork chops"
+    ],
+    "optional": [
+      "Carrots",
+      "Bean sprouts",
+      "Soy sauce",
+      "Ketchup",
+      "Garlic",
+      "Spring onion"
+    ],
+    "steps": [
+      "Slice pork thin; stir-fry until cooked through (74°C / 165°F). Add cabbage and carrot shreds.",
+      "Add boiled noodles with 1 tbsp soy sauce and 1 tsp ketchup; toss on high heat.",
+      "Finish with bean sprouts and spring onion."
+    ],
+    "zh": {
+      "name": "日式炒麵",
+      "steps": [
+        "豬肉切絲炒至全熟（74°C）；下椰菜和紅蘿蔔絲。",
+        "下熟麵，加 1 湯匙生抽和 1 茶匙茄汁大火拌炒。",
+        "下芽菜和蔥花炒匀。"
+      ]
+    }
+  },
+  {
+    "id": "home-udon-soy-broth",
+    "name": "Udon in soy broth",
+    "cuisine": "Japanese",
+    "time": 15,
+    "servings": 1,
+    "need": [
+      "Udon",
+      "Spring onion"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Miso",
+      "Mushroom",
+      "Eggs",
+      "Nori"
+    ],
+    "steps": [
+      "Heat 2 cups water with 1 tbsp soy sauce (or dissolve 1 tsp miso off-boil).",
+      "Cook udon in the broth until hot and tender.",
+      "Top with spring onion, optional soft egg, mushrooms, and nori."
+    ],
+    "zh": {
+      "name": "釜揚烏冬",
+      "steps": [
+        "2 杯水加 1 湯匙生抽煮熱（或熄火化 1 茶匙味噌）。",
+        "烏冬下湯煮熱至軟。",
+        "放蔥、可加半熟蛋、蘑菇和紫菜。"
+      ]
+    }
+  },
+  {
+    "id": "home-tuna-mayo-onigiri",
+    "name": "Onigiri (tuna mayo)",
+    "cuisine": "Japanese",
+    "time": 15,
+    "servings": 2,
+    "need": [
+      "Cooked rice",
+      "Canned tuna",
+      "Nori"
+    ],
+    "optional": [
+      "Mayonnaise",
+      "Salt",
+      "Sesame seeds"
+    ],
+    "steps": [
+      "Drain tuna and mix with 1 tbsp mayonnaise and a pinch of salt.",
+      "With damp hands, shape hot rice around a spoon of tuna into triangles or balls.",
+      "Wrap with nori; optional sesame seeds."
+    ],
+    "zh": {
+      "name": "吞拿魚飯團",
+      "steps": [
+        "吞拿魚瀝乾，加 1 湯匙蛋黃醬和少許鹽拌勻。",
+        "手沾水，用熱飯包吞拿魚搓成三角或圓球。",
+        "圍紫菜，可撒芝麻。"
+      ]
+    }
+  },
+  {
+    "id": "home-nasu-dengaku",
+    "name": "Nasu dengaku-style eggplant",
+    "cuisine": "Japanese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Eggplant",
+      "Miso"
+    ],
+    "optional": [
+      "Sugar",
+      "Soy sauce",
+      "Sesame oil",
+      "Sesame seeds"
+    ],
+    "steps": [
+      "Halve eggplant lengthwise; score flesh and pan-fry or bake until soft.",
+      "Mix 1 tbsp miso with 1 tsp sugar and a splash of soy sauce.",
+      "Spread glaze on eggplant; broil or pan-lid 1–2 minutes; drizzle sesame oil and seeds."
+    ],
+    "zh": {
+      "name": "田樂風茄子",
+      "steps": [
+        "茄子直切兩半劃花刀，煎或焗至軟。",
+        "1 湯匙味噌加 1 茶匙糖和少許生抽拌匀。",
+        "塗在茄子上再焗或加蓋 1 至 2 分鐘，淋麻油撒芝麻。"
+      ]
+    }
+  },
+  {
+    "id": "home-spinach-gomaae",
+    "name": "Spinach goma-ae",
+    "cuisine": "Japanese",
+    "time": 10,
+    "servings": 2,
+    "need": [
+      "Spinach",
+      "Sesame seeds"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sugar",
+      "Sesame oil"
+    ],
+    "steps": [
+      "Blanch spinach 30–45 seconds; squeeze dry and chop.",
+      "Crush sesame seeds; mix with 1 tsp soy sauce and a pinch of sugar.",
+      "Toss spinach with sesame mix and a drop of sesame oil."
+    ],
+    "zh": {
+      "name": "胡麻菠菜",
+      "steps": [
+        "菠菜焯 30 至 45 秒，搾乾切段。",
+        "芝麻壓碎，加 1 茶匙生抽和少許糖。",
+        "拌菠菜，可滴麻油。"
+      ]
+    }
+  },
+  {
+    "id": "home-chicken-katsu-pan",
+    "name": "Chicken katsu (pan)",
+    "cuisine": "Japanese",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "Chicken breast",
+      "Eggs",
+      "Flour",
+      "Bread"
+    ],
+    "optional": [
+      "Salt",
+      "White pepper",
+      "Cabbage"
+    ],
+    "steps": [
+      "Pound chicken breast thin; season. Coat in flour, beaten egg, then crushed dry breadcrumbs from toast.",
+      "Pan-fry in a thin oil layer 3–4 minutes per side until golden and 74°C / 165°F inside.",
+      "Rest and slice; serve with shredded cabbage."
+    ],
+    "zh": {
+      "name": "香煎雞排",
+      "steps": [
+        "雞胸拍薄調味；沾麵粉、蛋液、再沾多士壓成的糠。",
+        "淺油每面煎 3 至 4 分鐘至金黃、中心 74°C。",
+        "歇一歇切片，配椰菜絲。"
+      ]
+    }
+  },
+  {
+    "id": "home-nikujaga",
+    "name": "Nikujaga",
+    "cuisine": "Japanese",
+    "time": 35,
+    "servings": 3,
+    "need": [
+      "Beef steak",
+      "Potato",
+      "Onion",
+      "Carrots"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sugar",
+      "Spring onion"
+    ],
+    "steps": [
+      "Brown sliced beef briefly; add onion, chunked potato, and carrot.",
+      "Add water to nearly cover with 3 tbsp soy sauce and 1 tbsp sugar; simmer 20 minutes until potato is tender.",
+      "Reduce sauce slightly; finish with spring onion."
+    ],
+    "zh": {
+      "name": "肉じゃが",
+      "steps": [
+        "牛肉片快炒，下洋蔥、薯仔塊和紅蘿蔔。",
+        "加水差不多蓋過，加 3 湯匙生抽和 1 湯匙糖，炆 20 分鐘至薯仔軟。",
+        "收汁少許，撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-chawanmushi-egg",
+    "name": "Chawanmushi-style steamed egg",
+    "cuisine": "Japanese",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "Eggs",
+      "Mushroom"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Shrimp",
+      "Spring onion",
+      "Salt"
+    ],
+    "steps": [
+      "Beat 2 eggs with 1 cup warm water or light broth and a pinch of salt/soy — strain if possible.",
+      "Divide mushrooms (and shrimp if using) into cups; pour egg mix.",
+      "Steam on gentle heat 10–12 minutes until just set; top with spring onion."
+    ],
+    "zh": {
+      "name": "日式茶碗蒸",
+      "steps": [
+        "2 隻蛋加 1 杯溫水或清湯和少許鹽／生抽打匀，可過濾。",
+        "杯內放蘑菇（可加蝦），倒入蛋液。",
+        "小火蒸 10 至 12 分鐘至剛凝固，撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-shogayaki",
+    "name": "Ginger pork (shogayaki)",
+    "cuisine": "Japanese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Pork chops",
+      "Ginger",
+      "Onion"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sugar",
+      "Cabbage"
+    ],
+    "steps": [
+      "Slice pork thin; grate a thumb of ginger.",
+      "Pan-fry pork until cooked through (74°C / 165°F); add onion strips.",
+      "Add 2 tbsp soy sauce, 1 tsp sugar, and ginger; reduce 1–2 minutes. Serve with cabbage."
+    ],
+    "zh": {
+      "name": "生薑燒肉",
+      "steps": [
+        "豬扒切薄片；薑磨蓉。",
+        "炒肉至全熟（74°C），下洋蔥絲。",
+        "加 2 湯匙生抽、1 茶匙糖和薑汁，收汁 1 至 2 分鐘，配椰菜。"
+      ]
+    }
+  },
+  {
+    "id": "home-corn-butter-rice",
+    "name": "Corn butter rice",
+    "cuisine": "Japanese",
+    "time": 12,
+    "servings": 2,
+    "need": [
+      "Cooked rice",
+      "Corn",
+      "Butter"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Salt",
+      "Spring onion",
+      "Nori"
+    ],
+    "steps": [
+      "Warm rice in a pan with a knob of butter.",
+      "Stir in drained corn until hot; season with a splash of soy sauce or salt.",
+      "Top with spring onion or nori."
+    ],
+    "zh": {
+      "name": "Butter粟米飯",
+      "steps": [
+        "熱鑊下飯和一小塊牛油炒熱。",
+        "拌入瀝乾粟米炒熱，加少許生抽或鹽。",
+        "可撒蔥或紫菜。"
+      ]
+    }
+  },
+  {
+    "id": "home-tofu-miso-stew",
+    "name": "Tofu miso stew",
+    "cuisine": "Japanese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Tofu",
+      "Miso",
+      "Mushroom"
+    ],
+    "optional": [
+      "Nori",
+      "Spring onion",
+      "Spinach",
+      "Garlic"
+    ],
+    "steps": [
+      "Simmer mushrooms in 3 cups water 5 minutes.",
+      "Add tofu cubes and spinach; warm 3 minutes.",
+      "Off heat, dissolve 2 tbsp miso into the pot; finish with spring onion."
+    ],
+    "zh": {
+      "name": "味噌豆腐鍋",
+      "steps": [
+        "蘑菇加 3 杯水煮 5 分鐘。",
+        "下豆腐塊和菠菜再溫 3 分鐘。",
+        "熄火化開 2 湯匙味噌，撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-salmon-ochazuke",
+    "name": "Salmon ochazuke-style",
+    "cuisine": "Japanese",
+    "time": 15,
+    "servings": 1,
+    "need": [
+      "Cooked rice",
+      "Salmon",
+      "Nori"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Spring onion",
+      "Sesame seeds"
+    ],
+    "steps": [
+      "Flake leftover or quickly pan-cooked salmon over a bowl of hot rice.",
+      "Pour hot water or light tea/broth around the rice (not drowning).",
+      "Season with a drop of soy sauce; top with nori, spring onion, and sesame."
+    ],
+    "zh": {
+      "name": "茶泡飯風",
+      "steps": [
+        "熱飯上放撕碎三文魚（煎熟或隔夜）。",
+        "沿邊倒入熱水或淡茶／清湯，不要完全浸沒。",
+        "滴少許生抽，放紫菜、蔥和芝麻。"
+      ]
+    }
+  },
+  {
+    "id": "home-tamago-sando",
+    "name": "Egg sandwich (tamago sando)",
+    "cuisine": "Japanese",
+    "time": 15,
+    "servings": 1,
+    "need": [
+      "Eggs",
+      "Bread",
+      "Mayonnaise"
+    ],
+    "optional": [
+      "Butter",
+      "Salt",
+      "Sugar",
+      "Milk"
+    ],
+    "steps": [
+      "Boil 2 eggs 10 minutes; cool, peel, and mash with 1 tbsp mayonnaise and a pinch of salt/sugar.",
+      "Butter soft bread slices lightly.",
+      "Fill with egg salad; trim crusts if desired and cut in half."
+    ],
+    "zh": {
+      "name": "日式蛋三文治",
+      "steps": [
+        "蛋 2 隻煮 10 分鐘，過冷剝殼，加 1 湯匙蛋黃醬和少許鹽糖壓蓉。",
+        "軟麵包薄塗牛油。",
+        "夾蛋沙律，可切邊對半切開。"
+      ]
+    }
+  }
+]

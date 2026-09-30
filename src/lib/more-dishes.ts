@@ -1,5 +1,13 @@
 import type { Recipe } from "@/lib/recipes"
 import { MORE_EXTRA } from "@/lib/more-dishes-extra"
+import { MORE_W1A } from "@/lib/more-dishes-w1a"
+import { MORE_W1B } from "@/lib/more-dishes-w1b"
+import { MORE_W1C } from "@/lib/more-dishes-w1c"
+import { MORE_W1D } from "@/lib/more-dishes-w1d"
+import { MORE_W2E } from "@/lib/more-dishes-w2e"
+import { MORE_W2F } from "@/lib/more-dishes-w2f"
+import { MORE_W2G } from "@/lib/more-dishes-w2g"
+import { MORE_W2H } from "@/lib/more-dishes-w2h"
 
 /**
  * Best cookable Tonight book — searchable home classics only.
@@ -349,7 +357,7 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Hong Kong",
     time: 30,
     servings: 2,
-    need: ["Beef", "Tomato", "Onion"],
+    need: ["Beef steak", "Tomato", "Onion"],
     optional: ["Soy sauce", "Sugar", "Cooked rice"],
     steps: [
       "Slice 250 g beef thinly; cut 2 tomatoes and half an onion into wedges.",
@@ -1097,7 +1105,18 @@ const MORE_CORE: Recipe[] = [
   },
 ]
 
-export const MORE: Recipe[] = [...MORE_CORE, ...MORE_EXTRA]
+export const MORE: Recipe[] = [
+  ...MORE_CORE,
+  ...MORE_EXTRA,
+  ...MORE_W1A,
+  ...MORE_W1B,
+  ...MORE_W1C,
+  ...MORE_W1D,
+  ...MORE_W2E,
+  ...MORE_W2F,
+  ...MORE_W2G,
+  ...MORE_W2H,
+]
 
 /** Outline-catalogue ZH name hints (not home recipe titles). */
 export const MORE_ZH: Record<string, string> = {

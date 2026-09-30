@@ -1,0 +1,448 @@
+import type { Recipe } from "@/lib/recipes"
+
+/**
+ * Wave 1b — Cantonese 送飯 staples (home cookable outlines).
+ * Shelf-canonical need/optional only; stand-ins noted in steps where needed.
+ */
+export const MORE_W1B: Recipe[] = [
+  {
+    id: "home-oyster-choi-sum",
+    name: "Oyster sauce choi sum",
+    cuisine: "Cantonese",
+    time: 12,
+    servings: 2,
+    need: ["Choi sum", "Garlic"],
+    optional: ["Oyster sauce", "Soy sauce", "Sesame oil"],
+    steps: [
+      "Wash 1 bunch of choi sum and cut into 6–8 cm lengths; mince 2 garlic cloves.",
+      "Blanch stems 45–60 seconds in boiling water, then leaves 20 seconds; drain well.",
+      "Heat 1 tbsp oil, fry garlic 15 seconds, add 1½ tbsp oyster sauce (or soy) and 2 tbsp water; toss greens until glossy. Optional drop of sesame oil.",
+    ],
+    zh: {
+      name: "蠔油菜心",
+      steps: [
+        "洗淨一束菜心切成 6–8 厘米段；拍碎兩瓣蒜。",
+        "滾水先焯菜莖 45–60 秒，再焯菜葉約 20 秒，瀝乾。",
+        "熱鑊下一湯匙油爆香蒜蓉，加約 1½ 湯匙蠔油（或生抽）和兩湯匙水，拌勻菜心至光澤，可滴麻油。",
+      ],
+    },
+  },
+  {
+    id: "home-beef-choi-sum",
+    name: "Beef with choi sum",
+    cuisine: "Cantonese",
+    time: 20,
+    servings: 2,
+    need: ["Beef steak", "Choi sum", "Garlic"],
+    optional: ["Soy sauce", "Oyster sauce", "Cornstarch", "Ginger", "Shaoxing wine"],
+    steps: [
+      "Slice 250 g beef steak thinly across the grain; toss with 1 tsp soy sauce, 1 tsp cornstarch, and a splash of Shaoxing wine if using. Cut choi sum into lengths; mince 2 garlic cloves.",
+      "Stir-fry beef in a hot oiled wok 1–2 minutes until just browned; transfer out.",
+      "Stir-fry choi sum and garlic with a splash of water 2–3 minutes until tender-crisp. Return beef, add 1 tbsp oyster or soy sauce, toss 30 seconds until beef is cooked through, and serve.",
+    ],
+    zh: {
+      name: "菜心炒牛肉",
+      steps: [
+        "約 250 克牛扒切薄片，加 1 茶匙生抽、1 茶匙生粉及少許料酒（如有）略醃；菜心切段，拍碎兩瓣蒜。",
+        "熱鑊下油快炒牛肉 1–2 分鐘至微變色，盛起。",
+        "炒菜心和蒜加少許水 2–3 分鐘至爽熟，倒回牛肉，加 1 湯匙蠔油或生抽拌約 30 秒至全熟上碟。",
+      ],
+    },
+  },
+  {
+    id: "home-fermented-tofu-greens",
+    name: "Water spinach with fermented tofu",
+    cuisine: "Cantonese",
+    time: 12,
+    servings: 2,
+    need: ["Spinach", "Garlic"],
+    optional: ["Chili oil", "Sugar", "Soy sauce", "Sesame oil"],
+    steps: [
+      "Wash 300 g spinach (stand-in for water spinach / 通菜); drain. Mince 3 garlic cloves.",
+      "Mix a quick 腐乳-style sauce: 1 tbsp soy sauce, ½ tsp sugar, and ½–1 tsp chili oil if you like heat.",
+      "Stir-fry garlic in 1 tbsp oil 15 seconds, add spinach until wilted (1–2 minutes), then toss with the sauce and optional sesame oil. Serve hot with rice.",
+    ],
+    zh: {
+      name: "腐乳通菜",
+      steps: [
+        "洗淨約 300 克菠菜（代替通菜）瀝乾；拍碎三瓣蒜。",
+        "調近似腐乳味醬汁：1 湯匙生抽、½ 茶匙糖，可加 ½–1 茶匙辣椒油。",
+        "熱鑊下一湯匙油爆香蒜蓉，下菠菜炒至軟塌（1–2 分鐘），淋醬拌勻，可滴麻油，伴飯。",
+      ],
+    },
+  },
+  {
+    id: "home-black-bean-ribs",
+    name: "Black bean spare ribs (steam)",
+    cuisine: "Cantonese",
+    time: 35,
+    servings: 2,
+    need: ["Pork chops", "Garlic", "Soy sauce"],
+    optional: ["Chili oil", "Sugar", "Cornstarch", "Ginger", "Shaoxing wine", "Spring onion"],
+    steps: [
+      "Cut 400 g pork chops into bite-size rib-style pieces. Mix with 2 tbsp soy sauce, 3 minced garlic cloves, 1 tsp sugar, 1 tsp cornstarch, a splash of Shaoxing wine, and optional chili oil (black-bean style stand-in).",
+      "Spread on a heatproof plate; scatter ginger slices if using. Steam over high heat 20–25 minutes until pork is fully cooked through and juices run clear.",
+      "Rest 2 minutes; top with spring onion if you have it, and spoon the plate juices over. Serve with rice.",
+    ],
+    zh: {
+      name: "豉汁蒸排骨",
+      steps: [
+        "約 400 克豬排切小件（代替排骨），加 2 湯匙生抽、三瓣蒜蓉、1 茶匙糖、1 茶匙生粉、少許料酒及辣椒油（如有，代替豉汁風味）拌勻。",
+        "舖碟，可加薑片；大火蒸 20–25 分鐘至豬肉全熟、汁清澈。",
+        "靜置兩分鐘，可撒蔥花，淋碟汁，伴飯。",
+      ],
+    },
+  },
+  {
+    id: "home-potato-spare-ribs",
+    name: "Spare ribs with potato",
+    cuisine: "Cantonese",
+    time: 45,
+    servings: 2,
+    need: ["Pork chops", "Potato", "Garlic"],
+    optional: ["Soy sauce", "Ginger", "Onion", "Sugar", "Shaoxing wine", "Spring onion"],
+    steps: [
+      "Cut 400 g pork chops into chunks; peel and cube 2 medium potatoes (about 400 g). Slice ginger and mince 2 garlic cloves.",
+      "Brown pork in a little oil 3–4 minutes. Add garlic, ginger, optional onion, 2 tbsp soy sauce, 1 tsp sugar, a splash of wine, and enough water to almost cover.",
+      "Simmer covered 15 minutes, add potato, and cook another 15–20 minutes until pork is tender and potato soft. Reduce sauce if thin; finish with spring onion.",
+    ],
+    zh: {
+      name: "薯仔炆排骨",
+      steps: [
+        "約 400 克豬排切件；兩個中薯去皮切塊（約 400 克）。薑切片，拍碎兩瓣蒜。",
+        "少油煎香豬肉約 3–4 分鐘，下蒜薑（可加洋蔥）、2 湯匙生抽、1 茶匙糖、少許料酒和水近蓋過。",
+        "蓋煮 15 分鐘後下薯仔，再炆 15–20 分鐘至肉軟薯熟，汁稠可撒蔥花。",
+      ],
+    },
+  },
+  {
+    id: "home-sweet-sour-pork",
+    name: "Sweet and sour pork",
+    cuisine: "Cantonese",
+    time: 35,
+    servings: 2,
+    need: ["Pork chops", "Bell pepper", "Onion"],
+    optional: ["Ketchup", "Vinegar", "Sugar", "Soy sauce", "Cornstarch", "Garlic", "Tomato"],
+    steps: [
+      "Cut 350 g pork chops into 2 cm cubes; toss with 1 tbsp soy sauce and 1 tbsp cornstarch. Cut 1 bell pepper and half an onion into chunks; mince garlic if using.",
+      "Pan-fry pork in 2–3 tbsp oil until browned and cooked through (no pink); remove. Stir-fry pepper and onion 2 minutes.",
+      "Mix sauce: 3 tbsp ketchup, 1½ tbsp vinegar, 1 tbsp sugar, 1 tsp soy, and 3 tbsp water. Return pork, simmer 1–2 minutes until glossy, and serve.",
+    ],
+    zh: {
+      name: "咕嚕肉",
+      steps: [
+        "約 350 克豬排切 2 厘米粒，加 1 湯匙生抽和 1 湯匙生粉拌勻；一個燈籠椒和半個洋蔥切塊，有蒜可切碎。",
+        "下 2–3 湯匙油煎至金黃全熟（無血色）盛起；快炒椒和洋蔥約兩分鐘。",
+        "調醬：3 湯匙茄汁、1½ 湯匙醋、1 湯匙糖、1 茶匙生抽和 3 湯匙水。倒回豬肉煮 1–2 分鐘至亮澤上碟。",
+      ],
+    },
+  },
+  {
+    id: "home-yuxiang-eggplant",
+    name: "Fish-fragrant eggplant",
+    cuisine: "Sichuan",
+    time: 30,
+    servings: 2,
+    need: ["Eggplant", "Ground pork", "Garlic"],
+    optional: ["Ginger", "Spring onion", "Soy sauce", "Vinegar", "Sugar", "Chili oil", "Cornstarch"],
+    steps: [
+      "Cut 2 medium eggplants (about 500 g) into batons; salt lightly 10 minutes, then pat dry. Mince 3 garlic cloves and ginger; prep 150 g ground pork.",
+      "Fry eggplant in oil until soft and browned; set aside. Brown pork until cooked through (74°C / 165°F), then add garlic and ginger.",
+      "Add eggplant with 1 tbsp soy, 1 tbsp vinegar, 1 tsp sugar, chili oil if using, and ¼ cup water; simmer 3–4 minutes. Thicken with a little cornstarch slurry if needed; finish with spring onion.",
+    ],
+    zh: {
+      name: "魚香茄子",
+      steps: [
+        "兩條中茄子（約 500 克）切條，略醃鹽 10 分鐘後抹乾；拍碎三瓣蒜和薑；準備約 150 克免治豬肉。",
+        "下油炸或煎軟茄子盛起。炒香豬肉至全熟（74°C），再下蒜薑。",
+        "倒回茄子，加 1 湯匙生抽、1 湯匙醋、1 茶匙糖、辣椒油（如有）和約 ¼ 杯水煮 3–4 分鐘；可勾薄芡，撒蔥花。",
+      ],
+    },
+  },
+  {
+    id: "home-steamed-chicken-mushroom",
+    name: "Steamed chicken with mushrooms",
+    cuisine: "Cantonese",
+    time: 35,
+    servings: 2,
+    need: ["Chicken thighs", "Mushroom", "Ginger"],
+    optional: ["Soy sauce", "Shaoxing wine", "Cornstarch", "Sesame oil", "Spring onion"],
+    steps: [
+      "Cut 400 g chicken thighs into bite-size pieces; slice 150 g mushrooms and a few ginger coins. Toss chicken with 1 tbsp soy sauce, 1 tsp cornstarch, wine if using, and sesame oil.",
+      "Arrange chicken and mushrooms on a plate with ginger. Steam over high heat 18–22 minutes until chicken reaches 74°C / 165°F in the thickest piece.",
+      "Rest 2 minutes; spoon juices over and top with spring onion. Serve with rice.",
+    ],
+    zh: {
+      name: "冬菇蒸雞",
+      steps: [
+        "約 400 克雞腿肉切件；約 150 克冬菇切片，薑幾片。雞肉加 1 湯匙生抽、1 茶匙生粉、料酒和麻油（如有）拌勻。",
+        "雞肉和菇舖碟加薑片；大火蒸 18–22 分鐘至最厚處達 74°C。",
+        "靜置兩分鐘，淋汁撒蔥花，伴飯。",
+      ],
+    },
+  },
+  {
+    id: "home-salted-egg-pork-patty",
+    name: "Salted egg steamed pork patty",
+    cuisine: "Cantonese",
+    time: 30,
+    servings: 2,
+    need: ["Ground pork", "Eggs", "Salt"],
+    optional: ["Soy sauce", "Cornstarch", "White pepper", "Spring onion"],
+    steps: [
+      "Beat 1 egg with ½ tsp salt (salted-egg style seasoning). Mix into 300 g ground pork with 1 tsp cornstarch, a pinch of white pepper, and 1 tbsp water until sticky.",
+      "Press into a shallow heatproof dish about 1.5 cm thick; optional drizzle of soy on top.",
+      "Steam over medium-high heat 15–18 minutes until the patty is fully cooked through (no pink; juices clear). Rest 2 minutes; top with spring onion.",
+    ],
+    zh: {
+      name: "鹹蛋蒸肉餅",
+      steps: [
+        "打散一隻蛋加 ½ 茶匙鹽（鹹蛋風味調味）。拌入約 300 克免治豬肉、1 茶匙生粉、少許白胡椒和 1 湯匙水至起膠。",
+        "壓入深碟約 1.5 厘米厚，面可淋少許生抽。",
+        "中大火蒸 15–18 分鐘至全熟（無血色、汁清），靜置兩分鐘，可撒蔥花。",
+      ],
+    },
+  },
+  {
+    id: "home-white-cut-chicken",
+    name: "White cut chicken (home poach)",
+    cuisine: "Cantonese",
+    time: 50,
+    servings: 3,
+    need: ["Chicken thighs", "Ginger"],
+    optional: ["Spring onion", "Soy sauce", "Sesame oil", "Garlic", "Salt"],
+    steps: [
+      "Bring a pot of water to a boil with 4–5 ginger slices and a handful of spring onion if using. Add 600–700 g chicken thighs; return to a gentle simmer.",
+      "Poach covered 20–25 minutes (or until thickest part hits 74°C / 165°F). Lift out into an ice bath 5 minutes to firm the skin, then drain and chop.",
+      "Dip: mince garlic with soy sauce, a drop of sesame oil, and a pinch of salt. Serve chicken with the dip and ginger-onion poaching aromatics.",
+    ],
+    zh: {
+      name: "白切雞",
+      steps: [
+        "煮滾一鍋水，加 4–5 片薑和蔥（如有）。下約 600–700 克雞腿，轉小火保持微滾。",
+        "蓋浸煮 20–25 分鐘至最厚處達 74°C。取出冰鎮約 5 分鐘定皮，瀝乾斬件。",
+        "蘸料：蒜蓉加生抽、少許麻油和鹽。伴薑蔥湯底香氣上桌。",
+      ],
+    },
+  },
+  {
+    id: "home-char-siu-home",
+    name: "Char siu (oven home)",
+    cuisine: "Cantonese",
+    time: 55,
+    servings: 3,
+    need: ["Pork chops", "Honey", "Soy sauce", "Hoisin sauce"],
+    optional: ["Garlic", "Sugar", "Shaoxing wine", "White pepper"],
+    steps: [
+      "Mix marinade: 2 tbsp hoisin sauce, 2 tbsp soy sauce, 1½ tbsp honey, 1 tsp sugar, 2 minced garlic cloves, and a splash of wine if using. Coat 500 g pork chops; rest 20–30 minutes (or overnight).",
+      "Bake at 200°C / 400°F on a rack over a tray for 15 minutes. Brush with more honey-hoisin mix, flip, and bake another 12–15 minutes until cooked through and glazed.",
+      "Rest 5 minutes; slice. Brush with any remaining warm glaze and serve with rice.",
+    ],
+    zh: {
+      name: "家常叉燒",
+      steps: [
+        "調醃料：2 湯匙海鮮醬、2 湯匙生抽、1½ 湯匙蜜糖、1 茶匙糖、兩瓣蒜蓉及少許料酒（如有）。約 500 克豬排抹勻，醃 20–30 分鐘（或過夜）。",
+        "200°C 焗架焗 15 分鐘；再掃蜜糖海鮮醬，翻面再焗 12–15 分鐘至全熟有光澤。",
+        "靜置 5 分鐘切片，掃剩餘熱汁，伴飯。",
+      ],
+    },
+  },
+  {
+    id: "home-braised-tofu-pork",
+    name: "Braised tofu with minced pork",
+    cuisine: "Cantonese",
+    time: 25,
+    servings: 2,
+    need: ["Tofu", "Ground pork", "Garlic"],
+    optional: ["Soy sauce", "Oyster sauce", "Ginger", "Spring onion", "Cornstarch", "Chili oil"],
+    steps: [
+      "Drain and cube 1 block tofu (about 300–350 g). Mince 2 garlic cloves; have 150 g ground pork ready.",
+      "Brown pork with garlic (and ginger if using) until cooked through (74°C / 165°F). Add 1 tbsp soy sauce, 1 tbsp oyster sauce if using, and ¾ cup water; nestle in tofu.",
+      "Simmer gently 8–10 minutes. Thicken with a little cornstarch slurry if you want a glaze; finish with spring onion and chili oil to taste.",
+    ],
+    zh: {
+      name: "肉碎炆豆腐",
+      steps: [
+        "一塊豆腐（約 300–350 克）瀝乾切丁；拍碎兩瓣蒜；準備約 150 克免治豬肉。",
+        "炒香豬肉和蒜（可加薑）至全熟（74°C）。加 1 湯匙生抽、蠔油（如有）和約 ¾ 杯水，放入豆腐。",
+        "小火炆 8–10 分鐘；可勾薄芡，撒蔥花，按喜好加辣椒油。",
+      ],
+    },
+  },
+  {
+    id: "home-black-bean-beef",
+    name: "Black bean beef",
+    cuisine: "Cantonese",
+    time: 22,
+    servings: 2,
+    need: ["Beef steak", "Bell pepper", "Garlic", "Soy sauce"],
+    optional: ["Chili oil", "Onion", "Sugar", "Cornstarch", "Shaoxing wine", "Ginger"],
+    steps: [
+      "Slice 250 g beef steak thinly; toss with 1 tsp soy sauce and 1 tsp cornstarch. Cut 1 bell pepper (and onion if using) into strips; mince 3 garlic cloves.",
+      "Sear beef hot and fast 1–2 minutes until just browned; set aside. Stir-fry pepper, garlic, and optional chili oil 2 minutes (black-bean heat stand-in).",
+      "Return beef with 1 tbsp soy sauce, ½ tsp sugar, and a splash of water or wine; toss 30–60 seconds until beef is cooked through. Serve with rice.",
+    ],
+    zh: {
+      name: "豉椒牛肉",
+      steps: [
+        "約 250 克牛扒切薄片，加 1 茶匙生抽和 1 茶匙生粉；一個燈籠椒（可加洋蔥）切絲，拍碎三瓣蒜。",
+        "大火快炒牛肉 1–2 分鐘至微變色盛起；炒椒、蒜及辣椒油（如有，代替豉椒辣香）約兩分鐘。",
+        "倒回牛肉，加 1 湯匙生抽、½ 茶匙糖和少許水或料酒拌 30–60 秒至全熟，伴飯。",
+      ],
+    },
+  },
+  {
+    id: "home-garlic-green-beans",
+    name: "Garlic green beans",
+    cuisine: "Cantonese",
+    time: 12,
+    servings: 2,
+    need: ["Snow peas", "Garlic"],
+    optional: ["Soy sauce", "Oyster sauce", "Sesame oil", "Salt"],
+    steps: [
+      "Trim 250 g snow peas (stand-in for long beans / 豆角); mince 3 garlic cloves.",
+      "Stir-fry snow peas in 1 tbsp oil over high heat 2 minutes until bright green; add garlic and cook 30 seconds more.",
+      "Season with a pinch of salt and 1 tsp soy or oyster sauce; optional sesame oil. Serve immediately with rice.",
+    ],
+    zh: {
+      name: "蒜蓉豆角",
+      steps: [
+        "約 250 克蜜豆（代替豆角）去蒂；拍碎三瓣蒜。",
+        "熱鑊下一湯匙油大火炒蜜豆約兩分鐘至翠綠，下蒜再炒 30 秒。",
+        "加少許鹽和 1 茶匙生抽或蠔油，可滴麻油，趁熱伴飯。",
+      ],
+    },
+  },
+  {
+    id: "home-dry-fried-green-beans",
+    name: "Dry-fried green beans",
+    cuisine: "Sichuan",
+    time: 25,
+    servings: 2,
+    need: ["Snow peas", "Ground pork", "Garlic"],
+    optional: ["Soy sauce", "Chili oil", "Sugar", "Ginger", "Spring onion", "White pepper"],
+    steps: [
+      "Trim 250 g snow peas (stand-in for green beans). Mince 2 garlic cloves; ready 120 g ground pork.",
+      "Dry-fry snow peas in a lightly oiled pan over medium-high heat 4–5 minutes until blistered and tender; remove. Brown pork with garlic until cooked through (74°C / 165°F).",
+      "Return snow peas with 1 tbsp soy sauce, ½ tsp sugar, chili oil if using, and a pinch of white pepper; toss 1 minute. Finish with spring onion.",
+    ],
+    zh: {
+      name: "乾煸四季豆",
+      steps: [
+        "約 250 克蜜豆（代替四季豆）去蒂；拍碎兩瓣蒜；準備約 120 克免治豬肉。",
+        "少油中大火乾煸蜜豆 4–5 分鐘至起皺軟熟盛起。炒香豬肉和蒜至全熟（74°C）。",
+        "倒回蜜豆，加 1 湯匙生抽、½ 茶匙糖、辣椒油（如有）和少許白胡椒炒約一分鐘，撒蔥花。",
+      ],
+    },
+  },
+  {
+    id: "home-lotus-rib-soup",
+    name: "Lotus root spare rib soup",
+    cuisine: "Cantonese",
+    time: 75,
+    servings: 3,
+    need: ["Pork chops", "Potato", "Carrots"],
+    optional: ["Ginger", "Salt", "White pepper", "Shaoxing wine", "Spring onion"],
+    steps: [
+      "Cut 400 g pork chops into pieces; peel and chunk 1 large potato and 2 carrots (root stand-in for lotus). Blanch pork in boiling water 1 minute; rinse.",
+      "Simmer pork with 6 cups water, ginger slices, and a splash of wine if using for 30 minutes. Add potato and carrot; simmer another 25–30 minutes until soft.",
+      "Season with salt and white pepper to taste; skim foam. Serve hot with spring onion if you like.",
+    ],
+    zh: {
+      name: "蓮藕排骨湯",
+      steps: [
+        "約 400 克豬排切件；一個大薯和兩條甘筍去皮切塊（代替蓮藕）。豬排放滾水焯 1 分鐘洗淨。",
+        "豬排放約 6 杯水、薑片和少許料酒（如有）煮 30 分鐘；再下薯和甘筍炆 25–30 分鐘至軟。",
+        "加鹽和白胡椒調味，撇泡沫，可撒蔥花趁熱喝。",
+      ],
+    },
+  },
+  {
+    id: "home-winter-melon-soup",
+    name: "Winter melon soup",
+    cuisine: "Cantonese",
+    time: 45,
+    servings: 3,
+    need: ["Zucchini", "Pork chops", "Ginger"],
+    optional: ["Ham", "Salt", "White pepper", "Spring onion"],
+    steps: [
+      "Peel and chunk 500 g zucchini (winter melon stand-in). Cut 250 g pork chops into thin pieces; optional dice of ham. Slice ginger.",
+      "Simmer pork (and ham) with ginger in 5 cups water for 15–20 minutes until pork is cooked through. Add zucchini and cook 10–12 minutes until translucent-tender.",
+      "Season lightly with salt and white pepper; finish with spring onion. Serve as a light 送飯 soup.",
+    ],
+    zh: {
+      name: "冬瓜湯",
+      steps: [
+        "約 500 克翠玉瓜（代替冬瓜）去皮切塊；約 250 克豬排切片，可加火腿粒；薑切片。",
+        "豬排（和火腿）加薑用約 5 杯水煮 15–20 分鐘至肉熟；下瓜再煮 10–12 分鐘至軟透。",
+        "少許鹽和白胡椒調味，撒蔥花，作清湯送飯。",
+      ],
+    },
+  },
+  {
+    id: "home-tomato-egg-drop-soup",
+    name: "Tomato egg drop soup",
+    cuisine: "Chinese",
+    time: 15,
+    servings: 2,
+    need: ["Tomato", "Eggs"],
+    optional: ["Spring onion", "Salt", "White pepper", "Sesame oil", "Cornstarch"],
+    steps: [
+      "Cut 2 tomatoes into wedges; beat 2 eggs. Bring 3 cups water to a simmer and cook tomatoes 4–5 minutes until soft and soupy.",
+      "Season with salt and white pepper. Stir the soup in a circle and slowly pour in the eggs to form ribbons; cook until eggs are fully set.",
+      "Optional light cornstarch slurry for body. Finish with spring onion and a drop of sesame oil.",
+    ],
+    zh: {
+      name: "番茄蛋花湯",
+      steps: [
+        "切開兩個番茄；打散兩隻蛋。約 3 杯水煮滾，下番茄煮 4–5 分鐘至出汁。",
+        "加鹽和白胡椒。湯水轉圈，慢慢倒下蛋液成蛋花，煮至蛋全熟。",
+        "可勾薄芡，撒蔥花滴麻油。",
+      ],
+    },
+  },
+  {
+    id: "home-steamed-fish-fillets",
+    name: "Steamed fish fillets",
+    cuisine: "Cantonese",
+    time: 20,
+    servings: 2,
+    need: ["White fish", "Ginger", "Spring onion"],
+    optional: ["Soy sauce", "Sesame oil", "Garlic", "Shaoxing wine", "Salt"],
+    steps: [
+      "Pat 300–350 g white fish fillets dry; place on a plate with ginger matchsticks underneath and on top. Optional splash of wine and pinch of salt.",
+      "Steam over high heat 8–10 minutes until flesh is opaque and flakes easily (fully cooked).",
+      "Top with shredded spring onion. Heat 1 tbsp oil (and minced garlic if using), pour over, then add 1½ tbsp soy sauce and a drop of sesame oil.",
+    ],
+    zh: {
+      name: "清蒸魚塊",
+      steps: [
+        "約 300–350 克白魚柳抹乾，舖薑絲上下；可加少許料酒和鹽。",
+        "大火蒸 8–10 分鐘至肉轉白、輕壓可散（全熟）。",
+        "舖蔥絲。熱約 1 湯匙油（可加蒜蓉）淋上，再淋 1½ 湯匙生抽和少許麻油。",
+      ],
+    },
+  },
+  {
+    id: "home-eggplant-pork-claypot",
+    name: "Claypot eggplant with minced pork",
+    cuisine: "Cantonese",
+    time: 30,
+    servings: 2,
+    need: ["Eggplant", "Ground pork", "Garlic"],
+    optional: ["Soy sauce", "Oyster sauce", "Ginger", "Spring onion", "Chili oil", "Sugar", "Cornstarch"],
+    steps: [
+      "Cut 2 eggplants into thick wedges; mince 2 garlic cloves. Brown 150 g ground pork in a deep pan or claypot until cooked through (74°C / 165°F).",
+      "Push pork aside; fry eggplant in a little more oil until softened. Add garlic, ginger if using, 1 tbsp soy, 1 tbsp oyster sauce, ½ tsp sugar, and ½ cup water.",
+      "Cover and braise 8–10 minutes until eggplant is silky and sauce coats. Chili oil and spring onion to finish; serve bubbling with rice.",
+    ],
+    zh: {
+      name: "肉碎茄子煲",
+      steps: [
+        "兩條茄子切厚件；拍碎兩瓣蒜。深鑊或砂鍋炒約 150 克免治豬肉至全熟（74°C）。",
+        "推開肉，加油煎軟茄子；下蒜薑（如有）、1 湯匙生抽、1 湯匙蠔油、½ 茶匙糖和約 ½ 杯水。",
+        "蓋炆 8–10 分鐘至茄子軟滑汁裹勻，可加辣椒油和蔥花，趁熱伴飯。",
+      ],
+    },
+  },
+]

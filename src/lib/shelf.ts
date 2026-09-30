@@ -859,5 +859,362 @@ export const SHELF: ShelfFood[] = [
     "category": "veg",
     "location": "fridge",
     "days": 5
+  },
+  {
+    "name": "Water spinach",
+    "aliases": [
+      "ong choy",
+      "tong cai",
+      "通菜",
+      "空心菜"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 3
+  },
+  {
+    "name": "Green beans",
+    "aliases": [
+      "string beans",
+      "long beans",
+      "四季豆",
+      "豆角"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 5
+  },
+  {
+    "name": "Winter melon",
+    "aliases": [
+      "dong gua",
+      "冬瓜"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 7
+  },
+  {
+    "name": "Lotus root",
+    "aliases": [
+      "renkon",
+      "藕",
+      "蓮藕"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 5
+  },
+  {
+    "name": "Pineapple",
+    "aliases": [
+      "菠蘿",
+      "凤梨",
+      "鳳梨"
+    ],
+    "category": "fruit",
+    "location": "fridge",
+    "days": 5
+  },
+  {
+    "name": "Condensed milk",
+    "aliases": [
+      "sweetened condensed milk",
+      "煉奶"
+    ],
+    "category": "dairy",
+    "location": "pantry",
+    "days": 180
+  },
+  {
+    "name": "Instant noodles",
+    "aliases": [
+      "ramen pack",
+      "公仔麵",
+      "方便麵",
+      "杯麵"
+    ],
+    "category": "grain",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Curry powder",
+    "aliases": [
+      "curry paste",
+      "咖哩粉",
+      "咖喱粉"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Fermented tofu",
+    "aliases": [
+      "fu yu",
+      "腐乳",
+      "fermented bean curd"
+    ],
+    "category": "condiment",
+    "location": "fridge",
+    "days": 180
+  },
+  {
+    "name": "Fermented black beans",
+    "aliases": [
+      "douchi",
+      "豆豉",
+      "black bean sauce"
+    ],
+    "category": "condiment",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Miso",
+    "aliases": [
+      "miso paste",
+      "味噌"
+    ],
+    "category": "condiment",
+    "location": "fridge",
+    "days": 180
+  },
+  {
+    "name": "Nori",
+    "aliases": [
+      "seaweed sheets",
+      "紫菜",
+      "海苔"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Rice cakes",
+    "aliases": [
+      "tteok",
+      "年糕"
+    ],
+    "category": "grain",
+    "location": "fridge",
+    "days": 14
+  },
+  {
+    "name": "Udon",
+    "aliases": [
+      "udon noodles",
+      "烏冬"
+    ],
+    "category": "grain",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Pumpkin",
+    "aliases": [
+      "kabocha",
+      "南瓜"
+    ],
+    "category": "veg",
+    "location": "pantry",
+    "days": 14
+  },
+  {
+    "name": "Bitter melon",
+    "aliases": [
+      "bitter gourd",
+      "涼瓜",
+      "苦瓜"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 5
+  },
+  {
+    "name": "Tofu skin",
+    "aliases": [
+      "yuba",
+      "bean curd sheet",
+      "豆腐皮",
+      "腐竹"
+    ],
+    "category": "protein",
+    "location": "fridge",
+    "days": 7
+  },
+  {
+    "name": "Corned beef",
+    "aliases": [
+      "salted beef",
+      "鹹牛肉"
+    ],
+    "category": "meat",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Spare ribs",
+    "aliases": [
+      "pork ribs",
+      "排骨"
+    ],
+    "category": "meat",
+    "location": "fridge",
+    "days": 2
+  },
+  {
+    "name": "Chicken wings",
+    "aliases": [
+      "wings",
+      "雞翼"
+    ],
+    "category": "meat",
+    "location": "fridge",
+    "days": 2
+  },
+  {
+    "name": "Glass noodles",
+    "aliases": [
+      "cellophane noodles",
+      "mung bean noodles",
+      "粉絲"
+    ],
+    "category": "grain",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Wonton wrappers",
+    "aliases": [
+      "dumpling wrappers",
+      "雲吞皮"
+    ],
+    "category": "grain",
+    "location": "fridge",
+    "days": 7
+  },
+  {
+    "name": "Thai basil",
+    "aliases": [
+      "holy basil",
+      "金不換",
+      "羅勒"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 4
+  },
+  {
+    "name": "Lemongrass",
+    "aliases": [
+      "檸檬草"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 10
+  },
+  {
+    "name": "Doenjang",
+    "aliases": [
+      "korean soybean paste",
+      "大醬"
+    ],
+    "category": "condiment",
+    "location": "fridge",
+    "days": 180
+  },
+  {
+    "name": "Gochujang",
+    "aliases": [
+      "korean chili paste",
+      "辣椒醬",
+      "辣醬"
+    ],
+    "category": "condiment",
+    "location": "fridge",
+    "days": 180
+  },
+  {
+    "name": "Sesame seeds",
+    "aliases": [
+      "白芝麻",
+      "芝麻"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Peanuts",
+    "aliases": [
+      "花生"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 180
+  },
+  {
+    "name": "Dried mushrooms",
+    "aliases": [
+      "shiitake",
+      "冬菇",
+      "香菇"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Oats",
+    "aliases": [
+      "oatmeal",
+      "燕麥"
+    ],
+    "category": "grain",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Satay sauce",
+    "aliases": [
+      "沙爹醬",
+      "satay"
+    ],
+    "category": "condiment",
+    "location": "pantry",
+    "days": 180
+  },
+  {
+    "name": "Beef brisket",
+    "aliases": [
+      "brisket",
+      "牛腩"
+    ],
+    "category": "meat",
+    "location": "fridge",
+    "days": 3
+  },
+  {
+    "name": "Squid",
+    "aliases": [
+      "calamari",
+      "魷魚"
+    ],
+    "category": "seafood",
+    "location": "fridge",
+    "days": 2
+  },
+  {
+    "name": "Clams",
+    "aliases": [
+      "蜆",
+      "蛤"
+    ],
+    "category": "seafood",
+    "location": "fridge",
+    "days": 1
   }
 ]

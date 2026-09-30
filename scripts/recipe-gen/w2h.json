@@ -1,0 +1,629 @@
+[
+  {
+    "id": "home-beef-chow-fun",
+    "name": "Beef chow fun",
+    "cuisine": "Cantonese",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "Beef steak",
+      "Rice vermicelli",
+      "Bean sprouts"
+    ],
+    "optional": [
+      "Onion",
+      "Spring onion",
+      "Soy sauce",
+      "Oyster sauce",
+      "Garlic"
+    ],
+    "steps": [
+      "Soak rice vermicelli until pliable; drain. Slice 250 g beef; toss with 1 tsp soy sauce.",
+      "Sear beef hot until just browned; remove. Stir-fry onion and bean sprouts briefly.",
+      "Add noodles with 1 tbsp soy sauce and 1 tsp oyster sauce; toss on high until lightly charred. Return beef and spring onion."
+    ],
+    "zh": {
+      "name": "乾炒牛河",
+      "steps": [
+        "米粉浸軟瀝乾。牛扒 250 克切絲加 1 茶匙生抽。",
+        "大火炒牛肉至表面剛上色盛起；快炒洋蔥和芽菜。",
+        "下面加 1 湯匙生抽和 1 茶匙蠔油大火炒至微焦，回牛肉和蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-wonton-noodle-soup",
+    "name": "Wonton noodle soup",
+    "cuisine": "Cantonese",
+    "time": 35,
+    "servings": 2,
+    "need": [
+      "Wonton wrappers",
+      "Ground pork",
+      "Noodles"
+    ],
+    "optional": [
+      "Garlic",
+      "Ginger",
+      "Soy sauce",
+      "Spring onion",
+      "White pepper"
+    ],
+    "steps": [
+      "Mix 200 g ground pork with minced ginger and 1 tsp soy sauce; wrap into wontons.",
+      "Boil wontons until they float and pork is 74°C / 165°F (4–5 min). Cook noodles separately.",
+      "Assemble in bowls with hot light broth (water + soy + white pepper); top with spring onion."
+    ],
+    "zh": {
+      "name": "雲吞麵",
+      "steps": [
+        "免治豬肉 200 克加薑蓉和 1 茶匙生抽拌匀包雲吞。",
+        "雲吞煮至浮起且肉全熟（74°C）約 4 至 5 分鐘；另煮麵。",
+        "碗內放麵和雲吞，淋熱清湯（水+生抽+白胡椒），撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-wonton-soup",
+    "name": "Wonton soup",
+    "cuisine": "Cantonese",
+    "time": 30,
+    "servings": 2,
+    "need": [
+      "Wonton wrappers",
+      "Ground pork"
+    ],
+    "optional": [
+      "Ginger",
+      "Soy sauce",
+      "Spring onion",
+      "White pepper",
+      "Garlic"
+    ],
+    "steps": [
+      "Fill wonton wrappers with seasoned ground pork (ginger + soy).",
+      "Boil until cooked through (74°C / 165°F), about 4–5 minutes.",
+      "Serve in light seasoned broth with spring onion."
+    ],
+    "zh": {
+      "name": "雲吞湯",
+      "steps": [
+        "雲吞皮包免治豬肉（薑、生抽調味）。",
+        "水滾煮約 4 至 5 分鐘至肉全熟（74°C）。",
+        "配清湯和蔥花。"
+      ]
+    }
+  },
+  {
+    "id": "home-zha-jiang-mian",
+    "name": "Zha jiang mian",
+    "cuisine": "Chinese",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "Noodles",
+      "Ground pork"
+    ],
+    "optional": [
+      "Onion",
+      "Garlic",
+      "Soy sauce",
+      "Hoisin sauce",
+      "Cucumber",
+      "Sugar"
+    ],
+    "steps": [
+      "Brown 200 g ground pork with garlic and onion until cooked through (74°C / 165°F).",
+      "Add 2 tbsp soy sauce, 1 tbsp hoisin, and a pinch of sugar; simmer 3–4 minutes into a thick sauce.",
+      "Toss with boiled noodles; top with shredded cucumber."
+    ],
+    "zh": {
+      "name": "炸醬麵",
+      "steps": [
+        "免治豬肉 200 克加蒜洋蔥炒至全熟（74°C）。",
+        "加 2 湯匙生抽、1 湯匙海鮮醬和少許糖炆 3 至 4 分鐘至稠。",
+        "拌熟麵，放青瓜絲。"
+      ]
+    }
+  },
+  {
+    "id": "home-soy-fried-noodles",
+    "name": "Soy sauce pan-fried noodles",
+    "cuisine": "Hong Kong",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Noodles",
+      "Bean sprouts"
+    ],
+    "optional": [
+      "Spring onion",
+      "Soy sauce",
+      "Garlic",
+      "Onion",
+      "Sesame oil"
+    ],
+    "steps": [
+      "Parboil noodles; drain well.",
+      "Pan-fry noodles in a little oil until edges crisp; push aside and soften garlic/onion.",
+      "Season with 2 tbsp soy sauce; toss with bean sprouts and spring onion until hot."
+    ],
+    "zh": {
+      "name": "豉油王炒麵",
+      "steps": [
+        "麵略煮瀝乾。",
+        "少油煎至邊位微脆，推開爆香蒜洋蔥。",
+        "加 2 湯匙生抽，拌芽菜和蔥炒熱。"
+      ]
+    }
+  },
+  {
+    "id": "home-hot-dry-noodles",
+    "name": "Hot dry noodles (home)",
+    "cuisine": "Chinese",
+    "time": 15,
+    "servings": 1,
+    "need": [
+      "Noodles",
+      "Sesame seeds"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sesame oil",
+      "Garlic",
+      "Chili oil",
+      "Spring onion",
+      "Peanut butter"
+    ],
+    "steps": [
+      "Boil noodles until just tender; drain thoroughly (should be dry-ish).",
+      "Mix 1 tbsp sesame oil or peanut butter with 1 tbsp soy sauce, garlic, and chili oil.",
+      "Toss noodles in sauce; top with sesame seeds and spring onion."
+    ],
+    "zh": {
+      "name": "熱乾麵",
+      "steps": [
+        "麵煮至剛好瀝乾（偏乾）。",
+        "調 1 湯匙麻油或花生醬、1 湯匙生抽、蒜蓉和辣椒油。",
+        "拌麵，撒芝麻和蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-shrimp-wonton",
+    "name": "Shrimp wonton",
+    "cuisine": "Cantonese",
+    "time": 30,
+    "servings": 2,
+    "need": [
+      "Wonton wrappers",
+      "Shrimp"
+    ],
+    "optional": [
+      "Ground pork",
+      "Ginger",
+      "Spring onion",
+      "Soy sauce",
+      "White pepper"
+    ],
+    "steps": [
+      "Chop shrimp (mix optional pork); season with ginger, white pepper, and a pinch of salt.",
+      "Wrap in wonton skins. Boil until shrimp is opaque and pink, about 3–4 minutes.",
+      "Serve in light broth with spring onion."
+    ],
+    "zh": {
+      "name": "鮮蝦雲吞",
+      "steps": [
+        "蝦切碎（可加免治豬肉），加薑、白胡椒和少許鹽。",
+        "包雲吞，煮約 3 至 4 分鐘至蝦轉色熟透。",
+        "配清湯蔥花。"
+      ]
+    }
+  },
+  {
+    "id": "home-cantonese-chicken-noodles",
+    "name": "Chicken noodle soup (Cantonese)",
+    "cuisine": "Cantonese",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "Noodles",
+      "Chicken thighs"
+    ],
+    "optional": [
+      "Ginger",
+      "Spring onion",
+      "Soy sauce",
+      "Pak choi",
+      "Salt"
+    ],
+    "steps": [
+      "Simmer chicken thighs with ginger slices in water 15 minutes until 74°C / 165°F; shred meat.",
+      "Cook noodles and optional greens in the broth.",
+      "Assemble bowls with chicken, noodles, and a splash of soy sauce; top with spring onion."
+    ],
+    "zh": {
+      "name": "清雞湯麵",
+      "steps": [
+        "雞髀加薑片煮約 15 分鐘至全熟（74°C），撕絲。",
+        "用湯煮麵和青菜。",
+        "盛碗加少許生抽，撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-tomato-egg-rice-bowl",
+    "name": "Tomato egg rice bowl",
+    "cuisine": "Chinese",
+    "time": 18,
+    "servings": 2,
+    "need": [
+      "Tomato",
+      "Eggs",
+      "Cooked rice"
+    ],
+    "optional": [
+      "Sugar",
+      "Salt",
+      "Spring onion",
+      "Soy sauce"
+    ],
+    "steps": [
+      "Scramble 2 eggs until just set; remove. Cook tomato wedges until saucy with a pinch of sugar.",
+      "Fold eggs back in.",
+      "Spoon over hot rice; finish with spring onion."
+    ],
+    "zh": {
+      "name": "番茄蛋蓋飯",
+      "steps": [
+        "炒蛋至剛凝固盛起；番茄加少許糖煮至出汁。",
+        "拌回雞蛋。",
+        "蓋熱飯上，撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-pork-mince-rice-bowl",
+    "name": "Pork mince rice bowl",
+    "cuisine": "Chinese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Ground pork",
+      "Cooked rice"
+    ],
+    "optional": [
+      "Garlic",
+      "Soy sauce",
+      "Sugar",
+      "Spring onion",
+      "Eggs"
+    ],
+    "steps": [
+      "Brown ground pork with garlic until cooked through (74°C / 165°F).",
+      "Season with 1 tbsp soy sauce and a pinch of sugar; simmer 2 minutes.",
+      "Serve over rice; optional fried egg and spring onion."
+    ],
+    "zh": {
+      "name": "免治肉飯",
+      "steps": [
+        "免治豬肉加蒜炒至全熟（74°C）。",
+        "加 1 湯匙生抽和少許糖再炆 2 分鐘。",
+        "蓋飯，可加煎蛋和蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-braised-egg-rice",
+    "name": "Braised egg rice",
+    "cuisine": "Chinese",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "Eggs",
+      "Cooked rice"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Sugar",
+      "Garlic",
+      "Spring onion"
+    ],
+    "steps": [
+      "Soft-boil or hard-boil 2–4 eggs; peel.",
+      "Simmer eggs in ½ cup water with 3 tbsp soy sauce and 1 tsp sugar 8–10 minutes, basting often.",
+      "Halve eggs over rice; spoon sauce and spring onion."
+    ],
+    "zh": {
+      "name": "滷蛋飯",
+      "steps": [
+        "蛋 2 至 4 隻煮熟剝殼。",
+        "半杯水加 3 湯匙生抽和 1 茶匙糖，滷蛋 8 至 10 分鐘並不時淋汁。",
+        "切半放飯上，淋汁撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-mushroom-claypot-rice",
+    "name": "Mushroom claypot rice",
+    "cuisine": "Hong Kong",
+    "time": 40,
+    "servings": 2,
+    "need": [
+      "Rice",
+      "Dried mushrooms",
+      "Chicken thighs"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Spring onion",
+      "Ginger",
+      "Garlic",
+      "Chinese sausage"
+    ],
+    "steps": [
+      "Soak dried mushrooms; slice. Mix raw rinsed rice with water in a heavy pot.",
+      "Top with chicken pieces and mushrooms; cover and cook on low until rice is done and chicken reaches 74°C / 165°F, about 25–30 minutes.",
+      "Drizzle soy sauce; crisp the bottom 2 minutes if desired. Finish with spring onion."
+    ],
+    "zh": {
+      "name": "冬菇煲仔飯",
+      "steps": [
+        "冬菇浸軟切片。米洗淨加水放入厚煲。",
+        "鋪雞件和冬菇，小火煮約 25 至 30 分鐘至飯熟、雞全熟（74°C）。",
+        "淋生抽，可大火逼飯焦，撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-salted-fish-chicken-fried-rice",
+    "name": "Salted fish chicken fried rice",
+    "cuisine": "Hong Kong",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Cooked rice",
+      "Chicken breast",
+      "Canned tuna"
+    ],
+    "optional": [
+      "Eggs",
+      "Spring onion",
+      "Soy sauce",
+      "Garlic"
+    ],
+    "steps": [
+      "Dice chicken; stir-fry until cooked through (74°C / 165°F). Flake drained canned tuna as salty fish stand-in.",
+      "Scramble optional egg; add cold rice and toss until steaming hot.",
+      "Add chicken, tuna, soy sauce, and spring onion; fry 1–2 minutes."
+    ],
+    "zh": {
+      "name": "鹹魚雞粒炒飯",
+      "steps": [
+        "雞胸切粒炒至全熟（74°C）；罐頭吞拿魚瀝乾撕碎作鹹香。",
+        "可先炒蛋，下隔夜飯炒至全熱。",
+        "回雞和吞拿魚，加生抽蔥花再炒 1 至 2 分鐘。"
+      ]
+    }
+  },
+  {
+    "id": "home-yangzhou-fried-rice",
+    "name": "Yangzhou fried rice",
+    "cuisine": "Chinese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Cooked rice",
+      "Eggs",
+      "Shrimp",
+      "Ham"
+    ],
+    "optional": [
+      "Spring onion",
+      "Soy sauce",
+      "Corn",
+      "Carrots"
+    ],
+    "steps": [
+      "Scramble eggs; remove. Stir-fry shrimp until opaque and diced ham until hot.",
+      "Add cold rice; toss until steaming.",
+      "Return eggs with corn/carrot, soy sauce, and spring onion."
+    ],
+    "zh": {
+      "name": "揚州炒飯",
+      "steps": [
+        "炒蛋盛起；蝦炒至轉色，火腿粒炒熱。",
+        "下隔夜飯炒至冒煙。",
+        "回蛋，加粟米／紅蘿蔔、生抽和蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-beef-tomato-rice",
+    "name": "Beef tomato on rice",
+    "cuisine": "Hong Kong",
+    "time": 25,
+    "servings": 2,
+    "need": [
+      "Beef steak",
+      "Tomato",
+      "Cooked rice"
+    ],
+    "optional": [
+      "Onion",
+      "Soy sauce",
+      "Sugar",
+      "Cornstarch",
+      "Garlic"
+    ],
+    "steps": [
+      "Slice beef; sear quickly and remove. Cook tomato and onion until saucy with a pinch of sugar.",
+      "Return beef with 1 tbsp soy sauce; thicken lightly with cornstarch if desired.",
+      "Spoon over rice."
+    ],
+    "zh": {
+      "name": "番茄牛肉飯",
+      "steps": [
+        "牛肉片快炒盛起；番茄洋蔥加少許糖煮至出汁。",
+        "回牛肉加 1 湯匙生抽，可勾薄芡。",
+        "蓋飯上。"
+      ]
+    }
+  },
+  {
+    "id": "home-seafood-fried-rice",
+    "name": "Seafood fried rice",
+    "cuisine": "Cantonese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Cooked rice",
+      "Shrimp",
+      "Eggs"
+    ],
+    "optional": [
+      "Squid",
+      "Spring onion",
+      "Soy sauce",
+      "Garlic"
+    ],
+    "steps": [
+      "Stir-fry shrimp (and squid rings if using) until just cooked; remove.",
+      "Scramble eggs, add rice, toss hot.",
+      "Return seafood with soy sauce and spring onion."
+    ],
+    "zh": {
+      "name": "海鮮炒飯",
+      "steps": [
+        "蝦（可加魷魚圈）炒至刚熟盛起。",
+        "炒蛋下飯炒熱。",
+        "回海鮮加生抽蔥花。"
+      ]
+    }
+  },
+  {
+    "id": "home-cold-sesame-noodles",
+    "name": "Cold sesame noodles",
+    "cuisine": "Chinese",
+    "time": 15,
+    "servings": 1,
+    "need": [
+      "Noodles",
+      "Cucumber"
+    ],
+    "optional": [
+      "Peanut butter",
+      "Sesame oil",
+      "Soy sauce",
+      "Vinegar",
+      "Garlic",
+      "Sugar",
+      "Sesame seeds"
+    ],
+    "steps": [
+      "Boil noodles; rinse cold and drain.",
+      "Whisk 1 tbsp peanut butter, 1 tsp sesame oil, 1 tbsp soy sauce, vinegar, garlic, and a pinch of sugar with a splash of water.",
+      "Toss noodles with sauce and shredded cucumber; sesame seeds on top."
+    ],
+    "zh": {
+      "name": "麻醬涼麵",
+      "steps": [
+        "麵煮熟過冷河瀝乾。",
+        "1 湯匙花生醬、1 茶匙麻油、1 湯匙生抽、醋、蒜蓉和少許糖加少許水調匀。",
+        "拌麵和青瓜絲，撒芝麻。"
+      ]
+    }
+  },
+  {
+    "id": "home-glass-noodle-stirfry",
+    "name": "Glass noodle stir-fry",
+    "cuisine": "Chinese",
+    "time": 20,
+    "servings": 2,
+    "need": [
+      "Glass noodles",
+      "Eggs",
+      "Carrots"
+    ],
+    "optional": [
+      "Cabbage",
+      "Garlic",
+      "Soy sauce",
+      "Spring onion",
+      "Ground pork"
+    ],
+    "steps": [
+      "Soak glass noodles until soft; drain. Scramble eggs or brown optional pork until 74°C / 165°F.",
+      "Stir-fry carrot and cabbage with garlic.",
+      "Add noodles and soy sauce; toss until hot with spring onion."
+    ],
+    "zh": {
+      "name": "粉絲炒",
+      "steps": [
+        "粉絲浸軟瀝乾。炒蛋或炒免治豬肉至全熟（74°C）。",
+        "炒紅蘿蔔椰菜配蒜。",
+        "下粉絲和生抽炒熱，撒蔥。"
+      ]
+    }
+  },
+  {
+    "id": "home-sausage-veg-rice",
+    "name": "Rice cooker sausage veg rice",
+    "cuisine": "Cantonese",
+    "time": 35,
+    "servings": 2,
+    "need": [
+      "Rice",
+      "Chinese sausage",
+      "Cabbage"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Spring onion",
+      "Ginger"
+    ],
+    "steps": [
+      "Rinse rice; add normal cooker water. Top with sliced Chinese sausage and chopped cabbage.",
+      "Cook as usual until rice is done and sausage is heated through.",
+      "Fluff with soy sauce and spring onion."
+    ],
+    "zh": {
+      "name": "臘腸菜飯",
+      "steps": [
+        "米洗淨按平時水量，鋪臘腸片和椰菜碎。",
+        "煮至飯熟臘腸熱透。",
+        "加生抽和蔥拌匀。"
+      ]
+    }
+  },
+  {
+    "id": "home-soy-butter-noodles",
+    "name": "One-pan soy butter noodles",
+    "cuisine": "Japanese",
+    "time": 12,
+    "servings": 1,
+    "need": [
+      "Noodles",
+      "Butter"
+    ],
+    "optional": [
+      "Soy sauce",
+      "Garlic",
+      "Spring onion",
+      "Sesame seeds"
+    ],
+    "steps": [
+      "Boil noodles; reserve a splash of cooking water and drain.",
+      "Melt butter with minced garlic in the pan; add soy sauce and noodle water.",
+      "Toss noodles until coated; finish with spring onion and sesame."
+    ],
+    "zh": {
+      "name": "醬油牛油拌麵",
+      "steps": [
+        "煮麵，留少許麵水瀝乾。",
+        "鑊內融牛油爆蒜，加生抽和麵水。",
+        "拌麵至勻，撒蔥和芝麻。"
+      ]
+    }
+  }
+]
