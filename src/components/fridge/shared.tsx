@@ -224,11 +224,13 @@ export function WelcomeSheet({
   onManual,
   onPhoto,
   onSample,
+  onBrowse,
 }: {
   onClose: () => void
   onManual: () => void
   onPhoto: () => void
   onSample: () => void
+  onBrowse?: () => void
 }) {
   const { t } = useI18n()
   return (
@@ -244,7 +246,12 @@ export function WelcomeSheet({
         <button type="button" onClick={onSample} className="h-12 rounded-card border border-line text-base font-semibold">
           {t("welcomeSample")}
         </button>
-        <button type="button" onClick={onClose} className="h-11 text-base text-muted">
+        {onBrowse && (
+          <button type="button" onClick={onBrowse} className="h-12 rounded-card border border-line text-base font-semibold">
+            {t("welcomeBrowse")}
+          </button>
+        )}
+        <button type="button" onClick={onBrowse ?? onClose} className="h-11 text-base text-muted">
           {t("welcomeLater")}
         </button>
       </div>

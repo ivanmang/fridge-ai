@@ -32,12 +32,13 @@ const GROUP_LABEL: Record<string, "materialsMarinade" | "materialsSauce" | "mate
   other: "materialsOther",
 }
 
-function alertTimerDone() {
+function alertTimerDone(soundOn: boolean) {
   try {
     navigator.vibrate?.([220, 120, 220, 120, 320])
   } catch {
     /* ignore */
   }
+  if (!soundOn) return
   try {
     const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
     if (!AudioCtx) return
@@ -71,6 +72,8 @@ export function Tonight({
   onShop,
   openSurvey = false,
   onSurveyHandled,
+  openBrowse = false,
+  onBrowseHandled,
 }: {
   items: FoodItem[]
   onAdd: () => void
@@ -79,11 +82,14 @@ export function Tonight({
   onShop?: () => void
   openSurvey?: boolean
   onSurveyHandled?: () => void
+  openBrowse?: boolean
+  onBrowseHandled?: () => void
 }) {
   const { locale, t } = useI18n()
   const vegetarian = useFridge((s) => s.settings.vegetarian)
   const taste = useFridge((s) => (surveyReady(s.settings.survey) ? s.settings.survey : null))
   const setSettings = useFridge((s) => s.setSettings)
+  const timerSound = useFridge((s) => s.settings.timerSound !== false)
   const priority = useFridge((s) => (s.settings.priority ?? (s.settings.suggest === "free" ? 3 : 0)) as 0 | 1 | 2 | 3)
   const favorites = useFridge((s) => s.settings.favorites) ?? []
   const wanted = useFridge((s) => s.settings.wanted) ?? []
@@ -135,6 +141,14 @@ export function Tonight({
   }, [openSurvey, onSurveyHandled])
 
   useEffect(() => {
+    if (!openBrowse) return
+    setMode("browse")
+    setPhase("pick")
+    setOutlineOpen(false)
+    onBrowseHandled?.()
+  }, [openBrowse, onBrowseHandled])
+
+  useEffect(() => {
     if (phase !== "prep" || !outlineOpen) return
     let lock: WakeLockSentinel | null = null
     let cancelled = false
@@ -163,9 +177,9 @@ export function Tonight({
     if (timerRunning && timerSeconds === 0) {
       setTimerRunning(false)
       setTimerFinished(true)
-      alertTimerDone()
+      alertTimerDone(timerSound)
     }
-  }, [timerRunning, timerSeconds])
+  }, [timerRunning, timerSeconds, timerSound])
 
   const rankOpts = useMemo(
     () => ({ savedIds: savedRecipes, cookedIds: cookedHistory, lastTonightId }),
@@ -398,15 +412,25 @@ export function Tonight({
 
   return (
     <section className="space-y-4">
-      {phase === "pick" && items.length > 0 && (
+      {phase === "pick" && (
         <div className="grid grid-cols-2 gap-2">
-          <button type="button" className="h-11 rounded-card border border-mint bg-mint text-sm font-semibold text-mint-ink">
+          <button
+            type="button"
+            onClick={() => setMode("cook")}
+            className={cn(
+              "h-11 rounded-card border text-sm font-semibold",
+              mode === "cook" ? "border-mint bg-mint text-mint-ink" : "border-line",
+            )}
+          >
             {t("modeCook")}
           </button>
           <button
             type="button"
             onClick={() => setMode("browse")}
-            className="h-11 rounded-card border border-line text-sm font-semibold"
+            className={cn(
+              "h-11 rounded-card border text-sm font-semibold",
+              mode === "browse" ? "border-mint bg-mint text-mint-ink" : "border-line",
+            )}
           >
             {t("modeBrowse")}
           </button>
@@ -481,6 +505,9 @@ export function Tonight({
             </button>
             <button type="button" onClick={onPhoto} className="h-12 rounded-card border border-line text-base font-semibold">
               {t("welcomePhoto")}
+            </button>
+            <button type="button" onClick={() => setMode("browse")} className="h-12 rounded-card border border-line text-base font-semibold">
+              {t("browseDishes")}
             </button>
             <button type="button" onClick={onSample} className="h-12 rounded-card border border-line text-base font-semibold">
               {t("welcomeSample")}
@@ -819,6 +846,14 @@ export function Tonight({
                   {timerRunning ? t("pause") : t("resume")}
                 </button>
               )}
+              <button
+                type="button"
+                onClick={() => setSettings({ timerSound: !timerSound })}
+                className="h-10 rounded-full border border-line px-3 text-sm"
+                aria-pressed={timerSound}
+              >
+                {timerSound ? t("timerSoundOn") : t("timerSoundOff")}
+              </button>
             </div>
             <form
               className="mt-2 flex gap-2"

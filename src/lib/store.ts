@@ -17,6 +17,8 @@ import { mergeShopNote, type ShopNote } from "@/lib/shop"
 export type { ShopNote } from "@/lib/shop"
 export { mergeShopNote, sameShopText } from "@/lib/shop"
 
+export type ThemeMode = "dark" | "light"
+
 export type FridgeSettings = {
   vegetarian: boolean
   notify: boolean
@@ -24,6 +26,10 @@ export type FridgeSettings = {
   lastPing: string
   puckHost: string
   locale: Locale
+  /** Kitchen appearance — mint-on-dark default; light for bright counters. */
+  theme: ThemeMode
+  /** Beep + vibrate when the cooking timer finishes (outline assist). */
+  timerSound: boolean
   suggest: SuggestMode
   priority: Priority
   favorites: string[]
@@ -74,6 +80,8 @@ const emptySettings: FridgeSettings = {
   lastPing: "",
   puckHost: "http://fridgesnap.local",
   locale: "en",
+  theme: "dark",
+  timerSound: true,
   suggest: "strict",
   priority: 0,
   favorites: [],
@@ -149,6 +157,17 @@ export const useFridge = create<FridgeState>()(
       name: "fridge-ai",
       storage: createJSONStorage(() => localStorage),
       skipHydration: true,
+      merge: (persisted, current) => {
+        const raw = (persisted ?? {}) as Partial<FridgeState>
+        return {
+          ...current,
+          ...raw,
+          settings: withSettingsDefaults(raw.settings ?? current.settings),
+          items: raw.items ?? current.items,
+          shop: raw.shop ?? current.shop,
+          extras: raw.extras ?? current.extras,
+        }
+      },
     },
   ),
 )
@@ -165,4 +184,9 @@ export function draftFromName(name: string, qty = "1", opened = false): Omit<Foo
     expirySource: "estimated",
     opened,
   }
+}
+
+/** Merge persisted settings so older localStorage payloads get new defaults. */
+export function withSettingsDefaults(partial?: Partial<FridgeSettings> | null): FridgeSettings {
+  return { ...emptySettings, ...(partial ?? {}) }
 }

@@ -240,18 +240,17 @@ export function DishCatalog({
 
       {busy && <LoadingStatus>{t("updatingIdeas")}</LoadingStatus>}
 
-      {emptyFridge && !deferredQ && (
-        <div className="rounded-card border border-line bg-surface p-4">
-          <h3 className="font-display text-xl">{t("searchEmptyTitle")}</h3>
-          <p className="mt-1 text-sm text-muted">{t("searchEmptyBody")}</p>
-          <div className="mt-3 grid gap-2">
+      {emptyFridge && (
+        <div className="rounded-card border border-line bg-raised px-4 py-3">
+          <p className="text-sm leading-relaxed text-muted">{t("browseEmptyTip")}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
             {onAddFood && (
-              <button type="button" onClick={onAddFood} className="h-11 rounded-card bg-mint font-semibold text-mint-ink">
+              <button type="button" onClick={onAddFood} className="h-10 rounded-card bg-mint px-3 text-sm font-semibold text-mint-ink">
                 {t("addFood")}
               </button>
             )}
             {onSample && (
-              <button type="button" onClick={onSample} className="h-11 rounded-card border border-line font-semibold">
+              <button type="button" onClick={onSample} className="h-10 rounded-card border border-line px-3 text-sm font-semibold">
                 {t("welcomeSample")}
               </button>
             )}
@@ -261,6 +260,10 @@ export function DishCatalog({
 
       {!emptyFridge && filtered.length === 0 && (
         <p className="text-sm text-muted">{deferredQ ? t("searchNoHits") : t("filterBody")}</p>
+      )}
+
+      {emptyFridge && filtered.length === 0 && deferredQ && (
+        <p className="text-sm text-muted">{t("searchNoHits")}</p>
       )}
 
       <ul className="space-y-2">

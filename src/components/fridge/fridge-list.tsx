@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Empty, useI18n } from "@/components/fridge/shared"
 import { foodLabel, placeLabel, statusText, whenText } from "@/lib/i18n"
+import { formatInventoryQty } from "@/lib/inventory-qty"
 import { daysUntil, statusOf, type FoodItem, type ItemStatus } from "@/lib/logic"
 import { cn } from "@/lib/utils"
 import { Plus } from "lucide-react"
@@ -86,7 +87,7 @@ export function FridgeList({
                 <span className="min-w-0 flex-1">
                   <span className="block break-words text-base font-medium leading-snug">{foodLabel(locale, item.name)}</span>
                   <span className="mt-0.5 block text-sm leading-relaxed text-muted">
-                    {item.qty} · {placeLabel(locale, item.location)} · {item.expirySource === "package" ? t("packageDate") : t("estimatedDate")}
+                    {formatInventoryQty(item, locale)} · {placeLabel(locale, item.location)} · {item.expirySource === "package" ? t("packageDate") : t("estimatedDate")}
                   </span>
                 </span>
                 <span

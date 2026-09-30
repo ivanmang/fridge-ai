@@ -26,6 +26,8 @@ const TABS: { id: Tab; icon: typeof UtensilsCrossed }[] = [
   { id: "shop", icon: ShoppingBasket },
 ]
 
+const THEME_COLOR = { dark: "#101614", light: "#f3f8f5" } as const
+
 export function FridgeApp() {
   const [tab, setTab] = useState<Tab>("tonight")
   const [settingsOpen, setSettingsOpen] = useState(false)
@@ -34,6 +36,8 @@ export function FridgeApp() {
   const [editing, setEditing] = useState<FoodItem | null>(null)
   const [adding, setAdding] = useState(false)
   const [openSurvey, setOpenSurvey] = useState(false)
+  const [openBrowse, setOpenBrowse] = useState(false)
+  const [inAppReminder, setInAppReminder] = useState<string | null>(null)
 
   useLayoutEffect(() => {
     void Promise.resolve(useFridge.persist.rehydrate()).finally(() => setHydrated(true))
@@ -43,10 +47,22 @@ export function FridgeApp() {
   const settings = useFridge((s) => s.settings)
   const setSettings = useFridge((s) => s.setSettings)
   const { locale, t } = useI18n()
+  const theme = settings.theme === "light" ? "light" : "dark"
 
   useEffect(() => {
     document.documentElement.lang = locale === "zh" ? "zh-Hant" : "en"
-  }, [locale])
+    document.documentElement.dataset.theme = theme
+    document.title = t("appTitle")
+    const desc = document.querySelector('meta[name="description"]')
+    if (desc) desc.setAttribute("content", t("appDescription"))
+    let themeMeta = document.querySelector('meta[name="theme-color"]')
+    if (!themeMeta) {
+      themeMeta = document.createElement("meta")
+      themeMeta.setAttribute("name", "theme-color")
+      document.head.appendChild(themeMeta)
+    }
+    themeMeta.setAttribute("content", THEME_COLOR[theme])
+  }, [locale, theme, t])
 
   useEffect(() => {
     if (hydrated && !items.length && !settings.onboarded) setOnboardingOpen(true)
@@ -63,14 +79,19 @@ export function FridgeApp() {
       if (state.settings.lastPing === day) return
       const urgent = state.items.filter((item) => daysUntil(item.expires) === 0)
       if (!urgent.length) return
-      if (typeof Notification !== "undefined" && Notification.permission === "granted") {
-        const names = urgent.slice(0, 3).map((item) => foodLabel(state.settings.locale || "en", item.name))
-        const extra = urgent.length - names.length
-        const lang = (state.settings.locale || "en") as Locale
-        const body = extra > 0 ? translate(lang, "notifyMore", { names: names.join("、"), n: extra }) : names.join(lang === "zh" ? "、" : ", ")
-        new Notification(translate(lang, "notifyTitle"), { body })
-        state.setSettings({ lastPing: day })
+      const lang = (state.settings.locale || "en") as Locale
+      const names = urgent.slice(0, 3).map((item) => foodLabel(lang, item.name))
+      const extra = urgent.length - names.length
+      const list =
+        extra > 0 ? translate(lang, "notifyMore", { names: names.join(lang === "zh" ? "、" : ", "), n: extra }) : names.join(lang === "zh" ? "、" : ", ")
+      const canOs =
+        typeof Notification !== "undefined" && Notification.permission === "granted"
+      if (canOs) {
+        new Notification(translate(lang, "notifyTitle"), { body: list })
+      } else {
+        setInAppReminder(translate(lang, "remindInApp", { list }))
       }
+      state.setSettings({ lastPing: day })
     }
     tick()
     const id = window.setInterval(tick, 60_000)
@@ -82,6 +103,13 @@ export function FridgeApp() {
   function runSample() {
     if (items.length > 0 && !window.confirm(t("sampleReplaceConfirm"))) return
     useFridge.getState().loadSample()
+  }
+
+  function startBrowse() {
+    setSettings({ onboarded: true })
+    setOnboardingOpen(false)
+    setTab("tonight")
+    setOpenBrowse(true)
   }
 
   if (!hydrated) {
@@ -127,6 +155,18 @@ export function FridgeApp() {
         </div>
       </header>
 
+      {inAppReminder && (
+        <div className="px-5">
+          <div role="status" className="mt-4 flex items-start gap-3 rounded-card border border-clay/50 bg-surface px-4 py-3">
+            <Bell className="mt-0.5 size-5 shrink-0 text-clay" />
+            <p className="min-w-0 flex-1 text-base leading-snug">{inAppReminder}</p>
+            <button type="button" onClick={() => setInAppReminder(null)} className="text-sm text-muted">
+              {t("close")}
+            </button>
+          </div>
+        </div>
+      )}
+
       {urgentCount > 0 && tab !== "tonight" && (
         <div className="px-5">
           <button
@@ -152,6 +192,8 @@ export function FridgeApp() {
             onShop={() => setTab("shop")}
             openSurvey={openSurvey}
             onSurveyHandled={() => setOpenSurvey(false)}
+            openBrowse={openBrowse}
+            onBrowseHandled={() => setOpenBrowse(false)}
           />
         )}
         {tab === "fridge" && <FridgeList items={items} onAdd={() => setAdding(true)} onOpen={setEditing} />}
@@ -159,7 +201,7 @@ export function FridgeApp() {
         {tab === "shop" && <ShopPanel items={items} />}
       </div>
 
-      <nav aria-label="Primary navigation" className="fixed inset-x-0 bottom-0 z-20 border-t border-line bg-bg/95 backdrop-blur">
+      <nav aria-label={t("navPrimary")} className="app-nav fixed inset-x-0 bottom-0 z-20 border-t border-line bg-bg/95 backdrop-blur">
         <div className="mx-auto grid max-w-lg grid-cols-4">
           {TABS.map((item) => {
             const Icon = item.icon
@@ -214,6 +256,7 @@ export function FridgeApp() {
             useFridge.getState().loadSample()
             setOnboardingOpen(false)
           }}
+          onBrowse={startBrowse}
         />
       )}
       {adding && <ItemSheet onClose={() => setAdding(false)} />}

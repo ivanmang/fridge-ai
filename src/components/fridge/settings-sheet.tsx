@@ -4,6 +4,7 @@ import { Field, Sheet, Spinner, SuggestControl, fieldClass, useI18n, type Draft 
 import { TasteProfile } from "@/components/fridge/survey-panel"
 import { BACKUP_VERSION, parseBackup } from "@/lib/backup"
 import { foodLabel } from "@/lib/i18n"
+import { INVENTORY_UNITS, syncQtyFromAmount } from "@/lib/inventory-qty"
 import {
   defaultExpiry,
   findShelf,
@@ -25,6 +26,8 @@ export function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => v
       ? {
           name: item.name,
           qty: item.qty,
+          amount: item.amount,
+          unit: item.unit,
           location: item.location,
           bought: item.bought,
           expires: item.expires,
@@ -45,10 +48,38 @@ export function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => v
     }))
   }
 
+  function setAmount(raw: string) {
+    const amount = raw.trim() === "" ? undefined : Number(raw)
+    const nextAmount = amount != null && Number.isFinite(amount) ? amount : undefined
+    setDraft((current) => ({
+      ...current,
+      amount: nextAmount,
+      qty: nextAmount != null ? syncQtyFromAmount(nextAmount, current.unit, locale, current.qty) : current.qty,
+    }))
+  }
+
+  function setUnit(unit: string) {
+    const next = unit || undefined
+    setDraft((current) => ({
+      ...current,
+      unit: next,
+      qty:
+        current.amount != null
+          ? syncQtyFromAmount(current.amount, next, locale, current.qty)
+          : current.qty,
+    }))
+  }
+
   function save() {
     if (!draft.name.trim()) return
-    if (item) updateItem(item.id, draft)
-    else addItem(draft)
+    const payload = {
+      ...draft,
+      amount: draft.amount,
+      unit: draft.unit,
+      qty: draft.qty.trim() || "1",
+    }
+    if (item) updateItem(item.id, payload)
+    else addItem(payload)
     onClose()
   }
 
@@ -71,8 +102,33 @@ export function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => v
         </datalist>
       </label>
       <div className="mt-3 grid grid-cols-2 gap-3">
+        <Field label={t("qtyAmount")}>
+          <input
+            type="number"
+            inputMode="decimal"
+            min={0}
+            step="any"
+            value={draft.amount ?? ""}
+            onChange={(e) => setAmount(e.target.value)}
+            className={fieldClass}
+          />
+        </Field>
+        <Field label={t("qtyUnit")}>
+          <select value={draft.unit ?? ""} onChange={(e) => setUnit(e.target.value)} className={fieldClass}>
+            <option value="">{t("qtyUnitNone")}</option>
+            {INVENTORY_UNITS.map((unit) => (
+              <option key={unit} value={unit}>
+                {unit}
+              </option>
+            ))}
+          </select>
+        </Field>
         <Field label={t("qty")}>
-          <input value={draft.qty} onChange={(e) => setDraft({ ...draft, qty: e.target.value })} className={fieldClass} />
+          <input
+            value={draft.qty}
+            onChange={(e) => setDraft({ ...draft, qty: e.target.value, amount: undefined, unit: undefined })}
+            className={fieldClass}
+          />
         </Field>
         <Field label={t("where")}>
           <select
@@ -108,6 +164,7 @@ export function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => v
           />
         </Field>
       </div>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{t("qtyHint")}</p>
       <Field label={t("dateSource")}>
         <select
           value={draft.expirySource ?? "estimated"}
@@ -177,6 +234,10 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
     window.location.protocol === "https:" &&
     /^https?:\/\//i.test(settings.puckHost || "http://fridgesnap.local") &&
     !/^https:\/\//i.test(settings.puckHost || "http://fridgesnap.local")
+  const notifyBlocked =
+    settings.notify &&
+    typeof Notification !== "undefined" &&
+    Notification.permission === "denied"
 
   function exportJson() {
     const blob = new Blob(
@@ -227,7 +288,30 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
     <Sheet title={t("settings")} onClose={onClose}>
       <p className="mb-3 text-base leading-relaxed text-muted">{t("chooseHowBody")}</p>
       <p className="mb-4 rounded-card border border-line bg-raised px-3 py-3 text-sm leading-relaxed text-muted">{t("privacySettings")}</p>
-      <label className="flex min-h-12 items-center justify-between gap-3 text-base">
+      <label className="block text-base text-muted">
+        {t("language")}
+        <select
+          value={settings.locale}
+          onChange={(e) => setSettings({ locale: e.target.value as "en" | "zh" })}
+          className={cn(fieldClass, "mt-1")}
+        >
+          <option value="en">{t("languageEn")}</option>
+          <option value="zh">{t("languageZh")}</option>
+        </select>
+      </label>
+      <label className="mt-3 block text-base text-muted">
+        {t("themeLabel")}
+        <select
+          value={settings.theme === "light" ? "light" : "dark"}
+          onChange={(e) => setSettings({ theme: e.target.value as "dark" | "light" })}
+          className={cn(fieldClass, "mt-1")}
+        >
+          <option value="dark">{t("themeDark")}</option>
+          <option value="light">{t("themeLight")}</option>
+        </select>
+      </label>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{t("themeLightHint")}</p>
+      <label className="mt-3 flex min-h-12 items-center justify-between gap-3 text-base">
         {t("veg")}
         <input
           type="checkbox"
@@ -278,7 +362,22 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
         </select>
       </label>
       <p className="mt-2 text-sm leading-relaxed text-muted">{t("remindNote")}</p>
+      {notifyBlocked && (
+        <p role="status" className="mt-2 text-sm leading-relaxed text-clay">
+          {t("remindBlocked")}
+        </p>
+      )}
       <p className="mt-2 text-sm leading-relaxed text-muted">{t("remindSpendNote")}</p>
+      <label className="mt-3 flex min-h-12 items-center justify-between gap-3 text-base">
+        {t("timerSound")}
+        <input
+          type="checkbox"
+          checked={settings.timerSound !== false}
+          onChange={(e) => setSettings({ timerSound: e.target.checked })}
+          className="size-5 accent-mint"
+        />
+      </label>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{t("timerSoundNote")}</p>
       <details className="mt-4 rounded-card border border-line p-3">
         <summary className="cursor-pointer text-sm font-semibold">{t("fridgeSnap")}</summary>
         <label className="mt-3 block text-base text-muted">

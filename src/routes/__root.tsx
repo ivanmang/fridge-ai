@@ -11,8 +11,13 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: APP_NAME },
-      { name: "description", content: "Track fridge food, expiry dates, and what to cook tonight." },
+      {
+        name: "description",
+        content: "Track fridge food, expiry dates, and what to cook tonight. 記錄雪櫃食物、食用期限，同今晚煮什麼。",
+      },
       { name: "theme-color", content: "#101614" },
+      { property: "og:locale", content: "en_HK" },
+      { property: "og:locale:alternate", content: "zh_HK" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },

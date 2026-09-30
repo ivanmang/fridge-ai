@@ -13,7 +13,12 @@ export { recipeAllNames, recipeCores, recipeSoft, recipeStaples } from "@/lib/ma
 export type FoodItem = {
   id: string
   name: string
+  /** Freeform display qty (always set; kept in sync when amount/unit are used). */
   qty: string
+  /** Optional structured amount — pairs with `unit` for My food. */
+  amount?: number
+  /** Optional unit aligned with recipe materials (g, ml, piece, …). */
+  unit?: string
   location: ShelfFood["location"]
   bought: string
   expires: string
