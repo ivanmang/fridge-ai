@@ -78,6 +78,7 @@ export function Tonight({
   const savedRecipes = useFridge((s) => s.settings.savedRecipes ?? [])
   const cookedHistory = useFridge((s) => s.settings.cookedHistory ?? [])
   const lastTonightId = useFridge((s) => s.settings.lastTonightId ?? "")
+  const pendingMealId = useFridge((s) => s.settings.pendingMealId ?? "")
   const toggleSavedRecipe = useFridge((s) => s.toggleSavedRecipe)
   const markCooked = useFridge((s) => s.markCooked)
   const addItem = useFridge((s) => s.addItem)
@@ -90,7 +91,8 @@ export function Tonight({
   const [haveOnly, setHaveOnly] = useState(true)
   const [useSoon, setUseSoon] = useState(false)
   const [maxTime, setMaxTime] = useState<number | null>(null)
-  const [phase, setPhase] = useState<"pick" | "cook" | "plate">("pick")
+  const [phase, setPhase] = useState<"pick" | "prep" | "plate">("pick")
+  const [outlineOpen, setOutlineOpen] = useState(false)
   const [mealId, setMealId] = useState<string | null>(null)
   const [stepIndex, setStepIndex] = useState(0)
   const [checked, setChecked] = useState<string[]>([])
@@ -110,11 +112,12 @@ export function Tonight({
     setSurveyOpen(true)
     setMode("cook")
     setPhase("pick")
+    setOutlineOpen(false)
     onSurveyHandled?.()
   }, [openSurvey, onSurveyHandled])
 
   useEffect(() => {
-    if (phase !== "cook") return
+    if (phase !== "prep" || !outlineOpen) return
     let lock: WakeLockSentinel | null = null
     let cancelled = false
     if ("wakeLock" in navigator) {
@@ -130,7 +133,7 @@ export function Tonight({
       cancelled = true
       if (lock) void lock.release()
     }
-  }, [phase])
+  }, [phase, outlineOpen])
 
   useEffect(() => {
     if (!timerRunning || timerSeconds <= 0) return
@@ -203,6 +206,12 @@ export function Tonight({
     return ideasByIds(ids, items, extras).filter((row) => !isOutlineRecipe(row.recipe))
   }, [savedRecipes, cookedHistory, items, extras])
 
+  const pendingDishName = useMemo(() => {
+    if (!pendingMealId) return ""
+    const row = ideasByIds([pendingMealId], items, extras)[0] ?? all.find((item) => item.recipe.id === pendingMealId)
+    return row ? recipeText(locale, row.recipe).name : ""
+  }, [pendingMealId, items, extras, all, locale])
+
   function resetFilters() {
     setHaveOnly(false)
     setUseSoon(false)
@@ -230,30 +239,63 @@ export function Tonight({
       return
     }
     setMealId(id)
-    setSettings({ lastTonightId: id })
+    setSettings({ lastTonightId: id, pendingMealId: id })
     setStepIndex(0)
     setTimerRunning(false)
     setTimerSeconds(0)
     setTimerFinished(false)
+    setOutlineOpen(false)
     setNote("")
     setMode("cook")
-    setPhase("cook")
+    setPhase("prep")
+  }
+
+  function openPlateFor(row: NonNullable<typeof active>) {
+    const mealFoods = foodsForMeal(row.recipe, items)
+    setMealId(row.recipe.id)
+    setChecked(mealFoods.map((item) => item.id))
+    setRemaining(Object.fromEntries(mealFoods.map((item) => [item.id, ""])))
+    setLeftovers(false)
+    setOutlineOpen(false)
+    setMode("cook")
+    setPhase("plate")
   }
 
   function openPlate() {
     if (!active) return
-    const mealFoods = foodsForMeal(active.recipe, items)
-    setChecked(mealFoods.map((item) => item.id))
-    setRemaining(Object.fromEntries(mealFoods.map((item) => [item.id, ""])))
-    setLeftovers(false)
-    setPhase("plate")
+    openPlateFor(active)
+  }
+
+  function resumePendingClear() {
+    if (!pendingMealId) return
+    const row = ideasByIds([pendingMealId], items, extras)[0] ?? all.find((item) => item.recipe.id === pendingMealId)
+    if (!row || isOutlineRecipe(row.recipe)) {
+      setSettings({ pendingMealId: "" })
+      return
+    }
+    openPlateFor(row)
+  }
+
+  function resumePendingPrep() {
+    if (!pendingMealId) return
+    const row = ideasByIds([pendingMealId], items, extras)[0] ?? all.find((item) => item.recipe.id === pendingMealId)
+    if (!row || isOutlineRecipe(row.recipe)) {
+      setSettings({ pendingMealId: "" })
+      return
+    }
+    setMealId(row.recipe.id)
+    setOutlineOpen(false)
+    setMode("cook")
+    setPhase("prep")
   }
 
   function finishMeal() {
     if (!dish || !active) return
     if (!checked.length && !leftovers) {
       setNote(t("nothingUsed"))
+      setSettings({ pendingMealId: "" })
       setPhase("pick")
+      setOutlineOpen(false)
       setMealId(null)
       return
     }
@@ -275,8 +317,10 @@ export function Tonight({
       })
     }
     markCooked(active.recipe.id)
+    setSettings({ pendingMealId: "" })
     setNote(t("mealDone"))
     setPhase("pick")
+    setOutlineOpen(false)
     setMealId(null)
   }
 
@@ -347,24 +391,49 @@ export function Tonight({
       )}
 
       {phase === "pick" && items.length > 0 && active && <p className="text-sm text-muted">{t("modeCookLead")}</p>}
+
+      {phase === "pick" && pendingMealId && pendingDishName && (
+        <div className="rounded-card border border-mint/40 bg-surface px-4 py-3" role="status">
+          <p className="font-medium">{t("stillMaking", { name: pendingDishName })}</p>
+          <p className="mt-1 text-sm text-muted">{t("stillMakingBody")}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button type="button" onClick={resumePendingClear} className="h-11 flex-1 rounded-card bg-mint text-sm font-semibold text-mint-ink">
+              {t("clearFridgeCta")}
+            </button>
+            <button type="button" onClick={resumePendingPrep} className="h-11 rounded-card border border-line px-4 text-sm font-semibold">
+              {t("resumePrep")}
+            </button>
+            <button type="button" onClick={() => setSettings({ pendingMealId: "" })} className="h-11 rounded-card border border-line px-4 text-sm text-muted">
+              {t("dismissBanner")}
+            </button>
+          </div>
+        </div>
+      )}
+
       {active && dish && phase !== "pick" && (
         <ol className="grid grid-cols-3 gap-2 text-center text-xs">
           {(
             [
               ["pick", "flowChoose"],
-              ["cook", "flowCook"],
+              ["prep", "flowCook"],
               ["plate", "flowClear"],
             ] as const
           ).map(([id, key], index) => {
             const on = phase === id
-            const done = (phase === "cook" && index === 0) || (phase === "plate" && index < 2)
+            const done = (phase === "prep" && index === 0) || (phase === "plate" && index < 2)
             return (
               <li key={id}>
                 <button
                   type="button"
                   onClick={() => {
-                    if (id === "pick") setPhase("pick")
-                    if (id === "cook" && phase === "plate") setPhase("cook")
+                    if (id === "pick") {
+                      setPhase("pick")
+                      setOutlineOpen(false)
+                    }
+                    if (id === "prep" && phase === "plate") {
+                      setPhase("prep")
+                      setOutlineOpen(false)
+                    }
                   }}
                   className={cn(
                     "h-11 w-full rounded-full border",
@@ -555,17 +624,55 @@ export function Tonight({
         </article>
       )}
 
-      {active && dish && phase === "cook" && (
-        <article className="flex min-h-[58dvh] flex-col rounded-card border border-line bg-surface p-5">
-          <button type="button" onClick={() => setPhase("pick")} className="mb-4 h-11 self-start text-sm text-muted underline">
+      {active && dish && phase === "prep" && !outlineOpen && (
+        <article className="rounded-card border border-line bg-surface p-5">
+          <button
+            type="button"
+            onClick={() => {
+              setPhase("pick")
+              setOutlineOpen(false)
+            }}
+            className="mb-3 h-11 self-start text-sm text-muted underline"
+          >
             {t("exitCook")}
           </button>
+          <p className="text-xs font-medium tracking-wide text-mint uppercase">{dish.cuisine}</p>
+          <h2 className={cn("mt-1 font-display text-3xl", locale === "en" && "italic")}>{dish.name}</h2>
+          <p className="mt-2 text-sm text-muted">{t("prepLead")}</p>
+          <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("pullThese")}</p>
+              <p className="mt-1 text-mint">{active.matched.length ? join(active.matched) : "—"}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("stillNeedLabel")}</p>
+              <p className="mt-1 text-muted">{active.missing.length ? join(active.missing) : t("haveAll")}</p>
+            </div>
+          </div>
+          {active.missing.length > 0 && (
+            <button type="button" onClick={listMissing} className="mt-4 h-11 w-full rounded-card border border-line text-sm font-semibold">
+              {t("addMissing")}
+            </button>
+          )}
+          <button type="button" onClick={openPlate} className="mt-3 h-11 w-full rounded-card bg-mint font-semibold text-mint-ink">
+            {t("clearFridgeCta")}
+          </button>
+          <button type="button" onClick={() => { setOutlineOpen(true); setStepIndex(0) }} className="mt-2 h-11 w-full rounded-card border border-line text-sm font-semibold">
+            {t("quickOutline")}
+          </button>
+        </article>
+      )}
+
+      {active && dish && phase === "prep" && outlineOpen && (
+        <article className="flex min-h-[58dvh] flex-col rounded-card border border-line bg-surface p-5">
+          <button type="button" onClick={() => setOutlineOpen(false)} className="mb-4 h-11 self-start text-sm text-muted underline">
+            {t("hideOutline")}
+          </button>
           <p className="text-xs font-medium tracking-wide text-mint uppercase">{dish.name}</p>
-          {isOutline && <p className="mt-2 text-sm text-clay">{t("recipeGuideOnly")}</p>}
-          <p className="mt-1 text-sm text-muted">{t("stepOf", { n: stepIndex + 1, m: dish.steps.length })}</p>
+          <p className="mt-1 text-sm text-muted">{t("quickOutline")} · {t("stepOf", { n: stepIndex + 1, m: dish.steps.length })}</p>
           <ol className="mt-4 flex-1 space-y-4 text-lg leading-relaxed">
             {dish.steps.map((step, i) => (
-              <li key={step} className={cn("flex gap-3", i !== stepIndex && "text-muted")}>
+              <li key={`${i}-${step}`} className={cn("flex gap-3", i !== stepIndex && "text-muted")}>
                 <span className={cn("tabular-nums", i === stepIndex && "text-mint")}>{i + 1}</span>
                 <span>{step}</span>
               </li>
@@ -625,11 +732,6 @@ export function Tonight({
               </button>
             </form>
           </div>
-          {active.missing.length > 0 && (
-            <button type="button" onClick={listMissing} className="mt-4 text-sm text-muted underline">
-              {t("addMissing")}
-            </button>
-          )}
           <div className="mt-4 flex gap-2">
             <button
               type="button"
@@ -640,20 +742,18 @@ export function Tonight({
               {t("prev")}
             </button>
             {stepIndex < dish.steps.length - 1 ? (
-              <button type="button" onClick={() => setStepIndex((n) => n + 1)} className="h-11 flex-1 rounded-card bg-mint font-semibold text-mint-ink">
+              <button type="button" onClick={() => setStepIndex((n) => n + 1)} className="h-11 flex-1 rounded-card border border-line font-semibold">
                 {t("next")}
               </button>
             ) : (
               <button type="button" onClick={openPlate} className="h-11 flex-1 rounded-card bg-mint font-semibold text-mint-ink">
-                {t("ate")}
+                {t("clearFridgeCta")}
               </button>
             )}
           </div>
-          {stepIndex < dish.steps.length - 1 && (
-            <button type="button" onClick={openPlate} className="mt-3 h-11 w-full text-sm text-muted">
-              {t("ate")}
-            </button>
-          )}
+          <button type="button" onClick={openPlate} className="mt-3 h-11 w-full rounded-card bg-mint font-semibold text-mint-ink">
+            {t("clearFridgeCta")}
+          </button>
         </article>
       )}
 

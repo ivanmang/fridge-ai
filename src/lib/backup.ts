@@ -62,6 +62,7 @@ const settingsSchema = z
     savedRecipes: z.array(z.string()).optional(),
     cookedHistory: z.array(z.string()).optional(),
     lastTonightId: z.string().optional(),
+    pendingMealId: z.string().optional(),
   })
   .strict()
 
