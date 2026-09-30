@@ -30,7 +30,7 @@ describe("RECIPE_IMAGES", () => {
       assert.ok(!url.includes("images.unsplash.com"), `unsplash bucket forbidden: ${recipe.id}`)
       // Prefer publisher CDN from the recipe source page (not Flickr/Openverse stand-ins)
       assert.ok(
-        /thewoksoflife\.com|cdn\.sanity\.io|ichef\.bbci\.co\.uk|cdn-akamai\.lkk\.com|chuimg\.com|xiachufang\.com/i.test(
+        /thewoksoflife\.com|cdn\.sanity\.io|ichef\.bbci\.co\.uk|cdn-akamai\.lkk\.com|chuimg\.com|xiachufang\.com|squarespace\.com|assets\.unileversolutions\.com|pic\.daydaycook\.com/i.test(
           url,
         ),
         `expected source-page host for ${recipe.id}: ${url}`,
