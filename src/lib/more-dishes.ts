@@ -8,6 +8,10 @@ import { MORE_W2E } from "@/lib/more-dishes-w2e"
 import { MORE_W2F } from "@/lib/more-dishes-w2f"
 import { MORE_W2G } from "@/lib/more-dishes-w2g"
 import { MORE_W2H } from "@/lib/more-dishes-w2h"
+import { MORE_W3I } from "@/lib/more-dishes-w3i"
+import { MORE_W3J } from "@/lib/more-dishes-w3j"
+import { MORE_W3K } from "@/lib/more-dishes-w3k"
+import { MORE_W3L } from "@/lib/more-dishes-w3l"
 
 /**
  * Best cookable Tonight book — searchable home classics only.
@@ -1116,6 +1120,10 @@ export const MORE: Recipe[] = [
   ...MORE_W2F,
   ...MORE_W2G,
   ...MORE_W2H,
+  ...MORE_W3I,
+  ...MORE_W3J,
+  ...MORE_W3K,
+  ...MORE_W3L,
 ]
 
 /** Outline-catalogue ZH name hints (not home recipe titles). */
