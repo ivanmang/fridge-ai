@@ -222,7 +222,7 @@ describe("fitsTaste", () => {
 
 describe("home recipe coverage", () => {
   it("ships a solid cookable core beyond the original eight", () => {
-    assert.ok(MORE.length >= 50)
+    assert.ok(MORE.length >= 75)
     assert.ok(MORE.every((recipe) => recipe.id.startsWith("home-")))
     assert.ok(MORE.every((recipe) => recipe.steps.length >= 3 && !isOutlineRecipe(recipe)))
   })

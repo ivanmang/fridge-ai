@@ -524,7 +524,11 @@ export const SHELF: ShelfFood[] = [
       "egg noodles",
       "ramen",
       "udon",
-      "rice noodles"
+      "rice noodles",
+      "instant noodles",
+      "gong zai mein",
+      "公仔麵",
+      "公仔面"
     ],
     "category": "pantry",
     "location": "pantry",
