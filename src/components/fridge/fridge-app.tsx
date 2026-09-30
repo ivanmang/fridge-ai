@@ -95,7 +95,7 @@ export function FridgeApp() {
   }
 
   return (
-    <main className="mx-auto min-h-dvh max-w-lg bg-bg pb-[calc(7.5rem+env(safe-area-inset-bottom,0px))] text-fg">
+    <main className="mx-auto min-h-dvh max-w-lg bg-bg pb-[calc(8.25rem+env(safe-area-inset-bottom,0px))] text-fg">
       <header className="flex items-start justify-between gap-3 px-5 pt-[max(1.5rem,env(safe-area-inset-top,0px))]">
         <div className="min-w-0">
           <p className="text-sm font-medium tracking-wide text-muted uppercase">{t("kicker")}</p>

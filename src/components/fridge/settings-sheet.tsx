@@ -118,7 +118,7 @@ export function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => v
           <option value="package">{t("dateSourcePackage")}</option>
         </select>
       </Field>
-      <label className="mt-3 flex min-h-11 items-center gap-3 text-sm">
+      <label className="mt-3 flex min-h-12 items-center gap-3 text-base">
         <input
           type="checkbox"
           checked={draft.opened}
@@ -219,7 +219,7 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
     <Sheet title={t("settings")} onClose={onClose}>
       <p className="mb-3 text-base leading-relaxed text-muted">{t("chooseHowBody")}</p>
       <p className="mb-4 rounded-card border border-line bg-raised px-3 py-3 text-sm leading-relaxed text-muted">{t("privacySettings")}</p>
-      <label className="flex min-h-11 items-center justify-between gap-3 text-sm">
+      <label className="flex min-h-12 items-center justify-between gap-3 text-base">
         {t("veg")}
         <input
           type="checkbox"
@@ -240,7 +240,7 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
           }}
         />
       </div>
-      <label className="mt-3 flex min-h-11 items-center justify-between gap-3 text-sm">
+      <label className="mt-3 flex min-h-12 items-center justify-between gap-3 text-base">
         {t("remind")}
         <input
           type="checkbox"
@@ -255,7 +255,7 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
           className="size-5 accent-mint"
         />
       </label>
-      <label className="mt-3 block text-sm text-muted">
+      <label className="mt-3 block text-base text-muted">
         {t("remindHour")}
         <select
           value={settings.remindHour}
@@ -273,7 +273,7 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
       <p className="mt-2 text-sm leading-relaxed text-muted">{t("remindSpendNote")}</p>
       <details className="mt-4 rounded-card border border-line p-3">
         <summary className="cursor-pointer text-sm font-semibold">{t("fridgeSnap")}</summary>
-        <label className="mt-3 block text-sm text-muted">
+        <label className="mt-3 block text-base text-muted">
           {t("doorAddr")}
           <input value={settings.puckHost ?? "http://fridgesnap.local"} onChange={(e) => setSettings({ puckHost: e.target.value })} spellCheck={false} autoCapitalize="off" className={cn(fieldClass, "mt-1")} />
         </label>
@@ -308,7 +308,7 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
       {backupMessage && <p role="status" className="mt-3 text-sm text-mint">{backupMessage}</p>}
       {sampleOpen && (
         <Sheet title={t("loadSample")} onClose={() => setSampleOpen(false)}>
-          <p className="text-sm text-muted">{t("sampleReplaceConfirm")}</p>
+          <p className="text-base leading-relaxed text-muted">{t("sampleReplaceConfirm")}</p>
           <div className="mt-4 grid gap-2">
             <button
               type="button"
