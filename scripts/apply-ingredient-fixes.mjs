@@ -9,7 +9,6 @@
 import { readFileSync, writeFileSync } from "node:fs"
 
 const AUDIT = JSON.parse(readFileSync("/tmp/ingredient-audit.json", "utf8"))
-const SHELF = JSON.parse(readFileSync("/tmp/shelf.json", "utf8"))
 // reload shelf.ts names after edits via regex
 const shelfTs = readFileSync("src/lib/shelf.ts", "utf8")
 const SHELF_NAMES = [...shelfTs.matchAll(/"name":\s*"([^"]+)"/g)].map((m) => m[1])
@@ -25,7 +24,7 @@ const ZH = JSON.parse(readFileSync("/tmp/zh-food.json", "utf8"))
 const zhTs = readFileSync("src/lib/zh.ts", "utf8")
 const zhBlock = zhTs.match(/export const ZH_FOOD[^=]*=\s*\{([\s\S]*?)\n\}/)
 if (zhBlock) {
-  for (const m of zhBlock[1].matchAll(/(?:\"([^\"]+)\"|([A-Za-z][A-Za-z0-9 -]*))\s*:\s*\"([^\"]+)\"/g)) {
+  for (const m of zhBlock[1].matchAll(/(?:"([^"]+)"|([A-Za-z][A-Za-z0-9 -]*))\s*:\s*"([^"]+)"/g)) {
     const key = (m[1] || m[2]).trim()
     ZH[key] = m[3]
   }
@@ -224,7 +223,7 @@ function covers(haveList, want) {
   return false
 }
 
-function shouldAudit(dish, byUrl) {
+function shouldAudit(dish, _byUrl) {
   if (!(dish.sourceIngredients || []).length) return false
   if (dish.exclusive) return true
   if (dish.titleScore >= 3 && dish.sharedWith <= 3) return true

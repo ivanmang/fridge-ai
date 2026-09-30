@@ -89,7 +89,9 @@ function publisherOf(url) {
     if (h.includes("bbc.")) return "BBC Food"
     if (h.includes("lkk.com")) return "Lee Kum Kee"
     if (h.includes("xiachufang")) return "下厨房"
-  } catch {}
+  } catch {
+    /* ignore invalid URL */
+  }
   return "Recipe"
 }
 
@@ -177,7 +179,7 @@ async function imageFromSource(url) {
     const img = extractOg(html)
     cache[key] = img
     return img
-  } catch (e) {
+  } catch {
     cache[key] = null
     return null
   }
@@ -344,11 +346,11 @@ async function worker() {
         imageVia: image ? "source-page" : null,
         prevSource: recipe.sourceUrl || null,
       }
-    } catch (e) {
+    } catch (err) {
       results[idx] = {
         id: recipe.id,
         name: recipe.name,
-        error: String(e?.message || e),
+        error: String(err?.message || err),
         sourceUrl: recipe.sourceUrl || null,
         image: null,
       }

@@ -96,7 +96,9 @@ function publisherOf(url) {
     if (h.includes("bbc.")) return "BBC Food"
     if (h.includes("lkk.com")) return "Lee Kum Kee"
     if (h.includes("xiachufang")) return "下厨房"
-  } catch {}
+  } catch {
+    /* ignore invalid URL */
+  }
   return "Recipe"
 }
 
