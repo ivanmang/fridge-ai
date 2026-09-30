@@ -4,7 +4,8 @@ import { allowRate, clientIp } from "@/lib/rate-limit.server"
 
 export type LookedUpDish = Recipe
 
-const LOOKUP_LIMIT_PER_HOUR = 20
+/** Soft per-IP hourly cap — same serverless caveat as scan; tighten further before a public URL. */
+const LOOKUP_LIMIT_PER_HOUR = 12
 const LOOKUP_TIMEOUT_MS = 12_000
 
 function extractText(body: unknown) {

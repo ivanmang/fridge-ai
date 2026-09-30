@@ -8,6 +8,10 @@ type Bucket = { hits: number[] }
  * In-memory counters keyed by IP. Also flushed to disk so soft restarts keep limits.
  * On Vercel / other serverless hosts the filesystem is ephemeral and instances do
  * not share memory — treat these limits as soft spend brakes, not a global quota.
+ *
+ * Before sharing a public production URL, add real spend protection (Vercel KV /
+ * Upstash rate limits, Turnstile, or auth). Soft IP limits alone will not stop
+ * coordinated abuse of XAI_API_KEY.
  */
 const memory = new Map<string, Bucket>()
 const FILE = join(process.cwd(), ".data", "rate-limits.json")
@@ -85,13 +89,13 @@ export function allowRate(kind: "scan" | "lookup", limit: number, ip = clientIp(
   return true
 }
 
-export function beginScan(ip = clientIp()): { ok: true } | { ok: false; error: string } {
+export function beginScan(ip = clientIp()): { ok: true } | { ok: false; error: "busy" } {
   if (inflightScans >= MAX_CONCURRENT_SCANS) {
-    return { ok: false, error: "Another scan is already running. Try again in a moment." }
+    return { ok: false, error: "busy" }
   }
   const perIp = inflightByIp.get(ip) ?? 0
   if (perIp >= MAX_CONCURRENT_SCANS_PER_IP) {
-    return { ok: false, error: "Another scan is already running. Try again in a moment." }
+    return { ok: false, error: "busy" }
   }
   inflightScans += 1
   inflightByIp.set(ip, perIp + 1)

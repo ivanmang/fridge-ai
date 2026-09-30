@@ -33,6 +33,7 @@ export function FridgeApp() {
   const [hydrated, setHydrated] = useState(false)
   const [editing, setEditing] = useState<FoodItem | null>(null)
   const [adding, setAdding] = useState(false)
+  const [openSurvey, setOpenSurvey] = useState(false)
 
   useLayoutEffect(() => {
     void Promise.resolve(useFridge.persist.rehydrate()).finally(() => setHydrated(true))
@@ -77,6 +78,21 @@ export function FridgeApp() {
   }, [settings.notify, settings.remindHour, locale])
 
   const urgentCount = items.filter((item) => daysUntil(item.expires) === 0).length
+
+  function runSample() {
+    if (items.length > 0 && !window.confirm(t("sampleReplaceConfirm"))) return
+    useFridge.getState().loadSample()
+  }
+
+  if (!hydrated) {
+    return (
+      <main className="mx-auto grid min-h-dvh max-w-lg place-items-center bg-bg px-5 text-fg">
+        <p role="status" className="text-sm text-muted">
+          {t("loadingFridge")}
+        </p>
+      </main>
+    )
+  }
 
   return (
     <main className="mx-auto min-h-dvh max-w-lg bg-bg pb-28 text-fg">
@@ -126,7 +142,16 @@ export function FridgeApp() {
       )}
 
       <div className="px-5 pt-5">
-        {tab === "tonight" && <Tonight items={items} onAdd={() => setAdding(true)} onPhoto={() => setTab("scan")} onSample={() => useFridge.getState().loadSample()} />}
+        {tab === "tonight" && (
+          <Tonight
+            items={items}
+            onAdd={() => setAdding(true)}
+            onPhoto={() => setTab("scan")}
+            onSample={runSample}
+            openSurvey={openSurvey}
+            onSurveyHandled={() => setOpenSurvey(false)}
+          />
+        )}
         {tab === "fridge" && <FridgeList items={items} onAdd={() => setAdding(true)} onOpen={setEditing} />}
         {tab === "scan" && <ScanPanel onManual={() => setAdding(true)} />}
         {tab === "shop" && <ShopPanel items={items} />}
@@ -156,7 +181,16 @@ export function FridgeApp() {
         </div>
       </nav>
 
-      {settingsOpen && <SettingsSheet onClose={() => setSettingsOpen(false)} />}
+      {settingsOpen && (
+        <SettingsSheet
+          onClose={() => setSettingsOpen(false)}
+          onEditTaste={() => {
+            setSettingsOpen(false)
+            setTab("tonight")
+            setOpenSurvey(true)
+          }}
+        />
+      )}
       {onboardingOpen && (
         <WelcomeSheet
           onClose={() => {
@@ -185,4 +219,3 @@ export function FridgeApp() {
     </main>
   )
 }
-

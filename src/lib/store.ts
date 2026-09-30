@@ -50,6 +50,7 @@ type FridgeState = {
   removeItem: (id: string) => void
   removeMany: (ids: string[]) => void
   loadSample: () => void
+  mergeSample: () => void
   clearItems: () => void
   replaceAll: (items: FoodItem[]) => void
   setSettings: (patch: Partial<FridgeSettings>) => void
@@ -101,6 +102,13 @@ export const useFridge = create<FridgeState>()(
       removeMany: (ids) =>
         set((s) => ({ items: s.items.filter((item) => !ids.includes(item.id)) })),
       loadSample: () => set({ items: sampleItems() }),
+      mergeSample: () =>
+        set((s) => {
+          const sample = sampleItems()
+          const have = new Set(s.items.map((item) => item.name.toLowerCase()))
+          const extra = sample.filter((item) => !have.has(item.name.toLowerCase()))
+          return { items: [...extra, ...s.items] }
+        }),
       clearItems: () => set({ items: [] }),
       replaceAll: (items) => set({ items }),
       setSettings: (patch) => set((s) => ({ settings: { ...s.settings, ...patch } })),

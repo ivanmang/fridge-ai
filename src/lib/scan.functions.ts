@@ -1,11 +1,13 @@
 import { createServerFn } from "@tanstack/react-start"
 import { allowRate, beginScan, clientIp, endScan } from "@/lib/rate-limit.server"
+import type { ScanErrorCode } from "@/lib/scan-errors"
 import { SHELF } from "@/lib/shelf"
 
 export type ScanHit = { name: string; qty: string }
 
 const SCAN_TIMEOUT_MS = 20_000
-const SCAN_LIMIT_PER_HOUR = 8
+/** Soft per-IP hourly cap. Serverless instances do not share counters — pair with Vercel spend controls before a public URL. */
+const SCAN_LIMIT_PER_HOUR = 6
 
 function extractText(body: unknown) {
   if (!body || typeof body !== "object") return ""
@@ -48,23 +50,23 @@ function parseHits(text: string): ScanHit[] {
 
 export const scanFoods = createServerFn({ method: "POST" })
   .validator((input: unknown) => {
-    if (!input || typeof input !== "object") throw new Error("Bad request")
+    if (!input || typeof input !== "object") throw new Error("needPhoto")
     const image = (input as { image?: unknown }).image
     if (typeof image !== "string" || !image.startsWith("data:image/")) {
-      throw new Error("Need a photo")
+      throw new Error("needPhoto")
     }
-    if (image.length > 1_400_000) throw new Error("Photo is too large. Move closer and try again.")
+    if (image.length > 1_400_000) throw new Error("tooLarge")
     return { image }
   })
-  .handler(async ({ data }): Promise<{ ok: true; foods: ScanHit[] } | { ok: false; error: string }> => {
+  .handler(async ({ data }): Promise<{ ok: true; foods: ScanHit[] } | { ok: false; error: ScanErrorCode }> => {
     const apiKey = process.env.XAI_API_KEY
     if (!apiKey) {
-      return { ok: false, error: "Photo recognition is unavailable. Add the food by hand." }
+      return { ok: false, error: "unavailable" }
     }
 
     const ip = clientIp()
     if (!allowRate("scan", SCAN_LIMIT_PER_HOUR, ip)) {
-      return { ok: false, error: "Scan limit reached for this hour. Add items by hand, or try later." }
+      return { ok: false, error: "limit" }
     }
 
     const slot = beginScan(ip)
@@ -98,20 +100,20 @@ export const scanFoods = createServerFn({ method: "POST" })
       })
 
       if (!res.ok) {
-        return { ok: false, error: `Could not read the photo (${res.status}). Try again, or add items by hand.` }
+        return { ok: false, error: "read" }
       }
 
       try {
         const foods = parseHits(extractText(await res.json()))
         return { ok: true, foods }
       } catch {
-        return { ok: false, error: "The photo was read, but the list was unusable. Try again." }
+        return { ok: false, error: "parse" }
       }
     } catch (error) {
       if (error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")) {
-        return { ok: false, error: "Photo recognition timed out. Try again, or add items by hand." }
+        return { ok: false, error: "timeout" }
       }
-      return { ok: false, error: "Could not read the photo. Try again, or add items by hand." }
+      return { ok: false, error: "read" }
     } finally {
       endScan(ip)
     }

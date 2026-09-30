@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { DishCatalog } from "@/components/fridge/dish-catalog"
-import { CUISINES, Empty, SuggestControl, TastePrompt, useI18n } from "@/components/fridge/shared"
+import { DishSearch } from "@/components/fridge/shop-panel"
+import { CUISINES, Empty, Sheet, SuggestControl, TastePrompt, useI18n } from "@/components/fridge/shared"
 import { SurveyPanel, TasteProfile } from "@/components/fridge/survey-panel"
 import { cuisineLabel, foodLabel, recipeText } from "@/lib/i18n"
 import {
@@ -20,7 +21,52 @@ import { useFridge } from "@/lib/store"
 import { emptySurvey, surveyReady } from "@/lib/survey"
 import { cn } from "@/lib/utils"
 
-export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]; onAdd: () => void; onPhoto: () => void; onSample: () => void }) {
+function alertTimerDone() {
+  try {
+    navigator.vibrate?.([220, 120, 220, 120, 320])
+  } catch {
+    /* ignore */
+  }
+  try {
+    const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+    if (!AudioCtx) return
+    const ctx = new AudioCtx()
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.type = "sine"
+    osc.frequency.value = 880
+    gain.gain.value = 0.12
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+    osc.start()
+    window.setTimeout(() => {
+      try {
+        osc.stop()
+        void ctx.close()
+      } catch {
+        /* ignore */
+      }
+    }, 700)
+  } catch {
+    /* ignore */
+  }
+}
+
+export function Tonight({
+  items,
+  onAdd,
+  onPhoto,
+  onSample,
+  openSurvey = false,
+  onSurveyHandled,
+}: {
+  items: FoodItem[]
+  onAdd: () => void
+  onPhoto: () => void
+  onSample: () => void
+  openSurvey?: boolean
+  onSurveyHandled?: () => void
+}) {
   const { locale, t } = useI18n()
   const vegetarian = useFridge((s) => s.settings.vegetarian)
   const taste = useFridge((s) => (surveyReady(s.settings.survey) ? s.settings.survey : null))
@@ -35,8 +81,9 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
   const toggleSavedRecipe = useFridge((s) => s.toggleSavedRecipe)
   const markCooked = useFridge((s) => s.markCooked)
   const addItem = useFridge((s) => s.addItem)
+  const updateItem = useFridge((s) => s.updateItem)
+  const removeItem = useFridge((s) => s.removeItem)
   const addShop = useFridge((s) => s.addShop)
-  const removeMany = useFridge((s) => s.removeMany)
   const shop = useFridge((s) => s.shop)
   const [mode, setMode] = useState<"cook" | "browse">("cook")
   const [cuisine, setCuisine] = useState("All")
@@ -47,13 +94,24 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
   const [mealId, setMealId] = useState<string | null>(null)
   const [stepIndex, setStepIndex] = useState(0)
   const [checked, setChecked] = useState<string[]>([])
+  const [remaining, setRemaining] = useState<Record<string, string>>({})
   const [leftovers, setLeftovers] = useState(false)
   const [note, setNote] = useState("")
   const [surveyOpen, setSurveyOpen] = useState(false)
   const [prefsOpen, setPrefsOpen] = useState(false)
+  const [wantOpen, setWantOpen] = useState(false)
   const [timerSeconds, setTimerSeconds] = useState(0)
   const [timerRunning, setTimerRunning] = useState(false)
   const [timerFinished, setTimerFinished] = useState(false)
+  const [customMinutes, setCustomMinutes] = useState("3")
+
+  useEffect(() => {
+    if (!openSurvey) return
+    setSurveyOpen(true)
+    setMode("cook")
+    setPhase("pick")
+    onSurveyHandled?.()
+  }, [openSurvey, onSurveyHandled])
 
   useEffect(() => {
     if (phase !== "cook") return
@@ -84,6 +142,7 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
     if (timerRunning && timerSeconds === 0) {
       setTimerRunning(false)
       setTimerFinished(true)
+      alertTimerDone()
     }
   }, [timerRunning, timerSeconds])
 
@@ -144,6 +203,14 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
     return ideasByIds(ids, items, extras).filter((row) => !isOutlineRecipe(row.recipe))
   }, [savedRecipes, cookedHistory, items, extras])
 
+  function resetFilters() {
+    setHaveOnly(false)
+    setUseSoon(false)
+    setMaxTime(null)
+    setCuisine("All")
+    setMealId(null)
+  }
+
   function addSuggested() {
     const have = new Set(shop.map((row) => row.text.toLowerCase()))
     for (const row of shopRows) {
@@ -175,7 +242,9 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
 
   function openPlate() {
     if (!active) return
-    setChecked(foodsForMeal(active.recipe, items).map((item) => item.id))
+    const mealFoods = foodsForMeal(active.recipe, items)
+    setChecked(mealFoods.map((item) => item.id))
+    setRemaining(Object.fromEntries(mealFoods.map((item) => [item.id, ""])))
     setLeftovers(false)
     setPhase("plate")
   }
@@ -188,7 +257,11 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
       setMealId(null)
       return
     }
-    if (checked.length) removeMany(checked)
+    for (const id of checked) {
+      const left = (remaining[id] ?? "").trim()
+      if (!left || left === "0") removeItem(id)
+      else updateItem(id, { qty: left })
+    }
     if (leftovers) {
       const today = todayISO()
       addItem({
@@ -220,6 +293,13 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
     setNote(t("onList"))
   }
 
+  function startTimer(minutes: number) {
+    const mins = Math.max(1, Math.min(180, Math.round(minutes)))
+    setTimerFinished(false)
+    setTimerSeconds(mins * 60)
+    setTimerRunning(true)
+  }
+
   if (mode === "browse" && phase === "pick") {
     return (
       <section className="space-y-4">
@@ -235,7 +315,16 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
             {t("modeBrowse")}
           </button>
         </div>
+        <button type="button" onClick={() => setWantOpen(true)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">
+          {t("wantDish")}
+        </button>
         <DishCatalog onCook={startCook} onAddFood={onAdd} onSample={onSample} />
+        {wantOpen && (
+          <Sheet title={t("wantDish")} onClose={() => setWantOpen(false)}>
+            <p className="mb-3 text-sm text-muted">{t("wantDishLead")}</p>
+            <DishSearch />
+          </Sheet>
+        )}
       </section>
     )
   }
@@ -308,7 +397,14 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
         </div>
       )}
       {phase === "pick" && taste && items.length > 0 && !active && <p className="text-sm text-muted">{t("surveyEmpty")}</p>}
-      {items.length > 0 && !active && <Empty title={t("filterTitle")} body={t("filterBody")} />}
+      {items.length > 0 && !active && (
+        <div className="space-y-3">
+          <Empty title={t("filterTitle")} body={t("filterBody")} />
+          <button type="button" onClick={resetFilters} className="h-11 w-full rounded-card border border-line text-sm font-semibold">
+            {t("resetFilters")}
+          </button>
+        </div>
+      )}
       {note && <p className="text-sm text-mint">{note}</p>}
 
       {phase === "pick" && items.length > 0 && (
@@ -351,7 +447,7 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
               </button>
             ))}
           </div>
-          {priority < 2 && (
+          {priority < 2 ? (
             <div className="flex gap-2 overflow-x-auto pb-1">
               {CUISINES.map((name) => (
                 <button
@@ -367,8 +463,16 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
                 </button>
               ))}
             </div>
+          ) : (
+            <p className="text-xs text-muted">{t("priorityHidesFilters")}</p>
           )}
         </div>
+      )}
+
+      {phase === "pick" && items.length > 0 && (
+        <button type="button" onClick={() => setWantOpen(true)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">
+          {t("wantDish")}
+        </button>
       )}
 
       {phase === "pick" && historyRows.length > 0 && (
@@ -473,8 +577,8 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
               {timerSeconds > 0 ? ` · ${Math.floor(timerSeconds / 60)}:${String(timerSeconds % 60).padStart(2, "0")}` : ""}
             </p>
             {timerFinished && (
-              <p role="status" className="mt-1 text-sm text-mint">
-                {t("timerDone")}
+              <p role="alert" className="mt-1 text-sm font-semibold text-clay">
+                {t("timerAlert")}
               </p>
             )}
             <div className="mt-2 flex flex-wrap gap-2">
@@ -482,11 +586,7 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
                 <button
                   key={minutes}
                   type="button"
-                  onClick={() => {
-                    setTimerFinished(false)
-                    setTimerSeconds(minutes * 60)
-                    setTimerRunning(true)
-                  }}
+                  onClick={() => startTimer(minutes)}
                   className="h-10 rounded-full border border-line px-3 text-sm"
                 >
                   {t("minutes", { n: minutes })}
@@ -498,6 +598,32 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
                 </button>
               )}
             </div>
+            <form
+              className="mt-2 flex gap-2"
+              onSubmit={(e) => {
+                e.preventDefault()
+                const mins = Number(customMinutes)
+                if (!Number.isFinite(mins) || mins < 1) return
+                startTimer(mins)
+              }}
+            >
+              <label className="sr-only" htmlFor="timer-custom">
+                {t("timerCustom")}
+              </label>
+              <input
+                id="timer-custom"
+                type="number"
+                min={1}
+                max={180}
+                value={customMinutes}
+                onChange={(e) => setCustomMinutes(e.target.value)}
+                placeholder={t("timerCustom")}
+                className="h-10 min-w-0 flex-1 rounded-full border border-line bg-raised px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-mint"
+              />
+              <button type="submit" className="h-10 shrink-0 rounded-full border border-line px-3 text-sm font-semibold">
+                {t("timerStart")}
+              </button>
+            </form>
           </div>
           {active.missing.length > 0 && (
             <button type="button" onClick={listMissing} className="mt-4 text-sm text-muted underline">
@@ -536,23 +662,40 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
           <h2 className={cn("font-display text-3xl", locale === "en" && "italic")}>{dish.name}</h2>
           <p className="mt-2 text-sm text-muted">{used.length ? t("plateLead") : t("nothingUsed")}</p>
           {used.length > 0 && (
-            <ul className="mt-4 space-y-2">
-              {used.map((item) => (
-                <li key={item.id}>
-                  <label className="flex min-h-11 items-center gap-3 text-sm">
-                    <input
-                      type="checkbox"
-                      checked={checked.includes(item.id)}
-                      onChange={(e) =>
-                        setChecked((current) => (e.target.checked ? [...current, item.id] : current.filter((id) => id !== item.id)))
-                      }
-                      className="size-5 accent-mint"
-                    />
-                    {foodLabel(locale, item.name)}
-                    <span className="text-muted">{item.qty}</span>
-                  </label>
-                </li>
-              ))}
+            <ul className="mt-4 space-y-3">
+              {used.map((item) => {
+                const on = checked.includes(item.id)
+                return (
+                  <li key={item.id} className="rounded-card border border-line p-3">
+                    <label className="flex min-h-11 items-center gap-3 text-sm">
+                      <input
+                        type="checkbox"
+                        checked={on}
+                        onChange={(e) =>
+                          setChecked((current) => (e.target.checked ? [...current, item.id] : current.filter((id) => id !== item.id)))
+                        }
+                        className="size-5 accent-mint"
+                      />
+                      <span className="min-w-0 flex-1">
+                        {foodLabel(locale, item.name)}
+                        <span className="text-muted"> · {item.qty}</span>
+                      </span>
+                      <span className="text-xs text-muted">{on && !(remaining[item.id] ?? "").trim() ? t("usedUp") : null}</span>
+                    </label>
+                    {on && (
+                      <label className="mt-2 block text-xs text-muted">
+                        {t("remainingQty")}
+                        <input
+                          value={remaining[item.id] ?? ""}
+                          onChange={(e) => setRemaining((current) => ({ ...current, [item.id]: e.target.value }))}
+                          placeholder={t("usedUp")}
+                          className="mt-1 h-10 w-full rounded-card border border-line bg-raised px-3 text-sm text-fg outline-none focus-visible:outline-2 focus-visible:outline-mint"
+                        />
+                      </label>
+                    )}
+                  </li>
+                )
+              })}
             </ul>
           )}
           <label className="mt-4 flex min-h-11 items-center gap-3 text-sm">
@@ -640,6 +783,7 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
         <section className="rounded-card border border-line bg-surface px-4 py-3">
           <p className="text-sm text-muted">{t("chooseHowBody")}</p>
           <SuggestControl />
+          {priority >= 2 && <p className="mt-2 text-xs text-muted">{t("priorityHidesFilters")}</p>}
         </section>
       )}
       {phase === "pick" && items.length > 0 && !taste && !surveyOpen && <TastePrompt onOpen={() => setSurveyOpen(true)} />}
@@ -651,6 +795,12 @@ export function Tonight({ items, onAdd, onPhoto, onSample }: { items: FoodItem[]
             setSurveyOpen(true)
           }}
         />
+      )}
+      {wantOpen && (
+        <Sheet title={t("wantDish")} onClose={() => setWantOpen(false)}>
+          <p className="mb-3 text-sm text-muted">{t("wantDishLead")}</p>
+          <DishSearch />
+        </Sheet>
       )}
     </section>
   )
