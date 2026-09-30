@@ -7,8 +7,8 @@ import type { Recipe } from "@/lib/recipes"
 import { cn } from "@/lib/utils"
 
 /**
- * Deterministic dish photo (stored/inferred map) + always-valid recipe web search.
- * Optional Wikipedia / source "about" link loads in the background.
+ * Deterministic dish-specific photo (stored media map) + always-valid recipe web search.
+ * Optional Wikipedia / source "about" link loads in the background — never for the photo.
  */
 export function RecipeSourceMedia({
   recipe,
@@ -49,13 +49,15 @@ export function RecipeSourceMedia({
 
   return (
     <div className={cn(compact ? "mt-3 space-y-2" : "mt-3 space-y-3")}>
-      <img
-        src={image}
-        alt={t("recipePhotoAlt", { name: dishName })}
-        loading="lazy"
-        decoding="async"
-        className={cn("w-full object-cover bg-raised", compact ? "h-28 rounded-card" : "aspect-[16/10] rounded-card")}
-      />
+      {image ? (
+        <img
+          src={image}
+          alt={t("recipePhotoAlt", { name: dishName })}
+          loading="lazy"
+          decoding="async"
+          className={cn("w-full object-cover bg-raised", compact ? "h-28 rounded-card" : "aspect-[16/10] rounded-card")}
+        />
+      ) : null}
       <a
         href={searchUrl}
         target="_blank"

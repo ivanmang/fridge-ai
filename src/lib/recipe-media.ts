@@ -1,443 +1,384 @@
 import type { Recipe } from "@/lib/recipes"
 
-/** Unsplash CDN photo URL (licensed for free use; hotlink these specific IDs). */
-const u = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?w=800&q=80&auto=format&fit=crop`
-
 /**
- * Stable category photos. Register a better per-id URL in RECIPE_IMAGES when you
- * want a closer match; new home-* recipes fall back via {@link inferRecipeImage}.
- */
-export const IMG = {
-  rice: u("1512058564366-18510be2db19"),
-  egg: u("1525351484163-7529414344d8"),
-  soup: u("1547592166-23ac45744acd"),
-  veg: u("1540420773420-3366772f4999"),
-  chicken: u("1604908176997-125f25cc6f3d"),
-  bowl: u("1546069901-ba9599a7e63c"),
-  seafood: u("1559339352-11d035aa65de"),
-  tofu: u("1626082927389-6cd097cdc6ec"),
-  salad: u("1512621776951-a57141f2eefd"),
-  fish: u("1467003909585-2f8a72700288"),
-  platter: u("1504674900247-0877df9cc836"),
-  breakfast: u("1533089860892-a7c6f0a88666"),
-  pasta: u("1563379926898-05f4575a45d8"),
-  friedRice: u("1603133872878-684f208fb84b"),
-  noodles: u("1562967914-608f82629710"),
-  stew: u("1574484284002-952d92456975"),
-  toast: u("1551218808-94e220e084d2"),
-  meat: u("1544025162-d76694265947"),
-  potato: u("1518977676601-b53f82aba655"),
-} as const
-
-export type ImageCategory = keyof typeof IMG
-
-/**
- * Explicit id → image map for the cookable `home-*` book.
- * Additive only — do not put recipe text here. Wave/growth agents can keep
- * editing more-dishes*; register a photo with one line here (or rely on infer).
+ * Dish-specific photo URLs for every cookable `home-*` recipe.
+ * Parallel to recipe text — wave agents can edit more-dishes* without touching this file.
+ *
+ * Built by scripts/resolve-recipe-images.mjs (re-run after adding home recipes):
+ *   1) og:image from recipe.sourceUrl (Made With Lau, LKK, BBC Food, …)
+ *   2) og:image from matching Made With Lau / Xiachufang pages
+ *   3) Openverse CC photo whose title names the dish
+ *   4) Wikipedia / Wikimedia Commons file for that named dish
+ *
+ * Never Unsplash category buckets. New home-* ids must get an entry here.
  */
 export const RECIPE_IMAGES: Record<string, string> = {
-  "home-avocado-toast": IMG.toast,
-  "home-bacon-egg-rice": IMG.friedRice,
-  "home-bacon-pasta": IMG.pasta,
-  "home-baked-eggs-spinach": IMG.breakfast,
-  "home-bean-sprout-stirfry": IMG.veg,
-  "home-bean-tomato-stew": IMG.stew,
-  "home-beef-broccoli": IMG.meat,
-  "home-beef-snow-peas": IMG.meat,
-  "home-beef-tomato-noodles": IMG.noodles,
-  "home-bell-pepper-beef": IMG.meat,
-  "home-braised-tofu-chicken": IMG.tofu,
-  "home-cabbage-stirfry": IMG.veg,
-  "home-carrot-egg-stirfry": IMG.egg,
-  "home-cauliflower-stirfry": IMG.veg,
-  "home-celery-pork": IMG.meat,
-  "home-century-egg-congee": IMG.bowl,
-  "home-century-egg-tofu": IMG.tofu,
-  "home-cheese-omelette": IMG.egg,
-  "home-chicken-broccoli": IMG.chicken,
-  "home-chicken-carbonara": IMG.pasta,
-  "home-chicken-corn-soup": IMG.soup,
-  "home-chicken-mushroom": IMG.chicken,
-  "home-chicken-mushroom-tofu": IMG.tofu,
-  "home-chicken-salad": IMG.salad,
-  "home-chicken-veg-soup": IMG.soup,
-  "home-chinese-sausage-rice": IMG.friedRice,
-  "home-chow-mein": IMG.noodles,
-  "home-claypot-style-rice": IMG.rice,
-  "home-congee": IMG.bowl,
-  "home-corn-egg-scramble": IMG.egg,
-  "home-cucumber-egg": IMG.egg,
-  "home-egg-drop-soup": IMG.soup,
-  "home-egg-foo-young": IMG.egg,
-  "home-egg-fried-rice": IMG.friedRice,
-  "home-egg-mayo-sandwich": IMG.toast,
-  "home-french-toast": IMG.toast,
-  "home-fu-yung-egg-lkk": IMG.egg,
-  "home-garlic-broccoli": IMG.veg,
-  "home-garlic-choi-sum": IMG.veg,
-  "home-garlic-eggplant": IMG.veg,
-  "home-garlic-pak-choi": IMG.veg,
-  "home-garlic-shrimp": IMG.seafood,
-  "home-garlic-spinach": IMG.veg,
-  "home-ginger-chicken": IMG.chicken,
-  "home-ginger-fried-rice": IMG.friedRice,
-  "home-grilled-cheese": IMG.toast,
-  "home-ham-cheese-toastie": IMG.toast,
-  "home-hk-macaroni-soup": IMG.soup,
-  "home-honey-garlic-chicken": IMG.chicken,
-  "home-hot-sour-soup": IMG.soup,
-  "home-instant-noodles-egg": IMG.noodles,
-  "home-jacket-potato-tuna": IMG.potato,
-  "home-kimchi-fried-rice": IMG.friedRice,
-  "home-leftover-fried-rice": IMG.friedRice,
-  "home-lemon-chicken": IMG.chicken,
-  "home-lo-mein": IMG.noodles,
-  "home-luncheon-fried-rice": IMG.friedRice,
-  "home-mapo-tofu": IMG.tofu,
-  "home-mushroom-egg-rice": IMG.friedRice,
-  "home-mushroom-pasta": IMG.pasta,
-  "home-omelette-rice": IMG.friedRice,
-  "home-orange-chicken": IMG.chicken,
-  "home-oyster-gai-lan": IMG.veg,
-  "home-oyster-lettuce": IMG.veg,
-  "home-oyster-tofu": IMG.tofu,
-  "home-pan-fried-rice-noodles": IMG.noodles,
-  "home-pancakes-simple": IMG.breakfast,
-  "home-pork-cabbage": IMG.meat,
-  "home-pork-chop-onion": IMG.meat,
-  "home-pork-mince-noodles": IMG.noodles,
-  "home-potato-chicken": IMG.chicken,
-  "home-potato-stirfry": IMG.veg,
-  "home-salmon-broccoli-pasta": IMG.pasta,
-  "home-salmon-rice-bowl": IMG.fish,
-  "home-salt-pepper-tofu": IMG.tofu,
-  "home-sausage-egg-noodles": IMG.noodles,
-  "home-sausage-pasta": IMG.pasta,
-  "home-scallion-noodles": IMG.noodles,
-  "home-scrambled-egg-toast": IMG.toast,
-  "home-sesame-garlic-chicken-pasta": IMG.pasta,
-  "home-shrimp-broccoli": IMG.seafood,
-  "home-shrimp-egg": IMG.seafood,
-  "home-shrimp-noodle-soup": IMG.soup,
-  "home-shrimp-pasta": IMG.pasta,
-  "home-singapore-noodles": IMG.noodles,
-  "home-slippery-egg-chicken": IMG.chicken,
-  "home-smashed-cucumber": IMG.salad,
-  "home-soy-chicken": IMG.chicken,
-  "home-soy-steamed-fish": IMG.fish,
-  "home-spinach-tofu-soup": IMG.soup,
-  "home-steamed-egg-pork": IMG.egg,
-  "home-steamed-eggs": IMG.egg,
-  "home-steamed-fish": IMG.fish,
-  "home-steamed-pork-patty": IMG.meat,
-  "home-steamed-tofu-pork": IMG.tofu,
-  "home-stir-fried-bok-choy": IMG.veg,
-  "home-sweet-potato-rice": IMG.rice,
-  "home-tofu-shrimp": IMG.tofu,
-  "home-tomato-beef": IMG.meat,
-  "home-tomato-egg": IMG.egg,
-  "home-tomato-egg-noodles": IMG.noodles,
-  "home-tomato-egg-rice": IMG.egg,
-  "home-tomato-soup": IMG.soup,
-  "home-tomato-tofu": IMG.tofu,
-  "home-tomato-tofu-soup": IMG.soup,
-  "home-tuna-fried-rice": IMG.friedRice,
-  "home-tuna-pasta": IMG.pasta,
-  "home-west-lake-beef-soup": IMG.soup,
-  "home-yogurt-berry-bowl": IMG.breakfast,
-  "home-zucchini-egg": IMG.egg,
-  "home-baked-pork-chop-rice": IMG.meat,
-  "home-baked-seafood-rice": IMG.fish,
-  "home-beef-choi-sum": IMG.meat,
-  "home-beef-chow-fun": IMG.meat,
-  "home-beef-fried-noodles": IMG.noodles,
-  "home-beef-tomato-rice": IMG.meat,
-  "home-bibimbap": IMG.egg,
-  "home-black-bean-beef": IMG.meat,
-  "home-black-bean-ribs": IMG.meat,
-  "home-braised-egg-rice": IMG.egg,
-  "home-braised-tofu-pork": IMG.tofu,
-  "home-braised-tofu-veg": IMG.tofu,
-  "home-broccoli-beef-garlic": IMG.meat,
-  "home-bulgogi-beef": IMG.meat,
-  "home-cabbage-pork-filling": IMG.meat,
-  "home-cantonese-chicken-noodles": IMG.soup,
-  "home-celery-tofu": IMG.tofu,
-  "home-century-egg-tofu-soup": IMG.tofu,
-  "home-char-siu-home": IMG.meat,
-  "home-chawanmushi-egg": IMG.egg,
-  "home-chicken-katsu-pan": IMG.chicken,
-  "home-chicken-steak-rice": IMG.chicken,
-  "home-chili-fried-tofu": IMG.tofu,
-  "home-chili-garlic-eggplant": IMG.veg,
-  "home-chili-oil-lettuce": IMG.salad,
-  "home-chili-oil-noodles": IMG.noodles,
-  "home-chili-oil-wonton": IMG.meat,
-  "home-chongqing-noodles": IMG.noodles,
-  "home-clearout-egg-drop": IMG.soup,
-  "home-cold-chili-noodles": IMG.noodles,
-  "home-cold-sesame-noodles": IMG.noodles,
-  "home-cold-tofu-soy": IMG.tofu,
-  "home-condensed-milk-toast": IMG.toast,
-  "home-corn-butter-rice": IMG.rice,
-  "home-corned-beef-macaroni": IMG.noodles,
-  "home-creamed-corn-soup": IMG.soup,
-  "home-cumin-beef": IMG.meat,
-  "home-dan-dan-noodles": IMG.noodles,
-  "home-doenjang-jjigae": IMG.tofu,
-  "home-dry-fried-green-beans": IMG.meat,
-  "home-dry-pot-cauliflower": IMG.meat,
-  "home-egg-tofu-stew": IMG.tofu,
-  "home-eggplant-mince": IMG.veg,
-  "home-eggplant-pork-claypot": IMG.veg,
-  "home-fermented-tofu-greens": IMG.tofu,
-  "home-fridge-fried-noodles": IMG.noodles,
-  "home-garlic-cucumber-spicy": IMG.salad,
-  "home-garlic-green-beans": IMG.platter,
-  "home-garlic-lettuce": IMG.salad,
-  "home-garlic-snow-peas": IMG.platter,
-  "home-ginger-choi-sum": IMG.veg,
-  "home-glass-noodle-stirfry": IMG.noodles,
-  "home-gyudon": IMG.noodles,
-  "home-ham-macaroni-soup": IMG.soup,
-  "home-hk-borscht": IMG.soup,
-  "home-hk-curry-brisket": IMG.meat,
-  "home-hk-curry-chicken": IMG.chicken,
-  "home-hk-egg-sandwich": IMG.toast,
-  "home-hk-spaghetti": IMG.noodles,
-  "home-homestyle-tofu": IMG.tofu,
-  "home-hot-dry-noodles": IMG.noodles,
-  "home-hotwater-noodle-bowl": IMG.soup,
-  "home-japanese-curry-rice": IMG.chicken,
-  "home-kimchi-jjigae": IMG.tofu,
-  "home-kimchi-leftover-stew": IMG.soup,
-  "home-kongnamul-muchim": IMG.platter,
-  "home-korean-cucumber-salad": IMG.salad,
-  "home-korean-egg-roll": IMG.egg,
-  "home-kung-pao-chicken": IMG.chicken,
-  "home-laziji-chicken": IMG.chicken,
-  "home-leftover-chicken-congee": IMG.bowl,
-  "home-leftover-noodle-toss": IMG.noodles,
-  "home-leftover-steam-rice": IMG.veg,
-  "home-leftover-wrap": IMG.veg,
-  "home-lotus-rib-soup": IMG.soup,
-  "home-luncheon-egg-noodles": IMG.noodles,
-  "home-mapo-eggplant": IMG.veg,
-  "home-mapo-tofu-veg": IMG.tofu,
-  "home-miso-soup": IMG.tofu,
-  "home-mushroom-bok-choy": IMG.veg,
-  "home-mushroom-claypot-rice": IMG.chicken,
-  "home-nasu-dengaku": IMG.veg,
-  "home-nikujaga": IMG.meat,
-  "home-oyakodon": IMG.chicken,
-  "home-oyster-choi-sum": IMG.veg,
-  "home-pineapple-chicken": IMG.chicken,
-  "home-pork-chop-noodles": IMG.noodles,
-  "home-pork-mince-rice-bowl": IMG.meat,
-  "home-potato-spare-ribs": IMG.meat,
-  "home-salmon-ochazuke": IMG.fish,
-  "home-salt-pepper-mushrooms": IMG.platter,
-  "home-salted-egg-pork-patty": IMG.meat,
-  "home-salted-fish-chicken-fried-rice": IMG.friedRice,
-  "home-satay-beef-noodles": IMG.soup,
-  "home-satay-beef-rice": IMG.meat,
-  "home-sausage-veg-rice": IMG.meat,
-  "home-seafood-fried-rice": IMG.friedRice,
-  "home-seaweed-soup": IMG.soup,
-  "home-shogayaki": IMG.meat,
-  "home-shrimp-wonton": IMG.seafood,
-  "home-shuizhu-mild": IMG.tofu,
-  "home-sour-cabbage-pork": IMG.meat,
-  "home-soy-butter-noodles": IMG.noodles,
-  "home-soy-fried-noodles": IMG.noodles,
-  "home-soy-garlic-fried-chicken": IMG.chicken,
-  "home-soy-greens-rice": IMG.veg,
-  "home-spicy-pork-bulgogi": IMG.meat,
-  "home-spinach-egg-drop": IMG.egg,
-  "home-spinach-gomaae": IMG.veg,
-  "home-steamed-chicken-mushroom": IMG.chicken,
-  "home-steamed-fish-fillets": IMG.fish,
-  "home-sundubu-jjigae": IMG.tofu,
-  "home-sweet-sour-pork": IMG.meat,
-  "home-swiss-chicken-wings": IMG.chicken,
-  "home-tamago-gohan": IMG.chicken,
-  "home-tamago-sando": IMG.toast,
-  "home-teriyaki-chicken": IMG.chicken,
-  "home-teriyaki-salmon": IMG.fish,
-  "home-tofu-egg-scramble": IMG.tofu,
-  "home-tofu-miso-stew": IMG.tofu,
-  "home-tofu-skin-stirfry": IMG.tofu,
-  "home-tomato-cabbage": IMG.veg,
-  "home-tomato-egg-drop-soup": IMG.soup,
-  "home-tomato-egg-rice-bowl": IMG.egg,
-  "home-tomato-potato-stew": IMG.soup,
-  "home-tomato-soup-macaroni": IMG.soup,
-  "home-tteokbokki": IMG.veg,
-  "home-tuna-mayo-onigiri": IMG.fish,
-  "home-tuna-rice-ball": IMG.fish,
-  "home-twice-cooked-pork": IMG.meat,
-  "home-udon-soy-broth": IMG.soup,
-  "home-white-cut-chicken": IMG.chicken,
-  "home-winter-melon-soup": IMG.soup,
-  "home-wonton-noodle-soup": IMG.soup,
-  "home-wonton-soup": IMG.soup,
-  "home-yakisoba": IMG.noodles,
-  "home-yangzhou-fried-rice": IMG.friedRice,
-  "home-yuxiang-eggplant": IMG.veg,
-  "home-yuxiang-shredded-pork": IMG.fish,
-  "home-zha-jiang-mian": IMG.noodles,
-  "home-baked-beans-toast": IMG.toast,
-  "home-banana-peanut-toast": IMG.toast,
-  "home-basil-eggplant": IMG.veg,
-  "home-beef-pho-style": IMG.soup,
-  "home-bitter-melon-beef": IMG.meat,
-  "home-black-bean-ribs-claypot": IMG.platter,
-  "home-broccoli-pork": IMG.meat,
-  "home-cabbage-tofu-stew": IMG.tofu,
-  "home-chicken-caesar-wrap": IMG.chicken,
-  "home-chicken-satay-rice": IMG.chicken,
-  "home-chicken-tomato-beef-style": IMG.chicken,
-  "home-chickpea-curry": IMG.platter,
-  "home-choi-sum-fish": IMG.fish,
-  "home-claypot-tofu": IMG.tofu,
-  "home-coconut-curry-tofu": IMG.tofu,
-  "home-corn-rib-soup": IMG.soup,
-  "home-creamy-mushroom-chicken": IMG.chicken,
-  "home-cucumber-miso": IMG.salad,
-  "home-egg-white-tomato": IMG.egg,
-  "home-eggplant-mapo-veg": IMG.veg,
-  "home-eggplant-tofu-claypot": IMG.veg,
-  "home-fish-tofu-soup": IMG.tofu,
-  "home-garlic-broccoli-tofu": IMG.tofu,
-  "home-garlic-morning-glory": IMG.veg,
-  "home-garlic-spare-ribs": IMG.platter,
-  "home-ginger-scallion-shrimp": IMG.seafood,
-  "home-green-curry-chicken": IMG.chicken,
-  "home-grilled-cheese-tomato": IMG.platter,
-  "home-herb-tofu-salad": IMG.tofu,
-  "home-kung-pao-cauliflower": IMG.veg,
-  "home-lemon-garlic-shrimp-pasta": IMG.noodles,
-  "home-lemon-spare-ribs": IMG.platter,
-  "home-lemongrass-chicken": IMG.chicken,
-  "home-lemongrass-tofu": IMG.tofu,
-  "home-lentil-style-bean-stew": IMG.soup,
-  "home-lettuce-fish": IMG.salad,
-  "home-lu-rou-fan": IMG.meat,
-  "home-meatball-tomato-pasta": IMG.noodles,
-  "home-minced-pork-pickles": IMG.meat,
-  "home-mushroom-bulgogi": IMG.meat,
-  "home-mushroom-risotto": IMG.rice,
-  "home-no-red-meat-pasta": IMG.noodles,
-  "home-no-seafood-chow-mein": IMG.noodles,
-  "home-overnight-oats": IMG.platter,
-  "home-oyster-beef": IMG.meat,
-  "home-oyster-omelette": IMG.seafood,
-  "home-pad-thai": IMG.egg,
-  "home-pan-fish-peas": IMG.fish,
-  "home-pan-radish-cake-style": IMG.egg,
-  "home-peanut-tofu-stir-fry": IMG.tofu,
-  "home-pepper-tofu-stir": IMG.tofu,
-  "home-pesto-pasta": IMG.noodles,
-  "home-pineapple-fried-rice": IMG.friedRice,
-  "home-pork-rib-clear-soup": IMG.soup,
-  "home-pumpkin-spare-ribs": IMG.platter,
-  "home-red-braised-pork": IMG.meat,
-  "home-salmon-avocado-bowl": IMG.fish,
-  "home-salt-pepper-ribs": IMG.platter,
-  "home-salted-fish-pork-patty": IMG.fish,
-  "home-san-bei-chicken": IMG.chicken,
-  "home-sausage-sticky-rice": IMG.meat,
-  "home-scallion-pancake": IMG.breakfast,
-  "home-scallop-style-congee": IMG.bowl,
-  "home-sesame-chicken-taiwanese": IMG.chicken,
-  "home-shakshuka": IMG.egg,
-  "home-sheet-pan-chicken-veg": IMG.chicken,
-  "home-singapore-noodles-no-shrimp": IMG.noodles,
-  "home-soy-butter-corn": IMG.meat,
-  "home-soy-sauce-eggs": IMG.egg,
-  "home-spinach-tofu-scramble": IMG.tofu,
-  "home-steamed-beef-patty": IMG.meat,
-  "home-steamed-egg-shrimp": IMG.seafood,
-  "home-taiwanese-cabbage-pork": IMG.meat,
-  "home-taiwanese-tomato-egg-rice": IMG.egg,
-  "home-thai-basil-chicken": IMG.chicken,
-  "home-thai-cucumber-salad": IMG.salad,
-  "home-thai-shrimp-stir-fry": IMG.seafood,
-  "home-tofu-katsu": IMG.tofu,
-  "home-tofu-scramble-rice": IMG.tofu,
-  "home-tofu-teriyaki": IMG.tofu,
-  "home-tom-yum": IMG.seafood,
-  "home-tomato-egg-veg-soup": IMG.soup,
-  "home-tomato-mozzarella-toast": IMG.toast,
-  "home-tomato-pork-chops": IMG.meat,
-  "home-tuna-melt": IMG.fish,
-  "home-tuna-white-bean-salad": IMG.salad,
-  "home-veg-bibimbap": IMG.egg,
-  "home-veg-claypot-rice": IMG.meat,
-  "home-veg-dan-dan": IMG.noodles,
-  "home-veg-gyudon": IMG.noodles,
-  "home-veg-hot-sour-soup": IMG.tofu,
-  "home-veg-ramen-home": IMG.noodles,
-  "home-veg-sweet-sour": IMG.tofu,
-  "home-vegan-mapo-tofu": IMG.tofu,
-  "home-vietnamese-caramel-pork": IMG.meat,
-  "home-vietnamese-garlic-fish": IMG.fish,
-  "home-western-veg-omelette": IMG.egg,
-  "home-yogurt-berry-breakfast": IMG.breakfast,
-  "home-yogurt-cucumber-bowl": IMG.breakfast,
-  "home-zucchini-noodles-stir": IMG.noodles,
+  "home-avocado-toast": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-og
+  "home-bacon-egg-rice": "https://live.staticflickr.com/3821/20185923939_3e9b046384_b.jpg", // openverse:flickr
+  "home-bacon-pasta": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/one-pot_bacon_spinach_50776_16x9.jpg", // source-og
+  "home-baked-beans-toast": "https://live.staticflickr.com/2607/3922952612_fc4e7c288e_b.jpg", // openverse:flickr
+  "home-baked-eggs-spinach": "https://live.staticflickr.com/2918/14212026584_7b753864f2_b.jpg", // openverse:flickr
+  "home-baked-pork-chop-rice": "https://upload.wikimedia.org/wikipedia/commons/8/86/Baked_pork_chop_rice_from_cafe_de_coral.jpg", // commons
+  "home-baked-seafood-rice": "https://upload.wikimedia.org/wikipedia/commons/9/92/Food_%E6%8B%9B%E7%89%8C%E7%84%97%E6%B5%B7%E9%AE%AE%E9%A3%AF%2C_%E7%9C%9F%E5%A5%BD%E5%91%B3%2C_%E7%9C%9F%E5%A5%BD%E5%91%B3%E8%8C%B6%E9%A4%90%E5%BB%B3%2C_%E5%8F%B0%E5%8C%97_%2813333673195%29.jpg", // openverse:wikimedia
+  "home-banana-peanut-toast": "https://live.staticflickr.com/7110/7659752852_22b25693bd.jpg", // openverse:flickr
+  "home-basil-eggplant": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Vegan_Thai_Basil_Eggplant_%2814271347306%29.jpg", // openverse:wikimedia
+  "home-bean-sprout-stirfry": "https://live.staticflickr.com/8388/8533456131_f5c3e49d9d_b.jpg", // openverse:flickr
+  "home-bean-tomato-stew": "https://live.staticflickr.com/6141/5959729992_61f232e297_b.jpg", // openverse:flickr
+  "home-beef-broccoli": "https://cdn.sanity.io/images/2r0kdewr/production/5283c364dc5b47a3e0a64e604661f68d13669d8c-6000x3375.jpg", // source-og
+  "home-beef-choi-sum": "https://upload.wikimedia.org/wikipedia/commons/a/a4/HK_KTD_%E4%B9%9D%E9%BE%8D%E7%81%A3_Kln_Bay_KITEC_%E4%B9%9D%E9%BE%8D%E7%81%A3%E5%9C%8B%E9%9A%9B%E5%B1%95%E8%B2%BF%E4%B8%AD%E5%BF%83_EMax_Shopping_mall_shop_%E6%96%B0%E6%BD%AE%E6%A8%93%E9%85%92%E5%AE%B6_Crown_Sky_Chinese_Restaurant_food_fried_beef_choi_sum_May_2023_Px3_02.jpg", // openverse:wikimedia
+  "home-beef-chow-fun": "https://cdn.sanity.io/images/2r0kdewr/production/db59369f5a5932966d345fda0a9954bd1310d399-6000x3375.jpg", // madewithlau-og
+  "home-beef-fried-noodles": "https://live.staticflickr.com/7760/17328696186_206386a69e_b.jpg", // openverse:flickr
+  "home-beef-pho-style": "https://live.staticflickr.com/5808/22848590889_eb4cb574ec_b.jpg", // openverse:flickr
+  "home-beef-snow-peas": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk-recipes_600_stir-fried-beef-with-honey-pea-and-lily-bulb.jpg?bc=white&h=315&w=600&hash=6AF995F50125332FA7A2AE6D04081EB2&v=639263602101848697", // source-og
+  "home-beef-tomato-noodles": "https://live.staticflickr.com/65535/51890877241_d79246bc80_b.jpg", // openverse:flickr
+  "home-beef-tomato-rice": "https://live.staticflickr.com/3241/5697759851_f9f60ef14c_b.jpg", // openverse:flickr
+  "home-bell-pepper-beef": "https://upload.wikimedia.org/wikipedia/commons/9/94/HK_SPH_St_Paul%27s_Hospital_%E8%81%96%E4%BF%9D%E7%A5%BF%E9%86%AB%E9%99%A2_Lunch_Bell_pepper_beef_cooked_rice_n_order_form_Nov-2013.JPG", // openverse:wikimedia
+  "home-bibimbap": "https://live.staticflickr.com/4034/5131730270_6064a595b8_b.jpg", // openverse:flickr
+  "home-bitter-melon-beef": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Bitter_melon_beef_2023_08.jpg", // openverse:wikimedia
+  "home-black-bean-beef": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Chilli_Black_Bean_Beef_-_Kum_Den_%2868865151%29.jpg", // openverse:wikimedia
+  "home-black-bean-ribs": "https://upload.wikimedia.org/wikipedia/commons/4/41/Food_%E8%B1%89%E6%B1%81%E8%92%B8%E6%8E%92%E9%AA%A8%2C_%E6%96%B0%E8%91%A1%E8%8B%91%2C_Shin_Pu_Yuan%2C_%E5%8F%B0%E5%8C%97_%2821531923392%29.jpg", // openverse:wikimedia
+  "home-black-bean-ribs-claypot": "https://live.staticflickr.com/7298/12001454755_cc2b6cb3aa_b.jpg", // openverse:flickr
+  "home-braised-egg-rice": "https://live.staticflickr.com/7461/15669226637_ec04f8a5ff_b.jpg", // openverse:flickr
+  "home-braised-tofu-chicken": "https://cdn-akamai.lkk.com/-/media/beef-meatball-banh-mi/600x465.jpg?bc=white&h=315&w=600&hash=FD5C9EC20AC75FAC44A50291F85E1D2E&v=639263602103298756", // source-og
+  "home-braised-tofu-pork": "https://live.staticflickr.com/65535/53383140460_4c7f9fc7f7_b.jpg", // openverse:flickr
+  "home-braised-tofu-veg": "https://live.staticflickr.com/6075/6125348600_59ee669a41_b.jpg", // openverse:flickr
+  "home-broccoli-beef-garlic": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Ground_beef_on_sticky_rice_with_broccoli%2C_pickled_garlic%2C_guacamole_habanero_sauce%2C_and_soy_sauce_-_Massachusetts.jpg", // openverse:wikimedia
+  "home-broccoli-pork": "https://live.staticflickr.com/5082/5260510345_31150751e4_b.jpg", // openverse:flickr
+  "home-bulgogi-beef": "https://live.staticflickr.com/3469/3380547849_268ca70eb5_b.jpg", // openverse:flickr
+  "home-cabbage-pork-filling": "https://live.staticflickr.com/223/504366768_6b949014f0.jpg", // openverse:flickr
+  "home-cabbage-stirfry": "https://live.staticflickr.com/2877/10866943666_471d9f2845_b.jpg", // openverse:flickr
+  "home-cabbage-tofu-stew": "https://live.staticflickr.com/2196/2270822978_fc88586dee_b.jpg", // openverse:flickr
+  "home-cantonese-chicken-noodles": "https://live.staticflickr.com/2182/2498975990_5a91b50073_b.jpg", // openverse:flickr
+  "home-carrot-egg-stirfry": "https://live.staticflickr.com/65535/49974276306_0c079fd45c_b.jpg", // openverse:flickr
+  "home-cauliflower-stirfry": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Honey_Garlic_Cauliflower_Bites_-_Cadillac_Farmers_Market_%2828915434070%29.jpg", // openverse:wikimedia
+  "home-celery-pork": "https://live.staticflickr.com/1326/1267185400_8673e0321f_b.jpg", // openverse:flickr
+  "home-celery-tofu": "https://live.staticflickr.com/1058/1483892139_43ed761294_b.jpg", // openverse:flickr
+  "home-century-egg-congee": "https://live.staticflickr.com/4132/5049732373_9323bebf72_b.jpg", // openverse:flickr
+  "home-century-egg-tofu": "https://live.staticflickr.com/65535/51912826755_329b3c89a7_b.jpg", // openverse:flickr
+  "home-century-egg-tofu-soup": "https://live.staticflickr.com/2572/4162086517_c245edce17_b.jpg", // openverse:flickr
+  "home-char-siu-home": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/HK_SYP_Ming_Sing_60402_16.jpg/330px-HK_SYP_Ming_Sing_60402_16.jpg", // wikipedia-en
+  "home-chawanmushi-egg": "https://live.staticflickr.com/5290/5234980731_95bf0eb6c9.jpg", // openverse:flickr
+  "home-cheese-omelette": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/theperfectomelette_86680_16x9.jpg", // source-og
+  "home-chicken-broccoli": "https://live.staticflickr.com/3565/3439470565_eb1371bdd1_b.jpg", // openverse:flickr
+  "home-chicken-caesar-wrap": "https://live.staticflickr.com/4102/4782004194_560afe4229.jpg", // openverse:flickr
+  "home-chicken-carbonara": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chickencarbonara_90044_16x9.jpg", // source-og
+  "home-chicken-corn-soup": "https://cdn.sanity.io/images/2r0kdewr/production/6a4414547151d059bc6f6ce10d4783988aafcfca-1000x563.jpg", // madewithlau-og
+  "home-chicken-katsu-pan": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Chicken_katsu_from_Kamameshi_House.JPG", // openverse:wikimedia
+  "home-chicken-mushroom": "https://live.staticflickr.com/3902/14555901792_bf24319da1.jpg", // openverse:flickr
+  "home-chicken-mushroom-tofu": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk_recipe_600_minced-chicken-and-mushrooms-on-tofu.jpg?bc=white&h=315&w=600&hash=85669B8D05DFC7E8D870CEFB067C4C35&v=639263602093683222", // source-og
+  "home-chicken-salad": "https://live.staticflickr.com/2557/3802430198_0210919024_b.jpg", // openverse:flickr
+  "home-chicken-satay-rice": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Chicken_satay_on_banana_leaf_in_Java.jpg", // openverse:wikimedia
+  "home-chicken-steak-rice": "https://upload.wikimedia.org/wikipedia/commons/7/72/HK_TKL_%E8%AA%BF%E6%99%AF%E5%B6%BA_Tiu_Keng_Leng_%E6%98%8E%E6%84%9B%E5%B0%88%E4%B8%8A%E5%AD%B8%E9%99%A2_CIHE_Grove_Cafe_canteen_restaurant_Lunch_food_%E5%92%96%E5%96%B1%E9%9B%9E%E6%89%92_Curry_Chicken_Steak_%E7%A2%9F%E9%A0%AD%E9%A3%AF_white_plate_spaghetti_June_2019_SSG_04.jpg", // openverse:wikimedia
+  "home-chicken-tomato-beef-style": "https://live.staticflickr.com/6092/6286185972_a92107cbd2_b.jpg", // openverse:flickr
+  "home-chicken-veg-soup": "https://upload.wikimedia.org/wikipedia/commons/1/10/Chicken_Vegetable_Soup_%288731954951%29.jpg", // openverse:wikimedia
+  "home-chickpea-curry": "https://live.staticflickr.com/206/489731432_5310757359.jpg", // openverse:flickr
+  "home-chili-fried-tofu": "https://i2.chuimg.com/30fc93c52d064b8dbf430d72ccedda91_1920w_2560h.jpg?imageView2%2F1%2Fw%2F280%2Fh%2F216%2Finterlace%2F1%2Fq%2F75=", // xiachufang-og
+  "home-chili-garlic-eggplant": "https://live.staticflickr.com/8049/8132878390_6900072011_b.jpg", // openverse:flickr
+  "home-chili-oil-lettuce": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Salad_of_warmed_sardines_and_corn_on_lettuce%2C_with_chili_pepper%2C_onion%2C_garlic_olive_oil%2C_and_black_pepper_-_Massachusetts.jpg", // openverse:wikimedia
+  "home-chili-oil-noodles": "https://live.staticflickr.com/163/436143323_0a19ea6f11_b.jpg", // openverse:flickr
+  "home-chili-oil-wonton": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Food_%E7%B4%85%E6%B2%B9%E6%8A%84%E6%89%8B%2C_%E5%8E%9F%E6%B9%AF%E6%8A%84%E6%89%8B%2C_%E6%80%AA%E5%91%B3%E9%9B%9E%2C_%E5%B7%9D%E5%8C%97%E6%B6%BC%E7%9A%AE%2C%E9%87%8D%E6%85%B6%E6%8A%84%E6%89%8B%E9%BA%B5%E9%A3%9F%2C_%E5%8F%B0%E5%8C%97_%2814004573306%29.jpg", // openverse:wikimedia
+  "home-chinese-sausage-rice": "https://upload.wikimedia.org/wikipedia/commons/6/6d/HK_SW_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E6%98%9F%E6%9C%88%E6%A8%93_Sky_Cuisine_Chinese_Restaurant_%E9%A3%B2%E6%97%A9%E8%8C%B6_breakfast_steamed_food_dim_sum_%E8%87%98%E8%82%89_lap_yuk_%E8%87%98%E8%85%B8_lap_cheung_%E8%87%98%E5%91%B3_%E7%9B%85%E9%A3%AF_Lap_Mei_Rice_October_2022_Px3_04.jpg", // openverse:wikimedia
+  "home-choi-sum-fish": "https://live.staticflickr.com/2775/4121993972_5ee0c89393_b.jpg", // openverse:flickr
+  "home-chongqing-noodles": "https://upload.wikimedia.org/wikipedia/commons/0/0b/%E9%87%8D%E5%BA%86%E5%B0%8F%E9%9D%A2_-_2024-05-25.jpg", // commons
+  "home-chow-mein": "https://cdn.sanity.io/images/2r0kdewr/production/fc69d766d4f44ee9d497c48bef2f09e3efa8f715-1000x563.jpg", // source-og
+  "home-claypot-style-rice": "https://upload.wikimedia.org/wikipedia/commons/8/84/Claypot_Chicken_Rice%2C_Singapore.JPG", // openverse:wikimedia
+  "home-claypot-tofu": "https://upload.wikimedia.org/wikipedia/commons/d/d4/%E7%B2%A4%E8%8F%9C%E4%B9%8B%E8%B1%86%E8%85%90%E7%85%B2.jpg", // openverse:wikimedia
+  "home-clearout-egg-drop": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Consomme_de_volaille.jpg/330px-Consomme_de_volaille.jpg", // wikipedia-en
+  "home-coconut-curry-tofu": "https://live.staticflickr.com/5270/5596439341_ed7f59d394_b.jpg", // openverse:flickr
+  "home-cold-chili-noodles": "https://upload.wikimedia.org/wikipedia/commons/3/3d/%E5%B7%9D%E8%BE%A3%E6%B6%BC%E9%BA%B5-%E5%85%A8%E5%AE%B6%E8%B6%85%E5%95%86.jpg", // openverse:wikimedia
+  "home-cold-sesame-noodles": "https://upload.wikimedia.org/wikipedia/commons/e/eb/%E9%BA%BB%E9%86%AC%E6%B6%BC%E9%BA%B5_%2814079142765%29.jpg", // openverse:wikimedia
+  "home-cold-tofu-soy": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Tofu_with_Century_Egg_01.jpg", // openverse:wikimedia
+  "home-condensed-milk-toast": "https://upload.wikimedia.org/wikipedia/commons/6/66/Condensed_milk_toast.jpg", // openverse:wikimedia
+  "home-congee": "https://upload.wikimedia.org/wikipedia/commons/8/86/Cantonese_rice_porridge.JPG", // commons
+  "home-corn-butter-rice": "https://live.staticflickr.com/2727/4015192611_ef0c58e554_b.jpg", // openverse:flickr
+  "home-corn-egg-scramble": "https://live.staticflickr.com/2348/2373286750_81b231e77b_b.jpg", // openverse:flickr
+  "home-corn-rib-soup": "https://live.staticflickr.com/2127/2738769544_96f7c67d84_b.jpg", // openverse:flickr
+  "home-corned-beef-macaroni": "https://live.staticflickr.com/2039/1583894062_2814af6cc5_b.jpg", // openverse:flickr
+  "home-creamed-corn-soup": "https://live.staticflickr.com/2127/2738769544_96f7c67d84_b.jpg", // openverse:flickr
+  "home-creamy-mushroom-chicken": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Creamy_Mushroom_Chicken.jpg", // openverse:wikimedia
+  "home-cucumber-egg": "https://upload.wikimedia.org/wikipedia/commons/8/8b/DFC_0804_A_plate_of_steamed_white_rice_topped_with_a_runny_fried_egg_served_alongside_stir-fried_minced_chicken_with_basil_and_sliced_cucumber.jpg", // openverse:wikimedia
+  "home-cucumber-miso": "https://upload.wikimedia.org/wikipedia/commons/8/87/Squid%2C_miso%2C_cucumber_salad_%285442215090%29.jpg", // openverse:wikimedia
+  "home-cumin-beef": "https://live.staticflickr.com/2371/1949040625_a0c6bca618_b.jpg", // openverse:flickr
+  "home-dan-dan-noodles": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Dandan_noodles_%28%E6%93%94%E6%93%94%E9%BA%B5%29.jpg", // openverse:wikimedia
+  "home-doenjang-jjigae": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Doenjang_jjigae.jpg", // openverse:wikimedia
+  "home-dry-fried-green-beans": "https://live.staticflickr.com/65535/52063392826_6d177ba5e7_b.jpg", // openverse:flickr
+  "home-dry-pot-cauliflower": "https://live.staticflickr.com/7421/13121053625_f7a331707b.jpg", // openverse:flickr
+  "home-egg-drop-soup": "https://cdn.sanity.io/images/2r0kdewr/production/65262d682512229ffb09f533e1201e0ceaff07ef-1000x563.jpg", // madewithlau-og
+  "home-egg-foo-young": "https://cdn.sanity.io/images/2r0kdewr/production/6e863c3a2bbe83429886fdaa07b95de4af564413-1000x563.jpg", // source-og
+  "home-egg-fried-rice": "https://cdn.sanity.io/images/2r0kdewr/production/0050287d61032bf11e545aa23fd1d00fe963307b-1000x563.jpg", // madewithlau-og
+  "home-egg-mayo-sandwich": "https://live.staticflickr.com/8209/8287265171_26fb7711fd.jpg", // openverse:flickr
+  "home-egg-tofu-stew": "https://live.staticflickr.com/4039/4556151465_326bc3625a.jpg", // openverse:flickr
+  "home-egg-white-tomato": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Liat_Portal_for_Foodie_Disorder_-_Israeli_breakfast_with_scrambled_eggs%2C_avocado_and_tomato_salad.jpg", // openverse:wikimedia
+  "home-eggplant-mapo-veg": "https://live.staticflickr.com/7113/6930148904_ed60305d9c_b.jpg", // openverse:flickr
+  "home-eggplant-mince": "https://upload.wikimedia.org/wikipedia/commons/0/06/Hong_Kong_style_fired_Eggplant_with_minced_pork.jpg", // openverse:wikimedia
+  "home-eggplant-pork-claypot": "https://live.staticflickr.com/4043/4199249415_ffec8b9a2e_b.jpg", // openverse:flickr
+  "home-eggplant-tofu-claypot": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Eggplant_and_ground_pork_in_spicy_sauce%2C_stewed_pumpkins%2C_miso_soup_with_tofu%2C_brown_rice_%E9%BA%BB%E5%A9%86%E8%8C%84%E5%AD%90%E3%80%81%E3%82%AB%E3%83%9C%E3%83%81%E3%83%A3%E3%81%AE%E7%85%AE%E4%BB%98%E3%81%91%E3%80%81%E8%B1%86%E8%85%90%E3%81%A8%E3%83%AF%E3%82%AB%E3%83%A1%E3%81%AE%E5%91%B3%E5%99%8C%E6%B1%81%E3%80%81%E7%8E%84%E7%B1%B3.jpg/960px-thumbnail.jpg", // commons
+  "home-fermented-tofu-greens": "https://live.staticflickr.com/5060/5451994077_4639151bac.jpg", // openverse:flickr
+  "home-fish-tofu-soup": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Tofu_in_miso_soup_by_cathykid_in_Taipei.jpg", // openverse:wikimedia
+  "home-french-toast": "https://live.staticflickr.com/3464/3903092538_346de4789e_b.jpg", // openverse:flickr
+  "home-fridge-fried-noodles": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/The_fridge_in_the_replica_of_the_hut_for_researching_noodles_by_Momofuku_Ando.jpg/960px-The_fridge_in_the_replica_of_the_hut_for_researching_noodles_by_Momofuku_Ando.jpg", // commons
+  "home-fu-yung-egg-lkk": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk_recipe_600_abalone-dices-on-fried-wanton-wrappers/r2600x465/600x465_/asparagus_600x465/rice_600x465/_600x465/fried-egg-with-vegetables-ham-and-prawn600x465/fried-egg-with-vegetables-ham-and-prawn-600x465.jpg?bc=white&h=315&w=600&hash=355D7C423CB2AA29C406E4C560F808FE&v=639263602097677287", // source-og
+  "home-garlic-broccoli": "https://live.staticflickr.com/2709/4065044431_780d1231d2_b.jpg", // openverse:flickr
+  "home-garlic-broccoli-tofu": "https://live.staticflickr.com/7500/15903955768_110094cc87_b.jpg", // openverse:flickr
+  "home-garlic-choi-sum": "https://upload.wikimedia.org/wikipedia/commons/a/aa/SZ_%E6%B7%B1%E5%9C%B3_Shenzhen_%E7%BE%85%E6%B9%96_Luohu_%E8%A7%A3%E6%94%BE%E8%B7%AF_1002_JieFang_Road_%E6%9D%B1%E9%96%80%E5%8D%B0%E8%B1%A1%E5%9F%8E_Dongmen_YinXiang_City_mall_shop_%E5%8D%83%E6%BB%8B%E7%99%BE%E5%91%B3%E8%87%AA%E5%8A%A9%E7%83%A4%E8%82%89%E9%A4%90%E5%BB%B3_XianZi_BaiWei_BBQ_Meat_Buffet_Restaurant_food_%E8%92%9C%E8%93%89%E8%8F%9C%E5%BF%83_vegetable_September_2025_R12S_01.jpg", // openverse:wikimedia
+  "home-garlic-cucumber-spicy": "https://live.staticflickr.com/5081/5273266265_c4d308ca1c_b.jpg", // openverse:flickr
+  "home-garlic-eggplant": "https://cdn.sanity.io/images/2r0kdewr/production/d95e5639bd61bb855df361facef5fde9653b67e9-1000x563.jpg", // source-og
+  "home-garlic-green-beans": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Baked_chicken_with_sesame_garlic_green_beans_%2819267262715%29.jpg", // openverse:wikimedia
+  "home-garlic-lettuce": "https://live.staticflickr.com/8003/7625961994_bbc0192d49_b.jpg", // openverse:flickr
+  "home-garlic-morning-glory": "https://live.staticflickr.com/3877/14862706011_0905ea144f_b.jpg", // openverse:flickr
+  "home-garlic-pak-choi": "https://live.staticflickr.com/4365/35503359434_d642ce841d_b.jpg", // openverse:flickr
+  "home-garlic-shrimp": "https://live.staticflickr.com/5614/15312774567_75cb3e4daa_b.jpg", // openverse:flickr
+  "home-garlic-snow-peas": "https://live.staticflickr.com/110/297986190_6eac684846.jpg", // openverse:flickr
+  "home-garlic-spare-ribs": "https://live.staticflickr.com/2163/1993402258_0726e4531d_b.jpg", // openverse:flickr
+  "home-garlic-spinach": "https://live.staticflickr.com/3025/2461264478_2355005310_b.jpg", // openverse:flickr
+  "home-ginger-chicken": "https://upload.wikimedia.org/wikipedia/commons/1/18/HK_SKD_TSO_%E5%B0%87%E8%BB%8D%E6%BE%B3_Tseung_Kwan_O_%E5%94%90%E4%BF%8A%E8%A1%97_Tong_Chun_Street_%E5%AF%B6%E9%82%91%E8%B7%AF_Po_Yap_Road_%E5%B0%87%E8%BB%8D%E6%BE%B3%E5%BB%A3%E5%A0%B4_TKO_Plaza_mall_%E6%B0%B8%E6%97%BA%E8%B6%85%E7%B4%9A%E5%B8%82%E5%A0%B4_AEON_Supermarket_cooked_food_January_2023_Px3_%E8%96%91%E8%94%A5%E9%9B%9E_chicken_01.jpg", // openverse:wikimedia
+  "home-ginger-choi-sum": "https://live.staticflickr.com/7157/6551785923_1c09eed986_b.jpg", // openverse:flickr
+  "home-ginger-fried-rice": "https://cdn.sanity.io/images/2r0kdewr/production/f09fe6a7aeb108088eac91449857baf60da6f2ed-6000x3375.jpg", // source-og
+  "home-ginger-scallion-shrimp": "https://live.staticflickr.com/8135/10202668163_d7f15d21ea_b.jpg", // openverse:flickr
+  "home-glass-noodle-stirfry": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Malaysian_Stir_Fry_Glass_Noodle.jpg", // openverse:wikimedia
+  "home-green-curry-chicken": "https://live.staticflickr.com/6/77079367_efe1004d3c.jpg", // openverse:flickr
+  "home-grilled-cheese": "https://live.staticflickr.com/8441/7839601924_207da1e98a_b.jpg", // openverse:flickr
+  "home-grilled-cheese-tomato": "https://live.staticflickr.com/7579/15839183375_49bf4f75e8_b.jpg", // openverse:flickr
+  "home-gyudon": "https://live.staticflickr.com/3744/13748895773_7da5e69b73_b.jpg", // openverse:flickr
+  "home-ham-cheese-toastie": "https://upload.wikimedia.org/wikipedia/commons/1/11/%22sourdough_ham_%26_cheese_toasties%22_and_%22lemon_%26_poppy_seeds_cake%22_by_The_Flying_Saucer.jpg", // openverse:wikimedia
+  "home-ham-macaroni-soup": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Macaroni_soup_with_ham.jpeg", // openverse:wikimedia
+  "home-herb-tofu-salad": "https://live.staticflickr.com/3675/9345212275_e0f55446b6_b.jpg", // openverse:flickr
+  "home-hk-borscht": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Borscht_at_Mido_Cafe.jpg", // openverse:wikimedia
+  "home-hk-curry-brisket": "https://upload.wikimedia.org/wikipedia/commons/5/52/Food_%E8%87%98%E5%91%B3%E7%85%B2%E4%BB%94%E9%A3%AF%2C_%E8%88%88%E8%A8%98%E7%82%92%E9%A3%AF%2C_%E5%92%96%E5%93%A9%E7%89%9B%E8%85%A9%E7%B2%89%E7%B5%B2%E7%85%B2%2C_%E8%88%88%E8%A8%98%E8%8F%9C%E9%A4%A8%2C_%E9%99%B3%E8%88%88%E7%99%BC%E8%88%88%E8%A8%98%E8%8F%9C%E9%A4%A8%2C_HingKee%2C_%E5%BE%AE%E9%A2%A8%E5%8D%97%E5%B1%B1%2C_%E5%8F%B0%E5%8C%97%2C_%E5%8F%B0%E7%81%A3%2C_Taipei%2C_Taiwan_%2840157434933%29.jpg", // openverse:wikimedia
+  "home-hk-curry-chicken": "https://upload.wikimedia.org/wikipedia/commons/0/04/Food_%E6%AD%A3%E5%AE%97%E9%A6%AC%E4%BE%86%E8%A5%BF%E4%BA%9E%E5%92%96%E5%93%A9%E9%9B%9E%2C_%E5%92%96%E5%93%A9%E9%9B%9E%E9%A3%AF%2C_%E8%82%89%E9%AA%A8%E8%8C%B6%2C_%E9%A6%AC%E4%BE%86%E9%A3%AF%2C_%E5%B8%AB%E5%A4%A7%E5%A4%9C%E5%B8%82%2C_%E5%8F%B0%E5%8C%97%2C_%E5%8F%B0%E7%81%A3%2C_Taipei%2C_Taiwan_%2832347550458%29.jpg", // openverse:wikimedia
+  "home-hk-egg-sandwich": "https://live.staticflickr.com/3398/3292802380_3e37c25929_b.jpg", // openverse:flickr
+  "home-hk-macaroni-soup": "https://upload.wikimedia.org/wikipedia/commons/2/26/Soup_Macaroni_in_Hong_Kong.jpg", // commons
+  "home-hk-spaghetti": "https://live.staticflickr.com/2420/1900842200_df71b5abd6_b.jpg", // openverse:flickr
+  "home-homestyle-tofu": "https://upload.wikimedia.org/wikipedia/commons/6/68/Ji%C4%81ch%C3%A1ng_d%C3%B2uf%C7%94%2C_marinated_cucumbers%2C_miso_soup_with_wakame_seaweed_and_scallions%2C_and_rice_%E5%AE%B6%E5%B8%B8%E8%B1%86%E8%85%90%E3%80%81%E3%82%AD%E3%83%A5%E3%82%A6%E3%83%AA%E3%81%AE%E5%8D%B3%E5%B8%AD%E6%98%86%E5%B8%83%E6%BC%AC%E3%81%91%E3%80%81%E3%83%AF%E3%82%AB%E3%83%A1%E3%81%A8%E3%83%8D%E3%82%AE%E3%81%AE%E5%91%B3%E5%99%8C%E6%B1%81%E3%80%81%E7%99%BD%E7%B1%B3.jpg", // openverse:wikimedia
+  "home-honey-garlic-chicken": "https://upload.wikimedia.org/wikipedia/commons/2/22/Spicy_honey_garlic_chicken_wings.jpg", // openverse:wikimedia
+  "home-hot-dry-noodles": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Hot_dry_noodles_in_Taiwan_2023-03-01.jpg", // openverse:wikimedia
+  "home-hot-sour-soup": "https://upload.wikimedia.org/wikipedia/commons/d/d0/%E9%85%B8%E8%BE%A3%E6%B9%AF%E9%BA%BA_%288417941363%29.jpg", // openverse:wikimedia
+  "home-hotwater-noodle-bowl": "https://upload.wikimedia.org/wikipedia/commons/7/75/%E8%8B%8F%E5%BC%8F%E6%B1%A4%E9%9D%A2.JPG", // commons
+  "home-instant-noodles-egg": "https://live.staticflickr.com/2147/2437604703_fa563674b8_b.jpg", // openverse:flickr
+  "home-jacket-potato-tuna": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/jacket_potato_with_tuna_30924_16x9.jpg", // source-og
+  "home-japanese-curry-rice": "https://upload.wikimedia.org/wikipedia/commons/d/dc/%E6%97%A5%E5%BC%8F%E5%92%96%E5%93%A9%E7%85%A7%E7%87%92%E9%86%AC%E7%83%A4%E9%9B%9E%E8%85%BF%E9%A3%AF%2C_%E7%B1%B3%E5%AE%9A%E9%A3%9F%2C_Machikaka%2C_%E5%8F%B0%E5%8C%97_%2814340393338%29.jpg", // openverse:wikimedia
+  "home-kimchi-fried-rice": "https://live.staticflickr.com/65535/51541677615_db2b1ab582_b.jpg", // openverse:flickr
+  "home-kimchi-jjigae": "https://live.staticflickr.com/5594/14792726797_c0a3b7cbd3_b.jpg", // openverse:flickr
+  "home-kimchi-leftover-stew": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Kimchi_soup_1.jpg", // commons
+  "home-kongnamul-muchim": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Kongnamul_muchim_%28soybean_sprouts%29.jpg", // openverse:wikimedia
+  "home-korean-cucumber-salad": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Korean_cold_cucumber_soup-Oi_naengguk-01.jpg", // openverse:wikimedia
+  "home-korean-egg-roll": "https://live.staticflickr.com/2632/4139639029_1f1912a5a2_b.jpg", // openverse:flickr
+  "home-kung-pao-cauliflower": "https://live.staticflickr.com/8513/8509495994_a3bf7defc9_b.jpg", // openverse:flickr
+  "home-kung-pao-chicken": "https://cdn.sanity.io/images/2r0kdewr/production/6c3074ce5ac483da413caa6e0faa75d41e2e3e3a-1000x563.jpg", // madewithlau-og
+  "home-laziji-chicken": "https://live.staticflickr.com/2780/4466362683_762f77cf4a_b.jpg", // openverse:flickr
+  "home-leftover-chicken-congee": "https://upload.wikimedia.org/wikipedia/commons/1/19/Chicken_congee_at_Psar_Chaa_Market_in_Siem_Reap%2C_Cambodia.jpg", // commons
+  "home-leftover-fried-rice": "https://live.staticflickr.com/4008/4329156005_86980bdd4d_b.jpg", // openverse:flickr
+  "home-leftover-noodle-toss": "https://live.staticflickr.com/8499/8319105915_6e108cc9e0_b.jpg", // openverse:flickr
+  "home-leftover-steam-rice": "https://live.staticflickr.com/3287/2903853962_53cfddcf1b_b.jpg", // openverse:flickr
+  "home-leftover-wrap": "https://upload.wikimedia.org/wikipedia/commons/6/60/Burrito.JPG", // commons
+  "home-lemon-chicken": "https://cdn.sanity.io/images/2r0kdewr/production/69aaf993ce4409da4ae659b179e425fd236ef0f9-1000x563.jpg", // madewithlau-og
+  "home-lemon-garlic-shrimp-pasta": "https://live.staticflickr.com/5614/15312774567_75cb3e4daa_b.jpg", // openverse:flickr
+  "home-lemon-spare-ribs": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Spareribs_20160506_182617113.jpg/330px-Spareribs_20160506_182617113.jpg", // wikipedia-en
+  "home-lemongrass-chicken": "https://live.staticflickr.com/3912/14783379753_c2488d0e87_b.jpg", // openverse:flickr
+  "home-lemongrass-tofu": "https://upload.wikimedia.org/wikipedia/commons/9/95/Vegan_lemongrass_tofu_baguette_sandwich_at_DD_Mau_in_Yaletown%2C_Vancouver_%288052219140%29.jpg", // openverse:wikimedia
+  "home-lentil-style-bean-stew": "https://live.staticflickr.com/5040/7054432527_5a021fbe0b_b.jpg", // openverse:flickr
+  "home-lettuce-fish": "https://live.staticflickr.com/3533/3209324691_352766b95a_b.jpg", // openverse:flickr
+  "home-lo-mein": "https://live.staticflickr.com/8499/8319105915_6e108cc9e0_b.jpg", // openverse:flickr
+  "home-lotus-rib-soup": "https://live.staticflickr.com/8392/8546361421_d892e2dab2_b.jpg", // openverse:flickr
+  "home-lu-rou-fan": "https://live.staticflickr.com/5461/14097878024_cc40cdedc1_b.jpg", // openverse:flickr
+  "home-luncheon-egg-noodles": "https://live.staticflickr.com/8885/18153846709_7467b44165.jpg", // openverse:flickr
+  "home-luncheon-fried-rice": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Hong_Kong_Style_Fried_Rice_with_Luncheon_Meat%2C_Sausage%2C_and_Sunny_Side_Up_Egg_-_CK_Bistro_2024-06-05.jpg", // openverse:wikimedia
+  "home-mapo-eggplant": "https://upload.wikimedia.org/wikipedia/commons/c/c0/MaPo_Egg_Plants_%28%E9%BA%BB%E5%A9%86%E8%8C%84%E5%AD%90%29_%286930148904%29.jpg", // openverse:wikimedia
+  "home-mapo-tofu": "https://cdn.sanity.io/images/2r0kdewr/production/2cb085c4ddab4bbca101f8d712ebfe2e40fb3ff5-1000x563.jpg", // source-og
+  "home-mapo-tofu-veg": "https://upload.wikimedia.org/wikipedia/commons/0/09/%E7%B4%A0%E9%BA%BB%E5%A9%86%E8%B1%86%E8%85%90%E9%A5%AD_Vegetarian_Mapo_Tofu_Rice_-_Hot_Space_AUD10.50_%284623720335%29.jpg", // openverse:wikimedia
+  "home-meatball-tomato-pasta": "https://live.staticflickr.com/3852/14384813812_4f063b83f5_b.jpg", // openverse:flickr
+  "home-minced-pork-pickles": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Food_%E9%AD%AF%E8%82%89%E9%A3%AF%2C_%E7%93%9C%E4%BB%94%E8%82%89%E9%A3%AF%2C_%E8%99%B1%E7%9B%AE%E9%AD%9A%E7%9A%AE%2C_%E6%B2%B9%E8%B1%86%E8%85%90%2C_%E7%B6%9C%E5%90%88%E5%86%AC%E7%B2%89%2C_%E9%87%91%E6%B2%B3%E5%86%AC%E7%B2%89%E4%B8%B8%2C_%E6%A1%83%E5%9C%92_%2815102238505%29.jpg", // openverse:wikimedia
+  "home-miso-soup": "https://live.staticflickr.com/7386/11849590613_651f1ff9fe_b.jpg", // openverse:flickr
+  "home-mushroom-bok-choy": "https://live.staticflickr.com/7631/28474153214_4b3efa9c88.jpg", // openverse:flickr
+  "home-mushroom-bulgogi": "https://live.staticflickr.com/8682/28833260271_7d0f040b9a_b.jpg", // openverse:flickr
+  "home-mushroom-claypot-rice": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Malaysian_Claypot_Chicken_Rice_via_Rice_Cooker.jpg", // openverse:wikimedia
+  "home-mushroom-egg-rice": "https://live.staticflickr.com/2549/4139673555_e4b39e92f6_b.jpg", // openverse:flickr
+  "home-mushroom-pasta": "https://upload.wikimedia.org/wikipedia/commons/b/b4/%E8%92%9C%E9%A6%99%E7%99%BD%E9%85%92%E5%88%81%E8%8D%89%E8%98%91%E8%8F%87%E5%BF%8C%E5%BB%89%E6%84%8F%E7%B2%89_%E5%8D%B0%E5%BA%A6%E5%96%80%E6%8B%89%E6%8B%89%E6%A4%B0%E9%A6%99%E5%A4%9A%E8%94%AC_masala%E9%A3%AF.jpg", // openverse:wikimedia
+  "home-mushroom-risotto": "https://i2.chuimg.com/a6c0afb49e4411e6947d0242ac110002_1080w_1617h.jpg?imageView2%2F1%2Fw%2F280%2Fh%2F216%2Finterlace%2F1%2Fq%2F75=", // xiachufang-og
+  "home-nasu-dengaku": "https://live.staticflickr.com/208/454003408_26282379af.jpg", // openverse:flickr
+  "home-nikujaga": "https://live.staticflickr.com/5051/5501985108_d887cd99df_b.jpg", // openverse:flickr
+  "home-no-red-meat-pasta": "https://live.staticflickr.com/4152/4977586419_83ff5860b1_b.jpg", // openverse:flickr
+  "home-no-seafood-chow-mein": "https://live.staticflickr.com/1174/1474618098_484d261855_b.jpg", // openverse:flickr
+  "home-omelette-rice": "https://cdn-akamai.lkk.com/-/media/yasaiitame350x350/600x465/600x465/600x465/600x465.jpg?bc=white&h=315&w=600&hash=D41362F4077EB76C5D2DC60F9C77FF9F&v=639263602096964514", // source-og
+  "home-orange-chicken": "https://cdn.sanity.io/images/2r0kdewr/production/744e0008b549064344b1c1120a3a4703ae6b61c1-1000x563.jpg", // source-og
+  "home-overnight-oats": "https://live.staticflickr.com/5470/10152667545_94751211aa_b.jpg", // openverse:flickr
+  "home-oyakodon": "https://live.staticflickr.com/7172/6748489939_05039548f7_b.jpg", // openverse:flickr
+  "home-oyster-beef": "https://cdn.sanity.io/images/2r0kdewr/production/989c6769d947b4c15671e803e6c8e86cfcaba081-1000x563.jpg", // madewithlau-og
+  "home-oyster-choi-sum": "https://live.staticflickr.com/3144/2851465622_875cbf9ab4_b.jpg", // openverse:flickr
+  "home-oyster-gai-lan": "https://upload.wikimedia.org/wikipedia/commons/4/45/Food_%E8%A0%94%E6%B2%B9%E8%8A%A5%E8%98%AD%E8%8F%9C%2C_%E7%BE%8A%E6%88%90%E5%B0%8F%E9%A4%A8%2C_%E7%BE%8A%E5%9F%8E%E5%B0%8F%E9%A4%A8%2C_%E5%8F%B0%E5%8C%97_%2817997079906%29.jpg", // openverse:wikimedia
+  "home-oyster-lettuce": "https://live.staticflickr.com/150/379436420_e48d34ae33_b.jpg", // openverse:flickr
+  "home-oyster-omelette": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Oyster_omelette_-_Singapore_style.JPG", // openverse:wikimedia
+  "home-oyster-tofu": "https://cdn-akamai.lkk.com/-/media/home-style-oyster-sauce-silken-tofu_600x465.jpg?bc=white&h=315&w=600&hash=AEF74E3692F54A177C960007E4500728&v=639263602046532918", // source-og
+  "home-pad-thai": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Pad_Thai_Vegetarian_-_Spicy_Noodle.jpg", // openverse:wikimedia
+  "home-pan-fish-peas": "https://live.staticflickr.com/5043/5267603559_8f9e74c3cc_b.jpg", // openverse:flickr
+  "home-pan-fried-rice-noodles": "https://cdn.sanity.io/images/2r0kdewr/production/b24021b1ad8d1680d9039ed8fa1950e96e627b46-1000x563.jpg", // source-og
+  "home-pan-radish-cake-style": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Turnip_cake_at_Chua_Lam%27s_Dim_Sum_%2820201120174336%29.jpg", // openverse:wikimedia
+  "home-pancakes-simple": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Foodiesfeed.com_pouring-honey-on-pancakes-with-walnuts.jpg/330px-Foodiesfeed.com_pouring-honey-on-pancakes-with-walnuts.jpg", // wikipedia-en
+  "home-peanut-tofu-stir-fry": "https://live.staticflickr.com/8229/28141777763_5030a92beb_b.jpg", // openverse:flickr
+  "home-pepper-tofu-stir": "https://live.staticflickr.com/4891/44639594440_829c676bcb_b.jpg", // openverse:flickr
+  "home-pesto-pasta": "https://live.staticflickr.com/3635/3306719277_e317c85c09_b.jpg", // openverse:flickr
+  "home-pineapple-chicken": "https://upload.wikimedia.org/wikipedia/commons/5/51/Pineapple_chicken_%28Pininyahang_Manok%29.jpg", // openverse:wikimedia
+  "home-pineapple-fried-rice": "https://cdn.sanity.io/images/2r0kdewr/production/9aae5f0fa749651c47973162cc78a12734837410-1000x563.jpg", // madewithlau-og
+  "home-pork-cabbage": "https://cdn.sanity.io/images/2r0kdewr/production/369c6ab47a67ff66b3e6e799a4a90279a0b6fe81-1000x563.jpg", // source-og
+  "home-pork-chop-noodles": "https://live.staticflickr.com/7288/16213614583_68c9771ee9_b.jpg", // openverse:flickr
+  "home-pork-chop-onion": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Smothered_pork_chops%2C_onion_rings.jpg", // commons
+  "home-pork-mince-noodles": "https://live.staticflickr.com/2068/2299406583_de87fa4938_b.jpg", // openverse:flickr
+  "home-pork-mince-rice-bowl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Rice_with_Char_Siu_and_Meigan_Cai_Minced_Pork.jpg", // openverse:wikimedia
+  "home-pork-rib-clear-soup": "https://live.staticflickr.com/2429/3572468691_8177d938c3_b.jpg", // openverse:flickr
+  "home-potato-chicken": "https://cdn-akamai.lkk.com/-/media/oyster-flavoured-braised-chicken-wings-with-potatoes_600x465.jpg?bc=white&h=315&w=600&hash=DE199C3F99C50F4A78D5F46D37A2BA60&v=639263602045582868", // source-og
+  "home-potato-spare-ribs": "https://live.staticflickr.com/3426/3183185100_c4596365fd_b.jpg", // openverse:flickr
+  "home-potato-stirfry": "https://live.staticflickr.com/2749/4363975792_d3f7a0b7ab_b.jpg", // openverse:flickr
+  "home-pumpkin-spare-ribs": "https://live.staticflickr.com/7018/6592858755_9a12d7d607_b.jpg", // openverse:flickr
+  "home-red-braised-pork": "https://live.staticflickr.com/2752/4049888252_77976d1209_b.jpg", // openverse:flickr
+  "home-salmon-avocado-bowl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Vibrant_%26_Healthy_Salmon%2C_Avocado%2C_and_Black_Rice_Salad_with_Dill_Yogurt_%2854788213790%29.jpg", // openverse:wikimedia
+  "home-salmon-broccoli-pasta": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/salmon_broccoli_pasta_39926_16x9.jpg", // source-og
+  "home-salmon-ochazuke": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Grilled_Salmon_and_Ochazuke_Set_in_Melbourne.jpg", // openverse:wikimedia
+  "home-salmon-rice-bowl": "https://live.staticflickr.com/5487/12183827505_d98cfb01de.jpg", // openverse:flickr
+  "home-salt-pepper-mushrooms": "https://live.staticflickr.com/32/55883521_1330fa120e_b.jpg", // openverse:flickr
+  "home-salt-pepper-ribs": "https://live.staticflickr.com/3018/2858328816_c801684aa5_b.jpg", // openverse:flickr
+  "home-salt-pepper-tofu": "https://cdn.sanity.io/images/2r0kdewr/production/f30a8e5907e0bc7596f7888e4e9b6ce31626a0a1-1000x563.jpg", // source-og
+  "home-salted-egg-pork-patty": "https://upload.wikimedia.org/wikipedia/commons/d/d6/HK_SW_%E4%B8%8A%E7%92%B0_Sheung_Wan_%E6%B0%B4%E5%9D%91%E5%8F%A3%E8%A1%97_Possession_Street_%E6%83%A0%E5%BA%B7%E8%B6%85%E7%B4%9A%E5%B8%82%E5%A0%B4_Wellcome_Supermarket_food_%E5%92%B8%E8%9B%8B%E8%82%89%E9%A4%85_Salted_egg_pork_mixed_cake_April_2021_SS2_01.jpg", // openverse:wikimedia
+  "home-salted-fish-chicken-fried-rice": "https://cdn.sanity.io/images/2r0kdewr/production/b21b55848fd7e270834207a68ee7cea356083f3e-1000x563.jpg", // madewithlau-og
+  "home-salted-fish-pork-patty": "https://live.staticflickr.com/65535/48036101512_3310ea9b65_b.jpg", // openverse:flickr
+  "home-san-bei-chicken": "https://upload.wikimedia.org/wikipedia/commons/f/ff/%E4%B8%89%E6%9D%AF%E9%9B%9E_3_Vegetables_and_Chicken_Bento_%28Taiwan%29.jpg", // openverse:wikimedia
+  "home-satay-beef-noodles": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Set_of_Satay_Beef_Noodle_Soup_at_New_Sun_May_Hong_Kong_style_restaurant_in_Tuen_Mun.jpg", // openverse:wikimedia
+  "home-satay-beef-rice": "https://live.staticflickr.com/119/315125845_7725884e3d_b.jpg", // openverse:flickr
+  "home-sausage-egg-noodles": "https://live.staticflickr.com/100/303237999_8da4a16b97_b.jpg", // openverse:flickr
+  "home-sausage-pasta": "https://live.staticflickr.com/3354/3242824884_16f5b7e22e_b.jpg", // openverse:flickr
+  "home-sausage-sticky-rice": "https://upload.wikimedia.org/wikipedia/commons/7/7c/X%C3%B4i_G%C3%A0_Tr%E1%BB%A9ng_Non_L%E1%BA%A1p_X%C6%B0%E1%BB%9Bng_%28Sticky_rice_with_chicken_and_eggs%2C_and_chinese_sausages%29.jpg", // openverse:wikimedia
+  "home-sausage-veg-rice": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Okowa_Bento_by_Yonehachi%2C_Takashimaya_Singapore.jpg/330px-Okowa_Bento_by_Yonehachi%2C_Takashimaya_Singapore.jpg", // wikipedia-en
+  "home-scallion-noodles": "https://live.staticflickr.com/5456/9166907613_00d4662c81_b.jpg", // openverse:flickr
+  "home-scallion-pancake": "https://live.staticflickr.com/3371/3292558286_f77c7fc489.jpg", // openverse:flickr
+  "home-scallop-style-congee": "https://live.staticflickr.com/8321/29196412323_14eff5a70c_b.jpg", // openverse:flickr
+  "home-scrambled-egg-toast": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/scrambledeggandtoast_75736_16x9.jpg", // source-og
+  "home-seafood-fried-rice": "https://live.staticflickr.com/7801/46990645922_e96903cfaf_b.jpg", // openverse:flickr
+  "home-seaweed-soup": "https://cdn.sanity.io/images/2r0kdewr/production/e05c692e97d0e6eac39aa193ad3c8a34f1de85c0-1000x563.jpg", // madewithlau-og
+  "home-sesame-chicken-taiwanese": "https://live.staticflickr.com/5503/30948919461_e4844d9acf_b.jpg", // openverse:flickr
+  "home-sesame-garlic-chicken-pasta": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk_recipe_600_abalone-dices-on-fried-wanton-wrappers/r2600x465/600x465_/asparagus_600x465/rice_600x465/pasta_600x465.jpg?bc=white&h=315&w=600&hash=BE9191A09C9E1B1C8082653A77F07EC9&v=639263602099076976", // source-og
+  "home-shakshuka": "https://upload.wikimedia.org/wikipedia/commons/1/18/Shakshuka_by_Calliopejen1.jpg", // openverse:wikimedia
+  "home-sheet-pan-chicken-veg": "https://upload.wikimedia.org/wikipedia/commons/3/34/Roasted_Chicken%2C_Vegetables%2C_Hashbrown_Meal.jpg", // commons
+  "home-shogayaki": "https://live.staticflickr.com/1005/552572937_f499fc3928_b.jpg", // openverse:flickr
+  "home-shrimp-broccoli": "https://upload.wikimedia.org/wikipedia/commons/5/56/HK_CWB_%E9%8A%85%E9%91%BC%E7%81%A3%E5%BB%A3%E5%A0%B4_Causeway_Bay_Plaza_%E5%A4%AA%E6%B9%96%E6%B5%B7%E9%AE%AE%E5%9F%8E_Tai_Woo_Seafood_Restaurant_food_Jan_2017_Lnv2_%E8%A5%BF%E8%98%AD%E8%8A%B1%E7%82%92%E8%9D%A6%E4%BB%81%E7%90%83_prawn_n_vegetable.jpg", // openverse:wikimedia
+  "home-shrimp-egg": "https://upload.wikimedia.org/wikipedia/commons/6/64/HK_food_%E8%9D%A6%E4%BB%81%E7%82%92%E8%9B%8B_prawn_egg_July_2022_Px3.jpg", // openverse:wikimedia
+  "home-shrimp-noodle-soup": "https://cdn.sanity.io/images/2r0kdewr/production/1f0dde004d07eeb4354ec3e3a05d977884a052a6-1000x563.jpg", // source-og
+  "home-shrimp-pasta": "https://live.staticflickr.com/4010/4330502941_9c94b4f64d_b.jpg", // openverse:flickr
+  "home-shrimp-wonton": "https://live.staticflickr.com/3884/14567479138_f8bba46201_b.jpg", // openverse:flickr
+  "home-shuizhu-mild": "https://upload.wikimedia.org/wikipedia/commons/f/f9/%E5%AE%B6%E5%BA%AD%E6%B0%B4%E7%85%AE%E8%82%89%E7%89%87.jpg", // commons
+  "home-singapore-noodles": "https://cdn.sanity.io/images/2r0kdewr/production/a86f09034d99f0b41ab220a0ab131f30674e01c2-1500x844.jpg", // source-og
+  "home-singapore-noodles-no-shrimp": "https://live.staticflickr.com/7181/6840032750_beddddfe2a_b.jpg", // openverse:flickr
+  "home-slippery-egg-chicken": "https://live.staticflickr.com/3082/2435637665_34a1b439d2_b.jpg", // openverse:flickr
+  "home-smashed-cucumber": "https://cdn.sanity.io/images/2r0kdewr/production/ffd18ec0c3a2d56cc0436561c0e3355d5e837364-1000x563.jpg", // madewithlau-og
+  "home-sour-cabbage-pork": "https://live.staticflickr.com/3181/2403231552_7c53accf9e_b.jpg", // openverse:flickr
+  "home-soy-butter-corn": "https://live.staticflickr.com/2727/4015192611_ef0c58e554_b.jpg", // openverse:flickr
+  "home-soy-butter-noodles": "https://upload.wikimedia.org/wikipedia/commons/4/45/Easy_Soy_Sauce_Noodles_%E9%99%BD%E6%98%A5%E9%BA%B5_%282%29.jpg", // commons
+  "home-soy-chicken": "https://cdn.sanity.io/images/2r0kdewr/production/bdc4bd6661f7e60e49ed49fd59d1007112b07b8f-1000x563.jpg", // madewithlau-og
+  "home-soy-fried-noodles": "https://upload.wikimedia.org/wikipedia/commons/2/27/Food_%E8%B1%89%E6%B2%B9%E7%8E%8B%E7%82%92%E9%BA%B5%2C_%E6%B7%BB%E5%A5%BD%E9%81%8B%2C_Timhowan%2C_%E5%8F%B0%E5%8C%97_%2822470607928%29.jpg", // openverse:wikimedia
+  "home-soy-garlic-fried-chicken": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Soy_Garlic_Chicken_Meal%2C_Dec_2025.jpg", // openverse:wikimedia
+  "home-soy-greens-rice": "https://live.staticflickr.com/6198/6084509242_7dd3689099_b.jpg", // openverse:flickr
+  "home-soy-sauce-eggs": "https://live.staticflickr.com/7261/6951055992_e6c4e1b0fb_b.jpg", // openverse:flickr
+  "home-soy-steamed-fish": "https://cdn-akamai.lkk.com/-/media/feature/recipe/recipe-photos/recipe-steamed-fish/recipe-steamed-fish.jpg?bc=white&h=315&w=600&hash=BC762555AB8CEBC877FFA67BBAA902E4&v=639263602103153724", // source-og
+  "home-spicy-pork-bulgogi": "https://live.staticflickr.com/65535/52128949723_4658f5ded9_b.jpg", // openverse:flickr
+  "home-spinach-egg-drop": "https://i2.chuimg.com/123a3527525b46d287611279c7476320_3780w_3024h.jpg?imageView2%2F1%2Fw%2F280%2Fh%2F216%2Finterlace%2F1%2Fq%2F75=", // xiachufang-og
+  "home-spinach-gomaae": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Spinach_Goma-ae_001.jpg", // openverse:wikimedia
+  "home-spinach-tofu-scramble": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Stir-fry_spinach_with_tofu_-_Golden_white_jade_and_Green_Parrot_%28%E8%8F%A0%E8%8F%9C%E7%82%92%E8%B1%86%E8%85%90_-_%E9%87%91%E9%91%B2%E7%99%BD%E7%8E%89%E6%9D%BF%EF%BC%8C%E7%B4%85%E5%98%B4%E7%B6%A0%E9%B8%9A%E5%93%A5%29%282%29.jpg", // openverse:wikimedia
+  "home-spinach-tofu-soup": "https://cdn.sanity.io/images/2r0kdewr/production/c42436bb3528b2f5453a5d8ccefa13474576f6a9-1000x563.jpg", // madewithlau-og
+  "home-steamed-beef-patty": "https://upload.wikimedia.org/wikipedia/commons/7/70/%E7%B2%89%E8%92%B8%E7%89%9B%E8%82%89_Minced_Beef_Steamed_with_Flour_Y4_-_%E9%BE%99%E6%8A%84%E6%89%8B%E9%A4%90%E5%8E%85_Long_Chao_Shou_Canting_%281483025901%29.jpg", // openverse:wikimedia
+  "home-steamed-chicken-mushroom": "https://live.staticflickr.com/3242/3027249434_caf455fcaa_b.jpg", // openverse:flickr
+  "home-steamed-egg-pork": "https://cdn.sanity.io/images/2r0kdewr/production/98d6019f116ebff34dd44cba0fabf7b81dd2cfc8-1000x563.jpg", // source-og
+  "home-steamed-egg-shrimp": "https://live.staticflickr.com/4077/4778656941_94113886cf_b.jpg", // openverse:flickr
+  "home-steamed-eggs": "https://cdn.sanity.io/images/2r0kdewr/production/c8a76c5ab9896ab1d10be90a72a1f3ca5565b6d8-6000x3375.jpg", // source-og
+  "home-steamed-fish": "https://live.staticflickr.com/8469/8096495102_54480fb361_b.jpg", // openverse:flickr
+  "home-steamed-fish-fillets": "https://live.staticflickr.com/2233/2500744284_30bd36bf54_b.jpg", // openverse:flickr
+  "home-steamed-pork-patty": "https://cdn.sanity.io/images/2r0kdewr/production/060966c684e799f75412646ceb85e36cacd48227-1000x563.jpg", // madewithlau-og
+  "home-steamed-tofu-pork": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk600_steamed-tofu-with-minced-pork2.jpg?bc=white&h=315&w=600&hash=ED7F7A65BD45E5D004FFDFC6EA8FA925&v=639263602089039875", // source-og
+  "home-stir-fried-bok-choy": "https://cdn.sanity.io/images/2r0kdewr/production/1069c3d60b0ba3cdba92729529108e487ea8d408-1500x844.jpg", // source-og
+  "home-sundubu-jjigae": "https://live.staticflickr.com/65535/49957100686_a37e605131_b.jpg", // openverse:flickr
+  "home-sweet-potato-rice": "https://live.staticflickr.com/7289/27481632794_abca23f47f_b.jpg", // openverse:flickr
+  "home-sweet-sour-pork": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Tangsuyuk_%28Korean_Chinese_sweet_and_sour_pork%29.jpg", // openverse:wikimedia
+  "home-swiss-chicken-wings": "https://upload.wikimedia.org/wikipedia/commons/3/3f/%E5%A4%AA%E5%B9%B3%E9%A4%A8%E9%A4%90%E5%BB%B3%E6%B2%B9%E9%BA%BB%E5%9C%B0%E5%88%86%E5%BA%97%E7%9A%84%E7%91%9E%E5%A3%AB%E9%9B%9E%E7%BF%BC.jpg", // openverse:wikimedia
+  "home-taiwanese-cabbage-pork": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Steamed_Minced_Pork_with_Salt_Duck_Egg.jpg/330px-Steamed_Minced_Pork_with_Salt_Duck_Egg.jpg", // wikipedia-en
+  "home-taiwanese-tomato-egg-rice": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Koh_Mak%2C_Thailand%2C_Fried_rice_with_seafood%2C_Thai_fried_rice.jpg/330px-Koh_Mak%2C_Thailand%2C_Fried_rice_with_seafood%2C_Thai_fried_rice.jpg", // wikipedia-en
+  "home-tamago-gohan": "https://upload.wikimedia.org/wikipedia/commons/9/97/Tamagokake-gohan_001.jpg", // openverse:wikimedia
+  "home-tamago-sando": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Tamago_Sando_elaborado_en_Argentina.jpg/330px-Tamago_Sando_elaborado_en_Argentina.jpg", // wikipedia-en
+  "home-teriyaki-chicken": "https://upload.wikimedia.org/wikipedia/commons/d/d0/%E7%85%A7%E7%87%92%E9%9B%9E%E6%89%92%E5%AE%9A%E9%A3%9F.jpg", // openverse:wikimedia
+  "home-teriyaki-salmon": "https://upload.wikimedia.org/wikipedia/commons/0/04/Flickr_-_Roger_T_Wong_-_20100130-46-Teriyaki_salmon_at_Wagamama_in_Christchurch.jpg", // openverse:wikimedia
+  "home-thai-basil-chicken": "https://live.staticflickr.com/4130/5023260450_ae10f89e08_b.jpg", // openverse:flickr
+  "home-thai-cucumber-salad": "https://live.staticflickr.com/7230/7355086864_337d6c9672_b.jpg", // openverse:flickr
+  "home-thai-shrimp-stir-fry": "https://upload.wikimedia.org/wikipedia/commons/6/62/Thai_shrimp_chips_%2820240619%29.jpg", // openverse:wikimedia
+  "home-tofu-egg-scramble": "https://live.staticflickr.com/3432/5781965358_2420f0f7a6_b.jpg", // openverse:flickr
+  "home-tofu-katsu": "https://live.staticflickr.com/4032/4377319325_22693f8b75_b.jpg", // openverse:flickr
+  "home-tofu-miso-stew": "https://upload.wikimedia.org/wikipedia/commons/4/47/Eggplant_and_ground_pork_in_spicy_sauce%2C_stewed_pumpkins%2C_miso_soup_with_tofu%2C_brown_rice_%E9%BA%BB%E5%A9%86%E8%8C%84%E5%AD%90%E3%80%81%E3%82%AB%E3%83%9C%E3%83%81%E3%83%A3%E3%81%AE%E7%85%AE%E4%BB%98%E3%81%91%E3%80%81%E8%B1%86%E8%85%90%E3%81%A8%E3%83%AF%E3%82%AB%E3%83%A1%E3%81%AE%E5%91%B3%E5%99%8C%E6%B1%81%E3%80%81%E7%8E%84%E7%B1%B3.jpg", // openverse:wikimedia
+  "home-tofu-scramble-rice": "https://live.staticflickr.com/3115/3121715379_9d7dd0e74a_b.jpg", // openverse:flickr
+  "home-tofu-shrimp": "https://live.staticflickr.com/3562/3456180868_ea2cd18d45_b.jpg", // openverse:flickr
+  "home-tofu-skin-stirfry": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Tofu_skin.png", // openverse:wikimedia
+  "home-tofu-teriyaki": "https://live.staticflickr.com/1604/25651401965_58f8b96f89_b.jpg", // openverse:flickr
+  "home-tom-yum": "https://live.staticflickr.com/2733/4416185107_5c1a497e7a_b.jpg", // openverse:flickr
+  "home-tomato-beef": "https://live.staticflickr.com/65535/51890877241_d79246bc80_b.jpg", // openverse:flickr
+  "home-tomato-cabbage": "https://live.staticflickr.com/2367/2254410585_dcfa840782_b.jpg", // openverse:flickr
+  "home-tomato-egg": "https://cdn.sanity.io/images/2r0kdewr/production/18e19453b570aa2866f14072eb22f9c28948a0c2-1000x563.jpg", // source-og
+  "home-tomato-egg-drop-soup": "https://upload.wikimedia.org/wikipedia/commons/2/25/Malaysian_Chicken_Masala_and_Tomato_Egg_Drop_Soup.jpg", // openverse:wikimedia
+  "home-tomato-egg-noodles": "https://live.staticflickr.com/2593/4027188565_7039edfd2a_b.jpg", // openverse:flickr
+  "home-tomato-egg-rice": "https://live.staticflickr.com/65535/49930806641_fe44050fe0_b.jpg", // openverse:flickr
+  "home-tomato-egg-rice-bowl": "https://live.staticflickr.com/2610/4172059790_aa88653826_b.jpg", // openverse:flickr
+  "home-tomato-egg-veg-soup": "https://upload.wikimedia.org/wikipedia/commons/2/25/Malaysian_Chicken_Masala_and_Tomato_Egg_Drop_Soup.jpg", // commons
+  "home-tomato-mozzarella-toast": "https://live.staticflickr.com/2014/2128855624_51a926978e.jpg", // openverse:flickr
+  "home-tomato-pork-chops": "https://live.staticflickr.com/388/18889344566_7d5fff530c.jpg", // openverse:flickr
+  "home-tomato-potato-stew": "https://live.staticflickr.com/7051/6973566295_153eaef49e_b.jpg", // openverse:flickr
+  "home-tomato-soup": "https://live.staticflickr.com/4022/4685313072_de559af5d4_b.jpg", // openverse:flickr
+  "home-tomato-soup-macaroni": "https://upload.wikimedia.org/wikipedia/commons/8/82/Set_D_-_Tomato_Soup_Macaroni_with_Scrambled_Egg%2C_Toasted_Bun%2C_Buttered_Sweet_Corn_-_HOKO_2024-12-21.jpg", // openverse:wikimedia
+  "home-tomato-tofu": "https://upload.wikimedia.org/wikipedia/commons/1/18/4%E6%9C%8818%E6%97%A5_%E7%95%AA%E8%8C%84%E8%B1%86%E8%85%90%E9%AD%9A%E6%B9%AF.jpg", // openverse:wikimedia
+  "home-tomato-tofu-soup": "https://cdn.sanity.io/images/2r0kdewr/production/52ae1c52d83694baaa305acdaf9bf5459ccab798-1000x563.jpg", // source-og
+  "home-tteokbokki": "https://live.staticflickr.com/1065/528099388_e9ce911d53_b.jpg", // openverse:flickr
+  "home-tuna-fried-rice": "https://upload.wikimedia.org/wikipedia/commons/8/89/Malaysian_Tuna_Fried_Rice.jpg", // openverse:wikimedia
+  "home-tuna-mayo-onigiri": "https://live.staticflickr.com/4063/4270807168_1db23eec89_b.jpg", // openverse:flickr
+  "home-tuna-melt": "https://live.staticflickr.com/7068/6870374851_6ce42d0f6f_b.jpg", // openverse:flickr
+  "home-tuna-pasta": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/creamy_tuna_one-pot_19168_16x9.jpg", // source-og
+  "home-tuna-rice-ball": "https://live.staticflickr.com/4312/36149194551_295c46b21f_b.jpg", // openverse:flickr
+  "home-tuna-white-bean-salad": "https://live.staticflickr.com/7366/10585910504_99d48d5fa9_b.jpg", // openverse:flickr
+  "home-twice-cooked-pork": "https://cdn.sanity.io/images/2r0kdewr/production/369c6ab47a67ff66b3e6e799a4a90279a0b6fe81-1000x563.jpg", // madewithlau-og
+  "home-udon-soy-broth": "https://live.staticflickr.com/3390/3477958193_d6f9cbb316_b.jpg", // openverse:flickr
+  "home-veg-bibimbap": "https://live.staticflickr.com/5063/5762793195_70db4f4e1c_b.jpg", // openverse:flickr
+  "home-veg-claypot-rice": "https://upload.wikimedia.org/wikipedia/commons/2/24/Tofu_and_Vegetable_Claypot_Rice_-_Claypot_King_%28353713343%29.jpg", // openverse:wikimedia
+  "home-veg-dan-dan": "https://live.staticflickr.com/3818/13763222825_6b031a023d.jpg", // openverse:flickr
+  "home-veg-gyudon": "https://live.staticflickr.com/8491/8390786441_9884e16be2_b.jpg", // openverse:flickr
+  "home-veg-hot-sour-soup": "https://live.staticflickr.com/2785/4389731194_8e2fc16b53_b.jpg", // openverse:flickr
+  "home-veg-ramen-home": "https://upload.wikimedia.org/wikipedia/commons/4/43/Vegetable_miso_ramen-_kombu_based_broth_with_miso%2C_buttered_corn%2C_crimini_%26_woodear_mushroom%2C_seasonal_vegetable.jpg", // openverse:wikimedia
+  "home-veg-sweet-sour": "https://live.staticflickr.com/89/248296419_f75a57397a_b.jpg", // openverse:flickr
+  "home-vegan-mapo-tofu": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Vegan_Mapo_Tofu_%2830679011112%29.jpg", // openverse:wikimedia
+  "home-vietnamese-caramel-pork": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Caramelized_Pork_and_Eggs.jpg", // openverse:wikimedia
+  "home-vietnamese-garlic-fish": "https://live.staticflickr.com/4020/4659307101_f0ca6db9bc_b.jpg", // openverse:flickr
+  "home-west-lake-beef-soup": "https://cdn.sanity.io/images/2r0kdewr/production/68356564692d980662be269c8037793c8cedbded-1000x563.jpg", // madewithlau-og
+  "home-western-veg-omelette": "https://upload.wikimedia.org/wikipedia/commons/6/67/Veggie_Omelette_upside_down.jpg", // commons
+  "home-white-cut-chicken": "https://upload.wikimedia.org/wikipedia/commons/e/ea/HK_food_%E7%99%BD%E5%88%87%E9%9B%9E_White_cut_chicken_%E5%A4%9A%E5%A4%9A%E9%A4%90%E5%BB%B3%E7%87%92%E8%85%8A%E9%A3%AF%E5%BA%97_More_%26_More_Restaurant_July-2011.jpg", // openverse:wikimedia
+  "home-winter-melon-soup": "https://live.staticflickr.com/30/44513407_77c48349b1_b.jpg", // openverse:flickr
+  "home-wonton-noodle-soup": "https://cdn.sanity.io/images/2r0kdewr/production/1f0dde004d07eeb4354ec3e3a05d977884a052a6-1000x563.jpg", // madewithlau-og
+  "home-wonton-soup": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Wonton_Noodle_Soup_in_Fresno%2C_California_%28%E9%9B%B2%E5%90%9E%E6%B9%AF%E9%BA%B5%E5%9C%A8%E5%8A%A0%E5%88%A9%E7%A6%8F%E5%B0%BC%E4%BA%9E%E5%B7%9E%E7%9A%84%E5%BC%97%E9%9B%B7%E6%96%AF%E8%AB%BE%29.jpg", // openverse:wikimedia
+  "home-yakisoba": "https://live.staticflickr.com/3101/3254260213_30bc1a83a8_b.jpg", // openverse:flickr
+  "home-yangzhou-fried-rice": "https://cdn.sanity.io/images/2r0kdewr/production/d7c3c91224833e5444fceb592847de7bc4492079-1000x563.jpg", // madewithlau-og
+  "home-yogurt-berry-bowl": "https://live.staticflickr.com/2579/3705717858_40e6d33ed2_b.jpg", // openverse:flickr
+  "home-yogurt-berry-breakfast": "https://live.staticflickr.com/2579/3705717858_40e6d33ed2_b.jpg", // openverse:flickr
+  "home-yogurt-cucumber-bowl": "https://live.staticflickr.com/8464/8126266300_d2e6fb363b_b.jpg", // openverse:flickr
+  "home-yuxiang-eggplant": "https://upload.wikimedia.org/wikipedia/commons/5/5f/HK_KTD_%E8%A7%80%E5%A1%98_Kwun_Tong_%E9%B1%B7%E9%AD%9A%E6%81%A4%E4%B8%AD%E5%BF%83_Crocodile_Center_shop_%E7%A8%BB%E9%A6%99%E8%8C%B6%E5%B1%85_Tao_Heung_Tea_House_Restaurant_diner_food_February_2023_Px3_18_%E9%AD%9A%E9%A6%99%E8%8C%84%E5%AD%90%E7%85%B2.jpg", // openverse:wikimedia
+  "home-yuxiang-shredded-pork": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Yuxiangrousi_%28%E9%AD%9A%E9%A6%99%E8%82%89%E7%B5%B2%29_in_K817_dining_car.JPG", // openverse:wikimedia
+  "home-zha-jiang-mian": "https://cdn.sanity.io/images/2r0kdewr/production/36bf0104fd40fa50ecab1456b6fddc481e979a8d-1000x563.jpg", // madewithlau-og
+  "home-zucchini-egg": "https://live.staticflickr.com/2774/4168975749_fbc19374ec_b.jpg", // openverse:flickr
+  "home-zucchini-noodles-stir": "https://live.staticflickr.com/3847/14925650515_f11ce45234_b.jpg", // openverse:flickr
 }
 
-/** Keyword → category for unmapped / newly added home recipes (500+ scale). */
-const INFER_RULES: { re: RegExp; key: ImageCategory }[] = [
-  { re: /eggplant|aubergine/, key: "veg" },
-  { re: /tofu|mapo|豆腐/, key: "tofu" },
-  { re: /congee|porridge|粥/, key: "bowl" },
-  { re: /soup|stew|broth|汤|湯/, key: "soup" },
-  { re: /noodle|mein|pasta|macaroni|udon|ramen|麵|面/, key: "noodles" },
-  { re: /fried.?rice|炒飯|炒饭/, key: "friedRice" },
-  { re: /toast|sandwich|toastie/, key: "toast" },
-  { re: /pancake|yogurt|granola|breakfast/, key: "breakfast" },
-  { re: /salad|cucumber|生菜/, key: "salad" },
-  { re: /fish|salmon|鳕|魚|鱼/, key: "fish" },
-  { re: /shrimp|prawn|scallop|海鮮|海鲜/, key: "seafood" },
-  { re: /chicken|雞|鸡/, key: "chicken" },
-  { re: /beef|pork|bacon|sausage|ham|肉|豬|牛/, key: "meat" },
-  { re: /potato|jacket/, key: "potato" },
-  { re: /egg|omelette|煎蛋|蒸蛋/, key: "egg" },
-  { re: /broccoli|cabbage|spinach|lettuce|choi|bok|gai.?lan|greens|vegetable|菜/, key: "veg" },
-  { re: /rice|飯|饭/, key: "rice" },
-]
-
-/** Infer a category photo from dish name / id / ingredients. */
-export function inferRecipeImage(recipe: Pick<Recipe, "id" | "name" | "need" | "zh">): string {
-  const hay = [recipe.id, recipe.name, recipe.zh?.name ?? "", ...(recipe.need ?? [])]
-    .join(" ")
-    .toLowerCase()
-  for (const { re, key } of INFER_RULES) {
-    if (re.test(hay)) return IMG[key]
-  }
-  return IMG.platter
+/** Resolve display image: inline field → media map. No generic stock fallback. */
+export function recipeImage(recipe: Recipe): string | undefined {
+  if (recipe.image?.startsWith("https://") || recipe.image?.startsWith("/")) return recipe.image
+  return RECIPE_IMAGES[recipe.id]
 }
 
-/** Resolve the display image for a recipe (inline → map → infer). */
-export function recipeImage(recipe: Recipe): string {
-  if (recipe.image?.startsWith("https://") || recipe.image?.startsWith("/")) {
-    return recipe.image
-  }
-  return RECIPE_IMAGES[recipe.id] ?? inferRecipeImage(recipe)
-}
-
-/** Merge a stored/inferred photo onto a recipe without clobbering inline fields. */
+/** Merge a stored dish photo onto a recipe without clobbering inline fields. */
 export function enrichRecipe(recipe: Recipe): Recipe {
   if (recipe.image) return recipe
-  const image = RECIPE_IMAGES[recipe.id] ?? (recipe.id.startsWith("home-") ? inferRecipeImage(recipe) : undefined)
-  if (!image) return recipe
-  return { ...recipe, image }
+  const image = RECIPE_IMAGES[recipe.id]
+  return image ? { ...recipe, image } : recipe
 }
 
 export function hasRecipeImage(recipe: Recipe): boolean {
-  return Boolean(recipe.image || RECIPE_IMAGES[recipe.id] || recipe.id.startsWith("home-"))
+  return Boolean(recipe.image || RECIPE_IMAGES[recipe.id])
 }
+
