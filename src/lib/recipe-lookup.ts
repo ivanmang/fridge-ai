@@ -217,15 +217,45 @@ export async function lookupDish(recipe: Recipe, locale: Locale): Promise<DishLo
   const key = cacheKey(recipe, locale)
   if (cache.has(key)) return cache.get(key) ?? null
 
+  const storedImage = recipe.image
+
   const trusted: DishLookup | null = recipe.sourceUrl
     ? {
-        image: recipe.image,
+        image: storedImage,
         aboutUrl: recipe.sourceUrl,
         aboutName: recipe.sourceName,
       }
-    : null
+    : storedImage
+      ? { image: storedImage }
+      : null
 
+  // Stored/enriched photo is enough — skip slow Wikipedia search-at-view-time for images.
   if (trusted?.image && trusted.aboutUrl) {
+    cache.set(key, trusted)
+    return trusted
+  }
+  if (trusted?.image && !trusted.aboutUrl) {
+    // Keep the photo; still try Wikipedia only for an about link.
+    for (const { lang, query } of searchQueries(recipe)) {
+      try {
+        const titles = await wikiSearchTitles(lang, query)
+        for (const title of titles) {
+          const summary = await wikiSummary(lang, title)
+          if (!summary) continue
+          if (!isConfidentDishMatch(recipe, summary.wikiTitle ?? title, summary.description, summary.extract)) continue
+          const hit: DishLookup = {
+            image: storedImage ?? summary.image,
+            aboutUrl: summary.aboutUrl,
+            aboutName: summary.aboutName,
+            wikiTitle: summary.wikiTitle,
+          }
+          cache.set(key, hit)
+          return hit
+        }
+      } catch {
+        /* try next query */
+      }
+    }
     cache.set(key, trusted)
     return trusted
   }

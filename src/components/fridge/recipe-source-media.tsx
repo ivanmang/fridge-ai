@@ -2,10 +2,14 @@ import { useEffect, useState } from "react"
 import { ExternalLink, Search } from "lucide-react"
 import { useI18n } from "@/components/fridge/shared"
 import { lookupDish, recipeSearchUrl, type DishLookup } from "@/lib/recipe-lookup"
+import { recipeImage } from "@/lib/recipe-media"
 import type { Recipe } from "@/lib/recipes"
 import { cn } from "@/lib/utils"
 
-/** Live dish photo (Wikipedia when matched) + always-valid recipe web search. */
+/**
+ * Deterministic dish photo (stored/inferred map) + always-valid recipe web search.
+ * Optional Wikipedia / source "about" link loads in the background.
+ */
 export function RecipeSourceMedia({
   recipe,
   dishName,
@@ -16,43 +20,42 @@ export function RecipeSourceMedia({
   compact?: boolean
 }) {
   const { locale, t } = useI18n()
-  const [lookup, setLookup] = useState<DishLookup | null>(null)
-  const [loading, setLoading] = useState(true)
+  const image = recipeImage(recipe)
+  const [lookup, setLookup] = useState<DishLookup | null>(
+    recipe.sourceUrl
+      ? { aboutUrl: recipe.sourceUrl, aboutName: recipe.sourceName, image }
+      : null,
+  )
   const searchUrl = recipeSearchUrl(recipe, locale)
 
   useEffect(() => {
     let cancelled = false
-    setLoading(true)
+    // About / guide link only — photo is already deterministic from the media map.
+    if (recipe.sourceUrl) {
+      setLookup({ aboutUrl: recipe.sourceUrl, aboutName: recipe.sourceName, image })
+      return () => {
+        cancelled = true
+      }
+    }
     setLookup(null)
     void lookupDish(recipe, locale).then((hit) => {
-      if (!cancelled) {
-        setLookup(hit)
-        setLoading(false)
-      }
+      if (!cancelled) setLookup(hit)
     })
     return () => {
       cancelled = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [recipe.id, recipe.name, recipe.zh?.name, recipe.image, recipe.sourceUrl, locale])
+  }, [recipe.id, recipe.name, recipe.zh?.name, recipe.sourceUrl, recipe.sourceName, locale, image])
 
   return (
     <div className={cn(compact ? "mt-3 space-y-2" : "mt-3 space-y-3")}>
-      {loading && (
-        <div
-          className={cn("w-full animate-pulse bg-raised", compact ? "h-28 rounded-card" : "aspect-[16/10] rounded-card")}
-          aria-hidden
-        />
-      )}
-      {!loading && lookup?.image && (
-        <img
-          src={lookup.image}
-          alt={t("recipePhotoAlt", { name: dishName })}
-          loading="lazy"
-          decoding="async"
-          className={cn("w-full object-cover bg-raised", compact ? "h-28 rounded-card" : "aspect-[16/10] rounded-card")}
-        />
-      )}
+      <img
+        src={image}
+        alt={t("recipePhotoAlt", { name: dishName })}
+        loading="lazy"
+        decoding="async"
+        className={cn("w-full object-cover bg-raised", compact ? "h-28 rounded-card" : "aspect-[16/10] rounded-card")}
+      />
       <a
         href={searchUrl}
         target="_blank"

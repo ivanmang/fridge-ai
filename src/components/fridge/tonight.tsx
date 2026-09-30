@@ -553,6 +553,15 @@ export function Tonight({
               const copy = recipeText(locale, row.recipe)
               return (
                 <li key={row.recipe.id} className="flex items-center gap-2">
+                  {row.recipe.image ? (
+                    <img
+                      src={row.recipe.image}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="size-10 shrink-0 rounded-card object-cover bg-raised"
+                    />
+                  ) : null}
                   <button type="button" onClick={() => setMealId(row.recipe.id)} className="min-w-0 flex-1 text-left text-sm font-medium">
                     {copy.name}
                     {lastTonightId === row.recipe.id ? <span className="ml-2 text-xs text-muted">{t("lastTonight")}</span> : null}
@@ -848,6 +857,15 @@ export function Tonight({
             const outline = isOutlineRecipe(row.recipe)
             return (
               <li key={row.recipe.id} className="flex items-center gap-3 rounded-card border border-line bg-surface px-4 py-3">
+                {row.recipe.image ? (
+                  <img
+                    src={row.recipe.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="size-14 shrink-0 rounded-card object-cover bg-raised"
+                  />
+                ) : null}
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <p className="font-medium">{copy.name}</p>

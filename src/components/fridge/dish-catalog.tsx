@@ -262,6 +262,15 @@ export function DishCatalog({
             from === "home" ? t("sourceHome") : from === "knorr" ? t("sourceKnorr") : from === "guardian" ? t("sourceGuardian") : t("sourceLkk")
           return (
             <li key={recipe.id} className="flex items-center gap-3 rounded-card border border-line bg-surface px-4 py-3">
+              {recipe.image ? (
+                <img
+                  src={recipe.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="size-14 shrink-0 rounded-card object-cover bg-raised"
+                />
+              ) : null}
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="font-medium">{copy.name}</p>
