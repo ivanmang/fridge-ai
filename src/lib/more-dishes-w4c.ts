@@ -8,8 +8,8 @@ export const MORE_W4C: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Squid", "White pepper", "Salt"],
-    optional: ["Garlic", "Spring onion", "Chili oil", "Cornstarch", "Flour"],
+    need: ["Squid", "White pepper", "Salt", "Eggs"],
+    optional: ["Garlic", "Spring onion", "Chili oil", "Cornstarch", "Flour", "Dried chili", "Cooking oil", "Shaoxing wine", "Baking soda"],
     steps: [
       "Clean 400 g squid; score lightly and cut into rings or bite pieces. Pat dry; toss with cornstarch/flour if using.",
       "Pan-fry in hot oil 2–3 minutes until opaque and lightly crisp; drain briefly.",
@@ -31,7 +31,7 @@ export const MORE_W4C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Clams", "Fermented black beans"],
-    optional: ["Garlic", "Ginger", "Spring onion", "Chili oil", "Soy sauce", "Sugar"],
+    optional: ["Garlic", "Ginger", "Spring onion", "Chili oil", "Soy sauce", "Sugar", "Cooking oil", "Oyster sauce", "White pepper", "Sesame oil", "Cornstarch"],
     steps: [
       "Soak and scrub 500 g clams; discard any that stay open. Rinse 1.5 tbsp fermented black beans; crush with garlic.",
       "Stir-fry black-bean garlic paste with ginger until fragrant; add clams and a splash of water.",
@@ -53,7 +53,7 @@ export const MORE_W4C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Shrimp", "Garlic"],
-    optional: ["Spring onion", "Soy sauce", "Sesame oil", "Salt", "White pepper", "Glass noodles"],
+    optional: ["Spring onion", "Soy sauce", "Sesame oil", "Salt", "White pepper", "Glass noodles", "Sugar", "Ginger", "Cooking oil", "Cornstarch"],
     steps: [
       "Peel and devein 300 g shrimp (scallop stand-in); arrange in a heatproof dish. Optional: soak a nest of glass noodles and lay under shrimp.",
       "Mix minced garlic with a pinch of salt, soy sauce, and sesame oil; spoon over shrimp.",
@@ -97,7 +97,7 @@ export const MORE_W4C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Shrimp", "White pepper", "Salt"],
-    optional: ["Garlic", "Spring onion", "Chili oil", "Cornstarch"],
+    optional: ["Garlic", "Spring onion", "Chili oil", "Cornstarch", "Cooking oil"],
     steps: [
       "Pat dry 350 g shrimp (shell-on OK); toss lightly with cornstarch if using.",
       "Pan-fry in hot oil 2–3 minutes per side until pink and cooked through.",
@@ -119,7 +119,7 @@ export const MORE_W4C: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Squid", "Ginger", "Spring onion"],
-    optional: ["Garlic", "Soy sauce", "Sesame oil", "Salt", "Shaoxing wine"],
+    optional: ["Garlic", "Soy sauce", "Sesame oil", "Salt", "Shaoxing wine", "Cooking oil"],
     steps: [
       "Clean and slice 400 g squid into rings. Julienne ginger and spring onion.",
       "Stir-fry ginger and garlic on high heat 20 seconds; add squid and a splash of Shaoxing wine if using.",
@@ -162,8 +162,8 @@ export const MORE_W4C: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["White fish", "Tofu"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Sesame oil", "Salt", "White pepper"],
+    need: ["White fish", "Tofu", "Carrots"],
+    optional: ["Ginger", "Spring onion", "Soy sauce", "Sesame oil", "Salt", "White pepper", "Cornstarch", "Flour", "Shaoxing wine", "Oyster sauce", "Cooking oil", "Garlic"],
     steps: [
       "Cut 300 g white fish into pieces; cube 250 g tofu. Layer tofu in a dish; top with fish and ginger shreds.",
       "Steam 10–12 minutes until fish flakes easily.",
@@ -250,8 +250,8 @@ export const MORE_W4C: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["White fish", "White pepper", "Salt"],
-    optional: ["Garlic", "Spring onion", "Chili oil", "Cornstarch", "Flour"],
+    need: ["White fish", "White pepper", "Salt", "Eggs"],
+    optional: ["Garlic", "Spring onion", "Chili oil", "Cornstarch", "Flour", "Ginger", "Cooking oil", "Shaoxing wine", "Five-spice powder"],
     steps: [
       "Cut 350 g white fish into bite pieces; pat dry and dust with cornstarch/flour if using.",
       "Pan-fry in oil 3–4 minutes per side until cooked through and lightly crisp.",
@@ -272,8 +272,8 @@ export const MORE_W4C: Recipe[] = [
     cuisine: "Thai",
     time: 18,
     servings: 2,
-    need: ["Shrimp", "Thai basil"],
-    optional: ["Garlic", "Onion", "Soy sauce", "Sugar", "Chili oil", "Cooked rice"],
+    need: ["Shrimp", "Thai basil", "Broccoli", "Eggs"],
+    optional: ["Garlic", "Onion", "Soy sauce", "Sugar", "Chili oil", "Cooked rice", "Cooking oil", "Shaoxing wine", "Sesame oil", "Salt", "White pepper"],
     steps: [
       "Peel 300 g shrimp. Mince garlic; slice onion if using. Pick Thai basil leaves.",
       "Stir-fry garlic/onion; add shrimp 2–3 minutes until pink.",
@@ -339,7 +339,7 @@ export const MORE_W4C: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Clams", "Pasta", "Tomato"],
-    optional: ["Garlic", "Onion", "Olive oil", "Salt", "Chili oil", "Spring onion"],
+    optional: ["Garlic", "Onion", "Olive oil", "Salt", "Chili oil", "Spring onion", "Chicken stock", "White pepper"],
     steps: [
       "Boil 180 g pasta until al dente. Scrub 400 g clams. Chop 2 tomatoes.",
       "Soften garlic/onion in olive oil; add tomato and cook 5 minutes until saucy. Add clams; cover until open.",
@@ -383,7 +383,7 @@ export const MORE_W4C: Recipe[] = [
     time: 22,
     servings: 2,
     need: ["Shrimp", "Lotus root"],
-    optional: ["Garlic", "Carrots", "Soy sauce", "Sesame oil", "Salt", "Cornstarch"],
+    optional: ["Garlic", "Carrots", "Soy sauce", "Sesame oil", "Salt", "Cornstarch", "Chicken stock", "Oyster sauce", "Sugar", "White pepper", "Cooking oil", "Ginger", "Spring onion", "Shaoxing wine"],
     steps: [
       "Peel 250 g shrimp; toss with cornstarch. Thin-slice 250 g lotus root; soak briefly and drain.",
       "Stir-fry shrimp until pink; remove. Stir-fry lotus (and carrot) 3–4 minutes until crisp-tender.",
@@ -405,7 +405,7 @@ export const MORE_W4C: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["White fish", "Coconut milk", "Curry powder"],
-    optional: ["Onion", "Garlic", "Zucchini", "Salt", "Sugar", "Cooked rice", "Lemongrass"],
+    optional: ["Onion", "Garlic", "Zucchini", "Salt", "Sugar", "Cooked rice", "Lemongrass", "Cooking oil", "Ginger", "Cilantro"],
     steps: [
       "Cut 350 g white fish into chunks. Soften onion/garlic; stir in 1–2 tsp curry powder until fragrant.",
       "Add 1 cup coconut milk and a splash of water (lemongrass if using); simmer 5 minutes. Add zucchini if using.",
@@ -471,7 +471,7 @@ export const MORE_W4C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Squid", "Fermented black beans"],
-    optional: ["Garlic", "Ginger", "Bell pepper", "Soy sauce", "Sugar", "Chili oil"],
+    optional: ["Garlic", "Ginger", "Bell pepper", "Soy sauce", "Sugar", "Chili oil", "Beef steak", "Baking soda", "Cornstarch", "Cooking oil", "Oyster sauce", "Shaoxing wine", "Chicken stock", "Sesame oil", "White pepper", "Onion", "Snow peas"],
     steps: [
       "Clean and cut 400 g squid. Rinse 1 tbsp black beans; crush with garlic.",
       "Stir-fry black-bean paste and ginger; add squid and bell pepper if using.",
@@ -493,7 +493,7 @@ export const MORE_W4C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Salmon", "Miso", "Tofu"],
-    optional: ["Nori", "Spring onion", "Sesame seeds", "Cooked rice"],
+    optional: ["Nori", "Spring onion", "Sesame seeds", "Cooked rice", "Chicken stock", "Eggs"],
     steps: [
       "Cut 200 g salmon into bite pieces; cube 150 g tofu.",
       "Simmer salmon and tofu in about 3 cups water 5–6 minutes until salmon is opaque.",

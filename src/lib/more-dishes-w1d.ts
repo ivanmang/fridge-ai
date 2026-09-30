@@ -8,8 +8,8 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Chinese",
     time: 25,
     servings: 2,
-    need: ["Tofu", "Bell pepper", "Garlic"],
-    optional: ["Soy sauce", "Sugar", "Spring onion", "Cornstarch", "Ginger"],
+    need: ["Tofu", "Bell pepper", "Garlic", "Ground pork"],
+    optional: ["Soy sauce", "Sugar", "Spring onion", "Cornstarch", "Ginger", "Cooking oil", "Oyster sauce", "Shaoxing wine", "Salt"],
     steps: [
       "Cut 1 block (about 350 g) tofu into 2 cm cubes; pat dry. Slice 1 bell pepper; mince 3 garlic cloves.",
       "Pan-fry tofu in 2 tbsp oil until golden on both sides; set aside. Stir-fry pepper and garlic 2 minutes.",
@@ -31,7 +31,7 @@ export const MORE_W1D: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Tofu", "Carrots", "Pak choi"],
-    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Ginger", "Cornstarch"],
+    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Ginger", "Cornstarch", "Cooking oil", "Chicken stock", "Sesame oil", "Sugar", "Salt", "Spring onion", "Shaoxing wine"],
     steps: [
       "Cube 1 block tofu. Slice 1 carrot into thin coins; cut 1 bunch pak choi into sections. Mince garlic/ginger if using.",
       "Lightly brown tofu in 1–2 tbsp oil; add carrot and aromatics, then ½ cup water, 1 tbsp soy sauce, and 1 tsp oyster sauce if using.",
@@ -53,7 +53,7 @@ export const MORE_W1D: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Silken tofu", "Soy sauce"],
-    optional: ["Sesame oil", "Spring onion", "Garlic", "Chili oil"],
+    optional: ["Sesame oil", "Spring onion", "Garlic", "Chili oil", "Cooking oil"],
     steps: [
       "Chill 1 pack (about 300 g) silken tofu. Drain carefully onto a plate and score the top lightly.",
       "Mix 2 tbsp soy sauce with 1 tsp sesame oil and minced garlic if using.",
@@ -74,8 +74,8 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Sichuan",
     time: 20,
     servings: 2,
-    need: ["Tofu", "Chili oil", "Garlic"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Cornstarch", "White pepper"],
+    need: ["Tofu", "Chili oil", "Garlic", "Ground pork"],
+    optional: ["Ginger", "Spring onion", "Soy sauce", "Cornstarch", "White pepper", "Shallot", "Cooking oil", "Oyster sauce", "Sugar", "Salt", "Sesame oil"],
     steps: [
       "Cube 1 block tofu; mince 3 garlic cloves and a little ginger if using.",
       "Warm 1–2 tbsp chili oil; fry garlic (and ginger) 30 seconds. Add ½ cup water and the tofu; simmer gently 5–7 minutes.",
@@ -163,7 +163,7 @@ export const MORE_W1D: Recipe[] = [
     time: 8,
     servings: 2,
     need: ["Lettuce", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Sesame oil"],
+    optional: ["Soy sauce", "Oyster sauce", "Sesame oil", "Cooking oil"],
     steps: [
       "Wash 1 large head of lettuce and tear or cut into large pieces; drain well. Mince 4 garlic cloves.",
       "Heat 1–2 tbsp oil until shimmering; fry garlic 15–20 seconds until fragrant but not burnt.",
@@ -207,7 +207,7 @@ export const MORE_W1D: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Mushroom", "Pak choi"],
-    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Sesame oil"],
+    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Sesame oil", "Cooking oil", "Salt", "Shaoxing wine", "Sugar", "White pepper", "Cornstarch"],
     steps: [
       "Slice 200 g mushrooms. Halve 1 bunch pak choi lengthwise; mince 2 garlic cloves if using.",
       "Stir-fry mushrooms in 1 tbsp oil 3–4 minutes until browned and their liquid mostly evaporates.",
@@ -251,7 +251,7 @@ export const MORE_W1D: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Silken tofu", "Century egg"],
-    optional: ["Ginger", "Spring onion", "White pepper", "Sesame oil", "Salt"],
+    optional: ["Ginger", "Spring onion", "White pepper", "Sesame oil", "Salt", "Chicken stock", "Cooking oil", "Eggs", "Mushroom", "Cabbage", "Cilantro"],
     steps: [
       "Cube 1 pack silken tofu. Peel and chop 1–2 century eggs. Slice a few pieces of ginger if using.",
       "Bring 3 cups water to a simmer with ginger; add tofu and century egg. Cook gently 4–5 minutes.",
@@ -295,7 +295,7 @@ export const MORE_W1D: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Broccoli", "Beef steak", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Cornstarch", "Ginger", "Sesame oil"],
+    optional: ["Soy sauce", "Oyster sauce", "Cornstarch", "Ginger", "Sesame oil", "Carrots", "Cooking oil", "Salt", "Baking soda", "White pepper", "Sugar", "Shaoxing wine"],
     steps: [
       "Slice 250 g beef steak thin against the grain; toss with 1 tbsp soy sauce and 1 tsp cornstarch. Cut broccoli into florets; mince 3 garlic cloves.",
       "Blanch or stir-fry broccoli 2–3 minutes until bright green; set aside. Sear beef in a hot oiled pan until browned and cooked through (74°C / 165°F).",
@@ -316,8 +316,8 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Chinese",
     time: 25,
     servings: 2,
-    need: ["Eggplant", "Ground pork", "Garlic"],
-    optional: ["Soy sauce", "Chili oil", "Spring onion", "Sugar", "Ginger"],
+    need: ["Eggplant", "Ground pork", "Garlic", "Eggs", "Pasta", "Bell pepper"],
+    optional: ["Soy sauce", "Chili oil", "Spring onion", "Sugar", "Ginger", "Salt", "Shaoxing wine", "White pepper", "Sesame oil", "Cornstarch", "Cooking oil", "Oyster sauce", "Chicken stock", "Cilantro"],
     steps: [
       "Cut 2 medium eggplants into batons (about 400 g). Mince 3 garlic cloves. Have 150 g ground pork ready.",
       "Brown the pork with garlic until cooked through (74°C / 165°F). Add eggplant and ½ cup water; cover and cook 6–8 minutes until soft.",
@@ -383,7 +383,7 @@ export const MORE_W1D: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Mushroom", "Garlic"],
-    optional: ["White pepper", "Salt", "Spring onion", "Chili oil", "Cornstarch"],
+    optional: ["White pepper", "Salt", "Spring onion", "Chili oil", "Cornstarch", "Ginger", "Cooking oil", "Shaoxing wine", "Eggs", "Five-spice powder"],
     steps: [
       "Halve or thick-slice 300 g mushrooms; pat dry. Toss lightly with 1 tsp cornstarch if using. Mince 3 garlic cloves.",
       "Pan-fry mushrooms in 2 tbsp oil over medium-high heat 5–7 minutes until browned and dry. Add garlic for the last minute.",
@@ -404,8 +404,8 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Cantonese",
     time: 10,
     servings: 2,
-    need: ["Snow peas", "Garlic"],
-    optional: ["Soy sauce", "Sesame oil", "Salt", "Ginger"],
+    need: ["Snow peas", "Garlic", "Beef steak"],
+    optional: ["Soy sauce", "Sesame oil", "Salt", "Ginger", "Sugar"],
     steps: [
       "Trim 250 g snow peas; rinse and drain. Mince 3 garlic cloves; slice a little ginger if using.",
       "Heat 1 tbsp oil; fry garlic (and ginger) 15 seconds until fragrant.",

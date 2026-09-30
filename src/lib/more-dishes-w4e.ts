@@ -9,7 +9,7 @@ export const MORE_W4E: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked leftovers", "Cooked rice", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Sesame oil", "White pepper"],
+    optional: ["Spring onion", "Soy sauce", "Garlic", "Sesame oil", "White pepper", "Carrots", "Corn", "Salt", "Cooking oil", "Sugar", "Chicken stock"],
     steps: [
       "Dice about 1 cup leftover pork (or mixed leftovers). Beat 2 eggs. Loosen 2 bowls cold cooked rice.",
       "Scramble eggs; remove. Stir-fry garlic if using, then leftovers 1 minute; add rice and soy sauce. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -31,7 +31,7 @@ export const MORE_W4E: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Cooked leftovers", "Noodles"],
-    optional: ["Spring onion", "Soy sauce", "Eggs", "Salt", "White pepper", "Spinach"],
+    optional: ["Spring onion", "Soy sauce", "Eggs", "Salt", "White pepper", "Spinach", "Tomato", "Sesame oil", "Vinegar", "Shrimp", "Cooking oil"],
     steps: [
       "Bring leftover soup (or leftovers plus about 3 cups water) to a simmer; season with soy sauce or salt. Any leftover meat or poultry must reach 74°C / 165°F.",
       "Cook noodles in the broth until tender. Optional: drop in a cracked egg and spinach for 2 minutes.",
@@ -74,8 +74,8 @@ export const MORE_W4E: Recipe[] = [
     cuisine: "Western",
     time: 25,
     servings: 2,
-    need: ["Cooked leftovers", "Eggs"],
-    optional: ["Cheddar", "Onion", "Salt", "White pepper", "Milk"],
+    need: ["Cooked leftovers", "Eggs", "Carrots", "Broccoli", "Celery", "Bean sprouts"],
+    optional: ["Cheddar", "Onion", "Salt", "White pepper", "Milk", "Spring onion", "Garlic", "Cornstarch", "Soy sauce", "Oyster sauce", "Sugar", "Cooking oil", "Sesame oil"],
     steps: [
       "Chop about 1.5 cups leftover vegetables/protein. Beat 5 eggs with a splash of milk, salt, and white pepper.",
       "Warm leftovers in an oven-safe pan; pour eggs over and top with cheddar if using.",
@@ -119,7 +119,7 @@ export const MORE_W4E: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cooked leftovers", "Noodles"],
-    optional: ["Spring onion", "Soy sauce", "Ginger", "Salt", "White pepper", "Choi sum"],
+    optional: ["Spring onion", "Soy sauce", "Ginger", "Salt", "White pepper", "Choi sum", "Tomato", "Sesame oil", "Vinegar", "Shrimp", "Cooking oil", "Eggs"],
     steps: [
       "Slice leftover brisket or beef leftovers. Simmer with ginger in about 4 cups water 8–10 minutes; season with soy sauce. Any leftover meat or poultry must reach 74°C / 165°F.",
       "Cook noodles separately; blanch choi sum if using.",
@@ -184,8 +184,8 @@ export const MORE_W4E: Recipe[] = [
     cuisine: "Western",
     time: 20,
     servings: 2,
-    need: ["Cooked leftovers", "Potato", "Eggs"],
-    optional: ["Spring onion", "Salt", "White pepper", "Flour", "Lemon"],
+    need: ["Cooked leftovers", "Potato", "Eggs", "Salmon", "Shrimp"],
+    optional: ["Spring onion", "Salt", "White pepper", "Flour", "Lemon", "Cilantro", "Cooking oil", "Sugar", "Chicken stock", "Cornstarch"],
     steps: [
       "Flake leftover cooked fish or seafood leftovers (about 1 cup). Mash 1 boiled potato; mix with fish, 1 egg, spring onion, salt, and white pepper.",
       "Shape into small cakes; dust with flour if using.",
@@ -206,8 +206,8 @@ export const MORE_W4E: Recipe[] = [
     cuisine: "Cantonese",
     time: 15,
     servings: 2,
-    need: ["Cooked leftovers", "Wonton wrappers"],
-    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Sesame oil", "Choi sum"],
+    need: ["Cooked leftovers", "Wonton wrappers", "Ground pork"],
+    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Sesame oil", "Choi sum", "Soy sauce", "Shaoxing wine", "Chicken stock"],
     steps: [
       "Chop leftover mince or protein finely; place small spoonfuls on wonton wrappers and seal with water.",
       "Simmer wontons in about 4 cups water with ginger 4–5 minutes until wrappers turn translucent and filling is hot (mince to 74°C / 165°F).",
@@ -228,8 +228,8 @@ export const MORE_W4E: Recipe[] = [
     cuisine: "Korean",
     time: 20,
     servings: 2,
-    need: ["Cooked leftovers", "Eggs", "Flour"],
-    optional: ["Spring onion", "Soy sauce", "Salt", "Kimchi"],
+    need: ["Cooked leftovers", "Eggs", "Flour", "Carrots", "Bell pepper"],
+    optional: ["Spring onion", "Soy sauce", "Salt", "Kimchi", "Sichuan peppercorns", "Sesame oil", "Cooking oil", "Sesame seeds"],
     steps: [
       "Chop 1.5 cups leftover vegetables (kimchi OK). Mix with 1 egg, 1/2 cup flour, spring onion, salt, and enough water to make a thick batter.",
       "Spread in a hot oiled pan; cook 3–4 minutes per side until golden and set. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -360,8 +360,8 @@ export const MORE_W4E: Recipe[] = [
     cuisine: "Korean",
     time: 18,
     servings: 2,
-    need: ["Kimchi", "Flour", "Eggs"],
-    optional: ["Cooked leftovers", "Spring onion", "Soy sauce", "Sesame oil"],
+    need: ["Kimchi", "Flour", "Eggs", "Cabbage", "Bread"],
+    optional: ["Cooked leftovers", "Spring onion", "Soy sauce", "Sesame oil", "Cornstarch", "Salt", "Cooking oil", "Vinegar", "Sugar"],
     steps: [
       "Chop 1 cup kimchi; mix with 1/2 cup flour, 1 egg, optional diced leftovers, spring onion, and enough water for a thick batter.",
       "Fry in a thin layer 3–4 minutes per side until crisp at the edges.",
@@ -382,8 +382,8 @@ export const MORE_W4E: Recipe[] = [
     cuisine: "Chinese",
     time: 15,
     servings: 2,
-    need: ["Cooked leftovers", "Cooked rice", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Onion", "Sesame oil"],
+    need: ["Cooked leftovers", "Cooked rice", "Eggs", "Beef steak"],
+    optional: ["Spring onion", "Soy sauce", "Garlic", "Onion", "Sesame oil", "Ginger", "Oyster sauce", "White pepper", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Slice leftover beef thinly. Beat 2 eggs; loosen 2 bowls cold rice.",
       "Scramble eggs; remove. Stir-fry onion/garlic, then beef 1 minute; add rice and soy sauce. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -404,8 +404,8 @@ export const MORE_W4E: Recipe[] = [
     cuisine: "Chinese",
     time: 15,
     servings: 2,
-    need: ["Cooked leftovers", "Cooked rice", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Corn", "Sesame oil", "Salt"],
+    need: ["Cooked leftovers", "Cooked rice", "Eggs", "Shrimp", "Snow peas"],
+    optional: ["Spring onion", "Soy sauce", "Garlic", "Corn", "Sesame oil", "Salt", "Cooking oil", "Onion", "Sugar", "White pepper", "Shaoxing wine"],
     steps: [
       "Use leftover cooked shrimp or mixed seafood leftovers, chopped. Beat 2 eggs; loosen cold rice.",
       "Scramble eggs; remove. Stir-fry garlic, leftovers, and corn if using; add rice and soy sauce. Any leftover meat or poultry must reach 74°C / 165°F.",

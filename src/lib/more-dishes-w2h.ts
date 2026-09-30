@@ -30,8 +30,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Cantonese",
     time: 35,
     servings: 2,
-    need: ["Wonton wrappers", "Ground pork", "Noodles"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Spring onion", "White pepper"],
+    need: ["Wonton wrappers", "Ground pork", "Noodles", "Pak choi", "Shrimp"],
+    optional: ["Garlic", "Ginger", "Soy sauce", "Spring onion", "White pepper", "Chicken stock", "Salt", "Olive oil", "Sesame oil"],
     steps: [
       "Mix 200 g ground pork with minced ginger and 1 tsp soy sauce; wrap into wontons.",
       "Boil wontons until they float and pork is 74°C / 165°F (4–5 min). Cook noodles separately.",
@@ -52,8 +52,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Cantonese",
     time: 30,
     servings: 2,
-    need: ["Wonton wrappers", "Ground pork"],
-    optional: ["Ginger", "Soy sauce", "Spring onion", "White pepper", "Garlic"],
+    need: ["Wonton wrappers", "Ground pork", "Pak choi", "Shrimp"],
+    optional: ["Ginger", "Soy sauce", "Spring onion", "White pepper", "Garlic", "Chicken stock", "Salt", "Olive oil", "Sesame oil"],
     steps: [
       "Fill wonton wrappers with seasoned ground pork (ginger + soy).",
       "Boil until cooked through (74°C / 165°F), about 4–5 minutes.",
@@ -74,8 +74,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Chinese",
     time: 25,
     servings: 2,
-    need: ["Noodles", "Ground pork"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Hoisin sauce", "Cucumber", "Sugar"],
+    need: ["Noodles", "Ground pork", "Eggs"],
+    optional: ["Onion", "Garlic", "Soy sauce", "Hoisin sauce", "Cucumber", "Sugar", "Spring onion", "Shallot", "Cooking oil", "Shaoxing wine", "Sesame oil", "Cornstarch", "Oyster sauce", "White pepper"],
     steps: [
       "Brown 200 g ground pork with garlic and onion until cooked through (74°C / 165°F).",
       "Add 2 tbsp soy sauce, 1 tbsp hoisin, and a pinch of sugar; simmer 3–4 minutes into a thick sauce.",
@@ -97,7 +97,7 @@ export const MORE_W2H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Noodles", "Bean sprouts"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Onion", "Sesame oil"],
+    optional: ["Spring onion", "Soy sauce", "Garlic", "Onion", "Sesame oil", "Shaoxing wine", "Sugar", "Cooking oil", "Sweet potato"],
     steps: [
       "Parboil noodles; drain well.",
       "Pan-fry noodles in a little oil until edges crisp; push aside and soften garlic/onion.",
@@ -118,8 +118,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Chinese",
     time: 15,
     servings: 1,
-    need: ["Noodles", "Sesame seeds"],
-    optional: ["Soy sauce", "Sesame oil", "Garlic", "Chili oil", "Spring onion", "Peanut butter"],
+    need: ["Noodles", "Sesame seeds", "Green beans"],
+    optional: ["Soy sauce", "Sesame oil", "Garlic", "Chili oil", "Spring onion", "Peanut butter", "Sugar", "Salt", "Pickled mustard", "Cilantro", "Vinegar"],
     steps: [
       "Boil noodles until just tender; drain thoroughly (should be dry-ish).",
       "Mix 1 tbsp sesame oil or peanut butter with 1 tbsp soy sauce, garlic, and chili oil.",
@@ -162,8 +162,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Noodles", "Chicken thighs"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Pak choi", "Salt"],
+    need: ["Noodles", "Chicken thighs", "Lettuce"],
+    optional: ["Ginger", "Spring onion", "Soy sauce", "Pak choi", "Salt", "Cooking oil", "Shaoxing wine", "White pepper", "Chili oil"],
     steps: [
       "Simmer chicken thighs with ginger slices in water 15 minutes until 74°C / 165°F; shred meat.",
       "Cook noodles and optional greens in the broth.",
@@ -207,7 +207,7 @@ export const MORE_W2H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Ground pork", "Cooked rice"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Spring onion", "Eggs"],
+    optional: ["Garlic", "Soy sauce", "Sugar", "Spring onion", "Eggs", "Salt", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Flour", "Cooking oil", "Butter", "Ketchup", "Sesame oil"],
     steps: [
       "Brown ground pork with garlic until cooked through (74°C / 165°F).",
       "Season with 1 tbsp soy sauce and a pinch of sugar; simmer 2 minutes.",
@@ -251,7 +251,7 @@ export const MORE_W2H: Recipe[] = [
     time: 40,
     servings: 2,
     need: ["Rice", "Dried mushrooms", "Chicken thighs"],
-    optional: ["Soy sauce", "Spring onion", "Ginger", "Garlic", "Chinese sausage"],
+    optional: ["Soy sauce", "Spring onion", "Ginger", "Garlic", "Chinese sausage", "Salt", "Sugar", "White pepper", "Eggs", "Shaoxing wine", "Sesame oil", "Cooking oil"],
     steps: [
       "Soak dried mushrooms; slice. Mix raw rinsed rice with water in a heavy pot.",
       "Top with chicken pieces and mushrooms; cover and cook on low until rice is done and chicken reaches 74°C / 165°F, about 25–30 minutes.",
@@ -272,8 +272,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Hong Kong",
     time: 20,
     servings: 2,
-    need: ["Cooked rice", "Chicken breast", "Canned tuna"],
-    optional: ["Eggs", "Spring onion", "Soy sauce", "Garlic"],
+    need: ["Cooked rice", "Chicken breast", "Canned tuna", "Lettuce"],
+    optional: ["Eggs", "Spring onion", "Soy sauce", "Garlic", "Ginger", "Cooking oil", "White pepper", "Oyster sauce", "Cornstarch"],
     steps: [
       "Dice chicken; stir-fry until cooked through (74°C / 165°F). Flake drained canned tuna as salty fish stand-in.",
       "Scramble optional egg; add cold rice and toss until steaming hot.",
@@ -295,7 +295,7 @@ export const MORE_W2H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cooked rice", "Eggs", "Shrimp", "Ham"],
-    optional: ["Spring onion", "Soy sauce", "Corn", "Carrots"],
+    optional: ["Spring onion", "Soy sauce", "Corn", "Carrots", "Salt", "Cooking oil"],
     steps: [
       "Scramble eggs; remove. Stir-fry shrimp until opaque and diced ham until hot.",
       "Add cold rice; toss until steaming.",
@@ -317,7 +317,7 @@ export const MORE_W2H: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Beef steak", "Tomato", "Cooked rice"],
-    optional: ["Onion", "Soy sauce", "Sugar", "Cornstarch", "Garlic"],
+    optional: ["Onion", "Soy sauce", "Sugar", "Cornstarch", "Garlic", "Ginger", "Spring onion", "Eggs", "Oyster sauce", "White pepper", "Shaoxing wine", "Sesame oil"],
     steps: [
       "Slice beef; sear quickly and remove. Cook tomato and onion until saucy with a pinch of sugar.",
       "Return beef with 1 tbsp soy sauce; thicken lightly with cornstarch if desired.",
@@ -339,7 +339,7 @@ export const MORE_W2H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cooked rice", "Shrimp", "Eggs"],
-    optional: ["Squid", "Spring onion", "Soy sauce", "Garlic"],
+    optional: ["Squid", "Spring onion", "Soy sauce", "Garlic", "Cooking oil", "Bacon", "Onion", "Salt", "Sugar", "Shaoxing wine", "White pepper"],
     steps: [
       "Stir-fry shrimp (and squid rings if using) until just cooked; remove.",
       "Scramble eggs, add rice, toss hot.",
@@ -360,8 +360,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Chinese",
     time: 15,
     servings: 1,
-    need: ["Noodles", "Cucumber"],
-    optional: ["Peanut butter", "Sesame oil", "Soy sauce", "Vinegar", "Garlic", "Sugar", "Sesame seeds"],
+    need: ["Noodles", "Cucumber", "Carrots", "Bean sprouts", "Bread", "Orange juice"],
+    optional: ["Peanut butter", "Sesame oil", "Soy sauce", "Vinegar", "Garlic", "Sugar", "Sesame seeds", "Spring onion", "Cilantro", "Peanuts", "Salt", "Cooking oil", "Shaoxing wine"],
     steps: [
       "Boil noodles; rinse cold and drain.",
       "Whisk 1 tbsp peanut butter, 1 tsp sesame oil, 1 tbsp soy sauce, vinegar, garlic, and a pinch of sugar with a splash of water.",
@@ -383,7 +383,7 @@ export const MORE_W2H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Glass noodles", "Eggs", "Carrots"],
-    optional: ["Cabbage", "Garlic", "Soy sauce", "Spring onion", "Ground pork"],
+    optional: ["Cabbage", "Garlic", "Soy sauce", "Spring onion", "Ground pork", "Salt", "Sesame oil", "Shaoxing wine", "Cooking oil", "Oyster sauce", "Sugar", "White pepper"],
     steps: [
       "Soak glass noodles until soft; drain. Scramble eggs or brown optional pork until 74°C / 165°F.",
       "Stir-fry carrot and cabbage with garlic.",
@@ -404,8 +404,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Cantonese",
     time: 35,
     servings: 2,
-    need: ["Rice", "Chinese sausage", "Cabbage"],
-    optional: ["Soy sauce", "Spring onion", "Ginger"],
+    need: ["Rice", "Chinese sausage", "Cabbage", "Eggs"],
+    optional: ["Soy sauce", "Spring onion", "Ginger", "Onion", "Salt", "Sugar", "Sesame oil", "White pepper", "Cooking oil", "Shaoxing wine"],
     steps: [
       "Rinse rice; add normal cooker water. Top with sliced Chinese sausage and chopped cabbage.",
       "Cook as usual until rice is done and sausage is heated through.",
@@ -427,7 +427,7 @@ export const MORE_W2H: Recipe[] = [
     time: 12,
     servings: 1,
     need: ["Noodles", "Butter"],
-    optional: ["Soy sauce", "Garlic", "Spring onion", "Sesame seeds"],
+    optional: ["Soy sauce", "Garlic", "Spring onion", "Sesame seeds", "Shaoxing wine", "Sesame oil", "Sugar", "Cooking oil"],
     steps: [
       "Boil noodles; reserve a splash of cooking water and drain.",
       "Melt butter with minced garlic in the pan; add soy sauce and noodle water.",

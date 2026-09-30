@@ -9,7 +9,7 @@ export const MORE_W2F: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Miso", "Silken tofu", "Spring onion"],
-    optional: ["Nori", "Mushroom"],
+    optional: ["Nori", "Mushroom", "Chicken stock", "Eggs"],
     steps: [
       "Bring 3 cups water to a gentle simmer with sliced mushroom if using.",
       "Add cubed silken tofu and warm 2 minutes — do not boil hard.",
@@ -31,7 +31,7 @@ export const MORE_W2F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Chicken thighs", "Eggs", "Cooked rice", "Onion"],
-    optional: ["Soy sauce", "Sugar", "Spring onion", "Ginger"],
+    optional: ["Soy sauce", "Sugar", "Spring onion", "Ginger", "Chicken stock"],
     steps: [
       "Slice chicken and onion. Simmer onion with ½ cup water, 2 tbsp soy sauce, and 1 tsp sugar.",
       "Add chicken; cook until done (74°C / 165°F), about 6–8 minutes.",
@@ -75,7 +75,7 @@ export const MORE_W2F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken thighs"],
-    optional: ["Soy sauce", "Sugar", "Honey", "Ginger", "Garlic", "Sesame seeds", "Spring onion"],
+    optional: ["Soy sauce", "Sugar", "Honey", "Ginger", "Garlic", "Sesame seeds", "Spring onion", "Sesame oil", "Cornstarch", "Cooking oil"],
     steps: [
       "Pat 400 g chicken thighs dry; pan-sear skin-side down until golden, then flip.",
       "Add 2 tbsp soy sauce, 1 tbsp sugar or honey, and a little ginger; simmer until chicken reaches 74°C / 165°F and glaze thickens.",
@@ -96,8 +96,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 18,
     servings: 2,
-    need: ["Salmon"],
-    optional: ["Soy sauce", "Sugar", "Honey", "Ginger", "Sesame seeds"],
+    need: ["Salmon", "Bread"],
+    optional: ["Soy sauce", "Sugar", "Honey", "Ginger", "Sesame seeds", "Shaoxing wine", "Cornstarch", "Salt", "White pepper", "Garlic", "Cooking oil"],
     steps: [
       "Pan-sear salmon 3–4 minutes skin-side down; flip.",
       "Add 1 tbsp soy sauce, 1 tsp sugar or honey, and ginger; spoon glaze over fish 2–3 minutes until just opaque.",
@@ -141,7 +141,7 @@ export const MORE_W2F: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Chicken thighs", "Potato", "Carrots", "Onion", "Cooked rice", "Curry powder"],
-    optional: ["Garlic", "Soy sauce", "Flour", "Butter"],
+    optional: ["Garlic", "Soy sauce", "Flour", "Butter", "Cooking oil", "Salt", "Sugar", "Chicken stock", "Cornstarch", "Eggs"],
     steps: [
       "Brown diced chicken until cooked through (74°C / 165°F); remove. Sauté onion, potato, and carrot.",
       "Return chicken, add water to cover, simmer 15 minutes until veg is tender.",
@@ -162,8 +162,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Noodles", "Cabbage", "Pork chops"],
-    optional: ["Carrots", "Bean sprouts", "Soy sauce", "Ketchup", "Garlic", "Spring onion"],
+    need: ["Noodles", "Cabbage", "Pork chops", "Bread"],
+    optional: ["Carrots", "Bean sprouts", "Soy sauce", "Ketchup", "Garlic", "Spring onion", "Oyster sauce", "Cooking oil", "Onion"],
     steps: [
       "Slice pork thin; stir-fry until cooked through (74°C / 165°F). Add cabbage and carrot shreds.",
       "Add boiled noodles with 1 tbsp soy sauce and 1 tsp ketchup; toss on high heat.",
@@ -273,7 +273,7 @@ export const MORE_W2F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken breast", "Eggs", "Flour", "Bread"],
-    optional: ["Salt", "White pepper", "Cabbage"],
+    optional: ["Salt", "White pepper", "Cabbage", "Cooking oil", "Onion", "Garlic", "Curry powder", "Sugar", "Carrots", "Chicken stock", "Cornstarch"],
     steps: [
       "Pound chicken breast thin; season. Coat in flour, beaten egg, then crushed dry breadcrumbs from toast.",
       "Pan-fry in a thin oil layer 3–4 minutes per side until golden and 74°C / 165°F inside.",

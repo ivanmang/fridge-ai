@@ -34,7 +34,7 @@ export const MORE_W1A: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Beef steak", "Noodles", "Peanut butter"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Chili oil", "Spring onion", "Bean sprouts"],
+    optional: ["Onion", "Garlic", "Soy sauce", "Chili oil", "Spring onion", "Bean sprouts", "Tomato", "Salt", "White pepper", "Sesame oil", "Vinegar", "Shrimp", "Cooking oil", "Eggs"],
     steps: [
       "Slice 250 g beef steak thinly. Mix 2 tbsp peanut butter with 1 tbsp soy sauce, a splash of water, and chili oil if using into a satay paste.",
       "Boil noodles until tender; drain. Soften onion/garlic in a pot, add 3 cups water and the satay paste; simmer 5 minutes.",
@@ -55,8 +55,8 @@ export const MORE_W1A: Recipe[] = [
     cuisine: "Hong Kong",
     time: 45,
     servings: 2,
-    need: ["Pork chops", "Cooked rice", "Eggs", "Tomato", "Cheddar"],
-    optional: ["Onion", "Ketchup", "Sugar", "Flour", "Salt", "Cornstarch"],
+    need: ["Pork chops", "Cooked rice", "Eggs", "Tomato", "Cheddar", "Butter"],
+    optional: ["Onion", "Ketchup", "Sugar", "Flour", "Salt", "Cornstarch", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Soy sauce", "Cooking oil", "Garlic", "Sesame oil"],
     steps: [
       "Pound 2 pork chops lightly; season with salt. Dust with flour if using. Beat 1 egg and dip chops, then pan-fry 3–4 minutes per side until cooked through (74°C / 165°F).",
       "Cook chopped tomato and onion with ketchup and a pinch of sugar into a thick sauce (8–10 minutes). Loosen 2 bowls of cooked rice in a baking dish.",
@@ -101,8 +101,8 @@ export const MORE_W1A: Recipe[] = [
     time: 45,
     servings: 3,
     // Stand-in: Coconut milk + Soy sauce for curry base (curry powder mentioned in steps only)
-    need: ["Chicken thighs", "Potato", "Onion", "Coconut milk"],
-    optional: ["Garlic", "Carrots", "Soy sauce", "Sugar", "Cooked rice", "Salt"],
+    need: ["Chicken thighs", "Potato", "Onion", "Coconut milk", "Chicken wings", "Curry powder"],
+    optional: ["Garlic", "Carrots", "Soy sauce", "Sugar", "Cooked rice", "Salt", "Spring onion", "Ginger", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Cornstarch", "Sesame oil"],
     steps: [
       "Cut 500 g chicken thighs into chunks; peel and cube 2 potatoes and 1 onion. Marinate chicken briefly with soy sauce if using.",
       "Brown chicken in oil 4–5 minutes; remove. Soften onion and garlic, then stir in 1–2 tsp curry powder (pantry spice) until fragrant.",
@@ -125,7 +125,7 @@ export const MORE_W1A: Recipe[] = [
     servings: 3,
     // Stand-in: Beef steak for brisket; Coconut milk for curry base
     need: ["Beef steak", "Potato", "Onion", "Coconut milk"],
-    optional: ["Carrots", "Garlic", "Soy sauce", "Sugar", "Salt"],
+    optional: ["Carrots", "Garlic", "Soy sauce", "Sugar", "Salt", "Cooking oil", "Shallot", "Chicken stock"],
     steps: [
       "Cut 400 g beef steak into large cubes (stand-in for brisket). Cube 2 potatoes and 1 onion.",
       "Brown beef well on all sides (5–6 minutes). Soften onion and garlic; add 1–2 tsp curry powder and toast 30 seconds.",
@@ -214,7 +214,7 @@ export const MORE_W1A: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Chicken breast", "Cooked rice", "Eggs"],
-    optional: ["Flour", "Soy sauce", "Ketchup", "Butter", "Onion", "Salt", "Cornstarch"],
+    optional: ["Flour", "Soy sauce", "Ketchup", "Butter", "Onion", "Salt", "Cornstarch", "Cooking oil", "Oyster sauce", "Ginger", "Garlic", "White pepper", "Sugar", "Bean sprouts", "Spring onion", "Shaoxing wine"],
     steps: [
       "Pound 2 chicken breasts flat; season with salt and soy sauce. Dust with flour if using, dip in beaten egg, and pan-fry 4–5 minutes per side until 74°C / 165°F.",
       "Optional gravy: soften onion in butter, add ketchup and a splash of water; simmer 3 minutes.",
@@ -236,7 +236,7 @@ export const MORE_W1A: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Pork chops", "Noodles", "Eggs"],
-    optional: ["Flour", "Soy sauce", "Onion", "Garlic", "Spring onion", "Salt", "Cornstarch"],
+    optional: ["Flour", "Soy sauce", "Onion", "Garlic", "Spring onion", "Salt", "Cornstarch", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Chicken stock", "Sesame oil", "Sugar", "White pepper", "Carrots"],
     steps: [
       "Pound 2 pork chops; season with salt and soy sauce. Dust with flour, dip in beaten egg, and pan-fry 3–4 minutes per side until cooked through (74°C / 165°F).",
       "Boil noodles until tender; drain into bowls with a little hot water or light soy broth.",
@@ -303,7 +303,7 @@ export const MORE_W1A: Recipe[] = [
     time: 40,
     servings: 2,
     need: ["Shrimp", "White fish", "Cooked rice", "Cheddar", "Milk"],
-    optional: ["Butter", "Flour", "Onion", "Garlic", "Salt", "Cornstarch"],
+    optional: ["Butter", "Flour", "Onion", "Garlic", "Salt", "Cornstarch", "Pork chops", "Sugar", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Soy sauce", "Eggs", "Cooking oil", "Ketchup", "Sesame oil"],
     steps: [
       "Cut white fish into bite-size pieces; peel shrimp. Poach or pan-cook seafood 3–4 minutes until shrimp are opaque and fish flakes (fully cooked).",
       "Make a quick white sauce: melt butter, stir in 1 tbsp flour, whisk in 1 cup milk until thick (5 minutes). Season; fold in seafood.",
@@ -347,7 +347,7 @@ export const MORE_W1A: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Beef steak", "Cooked rice", "Peanut butter"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Chili oil", "Spring onion", "Sugar"],
+    optional: ["Onion", "Garlic", "Soy sauce", "Chili oil", "Spring onion", "Sugar", "Ginger", "Eggs", "Oyster sauce", "White pepper", "Shaoxing wine", "Cornstarch", "Sesame oil"],
     steps: [
       "Slice 250 g beef steak thinly. Mix 2 tbsp peanut butter with soy sauce, a pinch of sugar, chili oil, and water into a pourable satay sauce.",
       "Stir-fry onion and garlic, then beef on high heat 2–3 minutes until just cooked through and browned.",
@@ -370,7 +370,7 @@ export const MORE_W1A: Recipe[] = [
     servings: 2,
     // Stand-in: Corn + Milk for creamed corn
     need: ["Corn", "Milk", "Eggs"],
-    optional: ["Butter", "Cornstarch", "Sugar", "Salt", "Spring onion"],
+    optional: ["Butter", "Cornstarch", "Sugar", "Salt", "Spring onion", "Chicken breast", "Carrots", "White pepper", "Sesame oil", "Cilantro"],
     steps: [
       "Strip kernels from 2 cobs (or use about 1½ cups corn). Simmer corn with 2 cups water and a knob of butter 8–10 minutes until soft.",
       "Stir in 1 cup milk; season with salt and a pinch of sugar. Thicken with a cornstarch slurry if you want it creamier.",
@@ -414,7 +414,7 @@ export const MORE_W1A: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Noodles", "Beef steak", "Bean sprouts"],
-    optional: ["Onion", "Spring onion", "Soy sauce", "Oyster sauce", "Garlic", "Cabbage"],
+    optional: ["Onion", "Spring onion", "Soy sauce", "Oyster sauce", "Garlic", "Cabbage", "White pepper", "Ginger", "Cooking oil", "Shaoxing wine", "Salt"],
     steps: [
       "Slice 200 g beef thinly; toss with soy sauce. Boil or rinse noodles until just loose; drain well.",
       "Stir-fry beef on high heat 1–2 minutes until browned; remove. Stir-fry onion, garlic, and cabbage if using.",

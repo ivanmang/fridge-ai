@@ -119,7 +119,7 @@ export const MORE_W4D: Recipe[] = [
     time: 35,
     servings: 2,
     need: ["Rice", "White fish"],
-    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Sesame oil"],
+    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Sesame oil", "Oyster sauce", "Shaoxing wine", "Eggs", "Chicken stock"],
     steps: [
       "Rinse 3/4 cup rice; simmer with about 6 cups water 25 minutes, stirring often until creamy.",
       "Slice 200 g white fish thinly; add with ginger for the last 5 minutes until fish is opaque.",
@@ -141,7 +141,7 @@ export const MORE_W4D: Recipe[] = [
     time: 35,
     servings: 2,
     need: ["Rice", "Ground pork"],
-    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Soy sauce", "Century egg"],
+    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Soy sauce", "Century egg", "Cooking oil", "Cornstarch", "Baking soda", "Sesame oil"],
     steps: [
       "Simmer 3/4 cup rice with about 6 cups water 25 minutes until creamy.",
       "Season 200 g ground pork with soy sauce; drop small pinches into the congee. Cook 8–10 minutes until pork reaches 74°C / 165°F.",
@@ -207,7 +207,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Noodles", "Eggs"],
-    optional: ["Bean sprouts", "Spring onion", "Soy sauce", "Sesame oil", "Ham"],
+    optional: ["Bean sprouts", "Spring onion", "Soy sauce", "Sesame oil", "Ham", "Beef steak", "Tomato", "Ginger", "Cooking oil", "Baking soda", "Oyster sauce", "White pepper", "Cornstarch", "Ketchup", "Sugar", "Salt"],
     steps: [
       "Boil noodles until tender; drain. Beat 1–2 eggs.",
       "Scramble eggs in a pan; add noodles, ham if using, soy sauce, and sesame oil.",
@@ -295,7 +295,7 @@ export const MORE_W4D: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Banana", "Oats", "Eggs"],
-    optional: ["Milk", "Honey", "Butter", "Berries"],
+    optional: ["Milk", "Honey", "Butter", "Berries", "Cooking oil", "Peanuts"],
     steps: [
       "Mash 1 ripe banana; mix with 1 egg and 1/2 cup oats (splash of milk if thick).",
       "Cook small pancakes in a lightly buttered pan 2–3 minutes per side until set.",

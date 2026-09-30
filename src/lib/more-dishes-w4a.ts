@@ -9,7 +9,7 @@ export const MORE_W4A: Recipe[] = [
     time: 55,
     servings: 4,
     need: ["Pork chops", "Cucumber"],
-    optional: ["Ginger", "Salt", "White pepper", "Dried mushrooms"],
+    optional: ["Ginger", "Salt", "White pepper", "Dried mushrooms", "Cooking oil", "Glass noodles", "Cabbage", "Spring onion", "Cilantro"],
     steps: [
       "Cut 400 g pork chops into large pieces; peel and thick-slice 2 cucumbers (old-cucumber stand-in). Soak a few dried mushrooms if using.",
       "Blanch pork 2 minutes in boiling water; rinse. Add pork, cucumber, ginger slices, and mushrooms to a pot with about 1.5 L water.",
@@ -53,7 +53,7 @@ export const MORE_W4A: Recipe[] = [
     time: 90,
     servings: 4,
     need: ["Beef brisket", "Tomato", "Potato"],
-    optional: ["Onion", "Carrots", "Celery", "Salt", "Sugar", "White pepper"],
+    optional: ["Onion", "Carrots", "Celery", "Salt", "Sugar", "White pepper", "Beef steak", "Cornstarch", "Baking soda", "Cooking oil", "Oyster sauce", "Soy sauce", "Sesame oil", "Ginger", "Garlic", "Shallot", "Spring onion", "Ketchup", "Shaoxing wine"],
     steps: [
       "Cut 600 g beef brisket into 4 cm chunks; blanch 3 minutes and rinse. Chop 3 tomatoes, 1 potato, and onion/carrot if using.",
       "Brown brisket lightly, then add tomato and onion; cook until saucy. Cover with about 1.5 L water.",
@@ -75,7 +75,7 @@ export const MORE_W4A: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Eggs", "Tofu", "Soy sauce"],
-    optional: ["Sugar", "Garlic", "Spring onion", "Sesame oil", "White pepper"],
+    optional: ["Sugar", "Garlic", "Spring onion", "Sesame oil", "White pepper", "Cooking oil", "Chicken stock", "Oyster sauce", "Salt", "Carrots", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Hard-boil 4 eggs 8–9 minutes; cool and peel. Cut 300 g tofu into thick slabs.",
       "Mix 3 tbsp soy sauce, 1 tbsp sugar if using, minced garlic, and 1 cup water. Arrange tofu in a pan; nestle eggs alongside.",
@@ -97,7 +97,7 @@ export const MORE_W4A: Recipe[] = [
     time: 50,
     servings: 4,
     need: ["Lotus root", "Corn", "Pork chops"],
-    optional: ["Ginger", "Carrots", "Salt", "Dried mushrooms"],
+    optional: ["Ginger", "Carrots", "Salt", "Dried mushrooms", "Chicken stock", "Oyster sauce", "Sugar", "White pepper", "Cooking oil", "Garlic", "Spring onion", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Peel and slice 300 g lotus root; cut 1 corn cob into rounds (or use 1 cup corn kernels). Cut 300 g pork chops into pieces; blanch and rinse.",
       "Add pork, lotus, corn, ginger, and carrot/mushrooms if using to a pot with about 1.5 L water.",
@@ -141,7 +141,7 @@ export const MORE_W4A: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Pumpkin", "Onion", "Milk"],
-    optional: ["Butter", "Garlic", "Salt", "White pepper", "Bread"],
+    optional: ["Butter", "Garlic", "Salt", "White pepper", "Bread", "Chicken stock"],
     steps: [
       "Cube 500 g pumpkin; chop 1 onion. Soften onion and garlic in butter or oil 4–5 minutes.",
       "Add pumpkin and about 3 cups water; simmer 18–20 minutes until soft. Mash or blend until smooth.",
@@ -162,8 +162,8 @@ export const MORE_W4A: Recipe[] = [
     cuisine: "Cantonese",
     time: 55,
     servings: 4,
-    need: ["Pork chops", "Apple", "Carrots"],
-    optional: ["Ginger", "Corn", "Salt", "Dried mushrooms"],
+    need: ["Pork chops", "Apple", "Carrots", "Glass noodles", "Cabbage"],
+    optional: ["Ginger", "Corn", "Salt", "Dried mushrooms", "Cooking oil", "White pepper", "Spring onion", "Cilantro"],
     steps: [
       "Cut 400 g pork chops into pieces; blanch and rinse. Core and quarter 2 apples; chunk 1 carrot.",
       "Add pork, apple, carrot, ginger, and corn/mushrooms if using with about 1.5 L water.",
@@ -207,7 +207,7 @@ export const MORE_W4A: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Chicken thighs", "Dried mushrooms"],
-    optional: ["Ginger", "Salt", "Spring onion", "White pepper", "Shaoxing wine"],
+    optional: ["Ginger", "Salt", "Spring onion", "White pepper", "Shaoxing wine", "Cooking oil"],
     steps: [
       "Soak 8–10 dried mushrooms until soft; squeeze and slice. Cut 500 g chicken thighs into pieces; blanch briefly.",
       "Add chicken, mushrooms, ginger, and a splash of Shaoxing wine if using with about 1.2 L water.",
@@ -295,7 +295,7 @@ export const MORE_W4A: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Ground pork", "Cabbage", "Eggs"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Salt", "Cornstarch", "White pepper"],
+    optional: ["Ginger", "Spring onion", "Soy sauce", "Salt", "Cornstarch", "White pepper", "Cooking oil", "Glass noodles", "Cilantro"],
     steps: [
       "Mix 300 g ground pork with 1 egg, minced ginger, 1 tsp soy sauce, cornstarch, and white pepper; shape into small meatballs.",
       "Bring about 1.2 L water to a simmer; gently drop in meatballs and cook 8–10 minutes until pork reaches 74°C / 165°F.",
@@ -316,8 +316,8 @@ export const MORE_W4A: Recipe[] = [
     cuisine: "Cantonese",
     time: 50,
     servings: 3,
-    need: ["Pork chops", "Celery", "Carrots"],
-    optional: ["Ginger", "Salt", "White pepper", "Corn"],
+    need: ["Pork chops", "Celery", "Carrots", "Glass noodles", "Cabbage"],
+    optional: ["Ginger", "Salt", "White pepper", "Corn", "Cooking oil", "Spring onion", "Cilantro"],
     steps: [
       "Cut 400 g pork chops into pieces; blanch and rinse. Cut 3 celery stalks and 1 carrot into chunks.",
       "Simmer pork with ginger in about 1.3 L water for 30 minutes.",
@@ -361,7 +361,7 @@ export const MORE_W4A: Recipe[] = [
     time: 80,
     servings: 3,
     need: ["Beef brisket", "Glass noodles"],
-    optional: ["Onion", "Ginger", "Soy sauce", "Spring onion", "Salt", "White pepper"],
+    optional: ["Onion", "Ginger", "Soy sauce", "Spring onion", "Salt", "White pepper", "Tomato", "Sesame oil", "Vinegar", "Shrimp", "Cooking oil", "Eggs"],
     steps: [
       "Cut 500 g beef brisket into chunks; blanch and rinse. Soak glass noodles in warm water until pliable.",
       "Simmer brisket with ginger and onion in about 1.3 L water for 60–70 minutes until tender; season with soy sauce or salt.",
@@ -382,8 +382,8 @@ export const MORE_W4A: Recipe[] = [
     cuisine: "Cantonese",
     time: 40,
     servings: 3,
-    need: ["Winter melon", "Chicken thighs"],
-    optional: ["Ginger", "Salt", "Dried mushrooms", "White pepper", "Spring onion"],
+    need: ["Winter melon", "Chicken thighs", "Shrimp", "Eggs"],
+    optional: ["Ginger", "Salt", "Dried mushrooms", "White pepper", "Spring onion", "Chicken stock", "Sugar", "Olive oil", "Sesame oil", "Cornstarch"],
     steps: [
       "Cube 400 g winter melon; cut 400 g chicken thighs into pieces and blanch briefly.",
       "Simmer chicken with ginger and mushrooms in about 1.2 L water for 20 minutes until chicken reaches 74°C / 165°F.",
@@ -405,7 +405,7 @@ export const MORE_W4A: Recipe[] = [
     time: 55,
     servings: 3,
     need: ["Pork chops", "Lotus root", "Soy sauce"],
-    optional: ["Ginger", "Garlic", "Sugar", "Shaoxing wine", "Spring onion"],
+    optional: ["Ginger", "Garlic", "Sugar", "Shaoxing wine", "Spring onion", "Chicken stock", "Oyster sauce", "Salt", "White pepper", "Cooking oil", "Cornstarch"],
     steps: [
       "Cut 400 g pork chops into chunks; peel and slice 300 g lotus root into thick coins.",
       "Brown pork with ginger/garlic; add 3 tbsp soy sauce, a pinch of sugar, Shaoxing wine if using, and 1 cup water.",
@@ -471,7 +471,7 @@ export const MORE_W4A: Recipe[] = [
     time: 30,
     servings: 3,
     need: ["Pumpkin", "Coconut milk"],
-    optional: ["Onion", "Garlic", "Lemongrass", "Salt", "Sugar", "Chili oil"],
+    optional: ["Onion", "Garlic", "Lemongrass", "Salt", "Sugar", "Chili oil", "Butter", "Chicken stock", "White pepper"],
     steps: [
       "Cube 450 g pumpkin; chop onion/garlic if using. Soften aromatics 3–4 minutes; add a bruised lemongrass stalk if available.",
       "Add pumpkin and 1 cup water; simmer 15 minutes until soft. Mash lightly.",
@@ -493,7 +493,7 @@ export const MORE_W4A: Recipe[] = [
     time: 40,
     servings: 3,
     need: ["Chicken thighs", "Ginger"],
-    optional: ["Salt", "Shaoxing wine", "Spring onion", "White pepper", "Dried mushrooms"],
+    optional: ["Salt", "Shaoxing wine", "Spring onion", "White pepper", "Dried mushrooms", "Garlic", "Cooking oil", "Shallot", "Chicken stock", "Soy sauce", "Oyster sauce", "Cornstarch"],
     steps: [
       "Cut 500 g chicken thighs into pieces; smash a thick thumb of ginger. Blanch chicken briefly.",
       "Simmer chicken, ginger, and mushrooms if using in about 1.2 L water with a splash of Shaoxing wine for 30 minutes until chicken reaches 74°C / 165°F.",
@@ -515,7 +515,7 @@ export const MORE_W4A: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Sweet potato", "Pork chops"],
-    optional: ["Ginger", "Corn", "Salt", "White pepper"],
+    optional: ["Ginger", "Corn", "Salt", "White pepper", "Cooking oil", "Glass noodles", "Cabbage", "Spring onion", "Cilantro"],
     steps: [
       "Peel and chunk 2 sweet potatoes; cut 350 g pork chops into pieces and blanch.",
       "Simmer pork with ginger in about 1.3 L water for 25 minutes.",
@@ -537,7 +537,7 @@ export const MORE_W4A: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Nori", "Tofu"],
-    optional: ["Miso", "Spring onion", "Sesame oil", "Salt", "White pepper"],
+    optional: ["Miso", "Spring onion", "Sesame oil", "Salt", "White pepper", "Chicken stock", "Cooking oil", "Eggs", "Mushroom", "Cabbage", "Cilantro"],
     steps: [
       "Cut 250 g tofu into small cubes; tear 1 sheet nori into strips.",
       "Bring about 3 cups water to a simmer; add tofu 3 minutes. Optional: whisk in 1 tbsp miso off heat.",
@@ -559,7 +559,7 @@ export const MORE_W4A: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Pork chops", "Fermented tofu"],
-    optional: ["Garlic", "Ginger", "Sugar", "Soy sauce", "Spring onion", "Cornstarch"],
+    optional: ["Garlic", "Ginger", "Sugar", "Soy sauce", "Spring onion", "Cornstarch", "Silken tofu", "Cooking oil", "Chicken stock", "Oyster sauce", "Sesame oil", "Salt", "Carrots", "Shaoxing wine"],
     steps: [
       "Cut 400 g pork chops into bite-size pieces. Mash 2 cubes fermented tofu with 1 tsp sugar, minced garlic, and a splash of water into a paste.",
       "Brown pork 4–5 minutes; stir in fermented-tofu paste and 1/2 cup water.",
@@ -581,7 +581,7 @@ export const MORE_W4A: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Spare ribs", "Fermented black beans"],
-    optional: ["Ginger", "Garlic", "Salt", "White pepper", "Spring onion"],
+    optional: ["Ginger", "Garlic", "Salt", "White pepper", "Spring onion", "Cornstarch", "Cooking oil", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Sesame oil"],
     steps: [
       "Cut 450 g spare ribs into pieces; blanch and rinse. Rinse 1 tbsp fermented black beans; crush lightly with garlic.",
       "Simmer ribs with ginger in about 1.2 L water for 30 minutes.",
@@ -603,7 +603,7 @@ export const MORE_W4A: Recipe[] = [
     time: 35,
     servings: 2,
     need: ["Beef steak", "Onion"],
-    optional: ["Ginger", "Salt", "White pepper", "Spring onion", "Soy sauce"],
+    optional: ["Ginger", "Salt", "White pepper", "Spring onion", "Soy sauce", "Baking soda", "Cornstarch", "Cooking oil", "Oyster sauce", "Ketchup", "Sugar", "Sesame oil"],
     steps: [
       "Slice 250 g beef steak thinly against the grain; toss with a drop of soy sauce if using. Slice 1 large onion.",
       "Simmer onion and ginger in about 4 cups water for 15 minutes until sweet.",
@@ -625,7 +625,7 @@ export const MORE_W4A: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Zucchini", "Ground pork"],
-    optional: ["Ginger", "Salt", "White pepper", "Spring onion", "Soy sauce", "Cornstarch"],
+    optional: ["Ginger", "Salt", "White pepper", "Spring onion", "Soy sauce", "Cornstarch", "Cooking oil", "Glass noodles", "Cabbage", "Cilantro"],
     steps: [
       "Mix 200 g ground pork with a pinch of salt, cornstarch, and white pepper; shape small meatballs. Slice 2 zucchini.",
       "Bring about 4 cups water with ginger to a simmer; cook meatballs 8–10 minutes until pork reaches 74°C / 165°F.",
@@ -646,8 +646,8 @@ export const MORE_W4A: Recipe[] = [
     cuisine: "Cantonese",
     time: 40,
     servings: 3,
-    need: ["Chicken wings", "Corn"],
-    optional: ["Ginger", "Carrots", "Salt", "White pepper", "Dried mushrooms"],
+    need: ["Chicken wings", "Corn", "Eggs"],
+    optional: ["Ginger", "Carrots", "Salt", "White pepper", "Dried mushrooms", "Cornstarch", "Sesame oil", "Cilantro"],
     steps: [
       "Separate 600 g chicken wings at joints; blanch briefly. Cut 1–2 corn cobs into rounds (or use 1.5 cups kernels).",
       "Simmer wings with ginger, corn, and carrot/mushrooms if using in about 1.3 L water for 30 minutes until wings reach 74°C / 165°F.",

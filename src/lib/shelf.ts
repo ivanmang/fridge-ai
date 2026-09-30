@@ -213,8 +213,9 @@ export const SHELF: ShelfFood[] = [
     "aliases": [
       "leftovers",
       "leftover",
-      "cooked rice",
-      "takeaway"
+      "takeaway",
+      "剩菜",
+      "隔夜菜"
     ],
     "category": "leftover",
     "location": "fridge",
@@ -332,8 +333,10 @@ export const SHELF: ShelfFood[] = [
     "name": "Bell pepper",
     "aliases": [
       "capsicum",
-      "pepper",
-      "red pepper"
+      "red pepper",
+      "green pepper",
+      "灯笼椒",
+      "燈籠椒"
     ],
     "category": "produce",
     "location": "fridge",
@@ -512,7 +515,13 @@ export const SHELF: ShelfFood[] = [
   {
     "name": "Cooked rice",
     "aliases": [
-      "leftover rice"
+      "leftover rice",
+      "day old rice",
+      "cold rice",
+      "白饭",
+      "白飯",
+      "冷饭",
+      "冷飯"
     ],
     "category": "leftover",
     "location": "fridge",
@@ -564,7 +573,15 @@ export const SHELF: ShelfFood[] = [
   },
   {
     "name": "Soy sauce",
-    "aliases": [],
+    "aliases": [
+      "light soy sauce",
+      "dark soy sauce",
+      "regular soy sauce",
+      "生抽",
+      "老抽",
+      "酱油",
+      "醬油"
+    ],
     "category": "condiment",
     "location": "pantry",
     "days": 365
@@ -813,7 +830,13 @@ export const SHELF: ShelfFood[] = [
     "name": "Cornstarch",
     "aliases": [
       "corn flour",
-      "生粉"
+      "corn starch",
+      "potato starch",
+      "tapioca starch",
+      "生粉",
+      "淀粉",
+      "澱粉",
+      "太白粉"
     ],
     "category": "pantry",
     "location": "pantry",
@@ -834,7 +857,13 @@ export const SHELF: ShelfFood[] = [
     "name": "White pepper",
     "aliases": [
       "pepper",
-      "白胡椒"
+      "ground white pepper",
+      "black pepper",
+      "ground black pepper",
+      "fresh black pepper",
+      "胡椒",
+      "白胡椒",
+      "黑胡椒"
     ],
     "category": "pantry",
     "location": "pantry",
@@ -1216,5 +1245,156 @@ export const SHELF: ShelfFood[] = [
     "category": "seafood",
     "location": "fridge",
     "days": 1
+  },
+  {
+    "name": "Cooking oil",
+    "aliases": [
+      "oil",
+      "vegetable oil",
+      "neutral oil",
+      "canola oil",
+      "peanut oil",
+      "corn oil",
+      "食用油",
+      "菜油",
+      "花生油"
+    ],
+    "category": "condiment",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Cilantro",
+    "aliases": [
+      "coriander",
+      "fresh cilantro",
+      "fresh coriander",
+      "香菜",
+      "芫荽"
+    ],
+    "category": "produce",
+    "location": "fridge",
+    "days": 5
+  },
+  {
+    "name": "Shallot",
+    "aliases": [
+      "shallots",
+      "red shallot",
+      "乾蔥",
+      "红葱头",
+      "紅蔥頭"
+    ],
+    "category": "produce",
+    "location": "pantry",
+    "days": 21
+  },
+  {
+    "name": "Baking soda",
+    "aliases": [
+      "bicarbonate of soda",
+      "baking powder",
+      "苏打粉",
+      "蘇打粉",
+      "泡打粉"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 730
+  },
+  {
+    "name": "Five-spice powder",
+    "aliases": [
+      "five spice",
+      "五香粉"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 730
+  },
+  {
+    "name": "Doubanjiang",
+    "aliases": [
+      "spicy bean sauce",
+      "chili bean sauce",
+      "broad bean paste",
+      "豆瓣酱",
+      "豆瓣醬",
+      "郫县豆瓣"
+    ],
+    "category": "condiment",
+    "location": "fridge",
+    "days": 365
+  },
+  {
+    "name": "Sichuan peppercorns",
+    "aliases": [
+      "sichuan pepper",
+      "szechuan peppercorns",
+      "花椒",
+      "花椒粒"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 730
+  },
+  {
+    "name": "Dried chili",
+    "aliases": [
+      "dried chilies",
+      "dried chilli",
+      "red chilies",
+      "dried red chilies",
+      "thai bird chili",
+      "bird's eye chili",
+      "干辣椒",
+      "乾辣椒",
+      "辣椒"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 730
+  },
+  {
+    "name": "Chicken stock",
+    "aliases": [
+      "chicken broth",
+      "chicken bouillon",
+      "chicken bouillon powder",
+      "stock",
+      "broth",
+      "鸡汤",
+      "雞湯",
+      "鸡粉",
+      "雞粉"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Water chestnuts",
+    "aliases": [
+      "water chestnut",
+      "马蹄",
+      "馬蹄"
+    ],
+    "category": "produce",
+    "location": "fridge",
+    "days": 7
+  },
+  {
+    "name": "Pickled mustard",
+    "aliases": [
+      "sui mi ya cai",
+      "ya cai",
+      "preserved mustard",
+      "碎米芽菜",
+      "芽菜",
+      "榨菜"
+    ],
+    "category": "condiment",
+    "location": "fridge",
+    "days": 180
   }
 ]

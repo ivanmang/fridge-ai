@@ -12,7 +12,7 @@ export const MORE_W1B: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Choi sum", "Garlic"],
-    optional: ["Oyster sauce", "Soy sauce", "Sesame oil"],
+    optional: ["Oyster sauce", "Soy sauce", "Sesame oil", "Salt", "White pepper", "Cooking oil"],
     steps: [
       "Wash 1 bunch of choi sum and cut into 6–8 cm lengths; mince 2 garlic cloves.",
       "Blanch stems 45–60 seconds in boiling water, then leaves 20 seconds; drain well.",
@@ -56,7 +56,7 @@ export const MORE_W1B: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Spinach", "Garlic"],
-    optional: ["Chili oil", "Sugar", "Soy sauce", "Sesame oil"],
+    optional: ["Chili oil", "Sugar", "Soy sauce", "Sesame oil", "Cooking oil", "Ginger", "Salt", "White pepper", "Shaoxing wine"],
     steps: [
       "Wash 300 g spinach (stand-in for water spinach / 通菜); drain. Mince 3 garlic cloves.",
       "Mix a quick 腐乳-style sauce: 1 tbsp soy sauce, ½ tsp sugar, and ½–1 tsp chili oil if you like heat.",
@@ -77,8 +77,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 35,
     servings: 2,
-    need: ["Pork chops", "Garlic", "Soy sauce"],
-    optional: ["Chili oil", "Sugar", "Cornstarch", "Ginger", "Shaoxing wine", "Spring onion"],
+    need: ["Pork chops", "Garlic", "Soy sauce", "Spare ribs"],
+    optional: ["Chili oil", "Sugar", "Cornstarch", "Ginger", "Shaoxing wine", "Spring onion", "Fermented black beans", "Cooking oil", "Salt", "Oyster sauce", "Sesame oil"],
     steps: [
       "Cut 400 g pork chops into bite-size rib-style pieces. Mix with 2 tbsp soy sauce, 3 minced garlic cloves, 1 tsp sugar, 1 tsp cornstarch, a splash of Shaoxing wine, and optional chili oil (black-bean style stand-in).",
       "Spread on a heatproof plate; scatter ginger slices if using. Steam over high heat 20–25 minutes until pork is fully cooked through and juices run clear.",
@@ -99,8 +99,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 2,
-    need: ["Pork chops", "Potato", "Garlic"],
-    optional: ["Soy sauce", "Ginger", "Onion", "Sugar", "Shaoxing wine", "Spring onion"],
+    need: ["Pork chops", "Potato", "Garlic", "Spare ribs"],
+    optional: ["Soy sauce", "Ginger", "Onion", "Sugar", "Shaoxing wine", "Spring onion", "Fermented black beans", "Cornstarch", "Cooking oil", "Salt", "Oyster sauce", "Sesame oil"],
     steps: [
       "Cut 400 g pork chops into chunks; peel and cube 2 medium potatoes (about 400 g). Slice ginger and mince 2 garlic cloves.",
       "Brown pork in a little oil 3–4 minutes. Add garlic, ginger, optional onion, 2 tbsp soy sauce, 1 tsp sugar, a splash of wine, and enough water to almost cover.",
@@ -121,8 +121,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 35,
     servings: 2,
-    need: ["Pork chops", "Bell pepper", "Onion"],
-    optional: ["Ketchup", "Vinegar", "Sugar", "Soy sauce", "Cornstarch", "Garlic", "Tomato"],
+    need: ["Pork chops", "Bell pepper", "Onion", "Pineapple", "Eggs"],
+    optional: ["Ketchup", "Vinegar", "Sugar", "Soy sauce", "Cornstarch", "Garlic", "Tomato", "Cooking oil", "Flour", "Salt"],
     steps: [
       "Cut 350 g pork chops into 2 cm cubes; toss with 1 tbsp soy sauce and 1 tbsp cornstarch. Cut 1 bell pepper and half an onion into chunks; mince garlic if using.",
       "Pan-fry pork in 2–3 tbsp oil until browned and cooked through (no pink); remove. Stir-fry pepper and onion 2 minutes.",
@@ -144,7 +144,7 @@ export const MORE_W1B: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Eggplant", "Ground pork", "Garlic"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Vinegar", "Sugar", "Chili oil", "Cornstarch"],
+    optional: ["Ginger", "Spring onion", "Soy sauce", "Vinegar", "Sugar", "Chili oil", "Cornstarch", "Chicken stock", "Doubanjiang", "Shaoxing wine", "Oyster sauce", "Sesame oil", "White pepper", "Cooking oil"],
     steps: [
       "Cut 2 medium eggplants (about 500 g) into batons; salt lightly 10 minutes, then pat dry. Mince 3 garlic cloves and ginger; prep 150 g ground pork.",
       "Fry eggplant in oil until soft and browned; set aside. Brown pork until cooked through (74°C / 165°F), then add garlic and ginger.",
@@ -166,7 +166,7 @@ export const MORE_W1B: Recipe[] = [
     time: 35,
     servings: 2,
     need: ["Chicken thighs", "Mushroom", "Ginger"],
-    optional: ["Soy sauce", "Shaoxing wine", "Cornstarch", "Sesame oil", "Spring onion"],
+    optional: ["Soy sauce", "Shaoxing wine", "Cornstarch", "Sesame oil", "Spring onion", "Flour", "Cooking oil", "Onion", "Sugar"],
     steps: [
       "Cut 400 g chicken thighs into bite-size pieces; slice 150 g mushrooms and a few ginger coins. Toss chicken with 1 tbsp soy sauce, 1 tsp cornstarch, wine if using, and sesame oil.",
       "Arrange chicken and mushrooms on a plate with ginger. Steam over high heat 18–22 minutes until chicken reaches 74°C / 165°F in the thickest piece.",
@@ -187,8 +187,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 30,
     servings: 2,
-    need: ["Ground pork", "Eggs", "Salt"],
-    optional: ["Soy sauce", "Cornstarch", "White pepper", "Spring onion"],
+    need: ["Ground pork", "Eggs", "Salt", "Water chestnuts"],
+    optional: ["Soy sauce", "Cornstarch", "White pepper", "Spring onion", "Oyster sauce", "Sugar", "Sesame oil", "Chicken stock", "Cooking oil"],
     steps: [
       "Beat 1 egg with ½ tsp salt (salted-egg style seasoning). Mix into 300 g ground pork with 1 tsp cornstarch, a pinch of white pepper, and 1 tbsp water until sticky.",
       "Press into a shallow heatproof dish about 1.5 cm thick; optional drizzle of soy on top.",
@@ -210,7 +210,7 @@ export const MORE_W1B: Recipe[] = [
     time: 50,
     servings: 3,
     need: ["Chicken thighs", "Ginger"],
-    optional: ["Spring onion", "Soy sauce", "Sesame oil", "Garlic", "Salt"],
+    optional: ["Spring onion", "Soy sauce", "Sesame oil", "Garlic", "Salt", "Cooking oil"],
     steps: [
       "Bring a pot of water to a boil with 4–5 ginger slices and a handful of spring onion if using. Add 600–700 g chicken thighs; return to a gentle simmer.",
       "Poach covered 20–25 minutes (or until thickest part hits 74°C / 165°F). Lift out into an ice bath 5 minutes to firm the skin, then drain and chop.",
@@ -232,7 +232,7 @@ export const MORE_W1B: Recipe[] = [
     time: 55,
     servings: 3,
     need: ["Pork chops", "Honey", "Soy sauce", "Hoisin sauce"],
-    optional: ["Garlic", "Sugar", "Shaoxing wine", "White pepper"],
+    optional: ["Garlic", "Sugar", "Shaoxing wine", "White pepper", "Salt", "Five-spice powder", "Sesame oil"],
     steps: [
       "Mix marinade: 2 tbsp hoisin sauce, 2 tbsp soy sauce, 1½ tbsp honey, 1 tsp sugar, 2 minced garlic cloves, and a splash of wine if using. Coat 500 g pork chops; rest 20–30 minutes (or overnight).",
       "Bake at 200°C / 400°F on a rack over a tray for 15 minutes. Brush with more honey-hoisin mix, flip, and bake another 12–15 minutes until cooked through and glazed.",
@@ -254,7 +254,7 @@ export const MORE_W1B: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tofu", "Ground pork", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Ginger", "Spring onion", "Cornstarch", "Chili oil"],
+    optional: ["Soy sauce", "Oyster sauce", "Ginger", "Spring onion", "Cornstarch", "Chili oil", "Cooking oil", "Chicken stock", "Sesame oil", "Sugar", "Salt", "Carrots", "Shaoxing wine"],
     steps: [
       "Drain and cube 1 block tofu (about 300–350 g). Mince 2 garlic cloves; have 150 g ground pork ready.",
       "Brown pork with garlic (and ginger if using) until cooked through (74°C / 165°F). Add 1 tbsp soy sauce, 1 tbsp oyster sauce if using, and ¾ cup water; nestle in tofu.",
@@ -275,8 +275,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 22,
     servings: 2,
-    need: ["Beef steak", "Bell pepper", "Garlic", "Soy sauce"],
-    optional: ["Chili oil", "Onion", "Sugar", "Cornstarch", "Shaoxing wine", "Ginger"],
+    need: ["Beef steak", "Bell pepper", "Garlic", "Soy sauce", "Snow peas"],
+    optional: ["Chili oil", "Onion", "Sugar", "Cornstarch", "Shaoxing wine", "Ginger", "Baking soda", "Cooking oil", "Oyster sauce", "Chicken stock", "Sesame oil", "White pepper"],
     steps: [
       "Slice 250 g beef steak thinly; toss with 1 tsp soy sauce and 1 tsp cornstarch. Cut 1 bell pepper (and onion if using) into strips; mince 3 garlic cloves.",
       "Sear beef hot and fast 1–2 minutes until just browned; set aside. Stir-fry pepper, garlic, and optional chili oil 2 minutes (black-bean heat stand-in).",
@@ -297,8 +297,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 12,
     servings: 2,
-    need: ["Snow peas", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Sesame oil", "Salt"],
+    need: ["Snow peas", "Garlic", "Green beans"],
+    optional: ["Soy sauce", "Oyster sauce", "Sesame oil", "Salt", "Cooking oil"],
     steps: [
       "Trim 250 g snow peas (stand-in for long beans / 豆角); mince 3 garlic cloves.",
       "Stir-fry snow peas in 1 tbsp oil over high heat 2 minutes until bright green; add garlic and cook 30 seconds more.",
@@ -319,8 +319,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Snow peas", "Ground pork", "Garlic"],
-    optional: ["Soy sauce", "Chili oil", "Sugar", "Ginger", "Spring onion", "White pepper"],
+    need: ["Ground pork", "Garlic", "Green beans"],
+    optional: ["Soy sauce", "Chili oil", "Sugar", "Ginger", "Spring onion", "White pepper", "Salt", "Cooking oil", "Dried chili", "Pickled mustard", "Shaoxing wine", "Sesame oil", "Snow peas"],
     steps: [
       "Trim 250 g snow peas (stand-in for green beans). Mince 2 garlic cloves; ready 120 g ground pork.",
       "Dry-fry snow peas in a lightly oiled pan over medium-high heat 4–5 minutes until blistered and tender; remove. Brown pork with garlic until cooked through (74°C / 165°F).",
@@ -342,7 +342,7 @@ export const MORE_W1B: Recipe[] = [
     time: 75,
     servings: 3,
     need: ["Pork chops", "Potato", "Carrots"],
-    optional: ["Ginger", "Salt", "White pepper", "Shaoxing wine", "Spring onion"],
+    optional: ["Ginger", "Salt", "White pepper", "Shaoxing wine", "Spring onion", "Lotus root", "Chicken stock", "Oyster sauce", "Sugar", "Cooking oil", "Garlic", "Cornstarch"],
     steps: [
       "Cut 400 g pork chops into pieces; peel and chunk 1 large potato and 2 carrots (root stand-in for lotus). Blanch pork in boiling water 1 minute; rinse.",
       "Simmer pork with 6 cups water, ginger slices, and a splash of wine if using for 30 minutes. Add potato and carrot; simmer another 25–30 minutes until soft.",
@@ -363,8 +363,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Zucchini", "Pork chops", "Ginger"],
-    optional: ["Ham", "Salt", "White pepper", "Spring onion"],
+    need: ["Zucchini", "Pork chops", "Ginger", "Winter melon", "Shrimp", "Eggs"],
+    optional: ["Ham", "Salt", "White pepper", "Spring onion", "Chicken stock", "Sugar", "Olive oil", "Sesame oil", "Cornstarch"],
     steps: [
       "Peel and chunk 500 g zucchini (winter melon stand-in). Cut 250 g pork chops into thin pieces; optional dice of ham. Slice ginger.",
       "Simmer pork (and ham) with ginger in 5 cups water for 15–20 minutes until pork is cooked through. Add zucchini and cook 10–12 minutes until translucent-tender.",
@@ -386,7 +386,7 @@ export const MORE_W1B: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Tomato", "Eggs"],
-    optional: ["Spring onion", "Salt", "White pepper", "Sesame oil", "Cornstarch"],
+    optional: ["Spring onion", "Salt", "White pepper", "Sesame oil", "Cornstarch", "Cooking oil", "Chicken stock", "Soy sauce", "Cilantro"],
     steps: [
       "Cut 2 tomatoes into wedges; beat 2 eggs. Bring 3 cups water to a simmer and cook tomatoes 4–5 minutes until soft and soupy.",
       "Season with salt and white pepper. Stir the soup in a circle and slowly pour in the eggs to form ribbons; cook until eggs are fully set.",

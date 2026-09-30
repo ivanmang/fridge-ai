@@ -74,8 +74,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Asian",
     time: 25,
     servings: 2,
-    need: ["Chicken thighs", "Satay sauce"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Cooked rice", "Cucumber", "Chili oil"],
+    need: ["Chicken thighs", "Satay sauce", "Coconut milk", "Curry powder"],
+    optional: ["Onion", "Garlic", "Soy sauce", "Cooked rice", "Cucumber", "Chili oil", "Sugar", "Cooking oil", "Ginger", "Sesame oil"],
     steps: [
       "Cut 400 g chicken thighs into strips. Mix 3 tbsp satay sauce with a splash of soy sauce and water.",
       "Stir-fry onion/garlic; add chicken 6–8 minutes until cooked through (74°C / 165°F).",
@@ -97,7 +97,7 @@ export const MORE_W4F: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Ground pork", "Thai basil"],
-    optional: ["Garlic", "Onion", "Soy sauce", "Sugar", "Chili oil", "Cooked rice", "Eggs"],
+    optional: ["Garlic", "Onion", "Soy sauce", "Sugar", "Chili oil", "Cooked rice", "Eggs", "Cooking oil", "Dried chili", "Oyster sauce"],
     steps: [
       "Mince 3 garlic cloves; slice onion if using. Pick a big handful of Thai basil.",
       "Stir-fry garlic/onion; add 300 g ground pork and cook 5–7 minutes until pork reaches 74°C / 165°F.",
@@ -316,8 +316,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Thai",
     time: 25,
     servings: 2,
-    need: ["Noodles", "Coconut milk", "Shrimp"],
-    optional: ["Lemongrass", "Garlic", "Thai basil", "Salt", "Sugar", "Chili oil", "Zucchini"],
+    need: ["Noodles", "Coconut milk", "Shrimp", "Curry powder"],
+    optional: ["Lemongrass", "Garlic", "Thai basil", "Salt", "Sugar", "Chili oil", "Zucchini", "Dried chili", "Shallot", "Ginger", "Cilantro", "Cooking oil", "Chicken stock"],
     steps: [
       "Cook noodles; drain. Soften garlic and bruised lemongrass if using; add 1 cup coconut milk and 1 cup water.",
       "Simmer 5 minutes; add 200 g shrimp (and zucchini) until shrimp are pink 3–4 minutes.",
@@ -338,8 +338,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Korean",
     time: 30,
     servings: 2,
-    need: ["Glass noodles", "Spinach", "Carrots"],
-    optional: ["Beef steak", "Onion", "Soy sauce", "Sugar", "Sesame oil", "Sesame seeds", "Garlic"],
+    need: ["Glass noodles", "Spinach", "Carrots", "Bread"],
+    optional: ["Beef steak", "Onion", "Soy sauce", "Sugar", "Sesame oil", "Sesame seeds", "Garlic", "White pepper", "Spring onion", "Cooking oil"],
     steps: [
       "Soak glass noodles until pliable; boil 2–3 minutes, drain, and toss with sesame oil. Blanch spinach; squeeze dry. Julienne carrot and onion.",
       "Stir-fry optional sliced beef until just cooked; stir-fry vegetables separately.",
@@ -383,7 +383,7 @@ export const MORE_W4F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Shrimp", "Coconut milk", "Curry powder"],
-    optional: ["Onion", "Garlic", "Zucchini", "Salt", "Sugar", "Cooked rice", "Thai basil"],
+    optional: ["Onion", "Garlic", "Zucchini", "Salt", "Sugar", "Cooked rice", "Thai basil", "Cooking oil", "Ginger", "Cilantro"],
     steps: [
       "Peel 300 g shrimp. Soften onion/garlic; stir in 1–2 tsp curry powder until fragrant.",
       "Add 1 cup coconut milk and a splash of water; simmer 3 minutes. Add zucchini if using.",

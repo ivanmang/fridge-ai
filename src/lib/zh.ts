@@ -126,6 +126,17 @@ export const ZH_FOOD: Record<string, string> = {
   "Beef brisket": "牛腩",
   "Squid": "魷魚",
   "Clams": "蜆",
+  "Cooking oil": "食用油",
+  Cilantro: "香菜",
+  Shallot: "乾蔥",
+  "Baking soda": "蘇打粉",
+  "Five-spice powder": "五香粉",
+  Doubanjiang: "豆瓣醬",
+  "Sichuan peppercorns": "花椒",
+  "Dried chili": "乾辣椒",
+  "Chicken stock": "雞湯",
+  "Water chestnuts": "馬蹄",
+  "Pickled mustard": "芽菜",
 }
 
 export const ZH_CUISINE: Record<string, string> = {

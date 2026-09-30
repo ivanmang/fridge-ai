@@ -31,7 +31,7 @@ export const MORE_W1C: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked leftovers", "Eggs"],
-    optional: ["Spring onion", "Sesame oil", "Ginger", "Soy sauce"],
+    optional: ["Spring onion", "Sesame oil", "Ginger", "Soy sauce", "Shrimp", "White pepper", "Cornstarch", "Carrots", "Silken tofu", "Chicken stock", "Salt", "Cooking oil", "Sugar"],
     steps: [
       "Bring 4 cups of water to a simmer with a few ginger slices if using. Dice 1½ cups of cooked leftovers.",
       "Add leftovers and simmer 3–5 minutes until steaming hot; any leftover meat must reach 74°C / 165°F. Beat 2 eggs.",
@@ -52,8 +52,8 @@ export const MORE_W1C: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 2,
-    need: ["Cooked leftovers", "Rice", "Ginger"],
-    optional: ["Spring onion", "Sesame oil", "White pepper", "Soy sauce"],
+    need: ["Cooked leftovers", "Rice", "Ginger", "Chicken breast"],
+    optional: ["Spring onion", "Sesame oil", "White pepper", "Soy sauce", "Cornstarch", "Oyster sauce", "Chicken stock", "Cooking oil", "Salt", "Cilantro"],
     steps: [
       "Rinse ½ cup raw rice. Slice 4–5 thin pieces of ginger. Shred about 1 cup of cooked leftovers (chicken or other).",
       "Simmer rice with 5–6 cups water and ginger 30–35 minutes, stirring often, until creamy.",
@@ -141,7 +141,7 @@ export const MORE_W1C: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Cooked leftovers", "Kimchi"],
-    optional: ["Tofu", "Garlic", "Spring onion", "Soy sauce", "Eggs"],
+    optional: ["Tofu", "Garlic", "Spring onion", "Soy sauce", "Eggs", "Cooking oil", "Onion", "Pork chops", "Salt", "Sugar", "Gochujang", "Chicken stock", "Sesame oil"],
     steps: [
       "Chop 1½ cups kimchi and 1½ cups cooked leftovers. Mince 2 garlic cloves if using; cube half a block of tofu if using.",
       "Simmer kimchi with 3 cups water (and garlic) 8–10 minutes. Add leftovers and tofu; cook until everything is steaming hot—meat must reach 74°C / 165°F.",

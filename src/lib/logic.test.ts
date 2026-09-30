@@ -50,6 +50,19 @@ describe("findShelf", () => {
     assert.equal(findShelf("greek yogurt")?.name, "Yogurt")
   })
 
+  it("matches Cooking oil and soy aliases without stealing sesame/bell pepper", () => {
+    assert.equal(findShelf("oil")?.name, "Cooking oil")
+    assert.equal(findShelf("食用油")?.name, "Cooking oil")
+    assert.equal(findShelf("sesame oil")?.name, "Sesame oil")
+    assert.equal(findShelf("light soy sauce")?.name, "Soy sauce")
+    assert.equal(findShelf("white pepper")?.name, "White pepper")
+    assert.equal(findShelf("pepper")?.name, "White pepper")
+    assert.equal(findShelf("cooked rice")?.name, "Cooked rice")
+    assert.equal(findShelf("chicken broth")?.name, "Chicken stock")
+    assert.equal(findShelf("cilantro")?.name, "Cilantro")
+    assert.equal(findShelf("potato starch")?.name, "Cornstarch")
+  })
+
   it("matches Chinese food labels via ZH_FOOD", () => {
     assert.equal(findShelf("牛奶")?.name, "Milk")
     assert.equal(findShelf("雞蛋")?.name, "Eggs")

@@ -9,7 +9,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Winter melon", "Garlic"],
-    optional: ["Dried mushrooms", "Oyster sauce", "Salt", "Cornstarch", "Spring onion"],
+    optional: ["Dried mushrooms", "Oyster sauce", "Salt", "Cornstarch", "Spring onion", "Shrimp", "Eggs", "Chicken stock", "Sugar", "White pepper", "Olive oil", "Sesame oil"],
     steps: [
       "Peel and thin-slice 400 g winter melon; soak and slice dried mushrooms if using.",
       "Stir-fry garlic until fragrant; add winter melon and mushrooms. Cook 6–8 minutes, adding a splash of water if dry.",
@@ -75,7 +75,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Lotus root", "Carrots"],
-    optional: ["Garlic", "Soy sauce", "Vinegar", "Sugar", "Sesame oil", "Salt"],
+    optional: ["Garlic", "Soy sauce", "Vinegar", "Sugar", "Sesame oil", "Salt", "Chicken stock", "Oyster sauce", "White pepper", "Cooking oil", "Ginger", "Spring onion", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Peel and thin-slice 300 g lotus root; soak in water briefly then drain. Julienne 1 carrot.",
       "Stir-fry garlic if using, then lotus and carrot on high heat 4–5 minutes until crisp-tender.",
@@ -96,8 +96,8 @@ export const MORE_W4B: Recipe[] = [
     cuisine: "Cantonese",
     time: 18,
     servings: 2,
-    need: ["Bitter melon", "Eggs"],
-    optional: ["Garlic", "Salt", "Soy sauce", "White pepper"],
+    need: ["Bitter melon", "Eggs", "Beef steak", "Beans"],
+    optional: ["Garlic", "Salt", "Soy sauce", "White pepper", "Baking soda", "Cooking oil", "Shaoxing wine", "Sugar", "Sesame oil", "Cornstarch", "Oyster sauce"],
     steps: [
       "Halve bitter melon, scrape seeds, thin-slice; toss with salt 5 minutes, rinse and pat dry. Beat 3 eggs.",
       "Stir-fry bitter melon with garlic 2–3 minutes until slightly softened; push aside.",
@@ -163,7 +163,7 @@ export const MORE_W4B: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Green beans", "Ground pork"],
-    optional: ["Garlic", "Soy sauce", "Chili oil", "Sugar", "Salt", "Cornstarch"],
+    optional: ["Garlic", "Soy sauce", "Chili oil", "Sugar", "Salt", "Cornstarch", "Shaoxing wine", "Ginger", "Cooking oil", "Dried chili", "Sesame oil", "White pepper"],
     steps: [
       "Trim 300 g green beans; cut into 5 cm lengths. Mix 200 g ground pork with a little cornstarch and soy sauce.",
       "Stir-fry pork until browned and cooked through (74°C / 165°F); remove. Blister beans in the pan 5–6 minutes.",
@@ -185,7 +185,7 @@ export const MORE_W4B: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Winter melon", "Pork chops"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Oyster sauce", "Cornstarch", "Salt"],
+    optional: ["Garlic", "Ginger", "Soy sauce", "Oyster sauce", "Cornstarch", "Salt", "White pepper", "Cilantro"],
     steps: [
       "Slice 250 g pork chops thinly; toss with soy sauce and cornstarch. Cube 350 g winter melon.",
       "Stir-fry pork 2–3 minutes until just cooked; remove. Soften garlic/ginger; add winter melon with a splash of water, cover 6–8 minutes.",
@@ -207,7 +207,7 @@ export const MORE_W4B: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Lotus root", "Carrots", "Bell pepper"],
-    optional: ["Garlic", "Soy sauce", "Sesame oil", "Salt", "Sugar"],
+    optional: ["Garlic", "Soy sauce", "Sesame oil", "Salt", "Sugar", "Chicken stock", "Oyster sauce", "White pepper", "Cooking oil", "Ginger", "Spring onion", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Thin-slice 250 g lotus root; julienne 1 carrot and 1 bell pepper.",
       "Stir-fry garlic if using; add vegetables on high heat 4–5 minutes until crisp-tender.",
@@ -229,7 +229,7 @@ export const MORE_W4B: Recipe[] = [
     time: 22,
     servings: 2,
     need: ["Bitter melon", "Pork chops"],
-    optional: ["Garlic", "Fermented black beans", "Soy sauce", "Sugar", "Cornstarch", "Salt"],
+    optional: ["Garlic", "Fermented black beans", "Soy sauce", "Sugar", "Cornstarch", "Salt", "Ginger"],
     steps: [
       "Slice 250 g pork thinly; toss with soy sauce and cornstarch. Seed and slice bitter melon; blanch 1 minute, drain.",
       "Stir-fry pork until just cooked; remove. Soften garlic and rinsed black beans if using; toss bitter melon 2 minutes.",
@@ -273,7 +273,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pineapple", "Bell pepper", "Onion"],
-    optional: ["Carrots", "Cucumber", "Ketchup", "Vinegar", "Sugar", "Salt", "Cornstarch"],
+    optional: ["Carrots", "Cucumber", "Ketchup", "Vinegar", "Sugar", "Salt", "Cornstarch", "Cooking oil", "Ginger", "Soy sauce"],
     steps: [
       "Cube 1 cup pineapple; chunk bell pepper, onion, and carrot/cucumber if using.",
       "Stir-fry vegetables 3–4 minutes until crisp-tender; add pineapple for 1 minute.",
@@ -339,7 +339,7 @@ export const MORE_W4B: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Green beans", "Sesame seeds"],
-    optional: ["Soy sauce", "Sesame oil", "Sugar", "Salt"],
+    optional: ["Soy sauce", "Sesame oil", "Sugar", "Salt", "Garlic", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Cornstarch"],
     steps: [
       "Trim 300 g green beans; boil or steam 4–5 minutes until bright and tender-crisp; drain and cool slightly.",
       "Toast 1 tbsp sesame seeds; crush lightly. Mix with 1 tbsp soy sauce, 1/2 tsp sugar, and sesame oil if using.",
@@ -361,7 +361,7 @@ export const MORE_W4B: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Green beans", "Thai basil"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Chili oil", "Onion"],
+    optional: ["Garlic", "Soy sauce", "Sugar", "Chili oil", "Onion", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Salt", "Cornstarch"],
     steps: [
       "Trim 300 g green beans into 5 cm pieces. Pick a handful of Thai basil leaves.",
       "Stir-fry garlic and onion if using; add beans with a splash of water 5–6 minutes until tender-crisp.",
@@ -449,7 +449,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Winter melon", "Shrimp"],
-    optional: ["Garlic", "Ginger", "Salt", "Cornstarch", "White pepper", "Spring onion"],
+    optional: ["Garlic", "Ginger", "Salt", "Cornstarch", "White pepper", "Spring onion", "Eggs", "Chicken stock", "Sugar", "Olive oil", "Sesame oil"],
     steps: [
       "Cube 350 g winter melon; peel and devein 200 g shrimp, toss with cornstarch and white pepper.",
       "Stir-fry shrimp 1–2 minutes until pink; remove. Soften garlic/ginger; add winter melon with splash of water, cover 6–8 minutes.",
@@ -471,7 +471,7 @@ export const MORE_W4B: Recipe[] = [
     time: 22,
     servings: 2,
     need: ["Lotus root", "Beef steak"],
-    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Cornstarch", "Sugar", "Salt"],
+    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Cornstarch", "Sugar", "Salt", "Chicken stock", "White pepper", "Cooking oil", "Ginger", "Spring onion", "Shaoxing wine"],
     steps: [
       "Slice 200 g beef thinly; toss with soy sauce and cornstarch. Thin-slice 250 g lotus root; soak briefly and drain.",
       "Stir-fry beef 1–2 minutes until just browned; remove. Stir-fry lotus 3–4 minutes until crisp-tender.",
@@ -493,7 +493,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Bitter melon", "Tofu"],
-    optional: ["Garlic", "Fermented black beans", "Soy sauce", "Sugar", "Salt"],
+    optional: ["Garlic", "Fermented black beans", "Soy sauce", "Sugar", "Salt", "Beef steak", "Baking soda", "Cooking oil", "Beans", "Shaoxing wine", "Sesame oil", "White pepper", "Cornstarch", "Oyster sauce"],
     steps: [
       "Seed and slice bitter melon; blanch 1 minute. Cube 300 g tofu; pan-sear until lightly golden.",
       "Soft garlic and rinsed black beans if using; toss bitter melon 2 minutes.",
@@ -537,7 +537,7 @@ export const MORE_W4B: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Green beans", "Fermented black beans"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Salt", "Chili oil"],
+    optional: ["Garlic", "Soy sauce", "Sugar", "Salt", "Chili oil", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Cornstarch"],
     steps: [
       "Trim 300 g green beans; cut into 5 cm pieces. Rinse 1 tbsp fermented black beans; crush with garlic.",
       "Stir-fry beans on medium-high 5–6 minutes until blistered; add a splash of water if needed.",

@@ -8,8 +8,8 @@ export const MORE_W3K: Recipe[] = [
     cuisine: "Western",
     time: 25,
     servings: 2,
-    need: ["Eggs", "Tomato", "Bell pepper"],
-    optional: ["Onion", "Garlic", "Chili oil", "Salt", "Bread"],
+    need: ["Eggs", "Tomato", "Bell pepper", "Zucchini"],
+    optional: ["Onion", "Garlic", "Chili oil", "Salt", "Bread", "Olive oil", "White pepper"],
     steps: [
       "Softer onion and bell pepper in oil 5 minutes; add chopped tomato and simmer 8–10 minutes until saucy.",
       "Make wells; crack in 3–4 eggs. Cover until whites set but yolks soft, 5–7 minutes.",
@@ -31,7 +31,7 @@ export const MORE_W3K: Recipe[] = [
     time: 25,
     servings: 3,
     need: ["Beans", "Curry powder", "Coconut milk", "Tomato"],
-    optional: ["Onion", "Garlic", "Ginger", "Spinach", "Salt"],
+    optional: ["Onion", "Garlic", "Ginger", "Spinach", "Salt", "Bread", "Cilantro", "Cooking oil"],
     steps: [
       "Sauté onion and garlic; stir in 1–2 tbsp curry powder 30 seconds.",
       "Add drained beans, chopped tomato, and 1 cup coconut milk; simmer 12 minutes.",
@@ -74,7 +74,7 @@ export const MORE_W3K: Recipe[] = [
     cuisine: "Western",
     time: 20,
     servings: 2,
-    need: ["Pasta", "Thai basil", "Garlic"],
+    need: ["Pasta", "Thai basil", "Garlic", "Berries"],
     optional: ["Olive oil", "Cheddar", "Salt", "Lemon"],
     steps: [
       "Boil pasta in salted water until al dente; reserve ½ cup water.",
@@ -140,8 +140,8 @@ export const MORE_W3K: Recipe[] = [
     cuisine: "Western",
     time: 35,
     servings: 2,
-    need: ["Rice", "Mushroom", "Butter"],
-    optional: ["Onion", "Garlic", "Cheddar", "Salt", "Olive oil"],
+    need: ["Rice", "Mushroom", "Butter", "Chicken breast", "Lemon"],
+    optional: ["Onion", "Garlic", "Cheddar", "Salt", "Olive oil", "Spring onion", "Chicken stock"],
     steps: [
       "Sauté onion and mushrooms in butter until browned.",
       "Stir in ¾ cup raw rice 1 minute; add hot water ½ cup at a time, stirring, ~20 minutes until creamy and tender.",
@@ -251,7 +251,7 @@ export const MORE_W3K: Recipe[] = [
     time: 30,
     servings: 3,
     need: ["Ground beef", "Pasta", "Tomato"],
-    optional: ["Onion", "Garlic", "Eggs", "Salt", "White pepper"],
+    optional: ["Onion", "Garlic", "Eggs", "Salt", "White pepper", "Beef steak", "Cornstarch", "Baking soda", "Cooking oil", "Oyster sauce", "Soy sauce", "Sugar", "Sesame oil", "Ginger", "Shallot", "Spring onion", "Ketchup", "Shaoxing wine"],
     steps: [
       "Mix ground beef with salt, optional egg, and white pepper; roll small meatballs.",
       "Brown meatballs; simmer in tomato sauce with garlic/onion 12–15 minutes until 74°C / 165°F.",
@@ -316,8 +316,8 @@ export const MORE_W3K: Recipe[] = [
     cuisine: "Western",
     time: 12,
     servings: 1,
-    need: ["Bread", "Cheddar", "Tomato"],
-    optional: ["Butter"],
+    need: ["Bread", "Cheddar", "Tomato", "Cream cheese"],
+    optional: ["Butter", "Olive oil", "Garlic", "White pepper"],
     steps: [
       "Butter bread outside. Fill with cheddar and tomato slices.",
       "Pan-grill both sides until golden and cheese melts.",
@@ -427,7 +427,7 @@ export const MORE_W3K: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Chicken thighs", "Mushroom", "Milk"],
-    optional: ["Onion", "Garlic", "Butter", "Salt", "Flour"],
+    optional: ["Onion", "Garlic", "Butter", "Salt", "Flour", "Ginger", "Shaoxing wine", "Shallot", "Oyster sauce", "Soy sauce", "Sugar", "White pepper", "Cornstarch", "Sesame oil", "Cooking oil"],
     steps: [
       "Brown chicken until nearly done; remove. Sauté mushrooms and onion in butter.",
       "Sprinkle a little flour; whisk in milk into a light sauce.",

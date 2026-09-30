@@ -11,8 +11,8 @@ export const MORE_W3J: Recipe[] = [
     cuisine: "Taiwanese",
     time: 35,
     servings: 2,
-    need: ["Chicken thighs", "Sesame oil", "Soy sauce", "Thai basil"],
-    optional: ["Garlic", "Ginger", "Shaoxing wine", "Sugar", "Chili oil"],
+    need: ["Chicken thighs", "Sesame oil", "Soy sauce", "Thai basil", "Chicken wings"],
+    optional: ["Garlic", "Ginger", "Shaoxing wine", "Sugar", "Chili oil", "Cooking oil"],
     steps: [
       "Cut 400 g chicken thighs into chunks. Crush garlic and slice ginger.",
       "Heat 2–3 tbsp sesame oil; brown chicken with garlic and ginger. Add 2–3 tbsp soy sauce, Shaoxing wine if using, and a pinch of sugar.",
@@ -34,7 +34,7 @@ export const MORE_W3J: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Ground pork", "Soy sauce", "Cooked rice"],
-    optional: ["Garlic", "Onion", "Sugar", "Eggs", "Pickles", "White pepper"],
+    optional: ["Garlic", "Onion", "Sugar", "Eggs", "Pickles", "White pepper", "Cooking oil", "Shaoxing wine", "Sichuan peppercorns", "Ginger"],
     steps: [
       "Mince garlic and finely chop onion. Soften onion/garlic in oil; add 350 g ground pork and cook until no longer pink.",
       "Add 3–4 tbsp soy sauce, 1–2 tsp sugar, white pepper, and 1 cup water. Simmer 25–30 minutes until saucy and savory.",
@@ -79,7 +79,7 @@ export const MORE_W3J: Recipe[] = [
     time: 35,
     servings: 2,
     need: ["Flour", "Spring onion"],
-    optional: ["Salt", "Sesame oil", "Eggs", "Butter"],
+    optional: ["Salt", "Sesame oil", "Eggs", "Butter", "Cooking oil", "Avocado", "Soy sauce", "Chili oil", "Bread"],
     steps: [
       "Mix 1½ cups flour with about 2/3 cup hot water and a pinch of salt into a soft dough; rest 15 minutes.",
       "Roll thin, brush sesame oil or butter, scatter chopped spring onion, roll up and coil into a disc; roll flat again.",
@@ -122,8 +122,8 @@ export const MORE_W3J: Recipe[] = [
     cuisine: "Thai",
     time: 20,
     servings: 2,
-    need: ["Chicken thighs", "Thai basil"],
-    optional: ["Garlic", "Chili oil", "Soy sauce", "Oyster sauce", "Sugar", "Onion", "Cooked rice"],
+    need: ["Chicken thighs", "Thai basil", "Carrots"],
+    optional: ["Garlic", "Chili oil", "Soy sauce", "Oyster sauce", "Sugar", "Onion", "Cooked rice", "Cornstarch", "Spring onion", "Cooking oil"],
     steps: [
       "Mince 350 g chicken thighs or chop finely. Crush garlic.",
       "Stir-fry garlic and chili oil; add chicken and cook until it reaches 74°C / 165°F, about 5–7 minutes.",
@@ -144,8 +144,8 @@ export const MORE_W3J: Recipe[] = [
     cuisine: "Thai",
     time: 30,
     servings: 2,
-    need: ["Rice vermicelli", "Eggs", "Bean sprouts"],
-    optional: ["Shrimp", "Peanuts", "Soy sauce", "Sugar", "Vinegar", "Garlic", "Spring onion", "Chili oil", "Tofu"],
+    need: ["Rice vermicelli", "Eggs", "Bean sprouts", "Chicken breast"],
+    optional: ["Shrimp", "Peanuts", "Soy sauce", "Sugar", "Vinegar", "Garlic", "Spring onion", "Chili oil", "Tofu", "White pepper", "Cornstarch", "Shallot", "Cooking oil"],
     steps: [
       "Soak rice vermicelli until pliable; drain. Beat 2 eggs. Mix 2 tbsp soy sauce, 1 tbsp sugar, and 1 tsp vinegar as a quick pad-Thai-style sauce.",
       "Stir-fry garlic; scramble eggs, then push aside. Add shrimp or tofu if using until just cooked.",
@@ -168,7 +168,7 @@ export const MORE_W3J: Recipe[] = [
     servings: 2,
     need: ["Shrimp", "Lemongrass", "Mushroom"],
     // Soy sauce stands in for fish sauce in seasoning steps
-    optional: ["Lemon", "Chili oil", "Tomato", "Garlic", "Salt", "Sugar", "Soy sauce", "Spring onion"],
+    optional: ["Lemon", "Chili oil", "Tomato", "Garlic", "Salt", "Sugar", "Soy sauce", "Spring onion", "Cooking oil", "Chicken stock", "Shallot", "Cilantro", "Dried chili"],
     steps: [
       "Bruise lemongrass and cut into lengths. Slice mushrooms; peel shrimp.",
       "Simmer lemongrass (and garlic/tomato if using) in 4 cups water 8–10 minutes. Add mushrooms; cook 3 minutes.",
@@ -212,7 +212,7 @@ export const MORE_W3J: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Chicken thighs", "Lemongrass"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Chili oil", "Onion", "Cooked rice", "Sesame oil"],
+    optional: ["Garlic", "Soy sauce", "Sugar", "Chili oil", "Onion", "Cooked rice", "Sesame oil", "Oyster sauce", "Shallot", "Lemon"],
     steps: [
       "Mince lemongrass finely (tender white part). Cut 400 g chicken thighs into pieces; toss with lemongrass, garlic, soy sauce, and a pinch of sugar.",
       "Marinate 10 minutes. Stir-fry or pan-fry until chicken reaches 74°C / 165°F, about 8–10 minutes.",
@@ -234,7 +234,7 @@ export const MORE_W3J: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Tofu", "Coconut milk", "Curry powder"],
-    optional: ["Onion", "Garlic", "Bell pepper", "Potato", "Salt", "Sugar", "Cooked rice"],
+    optional: ["Onion", "Garlic", "Bell pepper", "Potato", "Salt", "Sugar", "Cooked rice", "Cooking oil", "Ginger", "Cilantro"],
     steps: [
       "Cube tofu; pan-fry until golden. Soften onion and garlic; stir in 1–2 tsp curry powder until fragrant.",
       "Pour in 1 cup coconut milk and a splash of water; add potato or bell pepper if using.",
@@ -255,8 +255,8 @@ export const MORE_W3J: Recipe[] = [
     cuisine: "Thai",
     time: 25,
     servings: 2,
-    need: ["Cooked rice", "Pineapple", "Eggs"],
-    optional: ["Shrimp", "Onion", "Garlic", "Soy sauce", "Curry powder", "Spring onion", "Peanuts", "Salt"],
+    need: ["Cooked rice", "Pineapple", "Eggs", "Carrots", "Chicken breast"],
+    optional: ["Shrimp", "Onion", "Garlic", "Soy sauce", "Curry powder", "Spring onion", "Peanuts", "Salt", "Cooking oil", "Sesame oil", "Cornstarch", "White pepper", "Sugar"],
     steps: [
       "Dice pineapple; beat 2 eggs. Soften onion/garlic; scramble eggs, then add shrimp if using until just cooked.",
       "Add cold cooked rice and toss until hot. Season with soy sauce, optional 1/2 tsp curry powder, and salt.",
@@ -278,7 +278,7 @@ export const MORE_W3J: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Tomato", "Eggs", "Cooked rice"],
-    optional: ["Sugar", "Salt", "Soy sauce", "Spring onion", "Ketchup"],
+    optional: ["Sugar", "Salt", "Soy sauce", "Spring onion", "Ketchup", "Ginger", "Cornstarch", "Cooking oil"],
     steps: [
       "Cut tomatoes into wedges; beat 3 eggs with a pinch of salt.",
       "Scramble eggs until just set; remove. Cook tomatoes with sugar and ketchup until saucy, 4–5 minutes.",
@@ -300,7 +300,7 @@ export const MORE_W3J: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Chicken thighs", "Sesame seeds", "Soy sauce"],
-    optional: ["Garlic", "Ginger", "Sugar", "Sesame oil", "Cornstarch", "Spring onion"],
+    optional: ["Garlic", "Ginger", "Sugar", "Sesame oil", "Cornstarch", "Spring onion", "Cooking oil", "Flour", "Baking soda", "Salt", "Eggs", "Chicken stock", "White pepper", "Oyster sauce", "Vinegar", "Broccoli"],
     steps: [
       "Cut 400 g chicken thighs into pieces; toss with soy sauce, cornstarch, and minced garlic/ginger.",
       "Pan-fry until golden and chicken reaches 74°C / 165°F, about 8–10 minutes.",
@@ -322,7 +322,7 @@ export const MORE_W3J: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cucumber", "Sugar", "Vinegar"],
-    optional: ["Chili oil", "Soy sauce", "Peanuts", "Spring onion", "Salt", "Garlic"],
+    optional: ["Chili oil", "Soy sauce", "Peanuts", "Spring onion", "Salt", "Garlic", "Cooking oil", "Sesame oil"],
     steps: [
       "Slice cucumber thinly. Mix 1 tbsp sugar, 2 tbsp vinegar, a splash of soy sauce, and chili oil if using.",
       "Toss cucumber with dressing and a pinch of salt; rest 5–10 minutes.",
@@ -366,7 +366,7 @@ export const MORE_W3J: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Chicken thighs", "Coconut milk", "Thai basil"],
-    optional: ["Curry powder", "Eggplant", "Green beans", "Garlic", "Onion", "Salt", "Sugar", "Chili oil", "Cooked rice"],
+    optional: ["Curry powder", "Eggplant", "Green beans", "Garlic", "Onion", "Salt", "Sugar", "Chili oil", "Cooked rice", "Cornstarch", "Oyster sauce", "Cooking oil", "Chicken stock"],
     steps: [
       "Cut 400 g chicken thighs into chunks. Soften garlic/onion; stir in 1–2 tsp curry powder and chili oil as a green-curry-style base.",
       "Add coconut milk and chicken; simmer 15–18 minutes until chicken reaches 74°C / 165°F.",
@@ -388,7 +388,7 @@ export const MORE_W3J: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Shrimp", "Thai basil"],
-    optional: ["Garlic", "Chili oil", "Soy sauce", "Oyster sauce", "Onion", "Bell pepper", "Sugar"],
+    optional: ["Garlic", "Chili oil", "Soy sauce", "Oyster sauce", "Onion", "Bell pepper", "Sugar", "Broccoli", "Cooking oil", "Cooked rice", "Shaoxing wine", "Sesame oil", "Salt", "White pepper", "Eggs"],
     steps: [
       "Peel 350 g shrimp. Crush garlic.",
       "Stir-fry garlic and chili oil; add shrimp and cook until pink and opaque, 2–3 minutes.",
@@ -410,7 +410,7 @@ export const MORE_W3J: Recipe[] = [
     time: 50,
     servings: 2,
     need: ["Beef brisket", "Rice vermicelli", "Onion"],
-    optional: ["Ginger", "Soy sauce", "Spring onion", "Bean sprouts", "Lemon", "Chili oil", "Salt", "White pepper"],
+    optional: ["Ginger", "Soy sauce", "Spring onion", "Bean sprouts", "Lemon", "Chili oil", "Salt", "White pepper", "Tomato", "Sesame oil", "Vinegar", "Shrimp", "Cooking oil", "Eggs"],
     steps: [
       "Cut 350 g beef brisket into slices or chunks. Char or soften onion and ginger in a dry pan for aroma.",
       "Simmer onion, ginger, and beef in about 1.2 L water 35–40 minutes until beef is tender. Season with soy sauce (fish-sauce stand-in), salt, and white pepper.",
@@ -498,7 +498,7 @@ export const MORE_W3J: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggplant", "Thai basil"],
-    optional: ["Garlic", "Chili oil", "Soy sauce", "Oyster sauce", "Sugar", "Onion"],
+    optional: ["Garlic", "Chili oil", "Soy sauce", "Oyster sauce", "Sugar", "Onion", "Chicken breast", "Cooking oil", "Cornstarch", "Spring onion", "Shaoxing wine", "Sesame oil", "White pepper", "Chicken stock"],
     steps: [
       "Cut eggplant into batons; pan-fry or steam until soft.",
       "Stir-fry garlic and chili oil; add eggplant with soy sauce, oyster sauce, and a pinch of sugar.",
@@ -520,7 +520,7 @@ export const MORE_W3J: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Chicken thighs", "Satay sauce", "Cooked rice"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Cucumber", "Peanuts", "Chili oil"],
+    optional: ["Onion", "Garlic", "Soy sauce", "Cucumber", "Peanuts", "Chili oil", "Cornstarch", "Cooking oil", "Oyster sauce", "Eggs", "Ginger", "White pepper", "Sugar", "Salt", "Bean sprouts", "Spring onion", "Shaoxing wine"],
     steps: [
       "Cut 350 g chicken thighs into strips; toss with a little soy sauce and garlic.",
       "Pan-fry chicken until it reaches 74°C / 165°F, about 8–10 minutes. Soften onion if using.",

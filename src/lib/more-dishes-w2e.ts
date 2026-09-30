@@ -9,7 +9,7 @@ export const MORE_W2E: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken thighs", "Peanuts", "Bell pepper"],
-    optional: ["Garlic", "Ginger", "Spring onion", "Soy sauce", "Chili oil", "Sugar", "Cornstarch", "Vinegar"],
+    optional: ["Garlic", "Ginger", "Spring onion", "Soy sauce", "Chili oil", "Sugar", "Cornstarch", "Vinegar", "Broccoli", "Celery", "Carrots", "Shallot", "Cooking oil", "Salt", "Shaoxing wine", "White pepper", "Oyster sauce"],
     steps: [
       "Dice 300 g chicken thighs; toss with 1 tsp soy sauce, 1 tsp cornstarch, and a pinch of salt.",
       "Stir-fry chicken in a hot oiled pan until cooked through (74°C / 165°F); remove. Flash-fry diced bell pepper, garlic, and ginger.",
@@ -30,8 +30,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 30,
     servings: 2,
-    need: ["Pork chops", "Cabbage", "Bell pepper"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Sugar", "Spring onion"],
+    need: ["Pork chops", "Cabbage", "Bell pepper", "Carrots", "Tofu"],
+    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Sugar", "Spring onion", "Onion", "Cooking oil", "Shaoxing wine", "Sesame oil", "Oyster sauce", "Hoisin sauce", "Doubanjiang", "Cornstarch"],
     steps: [
       "Simmer 2 pork chops in water 12–15 minutes until just cooked; cool and slice thin.",
       "Stir-fry garlic and ginger; add pork slices and fry until edges curl and lightly browned.",
@@ -53,7 +53,7 @@ export const MORE_W2E: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Noodles", "Ground pork"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Peanut butter", "Spring onion", "Sesame oil"],
+    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Peanut butter", "Spring onion", "Sesame oil", "Sichuan peppercorns", "Cooking oil", "Shaoxing wine", "Five-spice powder", "Pickled mustard", "Sugar", "Lettuce", "Peanuts"],
     steps: [
       "Boil noodles until tender; drain, reserving ½ cup cooking water.",
       "Brown 150 g ground pork with garlic and ginger until cooked through (74°C / 165°F).",
@@ -74,8 +74,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Cauliflower", "Bacon"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Bell pepper"],
+    need: ["Cauliflower", "Bacon", "Pork chops"],
+    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Bell pepper", "Salt", "Shaoxing wine", "Cooking oil", "Sesame oil", "White pepper", "Oyster sauce", "Sugar", "Spring onion"],
     steps: [
       "Cut cauliflower into bite-size florets; blanch 2 minutes and drain well.",
       "Render diced bacon until crisp; add garlic, ginger, and optional chili oil.",
@@ -118,8 +118,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Pork chops", "Carrots", "Bell pepper"],
-    optional: ["Garlic", "Ginger", "Spring onion", "Soy sauce", "Vinegar", "Sugar", "Chili oil", "Cornstarch"],
+    need: ["Pork chops", "Carrots", "Bell pepper", "Broccoli"],
+    optional: ["Garlic", "Ginger", "Spring onion", "Soy sauce", "Vinegar", "Sugar", "Chili oil", "Cornstarch", "Cooking oil", "Shaoxing wine", "Salt", "White pepper"],
     steps: [
       "Slice pork into thin shreds; toss with 1 tsp soy sauce and 1 tsp cornstarch.",
       "Stir-fry pork until cooked through (74°C / 165°F); remove. Stir-fry carrot and pepper shreds with garlic and ginger.",
@@ -251,7 +251,7 @@ export const MORE_W2E: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggplant", "Garlic"],
-    optional: ["Ginger", "Chili oil", "Soy sauce", "Vinegar", "Sugar", "Spring onion"],
+    optional: ["Ginger", "Chili oil", "Soy sauce", "Vinegar", "Sugar", "Spring onion", "Dried chili", "Cooking oil", "Oyster sauce", "Cornstarch", "Shaoxing wine", "Sesame oil"],
     steps: [
       "Cut eggplant into batons; pan-fry in oil until soft and browned, then drain excess oil.",
       "Fry garlic and ginger; add 1 tbsp soy sauce, 1 tsp vinegar, 1 tsp sugar, and chili oil.",
@@ -273,7 +273,7 @@ export const MORE_W2E: Recipe[] = [
     time: 35,
     servings: 2,
     need: ["Wonton wrappers", "Ground pork"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Vinegar", "Spring onion", "Sesame oil"],
+    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Vinegar", "Spring onion", "Sesame oil", "Shaoxing wine", "Salt", "Sugar", "Cooking oil", "White pepper"],
     steps: [
       "Mix 200 g ground pork with minced ginger, 1 tsp soy sauce, and a pinch of salt. Wrap in wonton skins.",
       "Boil wontons until they float and pork is cooked through (74°C / 165°F), about 4–5 minutes.",
@@ -317,7 +317,7 @@ export const MORE_W2E: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggplant", "Ground pork"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Sugar", "Cornstarch", "Spring onion"],
+    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Sugar", "Cornstarch", "Spring onion", "Shaoxing wine", "Baking soda", "White pepper", "Cooking oil", "Sichuan peppercorns", "Doubanjiang", "Fermented black beans", "Chicken stock", "Sesame oil"],
     steps: [
       "Pan-fry eggplant pieces until soft; set aside. Brown ground pork until cooked through (74°C / 165°F).",
       "Add garlic, ginger, chili oil, 1 tbsp soy sauce, and a pinch of sugar with a splash of water.",
