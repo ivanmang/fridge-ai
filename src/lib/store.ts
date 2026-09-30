@@ -39,6 +39,8 @@ export type FridgeSettings = {
   cookedHistory: string[]
   /** Last Tonight pick so repeat visits reopen the same dish when still ranked. */
   lastTonightId: string
+  /** Dish committed via “I’m making this” until Clear fridge finishes (soft banner). */
+  pendingMealId: string
 }
 
 type FridgeState = {
@@ -82,6 +84,7 @@ const emptySettings: FridgeSettings = {
   savedRecipes: [],
   cookedHistory: [],
   lastTonightId: "",
+  pendingMealId: "",
 }
 
 export const useFridge = create<FridgeState>()(
