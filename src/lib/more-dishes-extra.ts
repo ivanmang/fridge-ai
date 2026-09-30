@@ -304,7 +304,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 40,
     servings: 2,
     need: ["Rice", "Chicken thighs", "Chinese sausage"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Oyster sauce", "Mushroom", "Cornstarch", "Cooking oil", "Eggs", "Garlic", "Onion", "White pepper", "Sugar", "Salt", "Bean sprouts", "Shaoxing wine"],
+    optional: ["Ginger", "Spring onion", "Soy sauce", "Oyster sauce", "Mushroom", "Cornstarch", "Cooking oil"],
     steps: [
       "Rinse rice and start cooking as usual. Slice chicken and sausage; marinate chicken with soy sauce.",
       "When rice is almost done, lay chicken and sausage on top; cover until chicken is cooked through (74°C / 165°F).",

@@ -887,6 +887,21 @@ export const SHELF: ShelfFood[] = [
     staple: true,
   },
   {
+    id: "xo-sauce",
+    name: "XO sauce",
+    aliases: [
+      "xo醬",
+      "XO醬",
+      "XO 醬",
+      "xo sauce",
+      "seafood xo sauce",
+      "李錦記XO醬",
+    ],
+    category: "sauce",
+    location: "fridge",
+    days: 180,
+  },
+  {
     id: "hoisin-sauce",
     name: "Hoisin sauce",
     aliases: [

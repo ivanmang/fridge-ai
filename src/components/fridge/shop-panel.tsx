@@ -333,7 +333,9 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
   const plan = useMemo(() => planMeals(items, vegetarian, priority, favorites, taste, extras), [items, vegetarian, priority, favorites, taste, extras])
   const picked = useMemo(() => ideasByIds(wanted, items, extras).filter((row) => !isOutlineRecipe(row.recipe)), [wanted, items, extras])
   const focus = picked.length ? picked : plan.ideas
-  const shopRows = picked.length ? shopForIdeas(items, picked) : plan.shop
+  const allShopRows = picked.length ? shopForIdeas(items, picked) : plan.shop
+  const shopRows = allShopRows.filter((row) => !("kind" in row) || row.kind === "core")
+  const stapleShopRows = allShopRows.filter((row) => "kind" in row && row.kind === "staple")
   const low = items.filter((item) => daysUntil(item.expires) >= 0 && daysUntil(item.expires) <= 2)
   const join = (names: string[]) => names.map((name) => foodLabel(locale, name)).join(locale === "zh" ? "、" : ", ")
   const openCount = shop.filter((row) => !row.done).length
@@ -429,6 +431,37 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
                 <button type="button" onClick={addSuggested} className="mt-3 h-11 w-full rounded-card border border-line text-sm font-semibold">
                   {t("addAllGaps")}
                 </button>
+              )}
+              {stapleShopRows.length > 0 && (
+                <div className="mt-5">
+                  <h4 className="text-sm font-semibold uppercase tracking-wide text-muted">{t("alsoForDish")}</h4>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">{t("alsoForDishLead")}</p>
+                  <ul className="mt-2 space-y-2">
+                    {stapleShopRows.map((row) => {
+                      const label = foodLabel(locale, row.name)
+                      const listed = onList(label)
+                      return (
+                        <li
+                          key={`staple-${row.name}`}
+                          className="flex items-center justify-between gap-3 rounded-card border border-dashed border-line bg-surface/60 px-4 py-2.5"
+                        >
+                          <span className="min-w-0 text-sm font-medium leading-snug">{label}</span>
+                          {listed ? (
+                            <span className="shrink-0 text-sm font-semibold text-mint">{t("alreadyOnList")}</span>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => addShop(label)}
+                              className="h-10 shrink-0 rounded-full border border-line px-3 text-sm font-semibold"
+                            >
+                              {t("addOne")}
+                            </button>
+                          )}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
               )}
             </>
           )}

@@ -520,7 +520,7 @@ export const MORE_W3J: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Chicken thighs", "Satay sauce", "Cooked rice"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Cucumber", "Peanuts", "Chili oil", "Cornstarch", "Cooking oil", "Oyster sauce", "Eggs", "Ginger", "White pepper", "Sugar", "Salt", "Bean sprouts", "Spring onion", "Shaoxing wine"],
+    optional: ["Onion", "Garlic", "Soy sauce", "Cucumber", "Peanuts", "Chili oil", "Cornstarch", "Cooking oil"],
     steps: [
       "Cut 350 g chicken thighs into strips; toss with a little soy sauce and garlic.",
       "Pan-fry chicken until it reaches 74°C / 165°F, about 8–10 minutes. Soften onion if using.",

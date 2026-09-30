@@ -243,12 +243,13 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-chicken-rolls-in-chilli-soy-sauce": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk_recipe_600_chicken-rolls-in-chilli-soy-sauce.jpg?bc=white&h=315&w=600&hash=E98C7BA75C5C547FA0FB40293DEBBB1C&v=639263943214224577", // source-page
   "home-chicken-salad": "https://thewoksoflife.com/wp-content/uploads/2015/08/beef-tomato-stir-fry-9.jpg", // source-page
   "home-chicken-salad-with-wasabi-vinaigrette": "https://cdn-akamai.lkk.com/-/media/feature/recipe/recipe-photos/recipe-bacon-avocado-dip/600x465_/2600x465.jpg?bc=white&h=315&w=600&hash=AC0035CBDF0812620C13C884C68B6068&v=639263943223360770", // source-page
-  "home-chicken-satay-rice": "https://thewoksoflife.com/wp-content/uploads/2021/04/xo-sauce-fried-rice-13.jpg", // source-page
+  "home-chicken-satay-rice": "https://thewoksoflife.com/wp-content/uploads/2021/07/chicken-satay-15.jpg", // source-page
   "home-chicken-soup-with-whelk": "https://cdn.sanity.io/images/0ue7ztht/production/66a4d2631131b94480a8dcc0f9bf6bc00540b9e5-1000x750.jpg", // source-page
-  "home-chicken-steak-rice": "https://thewoksoflife.com/wp-content/uploads/2021/04/xo-sauce-fried-rice-13.jpg", // source-page
+  "home-chicken-steak-rice": "https://thewoksoflife.com/wp-content/uploads/2025/03/baked-pork-chop-rice-36.jpg", // café rice plate stand-in until dish-specific og
   "home-chicken-stick-rice-with-japanese-style-teriyaki": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk_recipes_600_japanese-teriyaki-sauce-chicken-stick-rice.jpg?bc=white&h=315&w=600&hash=08929682ACFED9D7AF3ADB5DE21B6188&v=639263943232685009", // source-page
   "home-chicken-teriyaki-don": "https://static1.squarespace.com/static/5e762e3d21acd35898d85e9c/5e765b5656403358c4993df5/61364aa943f8bc74a414cba3/1736928719125/DSC01335.jpg?format=1500w", // source-page
   "home-chicken-thighs-stirfry": "https://assets.unileversolutions.com/recipes-v3/176944-default.jpg", // source-page
+  "home-xo-chicken-fried-rice": "https://thewoksoflife.com/wp-content/uploads/2021/04/xo-sauce-fried-rice-13.jpg", // source-page
   "home-chicken-tomato-beef-style": "https://thewoksoflife.com/wp-content/uploads/2015/08/beef-tomato-stir-fry-9.jpg", // source-page
   "home-chicken-tsukune": "https://static1.squarespace.com/static/5e762e3d21acd35898d85e9c/5e765b5656403358c4993df5/61129c77b9a8e778cd4a2201/1743334493827/P8101100.jpg?format=1500w", // source-page
   "home-chicken-veg-soup": "https://thewoksoflife.com/wp-content/uploads/2023/05/Chinese-chicken-noodle-soup-13.jpg", // source-page
@@ -297,7 +298,7 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-classic-shrimp-toasts": "https://cdn.sanity.io/images/0ue7ztht/production/3dcae273f2d0d4e99059d1b56bc533c7698baa98-1000x750.jpg", // source-page
   "home-clay-pot-abalone-chicken-in-black-bean-sauce": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk-recipe_600_clay-pot-abalone-chicken-in-black-bean-sauce.jpg?bc=white&h=315&w=600&hash=BBDB5DED3342FE635E0B942443B7DBBC&v=639263943409187955", // source-page
   "home-claypot-shrimp-with-beech-mushrooms": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk-recipe_600_claypot-shrimp-with-beech-mushrooms.jpg?bc=white&h=315&w=600&hash=9712504E2EAA2B0F34C8BD43F7539152&v=639263943418361888", // source-page
-  "home-claypot-style-rice": "https://thewoksoflife.com/wp-content/uploads/2021/04/xo-sauce-fried-rice-13.jpg", // source-page
+  "home-claypot-style-rice": "https://thewoksoflife.com/wp-content/uploads/2018/11/chinese-sausage-fried-rice-9.jpg", // source-page
   "home-claypot-tofu": "https://cdn.sanity.io/images/2r0kdewr/production/939868de9af32e09b9aa12410bbae071fc718718-1000x563.jpg", // source-page
   "home-clear-tomato-cold-soup-with-okra": "https://static1.squarespace.com/static/5e762e3d21acd35898d85e9c/5e765b5656403358c4993df5/5fc1b946f3de5e49b5a4e84e/1644782941665/IMG_9120.jpg?format=1500w", // source-page
   "home-clearout-egg-drop": "https://cdn.sanity.io/images/2r0kdewr/production/65262d682512229ffb09f533e1201e0ceaff07ef-1000x563.jpg", // source-page
@@ -819,7 +820,7 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-squid-ginger-scallion": "https://cdn.sanity.io/images/2r0kdewr/production/e68e46818f83aafe2bba07506ecc7805df48dfbf-6000x3375.jpg", // source-page
   "home-squid-ink-pasta-with-onion-and-mushroom": "https://static1.squarespace.com/static/5e762e3d21acd35898d85e9c/5e765b5656403358c4993df5/5e770c28f4760763309d378c/1645205327364/13B33346-B871-4A9E-886A-1689BE672630.JPG?format=1500w", // source-page
   "home-squid-rice-bowl": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
-  "home-squid-satay": "https://thewoksoflife.com/wp-content/uploads/2021/04/xo-sauce-fried-rice-13.jpg", // source-page
+  "home-squid-satay": "https://thewoksoflife.com/wp-content/uploads/2021/07/chicken-satay-15.jpg", // satay sauce method stand-in
   "home-star-fruit-with-lean-pork-soup": "https://cdn.sanity.io/images/0ue7ztht/production/192911b1cb8ae26ac1b3cc7320b802c32342ec89-1000x750.jpg", // source-page
   "home-steam-snow-crab-female-with-vinegar-jelly": "https://static1.squarespace.com/static/5e762e3d21acd35898d85e9c/5e765b5656403358c4993df5/5fcafab7551bdc47e7a02671/1644781976653/IMG_0993.jpg?format=1500w", // source-page
   "home-steamed-beef-patty": "https://cdn.sanity.io/images/2r0kdewr/production/4027d3520d4f2a5d69b16fe08a62b90b1e791db2-1000x563.jpg", // source-page

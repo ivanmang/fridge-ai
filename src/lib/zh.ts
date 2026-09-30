@@ -61,6 +61,7 @@ export const ZH_FOOD: Record<string, string> = {
   Tortilla: "墨西哥餅",
   "Soy sauce": "豉油",
   "Oyster sauce": "蠔油",
+  "XO sauce": "XO醬",
   "Hoisin sauce": "海鮮醬",
   "Chili oil": "辣椒油",
   Ketchup: "茄汁",

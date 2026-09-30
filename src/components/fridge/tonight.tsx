@@ -18,9 +18,18 @@ import {
   trustLevel,
   type FoodItem,
 } from "@/lib/logic"
+import { formatMaterialQty, groupMaterials } from "@/lib/materials"
 import { useFridge } from "@/lib/store"
 import { emptySurvey, surveyReady } from "@/lib/survey"
 import { cn } from "@/lib/utils"
+
+const GROUP_LABEL: Record<string, "materialsMarinade" | "materialsSauce" | "materialsMain" | "materialsGarnish" | "materialsOther"> = {
+  marinade: "materialsMarinade",
+  sauce: "materialsSauce",
+  main: "materialsMain",
+  garnish: "materialsGarnish",
+  other: "materialsOther",
+}
 
 function alertTimerDone() {
   try {
@@ -164,7 +173,8 @@ export function Tonight({
     [all, items, priority, favorites, taste],
   )
   const picked = useMemo(() => ideasByIds(wanted, items, extras).filter((row) => !isOutlineRecipe(row.recipe)), [wanted, items, extras])
-  const shopRows = picked.length ? shopForIdeas(items, picked) : plan.shop
+  const allShopRows = picked.length ? shopForIdeas(items, picked) : plan.shop
+  const shopRows = allShopRows.filter((row) => !("kind" in row) || row.kind === "core")
   const shopIdeas = picked.length ? picked : plan.ideas
 
   const filtered = useMemo(
@@ -612,6 +622,9 @@ export function Tonight({
               <p className="mt-1 text-muted">{active.missing.length ? join(active.missing) : t("haveAll")}</p>
             </div>
           </div>
+          {active.recipe.materials?.length ? (
+            <p className="mt-3 text-sm text-muted">{t("materialsFullInPrep")}</p>
+          ) : null}
           <div className="mt-4 flex flex-wrap gap-2">
             {!isOutline ? (
               <button type="button" onClick={() => startCook(active.recipe.id)} className="h-11 flex-1 rounded-card bg-mint font-semibold text-mint-ink">
@@ -665,6 +678,48 @@ export function Tonight({
               <p className="mt-1 text-muted">{active.missing.length ? join(active.missing) : t("haveAll")}</p>
             </div>
           </div>
+          {groupMaterials(active.recipe).length > 0 && (
+            <div className="mt-5 space-y-4">
+              <p className="text-sm font-semibold uppercase tracking-wide text-muted">{t("materialsTitle")}</p>
+              {groupMaterials(active.recipe).map((section) => {
+                const cores = section.items.filter((row) => row.role === "core" || row.role === "optional")
+                const staples = section.items.filter((row) => row.role === "staple")
+                const show = cores.length ? cores : section.items
+                return (
+                  <div key={section.group}>
+                    <p className="text-sm font-medium text-mint">{t(GROUP_LABEL[section.group] ?? "materialsOther")}</p>
+                    <ul className="mt-2 space-y-1.5 text-sm leading-relaxed">
+                      {show.map((row, index) => {
+                        const qty = formatMaterialQty(row, locale)
+                        return (
+                          <li key={`${section.group}-${row.name}-${index}`} className="flex flex-wrap gap-x-2">
+                            <span className="font-medium">{foodLabel(locale, row.name)}</span>
+                            {qty ? <span className="text-muted">{qty}</span> : null}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                    {staples.length > 0 && cores.length > 0 && (
+                      <details className="mt-2">
+                        <summary className="cursor-pointer text-sm text-muted">{t("materialsStaples")}</summary>
+                        <ul className="mt-1.5 space-y-1 text-sm text-muted">
+                          {staples.map((row, index) => {
+                            const qty = formatMaterialQty(row, locale)
+                            return (
+                              <li key={`staple-${row.name}-${index}`}>
+                                {foodLabel(locale, row.name)}
+                                {qty ? ` · ${qty}` : ""}
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      </details>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          )}
           {active.missing.length > 0 && (
             <button type="button" onClick={listMissing} className="mt-4 h-11 w-full rounded-card border border-line text-sm font-semibold">
               {t("addMissing")}

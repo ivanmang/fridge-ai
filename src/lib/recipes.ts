@@ -1,11 +1,22 @@
+import type { RecipeMaterial } from "@/lib/materials"
+
+export type { MaterialGroup, MaterialRole, RecipeMaterial } from "@/lib/materials"
+
 export type Recipe = {
   id: string
   name: string
   cuisine: string
   time: number
   servings: number
+  /** Required cores — keep in sync with `materials` cores when materials exist. */
   need: string[]
+  /** Soft / staple lines — keep in sync with non-core `materials` when present. */
   optional: string[]
+  /**
+   * Structured 材料 (groups + amounts). When set, matching uses core roles;
+   * prep / Shop UI prefer this over flat need/optional.
+   */
+  materials?: RecipeMaterial[]
   steps: string[]
   zh?: { name: string; steps: string[] }
   /** Dish photo URL (optional). */

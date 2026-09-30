@@ -72,7 +72,18 @@ describe("ingredient registry", () => {
       for (const name of [...recipe.need, ...recipe.optional]) {
         assert.ok(isRegistryName(name), `${recipe.id} uses non-registry "${name}"`)
       }
+      for (const row of recipe.materials ?? []) {
+        assert.ok(isRegistryName(row.name), `${recipe.id} materials → non-registry "${row.name}"`)
+      }
     }
+  })
+
+  it("registers XO sauce with HK aliases", () => {
+    assert.ok(isRegistryName("XO sauce"))
+    assert.equal(findShelf("XO醬")?.name, "XO sauce")
+    assert.equal(findShelf("李錦記XO醬")?.name, "XO sauce")
+    assert.equal(ZH_FOOD["XO sauce"], "XO醬")
+    assert.equal(isStapleIngredient("XO sauce"), false)
   })
 
   it("avocado toast matches BBC toast materials (no rice)", () => {

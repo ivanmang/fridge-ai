@@ -1,12 +1,14 @@
 import { RECIPES, type Recipe } from "@/lib/recipes"
 import { MORE, MORE_ZH } from "@/lib/more-dishes"
 import { EXTRA } from "@/lib/extra-dishes"
+import { recipeAllNames, recipeCores, recipeSoft, recipeStaples } from "@/lib/materials"
 import { enrichRecipe } from "@/lib/recipe-media"
 import { surveyAnswered, surveyReady, type SurveyAnswers } from "@/lib/survey"
 import { SHELF, type ShelfFood } from "@/lib/shelf"
 import { ZH_CUISINE, ZH_FOOD, ZH_RECIPE } from "@/lib/zh"
 
 export { enrichRecipe } from "@/lib/recipe-media"
+export { recipeAllNames, recipeCores, recipeSoft, recipeStaples } from "@/lib/materials"
 
 export type FoodItem = {
   id: string
@@ -151,7 +153,7 @@ function sameFood(have: string, need: string) {
 }
 
 export function isVegetarian(recipe: Recipe) {
-  return !recipe.need.some((need) => MEAT.some((meat) => norm(need).includes(meat)))
+  return !recipeCores(recipe).some((need) => MEAT.some((meat) => norm(need).includes(meat)))
 }
 
 export type RankedRecipe = {
@@ -180,7 +182,7 @@ function scoreOne(recipe: Recipe, stock: StockRow[], priority: Priority, favorit
   const matched: string[] = []
   const missing: string[] = []
   const urgent: string[] = []
-  for (const need of recipe.need) {
+  for (const need of recipeCores(recipe)) {
     const key = foodKey(need)
     const hit = stock.find((item) => item.days >= 0 && item.key === key)
     if (hit) {
@@ -189,7 +191,7 @@ function scoreOne(recipe: Recipe, stock: StockRow[], priority: Priority, favorit
     } else missing.push(need)
   }
   let optionalHits = 0
-  for (const extra of recipe.optional) {
+  for (const extra of recipeSoft(recipe)) {
     const key = foodKey(extra)
     const hit = stock.find((item) => item.days >= 0 && item.key === key)
     if (!hit) continue
@@ -207,23 +209,23 @@ function scoreOne(recipe: Recipe, stock: StockRow[], priority: Priority, favorit
 const SEAFOOD = ["shrimp", "prawn", "fish", "salmon", "tuna", "scallop", "abalone", "crab", "蝦", "魚", "帶子", "蟹"]
 
 function isSeafood(recipe: Recipe) {
-  return recipe.need.some((need) => SEAFOOD.some((word) => norm(need).includes(word)))
+  return recipeCores(recipe).some((need) => SEAFOOD.some((word) => norm(need).includes(word)))
 }
 
 const RED_MEAT = ["beef", "pork", "bacon", "ham", "sausage", "luncheon", "spam", "lamb", "牛", "豬"]
 const LAND_MEAT = ["chicken", "雞", ...RED_MEAT]
 
 function hasWord(recipe: Recipe, words: string[]) {
-  return recipe.need.some((need) => words.some((word) => norm(need).includes(word)))
+  return recipeCores(recipe).some((need) => words.some((word) => norm(need).includes(word)))
 }
 
 function isSpicy(recipe: Recipe) {
-  const blob = norm([recipe.name, recipe.cuisine, ...recipe.need].join(" "))
+  const blob = norm([recipe.name, recipe.cuisine, ...recipeCores(recipe)].join(" "))
   return recipe.cuisine === "Sichuan" || ["chili", "chilli", "kimchi", "curry"].some((word) => blob.split(" ").includes(word))
 }
 
 function isSoup(recipe: Recipe) {
-  const blob = norm([recipe.name, ...recipe.need].join(" "))
+  const blob = norm([recipe.name, ...recipeCores(recipe)].join(" "))
   return blob.includes("soup") || recipe.name.includes("湯")
 }
 
@@ -428,8 +430,8 @@ export function searchRecipes(
         recipe.zh?.name ?? "",
         MORE_ZH[recipe.id] ?? "",
         ZH_CUISINE[recipe.cuisine] ?? "",
-        ...recipe.need,
-        ...recipe.optional,
+        ...recipeCores(recipe),
+        ...recipeSoft(recipe),
       ].join(" "),
     )
     return blob.includes(q)
@@ -465,7 +467,7 @@ export function ideasByIds(ids: string[], items: FoodItem[], extras: Recipe[] = 
 export function foodsForMeal(recipe: Recipe, items: FoodItem[]): FoodItem[] {
   const used = new Set<string>()
   const out: FoodItem[] = []
-  for (const need of [...recipe.need, ...recipe.optional]) {
+  for (const need of recipeAllNames(recipe)) {
     const key = foodKey(need)
     const hit = items.find((item) => daysUntil(item.expires) >= 0 && !used.has(item.id) && foodKey(item.name) === key)
     if (!hit) continue
@@ -475,29 +477,38 @@ export function foodsForMeal(recipe: Recipe, items: FoodItem[]): FoodItem[] {
   return out
 }
 
-const STAPLES = ["soy sauce", "oyster sauce", "ginger"]
-
 export function shopForIdeas(items: FoodItem[], ideas: RankedRecipe[]) {
-  const rows = new Map<string, { name: string; recipeIds: string[] }>()
+  const rows = new Map<string, { name: string; recipeIds: string[]; kind: "core" | "staple" }>()
   for (const idea of ideas) {
-    const names = new Map<string, string>()
-    const addName = (name: string) => {
+    const addName = (name: string, kind: "core" | "staple") => {
       const canonical = shopName(name)
-      names.set(norm(canonical), canonical)
+      const key = norm(canonical)
+      const existing = rows.get(key)
+      if (existing) {
+        if (!existing.recipeIds.includes(idea.recipe.id)) existing.recipeIds.push(idea.recipe.id)
+        if (existing.kind === "staple" && kind === "core") existing.kind = "core"
+        return
+      }
+      rows.set(key, { name: canonical, recipeIds: [idea.recipe.id], kind })
     }
-    for (const need of idea.missing) addName(need)
-    for (const name of [...idea.recipe.need, ...idea.recipe.optional]) {
-      if (!STAPLES.some((staple) => sameFood(name, staple))) continue
+    for (const need of idea.missing) addName(need, "core")
+    for (const name of recipeStaples(idea.recipe)) {
       if (items.some((item) => daysUntil(item.expires) >= 0 && sameFood(item.name, name))) continue
-      addName(name)
-    }
-    for (const [key, name] of names) {
-      const row = rows.get(key) ?? { name, recipeIds: [] }
-      if (!row.recipeIds.includes(idea.recipe.id)) row.recipeIds.push(idea.recipe.id)
-      rows.set(key, row)
+      if (idea.missing.some((miss) => sameFood(miss, name))) continue
+      addName(name, "staple")
     }
   }
   return [...rows.values()]
+}
+
+/** Core gaps only (default Shop “for tonight”). */
+export function shopCoreGaps(items: FoodItem[], ideas: RankedRecipe[]) {
+  return shopForIdeas(items, ideas).filter((row) => row.kind === "core")
+}
+
+/** Staple gaps for secondary Shop section. */
+export function shopStapleGaps(items: FoodItem[], ideas: RankedRecipe[]) {
+  return shopForIdeas(items, ideas).filter((row) => row.kind === "staple")
 }
 
 export function planFromRanked(
