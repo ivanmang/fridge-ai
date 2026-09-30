@@ -1,7 +1,8 @@
 import { useEffect, useRef, type ReactNode } from "react"
-import { X } from "lucide-react"
+import { ExternalLink, X } from "lucide-react"
 import { cuisineLabel, translate, type UiKey } from "@/lib/i18n"
 import type { FoodItem } from "@/lib/logic"
+import type { Recipe } from "@/lib/recipes"
 import type { ScanHit } from "@/lib/scan.functions"
 import { useFridge } from "@/lib/store"
 import { cn } from "@/lib/utils"
@@ -203,4 +204,46 @@ export function WelcomeSheet({
   )
 }
 
+/** Dish photo + external full-recipe link for Tonight / prep. */
+export function RecipeSourceMedia({
+  recipe,
+  dishName,
+  compact = false,
+}: {
+  recipe: Recipe
+  dishName: string
+  compact?: boolean
+}) {
+  const { t } = useI18n()
+  if (!recipe.image && !recipe.sourceUrl) return null
+  return (
+    <div className={cn(compact ? "mt-3 space-y-2" : "mt-3 space-y-3")}>
+      {recipe.image && (
+        <img
+          src={recipe.image}
+          alt={t("recipePhotoAlt", { name: dishName })}
+          loading="lazy"
+          decoding="async"
+          className={cn(
+            "w-full object-cover bg-raised",
+            compact ? "h-28 rounded-card" : "aspect-[16/10] rounded-card",
+          )}
+        />
+      )}
+      {recipe.sourceUrl && (
+        <a
+          href={recipe.sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-card border border-line px-4 text-sm font-semibold text-mint"
+        >
+          <ExternalLink className="size-4 shrink-0" aria-hidden />
+          <span className="truncate">
+            {recipe.sourceName ? t("viewFullRecipeNamed", { name: recipe.sourceName }) : t("viewFullRecipe")}
+          </span>
+        </a>
+      )}
+    </div>
+  )
+}
 

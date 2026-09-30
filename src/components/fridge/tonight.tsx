@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { DishCatalog } from "@/components/fridge/dish-catalog"
 import { DishSearch } from "@/components/fridge/shop-panel"
-import { CUISINES, Empty, Sheet, SuggestControl, TastePrompt, useI18n } from "@/components/fridge/shared"
+import { CUISINES, Empty, RecipeSourceMedia, Sheet, SuggestControl, TastePrompt, useI18n } from "@/components/fridge/shared"
 import { SurveyPanel, TasteProfile } from "@/components/fridge/survey-panel"
 import { cuisineLabel, foodLabel, recipeText } from "@/lib/i18n"
 import {
@@ -585,6 +585,7 @@ export function Tonight({
             {t("minutes", { n: active.recipe.time })} ·{" "}
             {active.recipe.servings === 1 ? t("serving") : t("servings", { n: active.recipe.servings })}
           </p>
+          <RecipeSourceMedia recipe={active.recipe} dishName={dish.name} />
           {active.urgent.length > 0 && <p className="mt-3 text-sm text-clay">{t("usesSoon", { list: join(active.urgent) })}</p>}
           {isOutline && <p className="mt-3 text-xs text-muted">{t("recipeGuideOnly")}</p>}
           <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
@@ -639,6 +640,7 @@ export function Tonight({
           <p className="text-xs font-medium tracking-wide text-mint uppercase">{dish.cuisine}</p>
           <h2 className={cn("mt-1 font-display text-3xl", locale === "en" && "italic")}>{dish.name}</h2>
           <p className="mt-2 text-sm text-muted">{t("prepLead")}</p>
+          <RecipeSourceMedia recipe={active.recipe} dishName={dish.name} compact />
           <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("pullThese")}</p>

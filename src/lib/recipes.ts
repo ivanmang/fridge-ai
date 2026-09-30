@@ -8,6 +8,12 @@ export type Recipe = {
   optional: string[]
   steps: string[]
   zh?: { name: string; steps: string[] }
+  /** Dish photo URL (optional). */
+  image?: string
+  /** External full-recipe / origin guide URL (optional). */
+  sourceUrl?: string
+  /** Publisher label for sourceUrl (e.g. "The Woks of Life"). */
+  sourceName?: string
 }
 
 export const RECIPES: Recipe[] = [

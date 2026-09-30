@@ -261,6 +261,14 @@ export function DishCatalog({
             from === "home" ? t("sourceHome") : from === "knorr" ? t("sourceKnorr") : from === "guardian" ? t("sourceGuardian") : t("sourceLkk")
           return (
             <li key={recipe.id} className="flex items-center gap-3 rounded-card border border-line bg-surface px-4 py-3">
+              {recipe.image ? (
+                <img
+                  src={recipe.image}
+                  alt=""
+                  loading="lazy"
+                  className="size-14 shrink-0 rounded-card object-cover bg-raised"
+                />
+              ) : null}
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="font-medium">{copy.name}</p>
@@ -279,6 +287,17 @@ export function DishCatalog({
                     ? ` · ${t("missing", { list: row.missing.map((name) => foodLabel(locale, name)).join(locale === "zh" ? "、" : ", ") })}`
                     : ""}
                 </p>
+                {recipe.sourceUrl ? (
+                  <a
+                    href={recipe.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-flex min-h-10 items-center text-sm font-semibold text-mint"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {recipe.sourceName ? t("viewFullRecipeNamed", { name: recipe.sourceName }) : t("viewFullRecipe")}
+                  </a>
+                ) : null}
               </div>
               <button
                 type="button"
