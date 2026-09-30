@@ -4,7 +4,11 @@ import { getRequest } from "@tanstack/react-start/server"
 
 type Bucket = { hits: number[] }
 
-/** In-memory counters keyed by IP. Also flushed to disk so soft restarts keep limits. */
+/**
+ * In-memory counters keyed by IP. Also flushed to disk so soft restarts keep limits.
+ * On Vercel / other serverless hosts the filesystem is ephemeral and instances do
+ * not share memory — treat these limits as soft spend brakes, not a global quota.
+ */
 const memory = new Map<string, Bucket>()
 const FILE = join(process.cwd(), ".data", "rate-limits.json")
 let loaded = false
