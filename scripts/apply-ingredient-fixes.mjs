@@ -155,7 +155,9 @@ function mapIngredient(raw) {
     [/^bread|sourdough|toast|面包|麵包$/, "Bread"],
     [/^avocado|牛油果$/, "Avocado"],
     [/^lemon|柠檬|檸檬$/, "Lemon"],
-    [/^lime$/, "Lemon"],
+    [/^lime|青檸|青柠|萊姆|莱姆$/, "Lime"],
+    [/^chili flakes|chilli flakes|dried chilli flakes|red pepper flakes|辣椒碎$/, "Dried chili"],
+    [/^coriander|cilantro|香菜|芫荽$/, "Cilantro"],
   ]
   for (const [re, canon] of rules) {
     if (re.test(n) || re.test(s)) return canon

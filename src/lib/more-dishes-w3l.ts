@@ -140,7 +140,7 @@ export const MORE_W3L: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Tofu", "Soy sauce", "Sugar", "Bread"],
+    need: ["Tofu", "Soy sauce", "Sugar"],
     optional: ["Garlic", "Ginger", "Sesame seeds", "Spring onion", "Cornstarch", "Cooking oil", "Onion", "Sesame oil"],
     steps: [
       "Pan-fry tofu slabs until golden.",
@@ -493,7 +493,7 @@ export const MORE_W3L: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Salmon", "Avocado", "Cooked rice"],
-    optional: ["Soy sauce", "Sesame seeds", "Cucumber", "Lemon"],
+    optional: ["Soy sauce", "Sesame seeds", "Cucumber", "Lime"],
     steps: [
       "Pan-sear salmon until just opaque; flake.",
       "Bowl rice with avocado and cucumber.",
@@ -646,7 +646,7 @@ export const MORE_W3L: Recipe[] = [
     cuisine: "Chinese",
     time: 10,
     servings: 2,
-    need: ["Silken tofu", "Spring onion", "Carrots", "Cucumber", "Celery", "Bread"],
+    need: ["Silken tofu", "Spring onion", "Carrots", "Cucumber", "Celery"],
     optional: ["Soy sauce", "Sesame oil", "Garlic", "Chili oil", "Thai basil", "Sugar", "White pepper", "Vinegar", "Cilantro"],
     steps: [
       "Plate silken tofu; top with spring onion and optional basil.",

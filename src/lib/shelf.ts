@@ -1,834 +1,1253 @@
+export type IngredientCategory =
+  | "protein"
+  | "veg"
+  | "carb"
+  | "dairy"
+  | "sauce"
+  | "spice"
+  | "pantry"
+  | "other"
+
+/** Canonical fridge/pantry ingredient registry. Dishes must reference `name` only. */
 export type ShelfFood = {
+  /** Stable kebab-case id — never rename casually; `name` is the display/canonical key for recipes. */
+  id: string
   name: string
+  /** EN + ZH aliases matching HK supermarket / wet-market packaging where possible. */
   aliases: string[]
-  category: string
+  category: IngredientCategory
   location: "fridge" | "freezer" | "pantry"
   days: number
+  /** Pantry staple — prefer recipe `optional`, not a core cook material. */
+  staple?: boolean
 }
 
 export const SHELF: ShelfFood[] = [
   {
-    "name": "Milk",
-    "aliases": [
+    id: "milk",
+    name: "Milk",
+    aliases: [
       "fresh milk",
       "whole milk",
       "skim milk",
-      "2% milk"
+      "2% milk",
+      "牛奶",
+      "鮮奶",
+      "鲜奶",
+      "全脂牛奶",
     ],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 7
+    category: "dairy",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "UHT Milk (opened)",
-    "aliases": [
+    id: "uht-milk-opened",
+    name: "UHT Milk (opened)",
+    aliases: [
       "uht",
-      "long life milk"
+      "long life milk",
+      "保久乳",
+      "UHT牛奶",
+      "長壽奶",
     ],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 5
+    category: "dairy",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Yogurt",
-    "aliases": [
+    id: "yogurt",
+    name: "Yogurt",
+    aliases: [
       "yoghurt",
-      "greek yogurt"
+      "greek yogurt",
+      "乳酪",
+      "酸奶",
+      "希腊乳酪",
+      "Greek yogurt",
     ],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 14
+    category: "dairy",
+    location: "fridge",
+    days: 14,
   },
   {
-    "name": "Butter",
-    "aliases": [],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 60
+    id: "butter",
+    name: "Butter",
+    aliases: [
+      "牛油",
+      "黃油",
+      "黄油",
+      "奶油",
+    ],
+    category: "dairy",
+    location: "fridge",
+    days: 60,
   },
   {
-    "name": "Cheddar",
-    "aliases": [
+    id: "cheddar",
+    name: "Cheddar",
+    aliases: [
       "hard cheese",
-      "cheese"
+      "cheese",
+      "車打芝士",
+      "芝士",
+      "奶酪",
     ],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 21
+    category: "dairy",
+    location: "fridge",
+    days: 21,
   },
   {
-    "name": "Mozzarella",
-    "aliases": [
-      "fresh mozzarella"
+    id: "mozzarella",
+    name: "Mozzarella",
+    aliases: [
+      "fresh mozzarella",
+      "莫札瑞拉",
+      "马苏里拉",
+      "水牛芝士",
     ],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 7
+    category: "dairy",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Cream cheese",
-    "aliases": [],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 14
+    id: "cream-cheese",
+    name: "Cream cheese",
+    aliases: [
+      "奶油芝士",
+      "乳脂芝士",
+    ],
+    category: "dairy",
+    location: "fridge",
+    days: 14,
   },
   {
-    "name": "Sour cream",
-    "aliases": [],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 14
+    id: "sour-cream",
+    name: "Sour cream",
+    aliases: [
+      "酸忌廉",
+      "酸奶油",
+    ],
+    category: "dairy",
+    location: "fridge",
+    days: 14,
   },
   {
-    "name": "Eggs",
-    "aliases": [
+    id: "eggs",
+    name: "Eggs",
+    aliases: [
       "egg",
-      "fresh eggs"
+      "fresh eggs",
+      "fried egg",
+      "soft boiled egg",
+      "蛋",
+      "雞蛋",
+      "鸡蛋",
+      "鮮雞蛋",
+      "鲜鸡蛋",
+      "非籠養雞蛋",
     ],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 28
+    category: "dairy",
+    location: "fridge",
+    days: 28,
   },
   {
-    "name": "Tofu",
-    "aliases": [
+    id: "tofu",
+    name: "Tofu",
+    aliases: [
       "bean curd",
       "firm tofu",
-      "silken tofu"
+      "silken tofu",
+      "豆腐",
+      "硬豆腐",
+      "板豆腐",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 5
+    category: "protein",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Chicken breast",
-    "aliases": [
+    id: "chicken-breast",
+    name: "Chicken breast",
+    aliases: [
       "chicken",
-      "raw chicken"
+      "raw chicken",
+      "雞胸",
+      "鸡胸",
+      "雞胸肉",
+      "鸡肉",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Chicken thighs",
-    "aliases": [
-      "chicken leg"
+    id: "chicken-thighs",
+    name: "Chicken thighs",
+    aliases: [
+      "chicken leg",
+      "雞髀",
+      "鸡腿",
+      "雞腿",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Ground beef",
-    "aliases": [
+    id: "ground-beef",
+    name: "Ground beef",
+    aliases: [
       "minced beef",
-      "beef mince"
+      "beef mince",
+      "牛絞肉",
+      "免治牛肉",
+      "牛肉碎",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Beef steak",
-    "aliases": [
+    id: "beef-steak",
+    name: "Beef steak",
+    aliases: [
       "steak",
-      "beef"
+      "beef",
+      "牛扒",
+      "牛排",
+      "牛肉",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 4
+    category: "protein",
+    location: "fridge",
+    days: 4,
   },
   {
-    "name": "Pork chops",
-    "aliases": [
+    id: "pork-chops",
+    name: "Pork chops",
+    aliases: [
       "pork",
-      "pork loin"
+      "pork loin",
+      "豬扒",
+      "猪扒",
+      "豬排",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 4
+    category: "protein",
+    location: "fridge",
+    days: 4,
   },
   {
-    "name": "Bacon",
-    "aliases": [],
-    "category": "protein",
-    "location": "fridge",
-    "days": 7
-  },
-  {
-    "name": "Ham",
-    "aliases": [
-      "sliced ham"
+    id: "bacon",
+    name: "Bacon",
+    aliases: [
+      "煙肉",
+      "烟肉",
+      "培根",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 5
+    category: "protein",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Sausages",
-    "aliases": [
+    id: "ham",
+    name: "Ham",
+    aliases: [
+      "sliced ham",
+      "火腿",
+      "火腿片",
+    ],
+    category: "protein",
+    location: "fridge",
+    days: 5,
+  },
+  {
+    id: "sausages",
+    name: "Sausages",
+    aliases: [
       "sausage",
-      "hot dog"
+      "hot dog",
+      "香腸",
+      "香肠",
+      "肉腸",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 3
+    category: "protein",
+    location: "fridge",
+    days: 3,
   },
   {
-    "name": "Salmon",
-    "aliases": [
+    id: "salmon",
+    name: "Salmon",
+    aliases: [
       "fish",
-      "raw salmon"
+      "raw salmon",
+      "三文魚",
+      "三文鱼",
+      "鮭魚",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "White fish",
-    "aliases": [
+    id: "white-fish",
+    name: "White fish",
+    aliases: [
       "cod",
       "cod fillet",
       "seabass",
       "sea bass",
-      "snapper"
+      "snapper",
+      "白魚",
+      "白鱼",
+      "鱸魚",
+      "鲈鱼",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Shrimp",
-    "aliases": [
+    id: "shrimp",
+    name: "Shrimp",
+    aliases: [
       "prawns",
-      "prawn"
+      "prawn",
+      "蝦",
+      "虾",
+      "蝦仁",
+      "大蝦",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Cooked leftovers",
-    "aliases": [
+    id: "cooked-leftovers",
+    name: "Cooked leftovers",
+    aliases: [
       "leftovers",
       "leftover",
       "takeaway",
       "剩菜",
-      "隔夜菜"
+      "隔夜菜",
+      "剩餸",
+      "熟食",
     ],
-    "category": "leftover",
-    "location": "fridge",
-    "days": 3
+    category: "carb",
+    location: "fridge",
+    days: 3,
   },
   {
-    "name": "Lettuce",
-    "aliases": [
+    id: "lettuce",
+    name: "Lettuce",
+    aliases: [
       "romaine",
       "iceberg",
-      "leafy greens"
+      "leafy greens",
+      "生菜",
+      "玻璃生菜",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 7
+    category: "veg",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Spinach",
-    "aliases": [
-      "baby spinach"
+    id: "spinach",
+    name: "Spinach",
+    aliases: [
+      "baby spinach",
+      "菠菜",
+      "莧菜",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Pak choi",
-    "aliases": [
+    id: "pak-choi",
+    name: "Pak choi",
+    aliases: [
       "bok choy",
       "bok choi",
-      "shanghai greens"
+      "shanghai greens",
+      "白菜仔",
+      "小白菜",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Choi sum",
-    "aliases": [
+    id: "choi-sum",
+    name: "Choi sum",
+    aliases: [
       "choy sum",
-      "cai xin"
+      "cai xin",
+      "菜心",
+      "菜芯",
+      "choy sum vegetable",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 4
+    category: "veg",
+    location: "fridge",
+    days: 4,
   },
   {
-    "name": "Gai lan",
-    "aliases": [
+    id: "gai-lan",
+    name: "Gai lan",
+    aliases: [
       "chinese broccoli",
-      "kai lan"
+      "kai lan",
+      "芥蘭",
+      "芥兰",
+      "Chinese broccoli",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Broccoli",
-    "aliases": [],
-    "category": "produce",
-    "location": "fridge",
-    "days": 5
+    id: "broccoli",
+    name: "Broccoli",
+    aliases: [
+      "西蘭花",
+      "西兰花",
+      "綠花椰菜",
+    ],
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Cauliflower",
-    "aliases": [],
-    "category": "produce",
-    "location": "fridge",
-    "days": 7
+    id: "cauliflower",
+    name: "Cauliflower",
+    aliases: [
+      "椰菜花",
+      "花椰菜",
+    ],
+    category: "veg",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Cabbage",
-    "aliases": [
+    id: "cabbage",
+    name: "Cabbage",
+    aliases: [
       "napa cabbage",
       "wong bak",
-      "chinese cabbage"
+      "chinese cabbage",
+      "椰菜",
+      "高麗菜",
+      "捲心菜",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 12
+    category: "veg",
+    location: "fridge",
+    days: 12,
   },
   {
-    "name": "Carrots",
-    "aliases": [
-      "carrot"
+    id: "carrots",
+    name: "Carrots",
+    aliases: [
+      "carrot",
+      "紅蘿蔔",
+      "红萝卜",
+      "甘筍",
+      "甘笋",
+      "胡蘿蔔",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 21
+    category: "veg",
+    location: "fridge",
+    days: 21,
   },
   {
-    "name": "Celery",
-    "aliases": [],
-    "category": "produce",
-    "location": "fridge",
-    "days": 14
-  },
-  {
-    "name": "Cucumber",
-    "aliases": [],
-    "category": "produce",
-    "location": "fridge",
-    "days": 6
-  },
-  {
-    "name": "Tomato",
-    "aliases": [
-      "tomatoes"
+    id: "celery",
+    name: "Celery",
+    aliases: [
+      "西芹",
+      "芹菜",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 7
+    category: "veg",
+    location: "fridge",
+    days: 14,
   },
   {
-    "name": "Bell pepper",
-    "aliases": [
+    id: "cucumber",
+    name: "Cucumber",
+    aliases: [
+      "青瓜",
+      "黃瓜",
+      "黄瓜",
+    ],
+    category: "veg",
+    location: "fridge",
+    days: 6,
+  },
+  {
+    id: "tomato",
+    name: "Tomato",
+    aliases: [
+      "tomatoes",
+      "番茄",
+      "蕃茄",
+      "西红柿",
+    ],
+    category: "veg",
+    location: "fridge",
+    days: 7,
+  },
+  {
+    id: "bell-pepper",
+    name: "Bell pepper",
+    aliases: [
       "capsicum",
       "red pepper",
       "green pepper",
       "灯笼椒",
-      "燈籠椒"
+      "燈籠椒",
+      "青椒",
+      "彩椒",
+      "甜椒",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 8
+    category: "veg",
+    location: "fridge",
+    days: 8,
   },
   {
-    "name": "Onion",
-    "aliases": [
+    id: "onion",
+    name: "Onion",
+    aliases: [
       "onions",
-      "yellow onion"
+      "yellow onion",
+      "洋蔥",
+      "洋葱",
     ],
-    "category": "produce",
-    "location": "pantry",
-    "days": 30
+    category: "veg",
+    location: "pantry",
+    days: 30,
+    staple: true,
   },
   {
-    "name": "Spring onion",
-    "aliases": [
+    id: "spring-onion",
+    name: "Spring onion",
+    aliases: [
       "green onion",
       "scallion",
-      "green onions"
+      "green onions",
+      "蔥",
+      "葱",
+      "青蔥",
+      "青葱",
+      "蔥花",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 7
+    category: "veg",
+    location: "fridge",
+    days: 7,
+    staple: true,
   },
   {
-    "name": "Garlic",
-    "aliases": [],
-    "category": "produce",
-    "location": "pantry",
-    "days": 30
-  },
-  {
-    "name": "Ginger",
-    "aliases": [],
-    "category": "produce",
-    "location": "fridge",
-    "days": 21
-  },
-  {
-    "name": "Potato",
-    "aliases": [
-      "potatoes"
+    id: "garlic",
+    name: "Garlic",
+    aliases: [
+      "garlic clove",
+      "garlic cloves",
+      "蒜",
+      "蒜頭",
+      "蒜头",
+      "蒜蓉",
+      "大蒜",
     ],
-    "category": "produce",
-    "location": "pantry",
-    "days": 21
+    category: "veg",
+    location: "pantry",
+    days: 30,
+    staple: true,
   },
   {
-    "name": "Sweet potato",
-    "aliases": [],
-    "category": "produce",
-    "location": "pantry",
-    "days": 21
+    id: "ginger",
+    name: "Ginger",
+    aliases: [
+      "薑",
+      "姜",
+      "薑片",
+      "薑蓉",
+    ],
+    category: "veg",
+    location: "fridge",
+    days: 21,
+    staple: true,
   },
   {
-    "name": "Mushroom",
-    "aliases": [
+    id: "potato",
+    name: "Potato",
+    aliases: [
+      "potatoes",
+      "薯仔",
+      "土豆",
+      "馬鈴薯",
+    ],
+    category: "veg",
+    location: "pantry",
+    days: 21,
+  },
+  {
+    id: "sweet-potato",
+    name: "Sweet potato",
+    aliases: [
+      "番薯",
+      "地瓜",
+    ],
+    category: "veg",
+    location: "pantry",
+    days: 21,
+  },
+  {
+    id: "mushroom",
+    name: "Mushroom",
+    aliases: [
       "mushrooms",
       "shiitake",
-      "button mushroom"
+      "button mushroom",
+      "蘑菇",
+      "鮮菇",
+      "洋菇",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Corn",
-    "aliases": [
+    id: "corn",
+    name: "Corn",
+    aliases: [
       "corn on the cob",
-      "sweet corn"
+      "sweet corn",
+      "粟米",
+      "玉米",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 3
+    category: "veg",
+    location: "fridge",
+    days: 3,
   },
   {
-    "name": "Eggplant",
-    "aliases": [
-      "aubergine"
+    id: "eggplant",
+    name: "Eggplant",
+    aliases: [
+      "aubergine",
+      "茄子",
+      "矮瓜",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Zucchini",
-    "aliases": [
-      "courgette"
+    id: "zucchini",
+    name: "Zucchini",
+    aliases: [
+      "courgette",
+      "翠玉瓜",
+      "節瓜",
+      "zucchini",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Apple",
-    "aliases": [
-      "apples"
+    id: "apple",
+    name: "Apple",
+    aliases: [
+      "apples",
+      "蘋果",
+      "苹果",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 21
+    category: "other",
+    location: "fridge",
+    days: 21,
   },
   {
-    "name": "Banana",
-    "aliases": [
-      "bananas"
+    id: "banana",
+    name: "Banana",
+    aliases: [
+      "bananas",
+      "香蕉",
     ],
-    "category": "produce",
-    "location": "pantry",
-    "days": 5
+    category: "other",
+    location: "pantry",
+    days: 5,
   },
   {
-    "name": "Orange",
-    "aliases": [
+    id: "orange",
+    name: "Orange",
+    aliases: [
       "oranges",
-      "citrus"
+      "citrus",
+      "橙",
+      "橘子",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 14
+    category: "other",
+    location: "fridge",
+    days: 14,
   },
   {
-    "name": "Lemon",
-    "aliases": [
-      "lemons"
+    id: "lemon",
+    name: "Lemon",
+    aliases: [
+      "lemons",
+      "lemon juice",
+      "檸檬汁",
+      "檸檬",
+      "柠檬",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 21
+    category: "other",
+    location: "fridge",
+    days: 21,
   },
   {
-    "name": "Berries",
-    "aliases": [
+    id: "berries",
+    name: "Berries",
+    aliases: [
       "strawberry",
       "blueberry",
       "raspberry",
-      "strawberries"
+      "strawberries",
+      "莓",
+      "藍莓",
+      "草莓",
+      "雜莓",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 4
+    category: "other",
+    location: "fridge",
+    days: 4,
   },
   {
-    "name": "Grapes",
-    "aliases": [],
-    "category": "produce",
-    "location": "fridge",
-    "days": 7
+    id: "grapes",
+    name: "Grapes",
+    aliases: [
+      "提子",
+      "葡萄",
+    ],
+    category: "other",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Avocado",
-    "aliases": [],
-    "category": "produce",
-    "location": "pantry",
-    "days": 4
+    id: "avocado",
+    name: "Avocado",
+    aliases: [
+      "ripe avocado",
+      "hass avocado",
+      "牛油果",
+      "鳄梨",
+      "鱷梨",
+      "avocado Hass",
+      "Hass avocado",
+    ],
+    category: "other",
+    location: "pantry",
+    days: 4,
   },
   {
-    "name": "Mango",
-    "aliases": [],
-    "category": "produce",
-    "location": "pantry",
-    "days": 5
+    id: "mango",
+    name: "Mango",
+    aliases: [
+      "芒果",
+    ],
+    category: "other",
+    location: "pantry",
+    days: 5,
   },
   {
-    "name": "Rice",
-    "aliases": [
+    id: "rice",
+    name: "Rice",
+    aliases: [
       "uncooked rice",
-      "jasmine rice"
+      "jasmine rice",
+      "米",
+      "香米",
+      "茉莉香米",
+      "珍珠米",
+      "泰國香米",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
+    category: "carb",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Cooked rice",
-    "aliases": [
+    id: "cooked-rice",
+    name: "Cooked rice",
+    aliases: [
       "leftover rice",
       "day old rice",
       "cold rice",
       "白饭",
       "白飯",
       "冷饭",
-      "冷飯"
+      "冷飯",
+      "剩飯",
+      "隔夜飯",
     ],
-    "category": "leftover",
-    "location": "fridge",
-    "days": 3
+    category: "carb",
+    location: "fridge",
+    days: 3,
   },
   {
-    "name": "Noodles",
-    "aliases": [
+    id: "noodles",
+    name: "Noodles",
+    aliases: [
       "egg noodles",
       "ramen",
       "udon",
       "rice noodles",
-      "instant noodles",
       "gong zai mein",
-      "公仔麵",
-      "公仔面"
+      "麵",
+      "面",
+      "蛋麵",
+      "生麵",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 180
+    category: "carb",
+    location: "pantry",
+    days: 180,
   },
   {
-    "name": "Pasta",
-    "aliases": [
-      "spaghetti"
+    id: "pasta",
+    name: "Pasta",
+    aliases: [
+      "spaghetti",
+      "意粉",
+      "意大利粉",
+      "通心粉",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
+    category: "carb",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Bread",
-    "aliases": [
+    id: "bread",
+    name: "Bread",
+    aliases: [
       "loaf",
-      "toast"
+      "toast",
+      "sourdough",
+      "sourdough toast",
+      "toast bread",
+      "切片麵包",
+      "酸種",
+      "麵包",
+      "面包",
+      "多士",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 5
+    category: "carb",
+    location: "pantry",
+    days: 5,
   },
   {
-    "name": "Tortilla",
-    "aliases": [
-      "wrap"
+    id: "tortilla",
+    name: "Tortilla",
+    aliases: [
+      "wrap",
+      "墨西哥餅",
+      "玉米餅",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 10
+    category: "carb",
+    location: "pantry",
+    days: 10,
   },
   {
-    "name": "Soy sauce",
-    "aliases": [
+    id: "soy-sauce",
+    name: "Soy sauce",
+    aliases: [
       "light soy sauce",
       "dark soy sauce",
       "regular soy sauce",
       "生抽",
       "老抽",
       "酱油",
-      "醬油"
+      "醬油",
+      "豉油",
+      "金標生抽",
+      "淡豉油",
+      "light soy",
+      "dark soy",
     ],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 365
+    category: "sauce",
+    location: "pantry",
+    days: 365,
+    staple: true,
   },
   {
-    "name": "Oyster sauce",
-    "aliases": [],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
+    id: "oyster-sauce",
+    name: "Oyster sauce",
+    aliases: [
+      "蠔油",
+      "蚝油",
+      "舊庄特級蠔油",
+      "鮮蠔油",
+    ],
+    category: "sauce",
+    location: "fridge",
+    days: 180,
+    staple: true,
   },
   {
-    "name": "Hoisin sauce",
-    "aliases": [],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
+    id: "hoisin-sauce",
+    name: "Hoisin sauce",
+    aliases: [
+      "海鮮醬",
+      "海鲜酱",
+      "柱侯醬",
+    ],
+    category: "sauce",
+    location: "fridge",
+    days: 180,
   },
   {
-    "name": "Chili oil",
-    "aliases": [
+    id: "chili-oil",
+    name: "Chili oil",
+    aliases: [
       "chilli oil",
-      "chili crisp"
+      "chili crisp",
+      "辣椒油",
+      "辣油",
+      "紅油",
     ],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 180
+    category: "sauce",
+    location: "pantry",
+    days: 180,
+    staple: true,
   },
   {
-    "name": "Ketchup",
-    "aliases": [],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
-  },
-  {
-    "name": "Mayonnaise",
-    "aliases": [
-      "mayo"
+    id: "ketchup",
+    name: "Ketchup",
+    aliases: [
+      "茄汁",
+      "番茄醬",
+      "番茄酱",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 60
+    category: "sauce",
+    location: "fridge",
+    days: 180,
   },
   {
-    "name": "Mustard",
-    "aliases": [],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
+    id: "mayonnaise",
+    name: "Mayonnaise",
+    aliases: [
+      "mayo",
+      "蛋黃醬",
+      "蛋黄酱",
+      "美乃滋",
+    ],
+    category: "sauce",
+    location: "fridge",
+    days: 60,
   },
   {
-    "name": "Olive oil",
-    "aliases": [],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 365
+    id: "mustard",
+    name: "Mustard",
+    aliases: [
+      "芥末",
+      "芥末醬",
+    ],
+    category: "sauce",
+    location: "fridge",
+    days: 180,
   },
   {
-    "name": "Sesame oil",
-    "aliases": [],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 180
+    id: "olive-oil",
+    name: "Olive oil",
+    aliases: [
+      "extra virgin olive oil",
+      "evoo",
+      "EVOO",
+      "virgin olive oil",
+      "特級初榨橄欖油",
+      "橄欖油",
+      "橄榄油",
+    ],
+    category: "sauce",
+    location: "pantry",
+    days: 365,
+    staple: true,
   },
   {
-    "name": "Vinegar",
-    "aliases": [
+    id: "sesame-oil",
+    name: "Sesame oil",
+    aliases: [
+      "麻油",
+      "香油",
+      "芝麻油",
+    ],
+    category: "sauce",
+    location: "pantry",
+    days: 180,
+    staple: true,
+  },
+  {
+    id: "vinegar",
+    name: "Vinegar",
+    aliases: [
       "rice vinegar",
-      "black vinegar"
+      "black vinegar",
+      "醋",
+      "米醋",
+      "香醋",
+      "陳醋",
+      "浙醋",
     ],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 365
+    category: "sauce",
+    location: "pantry",
+    days: 365,
+    staple: true,
   },
   {
-    "name": "Kimchi",
-    "aliases": [],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 30
-  },
-  {
-    "name": "Pickles",
-    "aliases": [
-      "pickled vegetables"
+    id: "kimchi",
+    name: "Kimchi",
+    aliases: [
+      "泡菜",
+      "韓式泡菜",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 60
+    category: "sauce",
+    location: "fridge",
+    days: 30,
   },
   {
-    "name": "Orange juice",
-    "aliases": [
-      "juice"
+    id: "pickles",
+    name: "Pickles",
+    aliases: [
+      "pickled vegetables",
     ],
-    "category": "beverage",
-    "location": "fridge",
-    "days": 7
+    category: "sauce",
+    location: "fridge",
+    days: 60,
   },
   {
-    "name": "Tofu pudding",
-    "aliases": [
-      "douhua"
+    id: "orange-juice",
+    name: "Orange juice",
+    aliases: [
+      "juice",
+      "橙汁",
     ],
-    "category": "dairy",
-    "location": "fridge",
-    "days": 3
+    category: "other",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Luncheon meat",
-    "aliases": [
+    id: "tofu-pudding",
+    name: "Tofu pudding",
+    aliases: [
+      "douhua",
+      "豆腐花",
+      "豆花",
+    ],
+    category: "dairy",
+    location: "fridge",
+    days: 3,
+  },
+  {
+    id: "luncheon-meat",
+    name: "Luncheon meat",
+    aliases: [
       "spam",
-      "canned ham"
+      "canned ham",
+      "午餐肉",
+      "餐肉",
+      "Spam",
+      "SPAM",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 5
+    category: "protein",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Canned tuna",
-    "aliases": [
-      "tuna"
+    id: "canned-tuna",
+    name: "Canned tuna",
+    aliases: [
+      "tuna",
+      "罐頭吞拿魚",
+      "吞拿魚",
     ],
-    "category": "protein",
-    "location": "pantry",
-    "days": 365
+    category: "protein",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Beans",
-    "aliases": [
+    id: "beans",
+    name: "Beans",
+    aliases: [
       "canned beans",
       "black beans",
-      "chickpeas"
+      "chickpeas",
+      "豆",
+      "焗豆",
+      "豆子",
+      "baked beans",
+      "罐豆",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
+    category: "pantry",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Coconut milk",
-    "aliases": [],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
-  },
-  {
-    "name": "Peanut butter",
-    "aliases": [],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 180
-  },
-  {
-    "name": "Jam",
-    "aliases": [
-      "jelly"
+    id: "coconut-milk",
+    name: "Coconut milk",
+    aliases: [
+      "椰奶",
+      "椰漿",
+      "椰浆",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 90
+    category: "pantry",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Honey",
-    "aliases": [],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 730
+    id: "peanut-butter",
+    name: "Peanut butter",
+    aliases: [
+      "花生醬",
+      "花生酱",
+    ],
+    category: "sauce",
+    location: "pantry",
+    days: 180,
   },
   {
-    "name": "Flour",
-    "aliases": [],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 180
+    id: "jam",
+    name: "Jam",
+    aliases: [
+      "jelly",
+      "果醬",
+      "果酱",
+    ],
+    category: "sauce",
+    location: "fridge",
+    days: 90,
   },
   {
-    "name": "Sugar",
-    "aliases": [],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 730
+    id: "honey",
+    name: "Honey",
+    aliases: [
+      "蜜糖",
+      "蜂蜜",
+    ],
+    category: "sauce",
+    location: "pantry",
+    days: 730,
+    staple: true,
   },
   {
-    "name": "Salt",
-    "aliases": [],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 1825
+    id: "flour",
+    name: "Flour",
+    aliases: [
+      "麵粉",
+      "面粉",
+      "中筋麵粉",
+    ],
+    category: "carb",
+    location: "pantry",
+    days: 180,
+    staple: true,
   },
   {
-    "name": "Ground pork",
-    "aliases": [
+    id: "sugar",
+    name: "Sugar",
+    aliases: [
+      "糖",
+      "白糖",
+      "冰糖",
+      "砂糖",
+    ],
+    category: "spice",
+    location: "pantry",
+    days: 730,
+    staple: true,
+  },
+  {
+    id: "salt",
+    name: "Salt",
+    aliases: [
+      "sea salt",
+      "kosher salt",
+      "table salt",
+      "海鹽",
+      "鹽",
+      "盐",
+    ],
+    category: "spice",
+    location: "pantry",
+    days: 1825,
+    staple: true,
+  },
+  {
+    id: "ground-pork",
+    name: "Ground pork",
+    aliases: [
       "minced pork",
       "pork mince",
-      "免治豬肉"
+      "免治豬肉",
+      "豬絞肉",
+      "猪绞肉",
+      "免治猪肉",
+      "豬肉碎",
+      "猪肉碎",
+      "絞肉",
     ],
-    "category": "meat",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Century egg",
-    "aliases": [
+    id: "century-egg",
+    name: "Century egg",
+    aliases: [
       "preserved egg",
       "pidan",
-      "皮蛋"
+      "皮蛋",
+      "松花蛋",
     ],
-    "category": "egg",
-    "location": "fridge",
-    "days": 30
+    category: "protein",
+    location: "fridge",
+    days: 30,
   },
   {
-    "name": "Bean sprouts",
-    "aliases": [
+    id: "bean-sprouts",
+    name: "Bean sprouts",
+    aliases: [
       "sprouts",
-      "豆芽"
+      "豆芽",
+      "芽菜",
+      "綠豆芽",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 3
+    category: "veg",
+    location: "fridge",
+    days: 3,
   },
   {
-    "name": "Rice vermicelli",
-    "aliases": [
+    id: "rice-vermicelli",
+    name: "Rice vermicelli",
+    aliases: [
       "rice noodles",
       "bee hoon",
-      "米粉"
+      "米粉",
+      "米線",
     ],
-    "category": "grain",
-    "location": "pantry",
-    "days": 365
+    category: "carb",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Chinese sausage",
-    "aliases": [
+    id: "chinese-sausage",
+    name: "Chinese sausage",
+    aliases: [
       "lap cheong",
       "腊肠",
-      "臘腸"
+      "臘腸",
+      "風腸",
     ],
-    "category": "meat",
-    "location": "fridge",
-    "days": 30
+    category: "protein",
+    location: "fridge",
+    days: 30,
   },
   {
-    "name": "Cornstarch",
-    "aliases": [
+    id: "cornstarch",
+    name: "Cornstarch",
+    aliases: [
       "corn flour",
       "corn starch",
       "potato starch",
@@ -836,26 +1255,35 @@ export const SHELF: ShelfFood[] = [
       "生粉",
       "淀粉",
       "澱粉",
-      "太白粉"
+      "太白粉",
+      "玉米粉",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 730
+    category: "spice",
+    location: "pantry",
+    days: 730,
+    staple: true,
   },
   {
-    "name": "Shaoxing wine",
-    "aliases": [
+    id: "shaoxing-wine",
+    name: "Shaoxing wine",
+    aliases: [
       "chinese cooking wine",
       "rice wine",
-      "料酒"
+      "料酒",
+      "黃酒",
+      "绍兴酒",
+      "紹興酒",
+      "花雕",
     ],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 730
+    category: "sauce",
+    location: "pantry",
+    days: 730,
+    staple: true,
   },
   {
-    "name": "White pepper",
-    "aliases": [
+    id: "white-pepper",
+    name: "White pepper",
+    aliases: [
       "pepper",
       "ground white pepper",
       "black pepper",
@@ -863,392 +1291,476 @@ export const SHELF: ShelfFood[] = [
       "fresh black pepper",
       "胡椒",
       "白胡椒",
-      "黑胡椒"
+      "黑胡椒",
+      "胡椒粉",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 730
+    category: "spice",
+    location: "pantry",
+    days: 730,
+    staple: true,
   },
   {
-    "name": "Silken tofu",
-    "aliases": [
+    id: "silken-tofu",
+    name: "Silken tofu",
+    aliases: [
       "soft tofu",
-      "嫩豆腐"
+      "嫩豆腐",
+      "滑豆腐",
+      "軟豆腐",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 5
+    category: "protein",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Snow peas",
-    "aliases": [
+    id: "snow-peas",
+    name: "Snow peas",
+    aliases: [
       "mangetout",
-      "荷蘭豆"
+      "荷蘭豆",
+      "荷兰豆",
+      "甜豆",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Water spinach",
-    "aliases": [
+    id: "water-spinach",
+    name: "Water spinach",
+    aliases: [
       "ong choy",
       "tong cai",
       "通菜",
-      "空心菜"
+      "空心菜",
+      "蕹菜",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 3
+    category: "veg",
+    location: "fridge",
+    days: 3,
   },
   {
-    "name": "Green beans",
-    "aliases": [
+    id: "green-beans",
+    name: "Green beans",
+    aliases: [
       "string beans",
       "long beans",
       "四季豆",
-      "豆角"
+      "豆角",
+      "敏豆",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Winter melon",
-    "aliases": [
+    id: "winter-melon",
+    name: "Winter melon",
+    aliases: [
       "dong gua",
-      "冬瓜"
+      "冬瓜",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 7
+    category: "veg",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Lotus root",
-    "aliases": [
+    id: "lotus-root",
+    name: "Lotus root",
+    aliases: [
       "renkon",
       "藕",
-      "蓮藕"
+      "蓮藕",
+      "莲藕",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Pineapple",
-    "aliases": [
+    id: "pineapple",
+    name: "Pineapple",
+    aliases: [
       "菠蘿",
       "凤梨",
-      "鳳梨"
+      "鳳梨",
+      "菠萝",
     ],
-    "category": "fruit",
-    "location": "fridge",
-    "days": 5
+    category: "other",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Condensed milk",
-    "aliases": [
+    id: "condensed-milk",
+    name: "Condensed milk",
+    aliases: [
       "sweetened condensed milk",
-      "煉奶"
+      "煉奶",
+      "炼奶",
+      "淡奶",
     ],
-    "category": "dairy",
-    "location": "pantry",
-    "days": 180
+    category: "dairy",
+    location: "pantry",
+    days: 180,
   },
   {
-    "name": "Instant noodles",
-    "aliases": [
+    id: "instant-noodles",
+    name: "Instant noodles",
+    aliases: [
       "ramen pack",
       "公仔麵",
       "方便麵",
-      "杯麵"
+      "杯麵",
+      "公仔面",
+      "公仔即食麵",
+      "出前一丁",
+      "即食麵",
+      "即食面",
+      "doll noodles",
     ],
-    "category": "grain",
-    "location": "pantry",
-    "days": 365
+    category: "carb",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Curry powder",
-    "aliases": [
+    id: "curry-powder",
+    name: "Curry powder",
+    aliases: [
       "curry paste",
       "咖哩粉",
-      "咖喱粉"
+      "咖喱粉",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
+    category: "spice",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Fermented tofu",
-    "aliases": [
+    id: "fermented-tofu",
+    name: "Fermented tofu",
+    aliases: [
       "fu yu",
       "腐乳",
-      "fermented bean curd"
+      "fermented bean curd",
+      "南乳",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
+    category: "sauce",
+    location: "fridge",
+    days: 180,
   },
   {
-    "name": "Fermented black beans",
-    "aliases": [
+    id: "fermented-black-beans",
+    name: "Fermented black beans",
+    aliases: [
       "douchi",
       "豆豉",
-      "black bean sauce"
+      "black bean sauce",
     ],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 365
+    category: "sauce",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Miso",
-    "aliases": [
+    id: "miso",
+    name: "Miso",
+    aliases: [
       "miso paste",
-      "味噌"
+      "味噌",
+      "味噌醬",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
+    category: "sauce",
+    location: "fridge",
+    days: 180,
   },
   {
-    "name": "Nori",
-    "aliases": [
+    id: "nori",
+    name: "Nori",
+    aliases: [
       "seaweed sheets",
       "紫菜",
-      "海苔"
+      "海苔",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
+    category: "pantry",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Rice cakes",
-    "aliases": [
+    id: "rice-cakes",
+    name: "Rice cakes",
+    aliases: [
       "tteok",
-      "年糕"
+      "年糕",
+      "粿條",
     ],
-    "category": "grain",
-    "location": "fridge",
-    "days": 14
+    category: "carb",
+    location: "fridge",
+    days: 14,
   },
   {
-    "name": "Udon",
-    "aliases": [
+    id: "udon",
+    name: "Udon",
+    aliases: [
       "udon noodles",
-      "烏冬"
+      "烏冬",
+      "乌冬",
+      "烏龍麵",
     ],
-    "category": "grain",
-    "location": "pantry",
-    "days": 365
+    category: "carb",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Pumpkin",
-    "aliases": [
+    id: "pumpkin",
+    name: "Pumpkin",
+    aliases: [
       "kabocha",
-      "南瓜"
+      "南瓜",
     ],
-    "category": "veg",
-    "location": "pantry",
-    "days": 14
+    category: "veg",
+    location: "pantry",
+    days: 14,
   },
   {
-    "name": "Bitter melon",
-    "aliases": [
+    id: "bitter-melon",
+    name: "Bitter melon",
+    aliases: [
       "bitter gourd",
       "涼瓜",
-      "苦瓜"
+      "苦瓜",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Tofu skin",
-    "aliases": [
+    id: "tofu-skin",
+    name: "Tofu skin",
+    aliases: [
       "yuba",
       "bean curd sheet",
       "豆腐皮",
-      "腐竹"
+      "腐竹",
     ],
-    "category": "protein",
-    "location": "fridge",
-    "days": 7
+    category: "protein",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Corned beef",
-    "aliases": [
+    id: "corned-beef",
+    name: "Corned beef",
+    aliases: [
       "salted beef",
-      "鹹牛肉"
+      "鹹牛肉",
+      "咸牛肉",
     ],
-    "category": "meat",
-    "location": "pantry",
-    "days": 365
+    category: "protein",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Spare ribs",
-    "aliases": [
+    id: "spare-ribs",
+    name: "Spare ribs",
+    aliases: [
       "pork ribs",
-      "排骨"
+      "排骨",
+      "豬排骨",
     ],
-    "category": "meat",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Chicken wings",
-    "aliases": [
+    id: "chicken-wings",
+    name: "Chicken wings",
+    aliases: [
       "wings",
-      "雞翼"
+      "雞翼",
+      "鸡翼",
+      "雞翅膀",
     ],
-    "category": "meat",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Glass noodles",
-    "aliases": [
+    id: "glass-noodles",
+    name: "Glass noodles",
+    aliases: [
       "cellophane noodles",
       "mung bean noodles",
-      "粉絲"
+      "粉絲",
+      "冬粉",
+      "粉條",
     ],
-    "category": "grain",
-    "location": "pantry",
-    "days": 365
+    category: "carb",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Wonton wrappers",
-    "aliases": [
+    id: "wonton-wrappers",
+    name: "Wonton wrappers",
+    aliases: [
       "dumpling wrappers",
-      "雲吞皮"
+      "雲吞皮",
+      "云吞皮",
+      "餛飩皮",
     ],
-    "category": "grain",
-    "location": "fridge",
-    "days": 7
+    category: "carb",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Thai basil",
-    "aliases": [
+    id: "thai-basil",
+    name: "Thai basil",
+    aliases: [
       "holy basil",
       "金不換",
-      "羅勒"
+      "羅勒",
+      "九層塔",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 4
+    category: "veg",
+    location: "fridge",
+    days: 4,
   },
   {
-    "name": "Lemongrass",
-    "aliases": [
-      "檸檬草"
+    id: "lemongrass",
+    name: "Lemongrass",
+    aliases: [
+      "檸檬草",
+      "香茅",
     ],
-    "category": "veg",
-    "location": "fridge",
-    "days": 10
+    category: "veg",
+    location: "fridge",
+    days: 10,
   },
   {
-    "name": "Doenjang",
-    "aliases": [
+    id: "doenjang",
+    name: "Doenjang",
+    aliases: [
       "korean soybean paste",
-      "大醬"
+      "大醬",
+      "大酱",
+      "된장",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
+    category: "sauce",
+    location: "fridge",
+    days: 180,
   },
   {
-    "name": "Gochujang",
-    "aliases": [
+    id: "gochujang",
+    name: "Gochujang",
+    aliases: [
       "korean chili paste",
       "辣椒醬",
-      "辣醬"
+      "辣醬",
+      "韓式辣椒醬",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
+    category: "sauce",
+    location: "fridge",
+    days: 180,
   },
   {
-    "name": "Sesame seeds",
-    "aliases": [
+    id: "sesame-seeds",
+    name: "Sesame seeds",
+    aliases: [
       "白芝麻",
-      "芝麻"
+      "芝麻",
+      "炒芝麻",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
+    category: "spice",
+    location: "pantry",
+    days: 365,
+    staple: true,
   },
   {
-    "name": "Peanuts",
-    "aliases": [
-      "花生"
+    id: "peanuts",
+    name: "Peanuts",
+    aliases: [
+      "花生",
+      "炸花生",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 180
+    category: "spice",
+    location: "pantry",
+    days: 180,
   },
   {
-    "name": "Dried mushrooms",
-    "aliases": [
+    id: "dried-mushrooms",
+    name: "Dried mushrooms",
+    aliases: [
       "shiitake",
       "冬菇",
-      "香菇"
+      "香菇",
+      "乾冬菇",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
+    category: "pantry",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Oats",
-    "aliases": [
+    id: "oats",
+    name: "Oats",
+    aliases: [
       "oatmeal",
-      "燕麥"
+      "燕麥",
+      "燕麦",
+      "即食燕麥",
     ],
-    "category": "grain",
-    "location": "pantry",
-    "days": 365
+    category: "carb",
+    location: "pantry",
+    days: 365,
   },
   {
-    "name": "Satay sauce",
-    "aliases": [
+    id: "satay-sauce",
+    name: "Satay sauce",
+    aliases: [
       "沙爹醬",
-      "satay"
+      "satay",
+      "沙茶醬",
     ],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 180
+    category: "sauce",
+    location: "pantry",
+    days: 180,
   },
   {
-    "name": "Beef brisket",
-    "aliases": [
+    id: "beef-brisket",
+    name: "Beef brisket",
+    aliases: [
       "brisket",
-      "牛腩"
+      "牛腩",
     ],
-    "category": "meat",
-    "location": "fridge",
-    "days": 3
+    category: "protein",
+    location: "fridge",
+    days: 3,
   },
   {
-    "name": "Squid",
-    "aliases": [
+    id: "squid",
+    name: "Squid",
+    aliases: [
       "calamari",
-      "魷魚"
+      "魷魚",
+      "鱿鱼",
+      "墨魚",
     ],
-    "category": "seafood",
-    "location": "fridge",
-    "days": 2
+    category: "protein",
+    location: "fridge",
+    days: 2,
   },
   {
-    "name": "Clams",
-    "aliases": [
+    id: "clams",
+    name: "Clams",
+    aliases: [
       "蜆",
-      "蛤"
+      "蛤",
+      "蚬",
+      "花甲",
     ],
-    "category": "seafood",
-    "location": "fridge",
-    "days": 1
+    category: "protein",
+    location: "fridge",
+    days: 1,
   },
   {
-    "name": "Cooking oil",
-    "aliases": [
+    id: "cooking-oil",
+    name: "Cooking oil",
+    aliases: [
       "oil",
       "vegetable oil",
       "neutral oil",
@@ -1257,90 +1769,108 @@ export const SHELF: ShelfFood[] = [
       "corn oil",
       "食用油",
       "菜油",
-      "花生油"
+      "花生油",
+      "玉米油",
+      "芥花油",
     ],
-    "category": "condiment",
-    "location": "pantry",
-    "days": 365
+    category: "sauce",
+    location: "pantry",
+    days: 365,
+    staple: true,
   },
   {
-    "name": "Cilantro",
-    "aliases": [
+    id: "cilantro",
+    name: "Cilantro",
+    aliases: [
       "coriander",
       "fresh cilantro",
       "fresh coriander",
       "香菜",
-      "芫荽"
+      "芫荽",
+      "coriander leaves",
+      "fresh coriander leaves",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 5
+    category: "veg",
+    location: "fridge",
+    days: 5,
   },
   {
-    "name": "Shallot",
-    "aliases": [
+    id: "shallot",
+    name: "Shallot",
+    aliases: [
       "shallots",
       "red shallot",
       "乾蔥",
       "红葱头",
-      "紅蔥頭"
+      "紅蔥頭",
+      "干葱",
     ],
-    "category": "produce",
-    "location": "pantry",
-    "days": 21
+    category: "veg",
+    location: "pantry",
+    days: 21,
   },
   {
-    "name": "Baking soda",
-    "aliases": [
+    id: "baking-soda",
+    name: "Baking soda",
+    aliases: [
       "bicarbonate of soda",
       "baking powder",
       "苏打粉",
       "蘇打粉",
-      "泡打粉"
+      "泡打粉",
+      "小蘇打",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 730
+    category: "spice",
+    location: "pantry",
+    days: 730,
+    staple: true,
   },
   {
-    "name": "Five-spice powder",
-    "aliases": [
+    id: "five-spice-powder",
+    name: "Five-spice powder",
+    aliases: [
       "five spice",
-      "五香粉"
+      "五香粉",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 730
+    category: "spice",
+    location: "pantry",
+    days: 730,
+    staple: true,
   },
   {
-    "name": "Doubanjiang",
-    "aliases": [
+    id: "doubanjiang",
+    name: "Doubanjiang",
+    aliases: [
       "spicy bean sauce",
       "chili bean sauce",
       "broad bean paste",
       "豆瓣酱",
       "豆瓣醬",
-      "郫县豆瓣"
+      "郫县豆瓣",
+      "郫縣豆瓣",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 365
+    category: "sauce",
+    location: "fridge",
+    days: 365,
   },
   {
-    "name": "Sichuan peppercorns",
-    "aliases": [
+    id: "sichuan-peppercorns",
+    name: "Sichuan peppercorns",
+    aliases: [
       "sichuan pepper",
       "szechuan peppercorns",
       "花椒",
-      "花椒粒"
+      "花椒粒",
+      "川椒",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 730
+    category: "spice",
+    location: "pantry",
+    days: 730,
   },
   {
-    "name": "Dried chili",
-    "aliases": [
+    id: "dried-chili",
+    name: "Dried chili",
+    aliases: [
       "dried chilies",
       "dried chilli",
       "red chilies",
@@ -1349,15 +1879,22 @@ export const SHELF: ShelfFood[] = [
       "bird's eye chili",
       "干辣椒",
       "乾辣椒",
-      "辣椒"
+      "辣椒",
+      "chili flakes",
+      "chilli flakes",
+      "dried chilli flakes",
+      "red pepper flakes",
+      "辣椒碎",
+      "辣椒粉",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 730
+    category: "spice",
+    location: "pantry",
+    days: 730,
   },
   {
-    "name": "Chicken stock",
-    "aliases": [
+    id: "chicken-stock",
+    name: "Chicken stock",
+    aliases: [
       "chicken broth",
       "chicken bouillon",
       "chicken bouillon powder",
@@ -1366,35 +1903,77 @@ export const SHELF: ShelfFood[] = [
       "鸡汤",
       "雞湯",
       "鸡粉",
-      "雞粉"
+      "雞粉",
+      "高湯",
+      "清雞湯",
     ],
-    "category": "pantry",
-    "location": "pantry",
-    "days": 365
+    category: "pantry",
+    location: "pantry",
+    days: 365,
+    staple: true,
   },
   {
-    "name": "Water chestnuts",
-    "aliases": [
+    id: "water-chestnuts",
+    name: "Water chestnuts",
+    aliases: [
       "water chestnut",
       "马蹄",
-      "馬蹄"
+      "馬蹄",
+      "荸薺",
     ],
-    "category": "produce",
-    "location": "fridge",
-    "days": 7
+    category: "veg",
+    location: "fridge",
+    days: 7,
   },
   {
-    "name": "Pickled mustard",
-    "aliases": [
+    id: "pickled-mustard",
+    name: "Pickled mustard",
+    aliases: [
       "sui mi ya cai",
       "ya cai",
       "preserved mustard",
       "碎米芽菜",
       "芽菜",
-      "榨菜"
+      "榨菜",
+      "梅菜",
     ],
-    "category": "condiment",
-    "location": "fridge",
-    "days": 180
-  }
+    category: "sauce",
+    location: "fridge",
+    days: 180,
+  },
+  {
+    id: "lime",
+    name: "Lime",
+    aliases: [
+      "limes",
+      "lime juice",
+      "青檸",
+      "青柠",
+      "萊姆",
+      "莱姆",
+      "lime wedge",
+    ],
+    category: "other",
+    location: "fridge",
+    days: 21,
+  },
 ]
+
+export const SHELF_BY_ID: ReadonlyMap<string, ShelfFood> = new Map(SHELF.map((f) => [f.id, f]))
+export const SHELF_BY_NAME: ReadonlyMap<string, ShelfFood> = new Map(SHELF.map((f) => [f.name, f]))
+export const SHELF_NAMES: ReadonlySet<string> = new Set(SHELF.map((f) => f.name))
+
+export function isRegistryName(name: string): boolean {
+  return SHELF_NAMES.has(name)
+}
+
+export function isStapleIngredient(name: string): boolean {
+  return SHELF_BY_NAME.get(name)?.staple === true
+}
+
+export function requireRegistryName(name: string): string {
+  if (!SHELF_NAMES.has(name)) {
+    throw new Error(`Ingredient "${name}" is not in the shelf registry`)
+  }
+  return name
+}

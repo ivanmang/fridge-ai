@@ -360,7 +360,7 @@ export const MORE_W4E: Recipe[] = [
     cuisine: "Korean",
     time: 18,
     servings: 2,
-    need: ["Kimchi", "Flour", "Eggs", "Cabbage", "Bread"],
+    need: ["Kimchi", "Flour", "Eggs", "Cabbage"],
     optional: ["Cooked leftovers", "Spring onion", "Soy sauce", "Sesame oil", "Cornstarch", "Salt", "Cooking oil", "Vinegar", "Sugar"],
     steps: [
       "Chop 1 cup kimchi; mix with 1/2 cup flour, 1 egg, optional diced leftovers, spring onion, and enough water for a thick batter.",

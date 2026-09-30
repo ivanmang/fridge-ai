@@ -48,6 +48,7 @@ export const ZH_FOOD: Record<string, string> = {
   Banana: "香蕉",
   Orange: "橙",
   Lemon: "檸檬",
+  Lime: "青檸",
   Berries: "莓",
   Grapes: "提子",
   Avocado: "牛油果",

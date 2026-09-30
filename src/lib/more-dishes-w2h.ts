@@ -360,7 +360,7 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Chinese",
     time: 15,
     servings: 1,
-    need: ["Noodles", "Cucumber", "Carrots", "Bean sprouts", "Bread", "Orange juice"],
+    need: ["Noodles", "Cucumber", "Carrots", "Bean sprouts", "Orange juice"],
     optional: ["Peanut butter", "Sesame oil", "Soy sauce", "Vinegar", "Garlic", "Sugar", "Sesame seeds", "Spring onion", "Cilantro", "Peanuts", "Salt", "Cooking oil", "Shaoxing wine"],
     steps: [
       "Boil noodles; rinse cold and drain.",

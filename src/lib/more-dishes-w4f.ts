@@ -338,7 +338,7 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Korean",
     time: 30,
     servings: 2,
-    need: ["Glass noodles", "Spinach", "Carrots", "Bread"],
+    need: ["Glass noodles", "Spinach", "Carrots"],
     optional: ["Beef steak", "Onion", "Soy sauce", "Sugar", "Sesame oil", "Sesame seeds", "Garlic", "White pepper", "Spring onion", "Cooking oil"],
     steps: [
       "Soak glass noodles until pliable; boil 2–3 minutes, drain, and toss with sesame oil. Blanch spinach; squeeze dry. Julienne carrot and onion.",

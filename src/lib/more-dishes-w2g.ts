@@ -52,7 +52,7 @@ export const MORE_W2G: Recipe[] = [
     cuisine: "Korean",
     time: 25,
     servings: 2,
-    need: ["Beef steak", "Onion", "Kimchi", "Bread"],
+    need: ["Beef steak", "Onion", "Kimchi"],
     optional: ["Soy sauce", "Sugar", "Garlic", "Sesame oil", "Spring onion", "Sesame seeds", "Ginger", "White pepper", "Cooking oil"],
     steps: [
       "Slice beef thin; marinate 10 minutes in 2 tbsp soy sauce, 1 tsp sugar, garlic, and sesame oil.",
@@ -140,7 +140,7 @@ export const MORE_W2G: Recipe[] = [
     cuisine: "Korean",
     time: 30,
     servings: 2,
-    need: ["Cooked rice", "Eggs", "Spinach", "Carrots", "Ground beef", "Bread"],
+    need: ["Cooked rice", "Eggs", "Spinach", "Carrots", "Ground beef"],
     optional: ["Bean sprouts", "Soy sauce", "Sesame oil", "Gochujang", "Garlic", "Zucchini", "Salt", "Cooking oil"],
     steps: [
       "Sauté spinach, carrot matchsticks, and bean sprouts separately with garlic and a drop of sesame oil.",
@@ -206,7 +206,7 @@ export const MORE_W2G: Recipe[] = [
     cuisine: "Korean",
     time: 10,
     servings: 2,
-    need: ["Cucumber", "Garlic", "Bread", "Carrots"],
+    need: ["Cucumber", "Garlic", "Carrots"],
     optional: ["Gochujang", "Soy sauce", "Vinegar", "Sugar", "Sesame oil", "Sesame seeds", "Onion", "Salt", "Spring onion"],
     steps: [
       "Smash and slice cucumber; salt 5 minutes and drain.",
@@ -250,7 +250,7 @@ export const MORE_W2G: Recipe[] = [
     cuisine: "Korean",
     time: 30,
     servings: 2,
-    need: ["Chicken thighs", "Garlic", "Soy sauce", "Bread", "Gochujang"],
+    need: ["Chicken thighs", "Garlic", "Soy sauce", "Gochujang"],
     optional: ["Honey", "Sugar", "Sesame oil", "Sesame seeds", "Cornstarch", "Ginger", "Cooking oil", "Shallot", "Vinegar", "Spring onion"],
     steps: [
       "Coat chicken pieces lightly in cornstarch; pan-fry until golden and 74°C / 165°F inside.",

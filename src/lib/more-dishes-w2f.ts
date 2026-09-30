@@ -96,7 +96,7 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 18,
     servings: 2,
-    need: ["Salmon", "Bread"],
+    need: ["Salmon"],
     optional: ["Soy sauce", "Sugar", "Honey", "Ginger", "Sesame seeds", "Shaoxing wine", "Cornstarch", "Salt", "White pepper", "Garlic", "Cooking oil"],
     steps: [
       "Pan-sear salmon 3–4 minutes skin-side down; flip.",
@@ -162,7 +162,7 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Noodles", "Cabbage", "Pork chops", "Bread"],
+    need: ["Noodles", "Cabbage", "Pork chops"],
     optional: ["Carrots", "Bean sprouts", "Soy sauce", "Ketchup", "Garlic", "Spring onion", "Oyster sauce", "Cooking oil", "Onion"],
     steps: [
       "Slice pork thin; stir-fry until cooked through (74°C / 165°F). Add cabbage and carrot shreds.",

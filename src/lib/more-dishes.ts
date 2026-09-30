@@ -720,18 +720,18 @@ const MORE_CORE: Recipe[] = [
     time: 8,
     servings: 1,
     need: ["Bread", "Avocado"],
-    optional: ["Eggs", "Lemon", "Tomato", "Garlic", "Salt", "Olive oil", "Cilantro"],
+    optional: ["Dried chili", "Garlic", "Lime", "Salt", "Olive oil", "Cilantro"],
     steps: [
-      "Toast bread. Mash avocado with a pinch of salt and lemon if using.",
+      "Toast bread. Mash avocado with chilli flakes, optional garlic, lime juice, salt, and olive oil.",
       "Spread on toast.",
-      "Top with a fried or boiled egg if you like (cook egg until whites are set).",
+      "Garnish with chopped cilantro.",
     ],
     zh: {
       name: "牛油果多士",
       steps: [
-        "烤香麵包。牛油果壓蓉，加少許鹽和檸檬汁（如有）。",
+        "烤香麵包。牛油果壓蓉，加辣椒碎、蒜蓉（可選）、青檸汁、鹽和橄欖油。",
         "塗在多士上。",
-        "可加煎蛋或水煮蛋（蛋白要全熟）。",
+        "撒香菜即可。",
       ],
     },
     sourceUrl: "https://www.bbc.co.uk/food/recipes/smashed_avocado_on_toast_89082",

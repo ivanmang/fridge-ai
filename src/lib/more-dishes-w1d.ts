@@ -316,7 +316,7 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Chinese",
     time: 25,
     servings: 2,
-    need: ["Eggplant", "Ground pork", "Garlic", "Eggs", "Pasta", "Bell pepper"],
+    need: ["Eggplant", "Ground pork", "Garlic", "Bell pepper"],
     optional: ["Soy sauce", "Chili oil", "Spring onion", "Sugar", "Ginger", "Salt", "Shaoxing wine", "White pepper", "Sesame oil", "Cornstarch", "Cooking oil", "Oyster sauce", "Chicken stock", "Cilantro"],
     steps: [
       "Cut 2 medium eggplants into batons (about 400 g). Mince 3 garlic cloves. Have 150 g ground pork ready.",

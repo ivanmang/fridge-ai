@@ -113,7 +113,13 @@ export function findShelf(name: string): ShelfFood | undefined {
   if (findShelfCache.has(n)) return findShelfCache.get(n)
   let best: { food: ShelfFood; score: number } | undefined
   for (const { alias, food, rank } of SHELF_ROWS) {
-    const score = alias === n ? rank + alias.length : n.includes(alias) || alias.includes(n) ? rank / 2 + alias.length : 0
+    // Exact alias wins hard so short labels like 麵 cannot steal 公仔麵.
+    const score =
+      alias === n
+        ? rank + alias.length + 1000
+        : alias.length >= 2 && (n.includes(alias) || alias.includes(n))
+          ? rank / 2 + alias.length
+          : 0
     if (score > (best?.score ?? 0)) best = { food, score }
   }
   findShelfCache.set(n, best?.food)

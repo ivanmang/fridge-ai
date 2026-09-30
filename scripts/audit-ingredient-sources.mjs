@@ -396,6 +396,22 @@ async function main() {
       const hit = have.some((h) => sameFood(h, m.canonical) || norm(h) === norm(m.canonical) || norm(h) === norm(m.cleaned))
       if (!hit) missing.push(m)
     }
+    const sourceNames = new Set(sourceCanon.map((m) => norm(m.canonical)))
+    const hasSourceIngs = (src.ingredients || []).length > 0
+    const extraNeed = []
+    const extraOptional = []
+    if (hasSourceIngs) {
+      for (const h of r.need) {
+        const shelf = findShelf(h)
+        const key = norm(shelf?.name || h)
+        if (!sourceNames.has(key)) extraNeed.push(shelf?.name || h)
+      }
+      for (const h of r.optional) {
+        const shelf = findShelf(h)
+        const key = norm(shelf?.name || h)
+        if (!sourceNames.has(key)) extraOptional.push(shelf?.name || h)
+      }
+    }
     const score = titleMatchScore(r, src.title)
     const exclusive = byUrl.get(r.sourceUrl).length === 1
     const tight = exclusive || score >= 4
@@ -433,6 +449,8 @@ async function main() {
       })),
       missingCore: missing.filter((m) => !m.staple).map((m) => m.canonical),
       missingStaples: missing.filter((m) => m.staple).map((m) => m.canonical),
+      extraNeed,
+      extraOptional,
     })
   }
 
@@ -453,6 +471,7 @@ async function main() {
     tightDishes: dishReports.filter((d) => d.tight).length,
     tightWithGaps: tightMissing.length,
     dishesWithAnyGap: dishReports.filter((d) => d.missing.length).length,
+    tightWithExtraNeed: dishReports.filter((d) => d.tight && d.extraNeed?.length).length,
     topGaps,
     byHost: {},
   }
