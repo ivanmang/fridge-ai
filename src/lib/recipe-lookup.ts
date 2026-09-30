@@ -81,27 +81,45 @@ const WEAK_SOLO = new Set([
   "eggplant",
 ])
 
-/** Chinese / HK home guides. */
-export const ASIAN_GUIDE_SITES = ["madewithlau.com", "hk.lkk.com"] as const
-/** Western / breakfast / Italian guides. */
+/** Chinese / HK home guides (query in Chinese). */
+export const ASIAN_GUIDE_SITES = [
+  "madewithlau.com",
+  "hk.lkk.com",
+  "thewoksoflife.com",
+  "xiachufang.com",
+] as const
+/** Western / breakfast / Italian guides (query in English). */
 export const WESTERN_GUIDE_SITES = ["bbc.co.uk/food"] as const
 
 const WESTERN_CUISINES = new Set(["western", "breakfast", "italian"])
 
-/** Pick trusted publisher sites from cuisine (never invent per-dish paths). */
-export function guideSitesFor(recipe: Recipe): readonly string[] {
+/** Origin search language from cuisine — not the UI locale. */
+export function recipeOriginLang(recipe: Recipe): "en" | "zh" {
   const cuisine = recipe.cuisine.trim().toLowerCase()
-  if (WESTERN_CUISINES.has(cuisine)) return WESTERN_GUIDE_SITES
-  return ASIAN_GUIDE_SITES
+  if (WESTERN_CUISINES.has(cuisine)) return "en"
+  return "zh"
 }
 
-/** Locale-aware search biased to Made With Lau / LKK HK, or BBC Food for Western. */
-export function recipeSearchUrl(recipe: Recipe, locale: Locale): string {
-  const name = locale === "zh" ? recipe.zh?.name?.trim() || recipe.name : recipe.name
+/** Pick trusted publisher sites from cuisine (never invent per-dish paths). */
+export function guideSitesFor(recipe: Recipe): readonly string[] {
+  return recipeOriginLang(recipe) === "en" ? WESTERN_GUIDE_SITES : ASIAN_GUIDE_SITES
+}
+
+/**
+ * Site-scoped recipe search using the dish’s origin language, not UI locale.
+ * Western → English name + BBC Food; Chinese/HK → ZH name + MWL / LKK / Woks of Life / Xiachufang.
+ * `locale` is kept for call-site compatibility and is ignored for query language.
+ */
+export function recipeSearchUrl(recipe: Recipe, _locale: Locale): string {
+  const origin = recipeOriginLang(recipe)
+  const name =
+    origin === "zh"
+      ? recipe.zh?.name?.trim() || recipe.name.trim()
+      : recipe.name.trim()
   const sites = guideSitesFor(recipe)
     .map((host) => `site:${host}`)
     .join(" OR ")
-  const query = locale === "zh" ? `${sites} ${name}` : `${sites} ${name} recipe`
+  const query = origin === "zh" ? `${sites} ${name}` : `${sites} ${name} recipe`
   return `https://www.google.com/search?q=${encodeURIComponent(query)}`
 }
 

@@ -1,6 +1,12 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
-import { dishMatchTokens, guideSitesFor, isConfidentDishMatch, recipeSearchUrl } from "./recipe-lookup.ts"
+import {
+  dishMatchTokens,
+  guideSitesFor,
+  isConfidentDishMatch,
+  recipeOriginLang,
+  recipeSearchUrl,
+} from "./recipe-lookup.ts"
 import type { Recipe } from "./recipes.ts"
 
 const sample: Recipe = {
@@ -31,32 +37,53 @@ const avocado: Recipe = {
   zh: { name: "牛油果多士", steps: ["一", "二", "三"] },
 }
 
+const baconEggRice: Recipe = {
+  ...sample,
+  id: "home-bacon-egg-rice",
+  name: "Bacon egg rice",
+  cuisine: "Western",
+  need: ["Bacon", "Eggs", "Cooked rice"],
+  zh: { name: "培根蛋飯", steps: ["一", "二", "三"] },
+}
+
+function queryOf(url: string) {
+  return decodeURIComponent(url.split("q=")[1] ?? "")
+}
+
 describe("recipeSearchUrl", () => {
-  it("scopes Asian dishes to Made With Lau and Lee Kum Kee HK", () => {
-    const url = recipeSearchUrl(sample, "en")
-    assert.ok(url.startsWith("https://www.google.com/search?q="))
-    const q = decodeURIComponent(url.split("q=")[1] ?? "")
+  it("searches Asian dishes in Chinese on Asian sites, even when UI is English", () => {
+    assert.equal(recipeOriginLang(sample), "zh")
+    const q = queryOf(recipeSearchUrl(sample, "en"))
     assert.ok(q.includes("site:madewithlau.com"))
     assert.ok(q.includes("site:hk.lkk.com"))
+    assert.ok(q.includes("site:thewoksoflife.com"))
+    assert.ok(q.includes("site:xiachufang.com"))
     assert.ok(!q.includes("bbc.co.uk"))
-    assert.ok(q.includes("Tomato & egg rice recipe"))
+    assert.ok(q.includes("番茄炒蛋飯"))
+    assert.ok(!q.includes("Tomato & egg rice"))
   })
 
-  it("scopes Western dishes to BBC Food", () => {
-    assert.deepEqual([...guideSitesFor(avocado)], ["bbc.co.uk/food"])
-    const url = recipeSearchUrl(avocado, "en")
-    const q = decodeURIComponent(url.split("q=")[1] ?? "")
+  it("searches Western dishes in English on BBC, even when UI is Chinese", () => {
+    assert.equal(recipeOriginLang(baconEggRice), "en")
+    assert.deepEqual([...guideSitesFor(baconEggRice)], ["bbc.co.uk/food"])
+    const q = queryOf(recipeSearchUrl(baconEggRice, "zh"))
     assert.ok(q.includes("site:bbc.co.uk/food"))
-    assert.ok(q.includes("Avocado toast recipe"))
+    assert.ok(q.includes("Bacon egg rice recipe"))
+    assert.ok(!q.includes("培根蛋飯"))
     assert.ok(!q.includes("madewithlau.com"))
   })
 
-  it("scopes ZH Asian search to trusted Chinese sites with the Chinese name", () => {
-    const url = recipeSearchUrl(sample, "zh")
-    const q = decodeURIComponent(url.split("q=")[1] ?? "")
-    assert.ok(q.includes("site:hk.lkk.com"))
-    assert.ok(q.includes("site:madewithlau.com"))
+  it("keeps Western avocado toast on BBC with the English name in ZH UI", () => {
+    const q = queryOf(recipeSearchUrl(avocado, "zh"))
+    assert.ok(q.includes("site:bbc.co.uk/food"))
+    assert.ok(q.includes("Avocado toast recipe"))
+    assert.ok(!q.includes("牛油果多士"))
+  })
+
+  it("uses Chinese name for HK dishes in ZH UI too", () => {
+    const q = queryOf(recipeSearchUrl(sample, "zh"))
     assert.ok(q.includes("番茄炒蛋飯"))
+    assert.ok(q.includes("site:hk.lkk.com"))
   })
 })
 
