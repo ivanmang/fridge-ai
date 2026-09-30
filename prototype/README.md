@@ -1,4 +1,6 @@
-# FridgeAI
+# FridgeAI prototype (historical only)
+
+> **Do not use this folder for day-to-day development.** It is an older static browser prototype that encouraged pasting OpenAI/Gemini API keys into the page. The real app lives in `src/` and keeps API keys server-side (`XAI_API_KEY`). Prefer the TanStack app at the repo root.
 
 An AI fridge assistant that:
 

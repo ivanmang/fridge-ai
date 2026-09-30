@@ -239,10 +239,12 @@ export function rankRecipes(
   priority: Priority = 0,
   favorites: string[] = [],
   taste: SurveyAnswers | null = null,
+  extras: Recipe[] = [],
 ): RankedRecipe[] {
   const profile = Boolean(taste && surveyReady(taste) && !taste.skipped && surveyAnswered(taste))
   const fridgeOnly = !profileLeads(taste) && (taste?.goal === "fridge" || priority < 2)
-  const pool = [...(vegetarian ? RECIPES.filter(isVegetarian) : RECIPES), ...(vegetarian ? MORE.filter(isVegetarian) : MORE), ...(vegetarian ? EXTRA.filter(isVegetarian) : EXTRA)]
+  // Tonight ranking uses the cookable core only — imported outlines stay search/browse-only.
+  const pool = cookableBook(vegetarian, extras)
   return pool
     .map((recipe) => {
       const row = scoreOne(recipe, items, priority, favorites)
@@ -261,16 +263,53 @@ export function rankRecipes(
     .sort((a, b) => b.score - a.score || a.recipe.time - b.recipe.time)
 }
 
+const OUTLINE_STEP =
+  /cook them until just done|prep the ingredients|season, toss briefly|prep .+, .+\.|煮至剛熟|調味後上碟/i
+
+/** Imported catalogue rows that only have the three-line outline template. */
+export function isOutlineRecipe(recipe: Recipe): boolean {
+  if (recipe.id.startsWith("home-") || recipe.id.startsWith("mine-") || recipe.id.startsWith("x-")) return false
+  if (!recipe.steps.length) return true
+  return recipe.steps.some((step) => OUTLINE_STEP.test(step))
+}
+
+export function isCookableRecipe(recipe: Recipe): boolean {
+  return !isOutlineRecipe(recipe)
+}
+
+/**
+ * Attribution for UI labels.
+ * - home / mine / x (looked-up) → kitchen favorites
+ * - knorr- / guardian- → those catalogues
+ * - free-form LKK-style IDs (no lkk- prefix) and explicit lkk- → Lee Kum Kee
+ */
 export function dishSource(id: string): "home" | "lkk" | "knorr" | "guardian" {
-  if (id.startsWith("home-")) return "home"
+  if (id.startsWith("home-") || id.startsWith("mine-") || id.startsWith("x-")) return "home"
   if (id.startsWith("knorr-")) return "knorr"
   if (id.startsWith("guardian-")) return "guardian"
+  if (id.startsWith("lkk-")) return "lkk"
   return "lkk"
 }
 
-export function listRecipes(vegetarian: boolean, taste: SurveyAnswers | null = null): Recipe[] {
-  const book = [...RECIPES, ...MORE, ...EXTRA]
-  return (vegetarian ? book.filter(isVegetarian) : book)
+/** Real cookable core: home recipes + user extras. Outline catalogue is excluded. */
+function cookableBook(vegetarian: boolean, extras: Recipe[] = []): Recipe[] {
+  const book = [...MORE, ...EXTRA, ...extras.filter(isCookableRecipe)]
+  return vegetarian ? book.filter(isVegetarian) : book
+}
+
+/** Full searchable set including imported outlines (for browse / search only). */
+function fullBook(vegetarian: boolean, extras: Recipe[] = []): Recipe[] {
+  const book = [...MORE, ...EXTRA, ...extras, ...RECIPES]
+  return vegetarian ? book.filter(isVegetarian) : book
+}
+
+export function listRecipes(
+  vegetarian: boolean,
+  taste: SurveyAnswers | null = null,
+  options: { includeOutlines?: boolean } = {},
+): Recipe[] {
+  const book = options.includeOutlines ? fullBook(vegetarian) : cookableBook(vegetarian)
+  return book
     .filter((recipe) => fitsTaste(recipe, taste))
     .sort((a, b) => profileBonus(b, taste) - profileBonus(a, taste) || a.name.localeCompare(b.name))
 }
@@ -278,32 +317,34 @@ export function listRecipes(vegetarian: boolean, taste: SurveyAnswers | null = n
 export function searchRecipes(query: string, items: FoodItem[], vegetarian: boolean, taste: SurveyAnswers | null = null): RankedRecipe[] {
   const q = norm(query)
   if (!q) return []
-  const book = [...RECIPES, ...MORE, ...EXTRA]
-  const pool = vegetarian ? book.filter(isVegetarian) : book
-  return pool
-    .filter((recipe) => {
-      const blob = norm(
-        [
-          recipe.name,
-          recipe.cuisine,
-          ZH_RECIPE[recipe.id]?.name ?? "",
-          recipe.zh?.name ?? "",
-          MORE_ZH[recipe.id] ?? "",
-          ZH_CUISINE[recipe.cuisine] ?? "",
-          ...recipe.need,
-          ...recipe.optional,
-        ].join(" "),
-      )
-      return blob.includes(q)
-    })
+  const cookable = cookableBook(vegetarian)
+  const outlines = fullBook(vegetarian).filter(isOutlineRecipe)
+  const match = (recipe: Recipe) => {
+    const blob = norm(
+      [
+        recipe.name,
+        recipe.cuisine,
+        ZH_RECIPE[recipe.id]?.name ?? "",
+        recipe.zh?.name ?? "",
+        MORE_ZH[recipe.id] ?? "",
+        ZH_CUISINE[recipe.cuisine] ?? "",
+        ...recipe.need,
+        ...recipe.optional,
+      ].join(" "),
+    )
+    return blob.includes(q)
+  }
+  const cookHits = cookable.filter(match).filter((recipe) => fitsTaste(recipe, taste)).map((recipe) => scoreOne(recipe, items, 3, []))
+  const outlineHits = outlines
+    .filter(match)
     .filter((recipe) => fitsTaste(recipe, taste))
     .map((recipe) => scoreOne(recipe, items, 3, []))
-    .slice(0, 12)
+  return [...cookHits, ...outlineHits].slice(0, 12)
 }
 
 export function ideasByIds(ids: string[], items: FoodItem[], extras: Recipe[] = []): RankedRecipe[] {
   const byId = new Map<string, Recipe>()
-  for (const recipe of [...RECIPES, ...MORE, ...EXTRA, ...extras]) byId.set(recipe.id, recipe)
+  for (const recipe of [...MORE, ...EXTRA, ...extras, ...RECIPES]) byId.set(recipe.id, recipe)
   return ids.flatMap((id) => {
     const recipe = byId.get(id)
     return recipe ? [scoreOne(recipe, items, 3, [])] : []
@@ -353,8 +394,9 @@ export function planMeals(
   priority: Priority = 0,
   favorites: string[] = [],
   taste: SurveyAnswers | null = null,
+  extras: Recipe[] = [],
 ) {
-  const ranked = rankRecipes(items, vegetarian, priority, favorites, taste)
+  const ranked = rankRecipes(items, vegetarian, priority, favorites, taste, extras)
   if (profileLeads(taste)) {
     const ideas = ranked.slice(0, 3)
     return { ideas, shop: shopForIdeas(items, ideas) }

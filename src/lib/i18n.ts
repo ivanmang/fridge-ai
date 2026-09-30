@@ -239,6 +239,10 @@ const UI = {
     sourceKnorr: "Knorr",
     sourceGuardian: "The Guardian",
     showMoreDishes: "Show more",
+    catalogueHint: "Kitchen favorites are cookable recipes. Imported catalogues are outlines for search only.",
+    outlineTag: "Outline only",
+    privacyScan: "Inventory stays on this phone. When you tap Identify, the photo is sent to xAI for recognition. Nothing is saved until you confirm.",
+    privacySettings: "Your food list stays on this device. No account is required. Photos leave the device only when you tap Identify (sent to xAI).",
   },
   zh: {
     kicker: "今晚煮什麼",
@@ -473,6 +477,10 @@ const UI = {
     sourceKnorr: "家樂",
     sourceGuardian: "衛報",
     showMoreDishes: "顯示更多",
+    catalogueHint: "家常精選是完整食譜。匯入目錄只供搜尋，步驟為簡略大綱。",
+    outlineTag: "僅大綱",
+    privacyScan: "食物清單只留在這部手機。你按「辨識食物」時，相片會送到 xAI 辨識。確認前不會儲存。",
+    privacySettings: "食物清單只留在本機，無需帳戶。只有你按「辨識食物」時，相片才會離開裝置（送往 xAI）。",
   },
 } as const
 

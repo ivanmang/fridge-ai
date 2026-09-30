@@ -1,17 +1,11 @@
 import { createServerFn } from "@tanstack/react-start"
 import type { Recipe } from "@/lib/recipes"
+import { allowRate, clientIp } from "@/lib/rate-limit.server"
 
 export type LookedUpDish = Recipe
 
-const hits: number[] = []
-
-function allowLookup() {
-  const now = Date.now()
-  while (hits.length && now - hits[0] > 3_600_000) hits.shift()
-  if (hits.length >= 20) return false
-  hits.push(now)
-  return true
-}
+const LOOKUP_LIMIT_PER_HOUR = 20
+const LOOKUP_TIMEOUT_MS = 12_000
 
 function extractText(body: unknown) {
   if (!body || typeof body !== "object") return ""
@@ -91,38 +85,46 @@ export const lookupDishes = createServerFn({ method: "POST" })
   })
   .handler(async ({ data }): Promise<{ ok: true; dishes: LookedUpDish[] } | { ok: false; error: string }> => {
     const apiKey = process.env.XAI_API_KEY
-    if (!apiKey) return { ok: true, dishes: [] }
-    if (!allowLookup()) return { ok: false, error: "limit" }
+    if (!apiKey) {
+      return { ok: false, error: "unavailable" }
+    }
+    if (!allowRate("lookup", LOOKUP_LIMIT_PER_HOUR, clientIp())) {
+      return { ok: false, error: "limit" }
+    }
 
     const language = data.locale === "zh" ? "Traditional Chinese (Hong Kong)" : "English"
     const diet = data.vegetarian ? "Vegetarian only. No meat, poultry, or seafood." : "Meat is allowed."
-    const res = await fetch("https://api.x.ai/v1/responses", {
-      method: "POST",
-      signal: AbortSignal.timeout(12_000),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: "grok-4.5",
-        max_output_tokens: 500,
-        input: [
-          {
-            role: "user",
-            content: [
-              {
-                type: "input_text",
-                text: `The person is searching for a dish to cook: "${data.query}". Suggest up to 3 real home-cooking dishes that match and are not the same dish repeated. ${diet} Reply with a JSON array only, no markdown. Each object is {"name":"dish name in ${language}","cuisine":"short cuisine","time":25,"need":["English grocery ingredient"],"optional":[],"steps":["short step"]}. 3 to 5 ingredients in need.`,
-              },
-            ],
-          },
-        ],
-      }),
-    })
-
-    if (!res.ok) return { ok: false, error: "lookup" }
     try {
-      return { ok: true, dishes: parseDishes(extractText(await res.json())) }
+      const res = await fetch("https://api.x.ai/v1/responses", {
+        method: "POST",
+        signal: AbortSignal.timeout(LOOKUP_TIMEOUT_MS),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: "grok-4.5",
+          max_output_tokens: 500,
+          input: [
+            {
+              role: "user",
+              content: [
+                {
+                  type: "input_text",
+                  text: `The person is searching for a dish to cook: "${data.query}". Suggest up to 3 real home-cooking dishes that match and are not the same dish repeated. ${diet} Reply with a JSON array only, no markdown. Each object is {"name":"dish name in ${language}","cuisine":"short cuisine","time":25,"need":["English grocery ingredient"],"optional":[],"steps":["short step"]}. 3 to 5 ingredients in need.`,
+                },
+              ],
+            },
+          ],
+        }),
+      })
+
+      if (!res.ok) return { ok: false, error: "lookup" }
+      try {
+        return { ok: true, dishes: parseDishes(extractText(await res.json())) }
+      } catch {
+        return { ok: false, error: "lookup" }
+      }
     } catch {
       return { ok: false, error: "lookup" }
     }
