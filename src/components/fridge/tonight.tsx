@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState, useTransition } from "react"
 import { DishCatalog } from "@/components/fridge/dish-catalog"
 import { DishSearch } from "@/components/fridge/shop-panel"
 import { RecipeSourceMedia } from "@/components/fridge/recipe-source-media"
-import { CUISINES, Empty, Sheet, SuggestControl, TastePrompt, useI18n } from "@/components/fridge/shared"
+import { CUISINES, Empty, LoadingStatus, Sheet, SuggestControl, TastePrompt, useI18n } from "@/components/fridge/shared"
 import { SurveyPanel, TasteProfile } from "@/components/fridge/survey-panel"
 import { cuisineLabel, foodLabel, recipeText } from "@/lib/i18n"
 import {
@@ -107,6 +107,7 @@ export function Tonight({
   const [timerRunning, setTimerRunning] = useState(false)
   const [timerFinished, setTimerFinished] = useState(false)
   const [customMinutes, setCustomMinutes] = useState("3")
+  const [rankingPending, startRankingTransition] = useTransition()
 
   useEffect(() => {
     if (!openSurvey) return
@@ -214,11 +215,13 @@ export function Tonight({
   }, [pendingMealId, items, extras, all, locale])
 
   function resetFilters() {
-    setHaveOnly(false)
-    setUseSoon(false)
-    setMaxTime(null)
-    setCuisine("All")
-    setMealId(null)
+    startRankingTransition(() => {
+      setHaveOnly(false)
+      setUseSoon(false)
+      setMaxTime(null)
+      setCuisine("All")
+      setMealId(null)
+    })
   }
 
   function addSuggested() {
@@ -479,17 +482,18 @@ export function Tonight({
 
       {phase === "pick" && items.length > 0 && (
         <div className="space-y-2">
+          {rankingPending && <LoadingStatus>{t("updatingIdeas")}</LoadingStatus>}
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
-              onClick={() => setHaveOnly((v) => !v)}
+              onClick={() => startRankingTransition(() => setHaveOnly((v) => !v))}
               className={cn("min-h-11 rounded-full border px-3 text-sm", haveOnly ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg")}
             >
               {t("filterHave")}
             </button>
             <button
               type="button"
-              onClick={() => setUseSoon((v) => !v)}
+              onClick={() => startRankingTransition(() => setUseSoon((v) => !v))}
               className={cn("min-h-11 rounded-full border px-3 text-sm", useSoon ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg")}
             >
               {t("filterSoon")}
@@ -507,7 +511,7 @@ export function Tonight({
               <button
                 key={key}
                 type="button"
-                onClick={() => setMaxTime(mins)}
+                onClick={() => startRankingTransition(() => setMaxTime(mins))}
                 className={cn(
                   "min-h-11 shrink-0 rounded-full border px-3 text-sm",
                   maxTime === mins ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg",
@@ -523,7 +527,7 @@ export function Tonight({
                 <button
                   key={name}
                   type="button"
-                  onClick={() => setCuisine(name)}
+                  onClick={() => startRankingTransition(() => setCuisine(name))}
                   className={cn(
                     "min-h-11 shrink-0 rounded-full border px-3 py-2 text-sm",
                     cuisine === name ? "border-mint bg-mint text-mint-ink" : "border-line bg-raised text-fg",

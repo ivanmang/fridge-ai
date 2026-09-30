@@ -1,5 +1,5 @@
-import { useEffect, useRef, type ReactNode } from "react"
-import { X } from "lucide-react"
+import { useEffect, useRef, type ButtonHTMLAttributes, type ReactNode } from "react"
+import { Loader2, X } from "lucide-react"
 import { cuisineLabel, translate, type UiKey } from "@/lib/i18n"
 import type { FoodItem } from "@/lib/logic"
 import type { ScanHit } from "@/lib/scan.functions"
@@ -148,6 +148,55 @@ export function Empty({ title, body }: { title: string; body: string }) {
       <p className="font-display text-2xl leading-snug">{title}</p>
       <p className="mt-2 text-base leading-relaxed text-muted">{body}</p>
     </div>
+  )
+}
+
+/** Mint spinner for busy buttons and inline progress. */
+export function Spinner({ className, label }: { className?: string; label?: string }) {
+  return (
+    <Loader2
+      className={cn("size-4 shrink-0 animate-spin text-current", className)}
+      aria-hidden={label ? undefined : true}
+      aria-label={label}
+      role={label ? "status" : undefined}
+    />
+  )
+}
+
+/** Button that shows a spinner + label while busy and blocks double-submit. */
+export function BusyButton({
+  busy,
+  busyLabel,
+  children,
+  className,
+  disabled,
+  type = "button",
+  ...rest
+}: ButtonHTMLAttributes<HTMLButtonElement> & {
+  busy?: boolean
+  busyLabel?: ReactNode
+}) {
+  return (
+    <button
+      type={type}
+      disabled={disabled || busy}
+      aria-busy={busy || undefined}
+      className={cn("inline-flex items-center justify-center gap-2 disabled:opacity-60", className)}
+      {...rest}
+    >
+      {busy ? <Spinner /> : null}
+      {busy && busyLabel != null ? busyLabel : children}
+    </button>
+  )
+}
+
+/** Compact status line for inline progress (scan reading, list updating). */
+export function LoadingStatus({ children }: { children: ReactNode }) {
+  return (
+    <p role="status" aria-live="polite" className="flex items-center gap-2 text-sm text-muted">
+      <Spinner className="text-mint" />
+      <span>{children}</span>
+    </p>
   )
 }
 

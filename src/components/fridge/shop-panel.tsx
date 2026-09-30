@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react"
-import { fieldClass, Sheet, useI18n } from "@/components/fridge/shared"
+import { BusyButton, fieldClass, LoadingStatus, Sheet, useI18n } from "@/components/fridge/shared"
 import { foodLabel, placeLabel, recipeText, whenText } from "@/lib/i18n"
 import {
   daysUntil,
@@ -152,7 +152,14 @@ export function DishSearch() {
         className="h-11 w-full rounded-card border border-line bg-surface px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-mint"
       />
       {query.trim().length >= 2 && (
-        <button type="button" disabled={looking} onClick={() => void lookUp()} className="mt-2 h-11 w-full rounded-card border border-line text-sm font-semibold disabled:opacity-60">{looking ? t("looking") : t("searchMoreDishes")}</button>
+        <BusyButton
+          busy={looking}
+          busyLabel={t("looking")}
+          onClick={() => void lookUp()}
+          className="mt-2 h-11 w-full rounded-card border border-line text-sm font-semibold"
+        >
+          {t("searchMoreDishes")}
+        </BusyButton>
       )}
       {warn && !adding && <p role="status" className="mt-2 text-sm text-clay">{warn}</p>}
       {query.trim() && (
@@ -162,7 +169,7 @@ export function DishSearch() {
             <ResultButton key={row.recipe.id} recipe={row.recipe} missing={row.missing} />
           ))}
           {(others.length > 0 || looking) && hits.length > 0 && <p className="pt-1 text-sm text-muted">{t("otherDishes")}</p>}
-          {looking && <p className="text-sm text-muted">{t("looking")}</p>}
+          {looking && <LoadingStatus>{t("looking")}</LoadingStatus>}
           {others.map((recipe) => (
             <ResultButton key={recipe.id} recipe={recipe} missing={ideasByIds([recipe.id], items, [recipe])[0]?.missing ?? recipe.need} />
           ))}

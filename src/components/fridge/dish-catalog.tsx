@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react"
-import { useI18n } from "@/components/fridge/shared"
+import { useMemo, useState, useTransition } from "react"
+import { LoadingStatus, Spinner, useI18n } from "@/components/fridge/shared"
 import {
   applyRecipeFilters,
   dishSource,
@@ -59,6 +59,8 @@ export function DishCatalog({
   const [maxTime, setMaxTime] = useState<number | null>(null)
   const [savedOnly, setSavedOnly] = useState(false)
   const [cookedOnly, setCookedOnly] = useState(false)
+  const [listPending, startListTransition] = useTransition()
+  const [openingId, setOpeningId] = useState<string | null>(null)
 
   const q = query.trim()
   const typeahead = useMemo(
@@ -135,8 +137,10 @@ export function DishCatalog({
             key={id}
             type="button"
             onClick={() => {
-              setSource(id)
-              setShown(12)
+              startListTransition(() => {
+                setSource(id)
+                setShown(12)
+              })
             }}
             className={cn(
               "h-11 shrink-0 rounded-full border px-3 text-sm",
@@ -189,10 +193,10 @@ export function DishCatalog({
       <div className="flex flex-wrap gap-2">
         {(
           [
-            [haveOnly, () => setHaveOnly((v) => !v), "filterHave"],
-            [useSoon, () => setUseSoon((v) => !v), "filterSoon"],
-            [savedOnly, () => setSavedOnly((v) => !v), "savedSection"],
-            [cookedOnly, () => setCookedOnly((v) => !v), "cookedBefore"],
+            [haveOnly, () => startListTransition(() => setHaveOnly((v) => !v)), "filterHave"],
+            [useSoon, () => startListTransition(() => setUseSoon((v) => !v)), "filterSoon"],
+            [savedOnly, () => startListTransition(() => setSavedOnly((v) => !v)), "savedSection"],
+            [cookedOnly, () => startListTransition(() => setCookedOnly((v) => !v)), "cookedBefore"],
           ] as const
         ).map(([on, toggle, key]) => (
           <button
@@ -217,7 +221,7 @@ export function DishCatalog({
           <button
             key={key}
             type="button"
-            onClick={() => setMaxTime(mins)}
+            onClick={() => startListTransition(() => setMaxTime(mins))}
             className={cn(
               "min-h-11 shrink-0 rounded-full border px-3 text-sm",
               maxTime === mins ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg",
@@ -227,6 +231,8 @@ export function DishCatalog({
           </button>
         ))}
       </div>
+
+      {listPending && <LoadingStatus>{t("updatingIdeas")}</LoadingStatus>}
 
       {emptyFridge && !q && (
         <div className="rounded-card border border-line bg-surface p-4">
@@ -296,12 +302,20 @@ export function DishCatalog({
                       href={guideUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-mint"
-                      onClick={(e) => e.stopPropagation()}
+                      className="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-mint"
+                      aria-busy={openingId === recipe.id || undefined}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setOpeningId(recipe.id)
+                        window.setTimeout(() => setOpeningId((current) => (current === recipe.id ? null : current)), 1600)
+                      }}
                     >
-                      {recipe.sourceName
-                        ? t("viewFullRecipeNamed", { name: recipe.sourceName })
-                        : t("viewFullRecipe")}
+                      {openingId === recipe.id ? <Spinner className="text-mint" /> : null}
+                      {openingId === recipe.id
+                        ? t("openingRecipe")
+                        : recipe.sourceName
+                          ? t("viewFullRecipeNamed", { name: recipe.sourceName })
+                          : t("viewFullRecipe")}
                     </a>
                   )}
                 </div>

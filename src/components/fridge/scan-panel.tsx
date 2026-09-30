@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { fieldClass, Sheet, useI18n } from "@/components/fridge/shared"
+import { useRef, useState } from "react"
+import { BusyButton, fieldClass, LoadingStatus, Sheet, Spinner, useI18n } from "@/components/fridge/shared"
 import { fetchDoorPhoto, puckError, shrinkImage } from "@/components/fridge/puck"
 import { foodLabel } from "@/lib/i18n"
 import { defaultExpiry } from "@/lib/logic"
@@ -17,11 +17,14 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
   const [preview, setPreview] = useState("")
   const [rows, setRows] = useState<ScanRow[]>([])
   const [busy, setBusy] = useState(false)
+  const [preparing, setPreparing] = useState(false)
   const [pulling, setPulling] = useState(false)
   const [error, setError] = useState("")
   const [saved, setSaved] = useState("")
   const [puckReady, setPuckReady] = useState(false)
   const [setupOpen, setSetupOpen] = useState(false)
+  const identifyLock = useRef(false)
+  const pullLock = useRef(false)
   const setSettings = useFridge((s) => s.setSettings)
 
   async function onFile(file: File | undefined) {
@@ -29,16 +32,21 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
     setError("")
     setSaved("")
     setRows([])
+    setPreparing(true)
     try {
       const image = await shrinkImage(file)
       if (!image) { setError(t("tooLarge")); return }
       setPreview(image)
     } catch {
       setError(t("scanFailed"))
+    } finally {
+      setPreparing(false)
     }
   }
 
   async function pullDoor() {
+    if (pullLock.current || busy) return
+    pullLock.current = true
     setPulling(true)
     setError("")
     setSaved("")
@@ -52,11 +60,13 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
       setError(puckError(locale, err))
     } finally {
       setPulling(false)
+      pullLock.current = false
     }
   }
 
   async function identify() {
-    if (!preview) return
+    if (!preview || identifyLock.current) return
+    identifyLock.current = true
     setBusy(true)
     setError("")
     setSaved("")
@@ -86,6 +96,7 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
       setError(t(isScanErrorCode(message) ? scanErrorKey(message) : "scanFailed"))
     } finally {
       setBusy(false)
+      identifyLock.current = false
     }
   }
 
@@ -107,33 +118,42 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
     setSaved(t("added", { n: chosen.length }))
   }
 
+  const blocked = busy || pulling || preparing
+
   return (
-    <section className="space-y-4">
+    <section className="space-y-4" aria-busy={blocked || undefined}>
       <p className="text-base leading-relaxed text-muted">
         {t("scanIntro")}
       </p>
       <p className="rounded-card border border-line bg-surface px-4 py-3 text-sm leading-relaxed text-muted">{t("privacyScan")}</p>
       <div className="grid gap-3 sm:grid-cols-2">
-        <label className="flex min-h-32 cursor-pointer flex-col items-center justify-center rounded-card border border-dashed border-line bg-surface px-4 py-6 text-center">
-          <Camera className="size-6 text-mint" />
-          <span className="mt-2 text-sm font-medium">{t("phonePhoto")}</span>
+        <label
+          className={cn(
+            "flex min-h-32 cursor-pointer flex-col items-center justify-center rounded-card border border-dashed border-line bg-surface px-4 py-6 text-center",
+            blocked && "pointer-events-none opacity-60",
+          )}
+        >
+          {preparing && !pulling ? <Spinner className="size-6 text-mint" label={t("preparingPhoto")} /> : <Camera className="size-6 text-mint" />}
+          <span className="mt-2 text-sm font-medium">{preparing && !pulling ? t("preparingPhoto") : t("phonePhoto")}</span>
         <input
           type="file"
           accept="image/*"
           capture="environment"
           className="sr-only"
+          disabled={blocked}
           onChange={(e) => void onFile(e.target.files?.[0])}
           />
         </label>
-        <button
-          type="button"
-          disabled={pulling || busy}
+        <BusyButton
+          busy={pulling}
+          busyLabel={t("askingPuck")}
+          disabled={busy || preparing}
           onClick={() => void pullDoor()}
-          className="min-h-32 rounded-card border border-line bg-surface px-4 text-center font-semibold disabled:opacity-60"
+          className="min-h-32 flex-col rounded-card border border-line bg-surface px-4 text-center font-semibold"
         >
-          <span className="block">{pulling ? t("askingPuck") : t("fridgeSnap")}</span>
+          <span className="block">{t("fridgeSnap")}</span>
           <span className="mt-1 block text-sm font-normal leading-relaxed text-muted">{puckReady ? t("lastDoor") : t("fridgeSnapOffline")}</span>
-        </button>
+        </BusyButton>
       </div>
       <div className="grid grid-cols-2 gap-2">
         <button type="button" onClick={onManual} className="min-h-11 rounded-card border border-line p-2 text-sm font-semibold">{t("addManually")}</button>
@@ -144,16 +164,30 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
           {t("httpsPuckWarn")}
         </p>
       )}
-      {preview && <img src={preview} alt={t("shelfAlt")} className="max-h-56 w-full rounded-card object-cover" />}
       {preview && (
-        <button
-          type="button"
-          disabled={busy}
+        <div className="relative">
+          <img src={preview} alt={t("shelfAlt")} className="max-h-56 w-full rounded-card object-cover" />
+          {busy && (
+            <div className="absolute inset-0 flex items-center justify-center rounded-card bg-bg/70" role="status" aria-live="polite">
+              <div className="flex items-center gap-2 rounded-card border border-line bg-surface px-4 py-3 text-sm font-semibold">
+                <Spinner className="text-mint" />
+                {t("reading")}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+      {preparing && !preview && <LoadingStatus>{t("preparingPhoto")}</LoadingStatus>}
+      {preview && (
+        <BusyButton
+          busy={busy}
+          busyLabel={t("reading")}
+          disabled={!preview || preparing}
           onClick={() => void identify()}
-          className="h-11 w-full rounded-card bg-mint font-semibold text-mint-ink disabled:opacity-60"
+          className="h-11 w-full rounded-card bg-mint font-semibold text-mint-ink"
         >
-          {busy ? t("reading") : t("identify")}
-        </button>
+          {t("identify")}
+        </BusyButton>
       )}
       {error && <p role="alert" className="text-sm text-clay">{error}</p>}
       {saved && <p role="status" className="text-sm text-mint">{saved}</p>}
@@ -169,7 +203,15 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
             {t("doorAddr")}
             <input value={puckHost} onChange={(e) => { setSettings({ puckHost: e.target.value }); setPuckReady(false) }} className={cn(fieldClass, "mt-1")} spellCheck={false} />
           </label>
-          <button type="button" disabled={pulling} onClick={() => void pullDoor()} className="mt-4 h-11 w-full rounded-card bg-mint font-semibold text-mint-ink disabled:opacity-60">{pulling ? t("askingPuck") : t("testConnection")}</button>
+          <BusyButton
+            busy={pulling}
+            busyLabel={t("askingPuck")}
+            disabled={busy || preparing}
+            onClick={() => void pullDoor()}
+            className="mt-4 h-11 w-full rounded-card bg-mint font-semibold text-mint-ink"
+          >
+            {t("testConnection")}
+          </BusyButton>
           {error && <p role="alert" className="mt-3 text-sm text-clay">{error}</p>}
           {puckReady && <p role="status" className="mt-3 text-sm text-mint">{t("connected")}</p>}
         </Sheet>
@@ -249,4 +291,3 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
     </section>
   )
 }
-

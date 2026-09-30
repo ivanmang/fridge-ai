@@ -1,5 +1,6 @@
+import { useState } from "react"
 import { ExternalLink } from "lucide-react"
-import { useI18n } from "@/components/fridge/shared"
+import { Spinner, useI18n } from "@/components/fridge/shared"
 import { recipeGuideUrl } from "@/lib/recipe-lookup"
 import { recipeImage } from "@/lib/recipe-media"
 import type { Recipe } from "@/lib/recipes"
@@ -21,6 +22,7 @@ export function RecipeSourceMedia({
   const { t } = useI18n()
   const image = recipeImage(recipe)
   const guideUrl = recipeGuideUrl(recipe)
+  const [opening, setOpening] = useState(false)
 
   return (
     <div className={cn(compact ? "mt-3 space-y-2" : "mt-3 space-y-3")}>
@@ -38,11 +40,20 @@ export function RecipeSourceMedia({
           href={guideUrl}
           target="_blank"
           rel="noopener noreferrer"
+          aria-busy={opening || undefined}
+          onClick={() => {
+            setOpening(true)
+            window.setTimeout(() => setOpening(false), 1600)
+          }}
           className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-card bg-mint px-4 text-sm font-semibold text-mint-ink"
         >
-          <ExternalLink className="size-4 shrink-0" aria-hidden />
+          {opening ? <Spinner /> : <ExternalLink className="size-4 shrink-0" aria-hidden />}
           <span className="truncate text-center leading-snug">
-            {recipe.sourceName ? t("viewFullRecipeNamed", { name: recipe.sourceName }) : t("viewFullRecipe")}
+            {opening
+              ? t("openingRecipe")
+              : recipe.sourceName
+                ? t("viewFullRecipeNamed", { name: recipe.sourceName })
+                : t("viewFullRecipe")}
           </span>
         </a>
       ) : null}

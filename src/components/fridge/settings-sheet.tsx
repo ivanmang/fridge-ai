@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Trash2 } from "lucide-react"
-import { Field, Sheet, SuggestControl, fieldClass, useI18n, type Draft } from "@/components/fridge/shared"
+import { Field, Sheet, Spinner, SuggestControl, fieldClass, useI18n, type Draft } from "@/components/fridge/shared"
 import { TasteProfile } from "@/components/fridge/survey-panel"
 import { BACKUP_VERSION, parseBackup } from "@/lib/backup"
 import { foodLabel } from "@/lib/i18n"
@@ -167,7 +167,9 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
   const mergeSample = useFridge((s) => s.mergeSample)
   const clearItems = useFridge((s) => s.clearItems)
   const [backupMessage, setBackupMessage] = useState("")
+  const [importing, setImporting] = useState(false)
   const [sampleOpen, setSampleOpen] = useState(false)
+  const importLock = useRef(false)
 
   const { t } = useI18n()
   const httpsPuck =
@@ -190,7 +192,10 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
   }
 
   async function onImport(file: File | undefined) {
-    if (!file) return
+    if (!file || importLock.current) return
+    importLock.current = true
+    setImporting(true)
+    setBackupMessage("")
     try {
       const data = parseBackup(JSON.parse(await file.text()))
       useFridge.setState((state) => ({
@@ -204,6 +209,9 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
       setBackupMessage(t("backupImported"))
     } catch {
       setBackupMessage(t("backupFailed"))
+    } finally {
+      setImporting(false)
+      importLock.current = false
     }
   }
 
@@ -291,9 +299,16 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
         <button type="button" onClick={exportJson} className="h-11 rounded-card border border-line text-sm font-semibold">
           {t("export")}
         </button>
-        <label className="flex h-11 items-center justify-center rounded-card border border-line text-sm font-semibold">
-          {t("import")}
-          <input type="file" accept="application/json" className="sr-only" onChange={(e) => void onImport(e.target.files?.[0])} />
+        <label
+          className={cn(
+            "flex h-11 items-center justify-center gap-2 rounded-card border border-line text-sm font-semibold",
+            importing && "pointer-events-none opacity-60",
+          )}
+          aria-busy={importing || undefined}
+        >
+          {importing ? <Spinner className="text-mint" /> : null}
+          {importing ? t("importingBackup") : t("import")}
+          <input type="file" accept="application/json" className="sr-only" disabled={importing} onChange={(e) => void onImport(e.target.files?.[0])} />
         </label>
         <button
           type="button"
@@ -305,7 +320,17 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
           {t("clearFridge")}
         </button>
       </div>
-      {backupMessage && <p role="status" className="mt-3 text-sm text-mint">{backupMessage}</p>}
+      {importing && (
+        <p role="status" className="mt-3 flex items-center gap-2 text-sm text-muted">
+          <Spinner className="text-mint" />
+          {t("importingBackup")}
+        </p>
+      )}
+      {backupMessage && (
+        <p role="status" className={cn("mt-3 text-sm", backupMessage === t("backupFailed") ? "text-clay" : "text-mint")}>
+          {backupMessage}
+        </p>
+      )}
       {sampleOpen && (
         <Sheet title={t("loadSample")} onClose={() => setSampleOpen(false)}>
           <p className="text-base leading-relaxed text-muted">{t("sampleReplaceConfirm")}</p>

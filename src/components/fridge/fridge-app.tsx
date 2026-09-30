@@ -13,7 +13,7 @@ import { ItemSheet, SettingsSheet } from "@/components/fridge/settings-sheet"
 import { ScanPanel } from "@/components/fridge/scan-panel"
 import { ShopPanel } from "@/components/fridge/shop-panel"
 import { Tonight } from "@/components/fridge/tonight"
-import { WelcomeSheet, useI18n, type Tab } from "@/components/fridge/shared"
+import { WelcomeSheet, Spinner, useI18n, type Tab } from "@/components/fridge/shared"
 import { foodLabel, translate, type Locale } from "@/lib/i18n"
 import { daysUntil, todayISO, type FoodItem } from "@/lib/logic"
 import { useFridge } from "@/lib/store"
@@ -87,9 +87,10 @@ export function FridgeApp() {
   if (!hydrated) {
     return (
       <main className="mx-auto grid min-h-dvh max-w-lg place-items-center bg-bg px-5 text-fg">
-        <p role="status" className="text-base text-muted">
-          {t("loadingFridge")}
-        </p>
+        <div role="status" className="flex flex-col items-center gap-3 text-center">
+          <Spinner className="size-7 text-mint" label={t("loadingFridge")} />
+          <p className="text-base text-muted">{t("loadingFridge")}</p>
+        </div>
       </main>
     )
   }
