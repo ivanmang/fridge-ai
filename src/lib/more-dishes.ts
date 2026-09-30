@@ -462,6 +462,106 @@ export const MORE: Recipe[] = [
     ],
     zh: { name: "番茄焗豆", steps: ["豆瀝乾，番茄切件，拍蒜。", "油爆蒜（和洋蔥），加番茄和豆煮約八分鐘。", "調味，可配麵包。"] },
   },
+  {
+    id: "home-hk-macaroni", name: "HK-style macaroni soup", cuisine: "Hong Kong", time: 20, servings: 2,
+    need: ["Pasta", "Ham"], optional: ["Eggs", "Spring onion", "Milk"],
+    steps: [
+      "Boil elbow pasta in lightly salted water until tender; drain, saving a cup of the cooking water.",
+      "Return pasta to the pot with enough cooking water (or a splash of milk) to make a light soup. Add diced ham and simmer 2 minutes.",
+      "Slip in a softly boiled or scrambled egg if you like. Season lightly and finish with spring onion.",
+    ],
+    zh: { name: "港式通粉湯", steps: ["通粉用淡鹽水煮至軟身，瀝乾，留一杯煮水。", "通粉加回煮水（或少許牛奶）成清湯，加入切粒火腿煮兩分鐘。", "可加溫泉蛋或炒蛋，調味後撒蔥花。"] },
+  },
+  {
+    id: "home-spring-onion-noodles", name: "Spring onion oil noodles", cuisine: "Chinese", time: 15, servings: 2,
+    need: ["Noodles", "Spring onion", "Soy sauce"], optional: ["Garlic", "Sesame oil"],
+    steps: [
+      "Cook noodles until just tender; drain. Slice a generous handful of spring onion.",
+      "Warm a little oil in a pan and fry the spring onion (and garlic) until fragrant but not burnt.",
+      "Toss noodles with the onion oil, soy sauce, and a drop of sesame oil. Serve hot.",
+    ],
+    zh: { name: "蔥油拌麵", steps: ["麵煮至剛好熟，瀝乾。切一大把蔥花。", "熱鑊下少許油，爆香蔥花（和蒜），勿焦。", "麵加蔥油、生抽和少許麻油拌勻。"] },
+  },
+  {
+    id: "home-cold-soy-tofu", name: "Cold soy tofu", cuisine: "Chinese", time: 8, servings: 2,
+    need: ["Tofu", "Soy sauce"], optional: ["Spring onion", "Sesame oil", "Garlic"],
+    steps: [
+      "Drain tofu and cut into thick slabs or cubes. Pat dry.",
+      "Arrange on a plate. Mix soy sauce with a little sesame oil and minced garlic if using.",
+      "Spoon the sauce over the tofu and top with spring onion. Serve cold or at room temperature.",
+    ],
+    zh: { name: "涼伴豆腐", steps: ["豆腐瀝乾切厚片或丁，抹乾。", "擺碟。生抽加少許麻油和蒜蓉拌勻。", "淋在豆腐上，撒蔥花，凍食或室溫即可。"] },
+  },
+  {
+    id: "home-tomato-egg-noodles", name: "Tomato egg noodles", cuisine: "Chinese", time: 20, servings: 2,
+    need: ["Tomato", "Eggs", "Noodles"], optional: ["Spring onion", "Soy sauce", "Garlic"],
+    steps: [
+      "Cook noodles and set aside. Beat 2 eggs; cut 2 tomatoes into wedges.",
+      "Scramble eggs lightly and remove. Cook tomatoes with a splash of water until saucy.",
+      "Fold eggs back in, toss with the noodles, and finish with spring onion.",
+    ],
+    zh: { name: "番茄蛋麵", steps: ["煮麵備用。打散兩隻蛋，切開兩個番茄。", "先炒蛋盛起；番茄加水煮成醬。", "拌回雞蛋，撈入麵，撒蔥花。"] },
+  },
+  {
+    id: "home-chinese-sausage-rice", name: "Chinese sausage rice", cuisine: "Cantonese", time: 30, servings: 2,
+    need: ["Chinese sausage", "Rice"], optional: ["Spring onion", "Soy sauce", "Eggs"],
+    steps: [
+      "Rinse 1 cup of rice. Slice 2 Chinese sausages on the diagonal.",
+      "Cook rice as usual. In the last 10 minutes, steam the sausage slices on top of the rice (or pan-fry briefly and serve over).",
+      "Fluff the rice with the sausage oils, add soy sauce if you like, and top with spring onion or a fried egg.",
+    ],
+    zh: { name: "臘腸飯", steps: ["洗一杯米。兩條臘腸斜切。", "照常煮飯，最後約十分鐘把臘腸鋪在飯面蒸（或另煎後鋪上）。", "用臘腸油拌飯，可加生抽，撒蔥花或加煎蛋。"] },
+  },
+  {
+    id: "home-egg-mayo-toast", name: "Egg mayo toast", cuisine: "Western", time: 12, servings: 1,
+    need: ["Eggs", "Bread", "Mayonnaise"], optional: ["Spring onion", "Butter"],
+    steps: [
+      "Hard-boil 2 eggs (about 9 minutes), cool briefly, peel, and mash with mayonnaise and a pinch of salt.",
+      "Toast bread; butter lightly if you like.",
+      "Spread the egg mayo, top with spring onion, and serve.",
+    ],
+    zh: { name: "蛋沙拉多士", steps: ["水煮蛋約九分鐘，稍涼去殼，加蛋黃醬和少許鹽壓碎。", "多士烘熱，可塗少許牛油。", "抹上蛋沙拉，撒蔥花即可。"] },
+  },
+  {
+    id: "home-soy-chicken-thigh", name: "Soy chicken thighs", cuisine: "Cantonese", time: 30, servings: 2,
+    need: ["Chicken thighs", "Soy sauce", "Ginger"], optional: ["Garlic", "Spring onion", "Honey"],
+    steps: [
+      "Pat 2–3 chicken thighs dry. Slice a thumb of ginger (and garlic if using).",
+      "Brown the skin side in a lightly oiled pan, then add ginger, a splash of water, soy sauce, and a little honey if you have it.",
+      "Cover and cook over medium-low until the thighs reach 74°C / 165°F. Rest 3 minutes; finish with spring onion.",
+    ],
+    zh: { name: "豉油雞腿", steps: ["抹乾兩至三隻雞腿。薑切片（有蒜可拍碎）。", "鑊中少油先煎皮面，加薑、少許水、生抽，可加蜂蜜。", "蓋蓋中小火煮至中心 74°C，焗三分鐘，撒蔥花。"] },
+  },
+  {
+    id: "home-silken-tofu-savory", name: "Savory silken tofu", cuisine: "Chinese", time: 10, servings: 2,
+    need: ["Silken tofu", "Soy sauce"], optional: ["Spring onion", "Sesame oil", "Century egg"],
+    steps: [
+      "Unmold silken tofu onto a plate carefully.",
+      "If using century egg, chop and scatter over the tofu.",
+      "Drizzle soy sauce and sesame oil, top with spring onion, and serve chilled or at room temperature.",
+    ],
+    zh: { name: "皮蛋豆腐", steps: ["小心將嫩豆腐倒出碟上。", "有皮蛋可切粒灑上。", "淋生抽和麻油，撒蔥花，凍食或室溫。"] },
+  },
+  {
+    id: "home-bean-sprout-stirfry", name: "Bean sprout stir-fry", cuisine: "Cantonese", time: 10, servings: 2,
+    need: ["Bean sprouts", "Garlic"], optional: ["Spring onion", "Soy sauce", "Eggs"],
+    steps: [
+      "Rinse and drain bean sprouts. Mince garlic; slice spring onion if using.",
+      "Stir-fry garlic in a hot lightly oiled pan for 10 seconds, then add sprouts and toss for 1–2 minutes until just wilted.",
+      "Season with soy sauce. Optionally scramble an egg in the same pan first and fold through.",
+    ],
+    zh: { name: "炒芽菜", steps: ["芽菜洗淨瀝乾，拍蒜，可切蔥。", "熱鑊下油爆蒜十秒，加芽菜快炒一至兩分鐘至剛軟。", "加生抽。可先炒蛋再拌入。"] },
+  },
+  {
+    id: "home-milk-egg-custard", name: "Steamed milk egg", cuisine: "Cantonese", time: 20, servings: 2,
+    need: ["Eggs", "Milk"], optional: ["Sugar", "Honey"],
+    steps: [
+      "Beat 2 eggs gently with 1 cup of warm milk and a spoon of sugar if you like. Strain into bowls.",
+      "Cover loosely. Steam over gently simmering water for 12–15 minutes until just set.",
+      "Rest 2 minutes. Drizzle honey if you want it sweeter.",
+    ],
+    zh: { name: "燉蛋", steps: ["輕輕打散兩隻蛋，加入一杯暖牛奶和少許糖，過篩入碗。", "蓋好，用微滾水蒸約 12 至 15 分鐘至剛凝固。", "焗兩分鐘，可淋蜂蜜。"] },
+  },
 ]
 
 export const MORE_ZH: Record<string, string> = {

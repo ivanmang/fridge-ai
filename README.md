@@ -11,7 +11,7 @@ Photos are identified on the server. You tick the list before anything is saved.
 
 ## Use it
 
-- **Tonight** — one meal idea from the real home-recipe set (not the imported outline catalogue). Cook step-by-step with an optional timer, then update the fridge.
+- **Tonight** — two modes: **Cook tonight** (trusted home recipes matched to your fridge) and **Browse ideas** (search the cookable set; imported outlines stay opt-in). Cook step-by-step with an optional timer, then update the fridge. Save dishes and remember what you cooked.
 - **My food** — add, search, edit and see food grouped by urgency. Dates are labelled as estimates or package dates.
 - **Add** — phone photo, the FridgeSnap puck’s last door photo, or manual entry. Review detected foods before saving.
 - **Shop** — shopping gaps for tonight, your own checklist, and an optional prompt to add bought groceries to the fridge.
@@ -21,7 +21,7 @@ English and Traditional Chinese. The 中 button in the header switches the page.
 
 Expiry is a guideline after purchase or opening, not a test of the food. Estimated dates and package dates are kept distinct; food past its recorded date is not counted as an available recipe ingredient. Check the package and the food itself.
 
-The app ships ~40+ fully written home recipes for everyday HK / Cantonese / pantry meals. The larger imported dish catalogue remains searchable as **outline-only** (no Cook), for discovery and shopping gaps. Photo recognition and online dish lookup need a configured server-side xAI key. Manual entry and the on-device recipe catalogue work without it.
+The app ships **50+** fully written home recipes for everyday HK / Cantonese / pantry meals. The larger imported dish catalogue is off by default (“Include recipe ideas”) and remains **outline-only** (no Cook) when enabled. Photo recognition and online dish lookup need a configured server-side xAI key. Manual entry and the on-device recipe catalogue work without it.
 
 ## Develop
 
