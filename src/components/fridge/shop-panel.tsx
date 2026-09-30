@@ -15,6 +15,7 @@ import {
   type FoodItem,
   type RankedRecipe,
 } from "@/lib/logic"
+import { suggestedShopQty } from "@/lib/materials"
 import { lookupDishes } from "@/lib/dish.functions"
 import { draftFromName, sameShopText, useFridge, type ShopNote } from "@/lib/store"
 import { surveyReady } from "@/lib/survey"
@@ -347,7 +348,9 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
 
   function addSuggested() {
     for (const row of shopRows) {
-      addShop(foodLabel(locale, row.name))
+      const label = foodLabel(locale, row.name)
+      const qtyHint = focus.map((idea) => suggestedShopQty(idea.recipe, row.name, locale)).find(Boolean)
+      addShop(qtyHint ? `${label} (${qtyHint})` : label)
     }
   }
 
@@ -383,6 +386,7 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
       <div>
         <h2 className="font-display text-3xl">{t("shoppingList")}</h2>
         <p className="mt-1 text-base leading-relaxed text-muted">{t("shopLead")}</p>
+        {focus.length > 0 && <p className="mt-1 text-sm leading-relaxed text-muted">{t("shopForPickLead")}</p>}
       </div>
 
       {focus.length > 0 && (
@@ -397,6 +401,9 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
                 {shopRows.map((row) => {
                   const label = foodLabel(locale, row.name)
                   const listed = onList(label)
+                  const qtyHint = focus
+                    .map((idea) => suggestedShopQty(idea.recipe, row.name, locale))
+                    .find(Boolean)
                   return (
                     <li
                       key={row.name}
@@ -410,6 +417,7 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
                               row.recipeIds.map((id) => recipeText(locale, focus.find((idea) => idea.recipe.id === id)!.recipe).name),
                             ),
                           })}
+                          {qtyHint ? ` · ${t("suggestedQty", { qty: qtyHint })}` : ""}
                         </span>
                       </span>
                       {listed ? (
@@ -417,7 +425,7 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
                       ) : (
                         <button
                           type="button"
-                          onClick={() => addShop(label)}
+                          onClick={() => addShop(qtyHint ? `${label} (${qtyHint})` : label)}
                           className="h-11 shrink-0 rounded-full bg-mint px-4 text-sm font-semibold text-mint-ink"
                         >
                           {t("addOne")}
@@ -440,18 +448,24 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
                     {stapleShopRows.map((row) => {
                       const label = foodLabel(locale, row.name)
                       const listed = onList(label)
+                      const qtyHint = focus
+                        .map((idea) => suggestedShopQty(idea.recipe, row.name, locale))
+                        .find(Boolean)
                       return (
                         <li
                           key={`staple-${row.name}`}
                           className="flex items-center justify-between gap-3 rounded-card border border-dashed border-line bg-surface/60 px-4 py-2.5"
                         >
-                          <span className="min-w-0 text-sm font-medium leading-snug">{label}</span>
+                          <span className="min-w-0 text-sm font-medium leading-snug">
+                            {label}
+                            {qtyHint ? <span className="text-muted"> · {t("suggestedQty", { qty: qtyHint })}</span> : null}
+                          </span>
                           {listed ? (
                             <span className="shrink-0 text-sm font-semibold text-mint">{t("alreadyOnList")}</span>
                           ) : (
                             <button
                               type="button"
-                              onClick={() => addShop(label)}
+                              onClick={() => addShop(qtyHint ? `${label} (${qtyHint})` : label)}
                               className="h-10 shrink-0 rounded-full border border-line px-3 text-sm font-semibold"
                             >
                               {t("addOne")}

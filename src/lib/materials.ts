@@ -153,3 +153,62 @@ export function legacyNeedOptional(materials: RecipeMaterial[]): { need: string[
     optional: uniqNames(materials.filter((row) => row.role !== "core").map((row) => row.name)),
   }
 }
+
+/**
+ * Derive structured materials from flat need/optional (no amounts).
+ * Used so every cookable dish gets prep/Shop grouping during the materials rollout.
+ */
+export function deriveMaterials(recipe: Pick<Recipe, "need" | "optional">): RecipeMaterial[] {
+  const rows: RecipeMaterial[] = []
+  const seen = new Set<string>()
+  for (const name of recipe.need) {
+    const key = name.toLowerCase()
+    if (seen.has(key)) continue
+    seen.add(key)
+    rows.push({
+      name,
+      role: isStapleIngredient(name) ? "staple" : "core",
+      group: "main",
+    })
+  }
+  for (const name of recipe.optional) {
+    const key = name.toLowerCase()
+    if (seen.has(key)) continue
+    seen.add(key)
+    rows.push({
+      name,
+      role: isStapleIngredient(name) ? "staple" : "optional",
+      group: "main",
+    })
+  }
+  return rows
+}
+
+/** Prefer authored materials; otherwise derive from need/optional. */
+export function ensureMaterials(recipe: Recipe): RecipeMaterial[] {
+  if (recipe.materials?.length) return recipe.materials
+  return deriveMaterials(recipe)
+}
+
+/** Attach materials when missing (idempotent). */
+export function withMaterials(recipe: Recipe, overlay?: RecipeMaterial[]): Recipe {
+  if (recipe.materials?.length) return recipe
+  if (overlay?.length) {
+    // Keep authored need/optional for ranking; overlay is display + Shop hints only.
+    return { ...recipe, materials: overlay }
+  }
+  const materials = deriveMaterials(recipe)
+  return materials.length ? { ...recipe, materials } : recipe
+}
+
+/** Suggested Shop qty string from structured materials (first matching amount). */
+export function suggestedShopQty(
+  recipe: Recipe,
+  name: string,
+  locale: "en" | "zh",
+): string | undefined {
+  const row = materialByName(recipe, name) ?? ensureMaterials(recipe).find((m) => m.name.toLowerCase() === name.toLowerCase())
+  if (!row) return undefined
+  const qty = formatMaterialQty(row, locale)
+  return qty || undefined
+}

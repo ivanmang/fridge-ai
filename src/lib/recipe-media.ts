@@ -1,3 +1,5 @@
+import { withMaterials } from "@/lib/materials"
+import { MATERIALS_SYNC } from "@/lib/materials-sync"
 import type { Recipe } from "@/lib/recipes"
 import { withRecipeSource } from "@/lib/recipe-sources"
 
@@ -998,9 +1000,10 @@ export function recipeImage(recipe: Recipe): string | undefined {
 /** Merge stored dish photo + verified sourceUrl without clobbering inline fields. */
 export function enrichRecipe(recipe: Recipe): Recipe {
   const withSource = withRecipeSource(recipe)
-  if (withSource.image) return withSource
-  const image = RECIPE_IMAGES[withSource.id]
-  return image ? { ...withSource, image } : withSource
+  const withMats = withMaterials(withSource, MATERIALS_SYNC[withSource.id])
+  if (withMats.image) return withMats
+  const image = RECIPE_IMAGES[withMats.id]
+  return image ? { ...withMats, image } : withMats
 }
 
 export function hasRecipeImage(recipe: Recipe): boolean {

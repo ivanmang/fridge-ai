@@ -149,6 +149,7 @@ export function FridgeApp() {
             onAdd={() => setAdding(true)}
             onPhoto={() => setTab("scan")}
             onSample={runSample}
+            onShop={() => setTab("shop")}
             openSurvey={openSurvey}
             onSurveyHandled={() => setOpenSurvey(false)}
           />

@@ -18,7 +18,8 @@ import {
   trustLevel,
   type FoodItem,
 } from "@/lib/logic"
-import { formatMaterialQty, groupMaterials } from "@/lib/materials"
+import { formatMaterialQty, groupMaterials, suggestedShopQty } from "@/lib/materials"
+import { recipeGuideUrl, recipeSearchUrl } from "@/lib/recipe-lookup"
 import { useFridge } from "@/lib/store"
 import { emptySurvey, surveyReady } from "@/lib/survey"
 import { cn } from "@/lib/utils"
@@ -67,6 +68,7 @@ export function Tonight({
   onAdd,
   onPhoto,
   onSample,
+  onShop,
   openSurvey = false,
   onSurveyHandled,
 }: {
@@ -74,6 +76,7 @@ export function Tonight({
   onAdd: () => void
   onPhoto: () => void
   onSample: () => void
+  onShop?: () => void
   openSurvey?: boolean
   onSurveyHandled?: () => void
 }) {
@@ -89,6 +92,10 @@ export function Tonight({
   const cookedHistory = useFridge((s) => s.settings.cookedHistory ?? [])
   const lastTonightId = useFridge((s) => s.settings.lastTonightId ?? "")
   const pendingMealId = useFridge((s) => s.settings.pendingMealId ?? "")
+  const [bannerSnoozed, setBannerSnoozed] = useState(false)
+  useEffect(() => {
+    setBannerSnoozed(false)
+  }, [pendingMealId])
   const toggleSavedRecipe = useFridge((s) => s.toggleSavedRecipe)
   const markCooked = useFridge((s) => s.markCooked)
   const addItem = useFridge((s) => s.addItem)
@@ -322,7 +329,7 @@ export function Tonight({
       const today = todayISO()
       addItem({
         name: "Cooked leftovers",
-        qty: dish.name,
+        qty: t("leftoversFromDish", { name: dish.name }),
         location: "fridge",
         bought: today,
         expires: addDays(today, 3),
@@ -338,17 +345,19 @@ export function Tonight({
     setMealId(null)
   }
 
-  function listMissing() {
+  function listMissing(goShop = false) {
     if (!active) return
     const have = new Set(shop.map((row) => row.text.toLowerCase()))
     for (const name of active.missing) {
       const label = foodLabel(locale, name)
       if (!have.has(label.toLowerCase())) {
-        addShop(label)
+        const qty = suggestedShopQty(active.recipe, name, locale)
+        addShop(qty ? `${label} (${qty})` : label)
         have.add(label.toLowerCase())
       }
     }
     setNote(t("onList"))
+    if (goShop) onShop?.()
   }
 
   function startTimer(minutes: number) {
@@ -406,7 +415,7 @@ export function Tonight({
 
       {phase === "pick" && items.length > 0 && active && <p className="text-base leading-relaxed text-muted">{t("modeCookLead")}</p>}
 
-      {phase === "pick" && pendingMealId && pendingDishName && (
+      {phase === "pick" && pendingMealId && pendingDishName && !bannerSnoozed && (
         <div className="rounded-card border border-mint/40 bg-surface px-4 py-3" role="status">
           <p className="font-medium">{t("stillMaking", { name: pendingDishName })}</p>
           <p className="mt-1 text-sm text-muted">{t("stillMakingBody")}</p>
@@ -417,7 +426,7 @@ export function Tonight({
             <button type="button" onClick={resumePendingPrep} className="h-11 rounded-card border border-line px-4 text-sm font-semibold">
               {t("resumePrep")}
             </button>
-            <button type="button" onClick={() => setSettings({ pendingMealId: "" })} className="h-11 rounded-card border border-line px-4 text-sm text-muted">
+            <button type="button" onClick={() => setBannerSnoozed(true)} className="h-11 rounded-card border border-line px-4 text-sm text-muted">
               {t("dismissBanner")}
             </button>
           </div>
@@ -635,6 +644,15 @@ export function Tonight({
                 {t("cannotCookOutline")}
               </button>
             )}
+            {active.missing.length > 0 && (
+              <button
+                type="button"
+                onClick={() => listMissing(true)}
+                className="h-11 rounded-card border border-line px-4 text-sm font-semibold"
+              >
+                {t("shopMissing")}
+              </button>
+            )}
             <button
               type="button"
               onClick={() => toggleSavedRecipe(active.recipe.id)}
@@ -721,13 +739,39 @@ export function Tonight({
             </div>
           )}
           {active.missing.length > 0 && (
-            <button type="button" onClick={listMissing} className="mt-4 h-11 w-full rounded-card border border-line text-sm font-semibold">
-              {t("addMissing")}
+            <button type="button" onClick={() => listMissing(true)} className="mt-4 h-11 w-full rounded-card border border-line text-sm font-semibold">
+              {t("shopMissingGo")}
             </button>
           )}
           <button type="button" onClick={openPlate} className="mt-3 h-11 w-full rounded-card bg-mint font-semibold text-mint-ink">
             {t("clearFridgeCta")}
           </button>
+          {(() => {
+            const guide = recipeGuideUrl(active.recipe)
+            const search = recipeSearchUrl(active.recipe, locale)
+            return (
+              <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                {guide ? (
+                  <a
+                    href={guide}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex h-11 items-center justify-center rounded-card border border-line text-sm font-semibold"
+                  >
+                    {t("openSourceRecipe")}
+                  </a>
+                ) : null}
+                <a
+                  href={search}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-11 items-center justify-center rounded-card border border-line text-sm font-semibold"
+                >
+                  {t("searchOnline")}
+                </a>
+              </div>
+            )
+          })()}
           <button type="button" onClick={() => { setOutlineOpen(true); setStepIndex(0) }} className="mt-2 h-11 w-full rounded-card border border-line text-sm font-semibold">
             {t("quickOutline")}
           </button>

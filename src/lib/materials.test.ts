@@ -1,14 +1,18 @@
 import assert from "node:assert/strict"
 import { describe, it } from "node:test"
 import {
+  deriveMaterials,
   formatMaterialQty,
   groupMaterials,
   legacyNeedOptional,
   recipeCores,
   recipeSoft,
   recipeStaples,
+  withMaterials,
 } from "./materials.ts"
+import { MATERIALS_SYNC } from "./materials-sync.ts"
 import { MORE } from "./more-dishes.ts"
+import { enrichRecipe } from "./recipe-media.ts"
 import { isRegistryName } from "./shelf.ts"
 
 describe("recipe materials", () => {
@@ -56,5 +60,32 @@ describe("recipe materials", () => {
         assert.ok(isRegistryName(row.name), `${recipe.id} materials → ${row.name}`)
       }
     }
+    for (const [id, rows] of Object.entries(MATERIALS_SYNC)) {
+      for (const row of rows) {
+        assert.ok(isRegistryName(row.name), `sync ${id} → ${row.name}`)
+      }
+    }
+  })
+
+  it("deriveMaterials marks shelf staples and enrich attaches sync overlays", () => {
+    const tomato = MORE.find((r) => r.id === "home-tomato-egg")
+    assert.ok(tomato)
+    assert.equal(tomato.materials, undefined)
+    const derived = deriveMaterials(tomato)
+    assert.ok(derived.some((row) => row.name === "Tomato" && row.role === "core"))
+    assert.ok(derived.some((row) => row.name === "Soy sauce" && row.role === "staple"))
+    const enriched = enrichRecipe(tomato)
+    assert.ok(enriched.materials?.length)
+    assert.ok(enriched.materials!.some((row) => row.name === "Tomato" && row.amount === 3))
+    const flat = MORE.find((r) => r.id === "home-hk-borscht")
+    assert.ok(flat)
+    const withDerived = withMaterials(flat)
+    assert.ok(withDerived.materials?.length)
+    assert.equal(withDerived.materials!.every((row) => row.group === "main"), true)
+  })
+
+  it("high-traffic sync overlays include amounts for mapo and garlic pak choi", () => {
+    assert.ok(MATERIALS_SYNC["home-mapo-tofu"]?.some((row) => row.amount != null))
+    assert.ok(MATERIALS_SYNC["home-garlic-pak-choi"]?.some((row) => row.unit === "g"))
   })
 })

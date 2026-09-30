@@ -257,15 +257,122 @@ function parseLkkIngredients(html) {
 }
 
 function parseWprmFromHtml(html) {
-  const names = [...html.matchAll(/wprm-recipe-ingredient-name[^>]*>([\s\S]*?)<\/span>/gi)].map((m) =>
-    m[1].replace(/<[^>]+>/g, "").trim(),
-  )
+  const blocks = [...html.matchAll(/<li[^>]*class="[^"]*wprm-recipe-ingredient[^"]*"[^>]*>([\s\S]*?)<\/li>/gi)]
+  const structured = []
+  if (blocks.length) {
+    for (const m of blocks) {
+      const chunk = m[1]
+      const amount = (chunk.match(/wprm-recipe-ingredient-amount[^>]*>([\s\S]*?)<\/span>/i) || [])[1]
+      const unit = (chunk.match(/wprm-recipe-ingredient-unit[^>]*>([\s\S]*?)<\/span>/i) || [])[1]
+      const name = (chunk.match(/wprm-recipe-ingredient-name[^>]*>([\s\S]*?)<\/span>/i) || [])[1]
+      const notes = (chunk.match(/wprm-recipe-ingredient-notes[^>]*>([\s\S]*?)<\/span>/i) || [])[1]
+      const strip = (s) => (s || "").replace(/<[^>]+>/g, "").trim()
+      const nameText = strip(name)
+      if (!nameText) continue
+      const parsedAmt = parseLooseAmount(strip(amount))
+      structured.push({
+        raw: [strip(amount), strip(unit), nameText, strip(notes)].filter(Boolean).join(" "),
+        name: nameText,
+        amount: parsedAmt?.amount,
+        unit: strip(unit) || parsedAmt?.unit,
+        note: strip(notes) || undefined,
+        group: "main",
+      })
+    }
+  }
+  const names = structured.length
+    ? structured.map((row) => row.raw)
+    : [...html.matchAll(/wprm-recipe-ingredient-name[^>]*>([\s\S]*?)<\/span>/gi)].map((m) =>
+        m[1].replace(/<[^>]+>/g, "").trim(),
+      )
   const titleMatch =
     html.match(/wprm-recipe-name[^>]*>([\s\S]*?)<\/[^>]+>/i) || html.match(/<title>([^<]+)/i)
   return {
     title: titleMatch ? titleMatch[1].replace(/<[^>]+>/g, "").trim() : null,
     ingredients: names.filter(Boolean),
+    structured,
   }
+}
+
+/** Parse "1 1/2 tbsp", "8 oz", "¼ tsp", "3–4 tbsp" style leading qty. */
+function parseLooseAmount(raw) {
+  const s = String(raw || "").trim()
+  if (!s) return null
+  const fracMap = { "½": 0.5, "¼": 0.25, "¾": 0.75, "⅓": 1 / 3, "⅔": 2 / 3, "⅛": 0.125 }
+  let text = s
+  for (const [ch, val] of Object.entries(fracMap)) text = text.replaceAll(ch, String(val))
+  const m = text.match(
+    /^(\d+(?:\.\d+)?)(?:\s*[–—-]\s*\d+(?:\.\d+)?)?(?:\s+(\d+\/\d+))?\s*(kg|g|grams?|ounces?|oz\.?|lb|lbs|pounds?|cups?|tbsp|tsp|tablespoons?|teaspoons?|ml|l|liters?|litres?|slices?|cloves?|stalks?|pieces?|pcs?|pinch(?:es)?|dashes?|cans?|packs?|packets?|bunches?|heads?|bowl|bowls)?\b/i,
+  )
+  if (!m) return null
+  let amount = Number(m[1])
+  if (m[2]) {
+    const [a, b] = m[2].split("/").map(Number)
+    if (b) amount += a / b
+  }
+  let unit = (m[3] || "").toLowerCase().replace(/\.$/, "")
+  const unitNorm = {
+    teaspoon: "tsp",
+    teaspoons: "tsp",
+    tablespoon: "tbsp",
+    tablespoons: "tbsp",
+    ounce: "oz",
+    ounces: "oz",
+    gram: "g",
+    grams: "g",
+    cup: "cup",
+    cups: "cups",
+    clove: "clove",
+    cloves: "cloves",
+    piece: "piece",
+    pieces: "piece",
+    pcs: "piece",
+    bowl: "bowl",
+    bowls: "bowls",
+  }
+  if (unitNorm[unit]) unit = unitNorm[unit]
+  return { amount: Math.round(amount * 100) / 100, unit: unit || undefined }
+}
+
+function inferGroup(label) {
+  const n = norm(label)
+  if (!n) return "main"
+  if (/marinade|醃|腌/.test(n)) return "marinade"
+  if (/sauce|gravy|season|調味|调味|醬汁|酱汁/.test(n)) return "sauce"
+  if (/garnish|topping|finish|裝飾|装饰|蔥花/.test(n)) return "garnish"
+  return "main"
+}
+
+function structureFromRawLines(ingredients, groupHints = []) {
+  const out = []
+  let group = "main"
+  for (const raw of ingredients || []) {
+    const line = String(raw || "").trim()
+    if (!line) continue
+    const hint = groupHints.find((g) => norm(g) === norm(line))
+    if (hint || /^(marinade|sauce|garnish|rest|main|醃料|腌料|調味料|调味料|配料|材料)$/i.test(line)) {
+      group = inferGroup(line)
+      continue
+    }
+    const parsed = parseLooseAmount(line)
+    let namePart = line
+    if (parsed) {
+      namePart = line
+        .replace(
+          /^[\d./½¼¾⅓⅔⅛⅜⅝⅞\s\-–—到至约約]*\s*(kg|g|grams?|ounces?|oz\.?|lb|lbs|pounds?|cups?|tbsp|tsp|tablespoons?|teaspoons?|ml|l|liters?|litres?|slices?|cloves?|stalks?|pieces?|pcs?|pinch(?:es)?|dashes?|cans?|packs?|packets?|bunches?|heads?|bowl|bowls)?\s*/i,
+          "",
+        )
+        .trim()
+    }
+    out.push({
+      raw: line,
+      name: namePart || line,
+      amount: parsed?.amount,
+      unit: parsed?.unit,
+      group,
+    })
+  }
+  return out
 }
 
 async function fetchWolViaWp(url) {
@@ -282,6 +389,7 @@ async function fetchWolViaWp(url) {
     return {
       title: p.title?.rendered?.replace(/<[^>]+>/g, "").trim() || parsed.title,
       ingredients: parsed.ingredients,
+      structured: parsed.structured || [],
       via: "wp-post",
     }
   }
@@ -293,14 +401,43 @@ async function fetchWolViaWp(url) {
     const hit =
       recipes.find((r) => (r.recipe?.slug || r.slug || "").includes(slug.slice(0, 12))) || recipes[0]
     const flat = hit.recipe?.ingredients_flat || []
-    const ings = flat.filter((x) => x.type === "ingredient" || x.name).map((x) => x.name).filter(Boolean)
-    return { title: hit.recipe?.name || hit.title?.rendered, ingredients: ings, via: "wprm_recipe" }
+    let group = "main"
+    const structured = []
+    const ings = []
+    for (const x of flat) {
+      if (x.type === "group" || (x.name && !x.amount && !x.unit && /marinade|sauce|garnish|rest/i.test(x.name || ""))) {
+        group = inferGroup(x.name || x.group || "main")
+        continue
+      }
+      if (!(x.type === "ingredient" || x.name)) continue
+      const name = String(x.name || "").trim()
+      if (!name) continue
+      const amountRaw = x.amount != null ? String(x.amount) : ""
+      const unit = x.unit ? String(x.unit) : ""
+      const parsedAmt = parseLooseAmount([amountRaw, unit].filter(Boolean).join(" "))
+      const raw = [amountRaw, unit, name, x.notes].filter(Boolean).join(" ")
+      ings.push(raw)
+      structured.push({
+        raw,
+        name,
+        amount: parsedAmt?.amount ?? (amountRaw && !Number.isNaN(Number(amountRaw)) ? Number(amountRaw) : undefined),
+        unit: unit || parsedAmt?.unit,
+        note: x.notes ? String(x.notes) : undefined,
+        group,
+      })
+    }
+    return {
+      title: hit.recipe?.name || hit.title?.rendered,
+      ingredients: ings,
+      structured,
+      via: "wprm_recipe",
+    }
   }
   throw new Error("WOL not found via WP API")
 }
 
 async function fetchSourceIngredients(url) {
-  if (cache[url]?.ingredients) return cache[url]
+  if (cache[url]?.ingredients && cache[url]?.structured && !process.env.REFRESH) return cache[url]
   const host = new URL(url).hostname
   let result
   try {
@@ -310,22 +447,29 @@ async function fetchSourceIngredients(url) {
       const { text } = await fetchText(url)
       if (host.includes("madewithlau.com") || host.includes("bbc.co.uk")) {
         result = parseJsonLdIngredients(text)
+        result.structured = structureFromRawLines(result.ingredients)
         result.via = "json-ld"
       } else if (host.includes("lkk.com")) {
         result = parseLkkIngredients(text)
+        result.structured = structureFromRawLines(result.ingredients, ["醃料", "调味料", "調味料", "材料"])
         result.via = "lkk-html"
       } else {
         result = parseJsonLdIngredients(text)
         if (!result.ingredients?.length) result = parseWprmFromHtml(text)
+        if (!result.structured?.length) result.structured = structureFromRawLines(result.ingredients)
         result.via = "generic"
       }
     }
   } catch (err) {
-    result = { title: null, ingredients: [], error: String(err.message || err), via: "error" }
+    result = { title: null, ingredients: [], structured: [], error: String(err.message || err), via: "error" }
+  }
+  if (!result.structured?.length && result.ingredients?.length) {
+    result.structured = structureFromRawLines(result.ingredients)
   }
   cache[url] = {
     title: result.title || null,
     ingredients: result.ingredients || [],
+    structured: result.structured || [],
     via: result.via || null,
     error: result.error || null,
     fetchedAt: new Date().toISOString(),
@@ -360,16 +504,26 @@ async function main() {
     if (!byUrl.has(r.sourceUrl)) byUrl.set(r.sourceUrl, [])
     byUrl.get(r.sourceUrl).push(r)
   }
-  console.log(`recipes=${withUrl.length} uniqueUrls=${byUrl.size}`)
+  const exclusiveOnly = Boolean(process.env.EXCLUSIVE_ONLY)
+  const hostFilter = (process.env.HOST_FILTER || "").split(",").map((s) => s.trim()).filter(Boolean)
+  const urls = [...byUrl.keys()].filter((url) => {
+    if (exclusiveOnly && byUrl.get(url).length !== 1) return false
+    if (hostFilter.length) {
+      const host = new URL(url).hostname
+      if (!hostFilter.some((h) => host.includes(h))) return false
+    }
+    return true
+  })
+  console.log(`recipes=${withUrl.length} uniqueUrls=${byUrl.size} fetchUrls=${urls.length} exclusiveOnly=${exclusiveOnly}`)
 
   let i = 0
-  for (const url of byUrl.keys()) {
+  for (const url of urls) {
     i += 1
-    if (cache[url]?.ingredients && !process.env.REFRESH) {
-      process.stdout.write(`[${i}/${byUrl.size}] cache ${url}\n`)
+    if (cache[url]?.ingredients && cache[url]?.structured && !process.env.REFRESH) {
+      process.stdout.write(`[${i}/${urls.length}] cache ${url}\n`)
       continue
     }
-    process.stdout.write(`[${i}/${byUrl.size}] fetch ${url}\n`)
+    process.stdout.write(`[${i}/${urls.length}] fetch ${url}\n`)
     await fetchSourceIngredients(url)
     await sleep(120)
   }
@@ -378,7 +532,7 @@ async function main() {
   const gapCounter = new Map()
 
   for (const r of withUrl) {
-    const src = cache[r.sourceUrl] || { ingredients: [], title: null }
+    const src = cache[r.sourceUrl] || { ingredients: [], structured: [], title: null }
     const mapped = []
     for (const raw of src.ingredients || []) {
       const m = mapToCanonical(raw)
@@ -422,6 +576,44 @@ async function main() {
       if (prev.examples.length < 5) prev.examples.push(r.id)
       gapCounter.set(key, prev)
     }
+
+    // Build RecipeMaterial[] suggestions from structured source lines (exclusive / tight only).
+    const materials = []
+    const seenMat = new Set()
+    const structured = src.structured?.length ? src.structured : structureFromRawLines(src.ingredients || [])
+    for (const row of structured) {
+      const mappedRow = mapToCanonical(row.name || row.raw)
+      if (!mappedRow?.shelf && !mappedRow?.heuristic) continue
+      if (!mappedRow.canonical) continue
+      const key = norm(mappedRow.canonical)
+      if (seenMat.has(key)) continue
+      seenMat.add(key)
+      const staple = mappedRow.staple || isStaple(mappedRow.canonical)
+      const inNeed = (r.need || []).some((h) => sameFood(h, mappedRow.canonical))
+      const role = inNeed || (!staple && exclusive) ? (staple && !inNeed ? "staple" : "core") : staple ? "staple" : "optional"
+      materials.push({
+        name: mappedRow.canonical,
+        role: inNeed ? "core" : staple ? "staple" : role,
+        group: row.group || "main",
+        amount: row.amount,
+        unit: row.unit,
+        note: row.note,
+      })
+    }
+    // Ensure all authored need/optional appear even if source parse missed them.
+    for (const name of r.need || []) {
+      const key = norm(name)
+      if (seenMat.has(key)) continue
+      seenMat.add(key)
+      materials.push({ name, role: isStaple(name) ? "staple" : "core", group: "main" })
+    }
+    for (const name of r.optional || []) {
+      const key = norm(name)
+      if (seenMat.has(key)) continue
+      seenMat.add(key)
+      materials.push({ name, role: isStaple(name) ? "staple" : "optional", group: "main" })
+    }
+
     dishReports.push({
       id: r.id,
       name: r.name,
@@ -439,7 +631,10 @@ async function main() {
       need: r.need,
       optional: r.optional,
       sourceIngredients: src.ingredients,
+      sourceStructured: structured,
       sourceCanonical: sourceCanon.map((m) => m.canonical),
+      materials: tight ? materials : null,
+      materialsAmounted: tight ? materials.filter((m) => m.amount != null).length : 0,
       missing: missing.map((m) => ({
         canonical: m.canonical,
         cleaned: m.cleaned,
@@ -472,6 +667,8 @@ async function main() {
     tightWithGaps: tightMissing.length,
     dishesWithAnyGap: dishReports.filter((d) => d.missing.length).length,
     tightWithExtraNeed: dishReports.filter((d) => d.tight && d.extraNeed?.length).length,
+    materialsSuggested: dishReports.filter((d) => d.materials?.length).length,
+    materialsWithAmounts: dishReports.filter((d) => (d.materialsAmounted || 0) > 0).length,
     topGaps,
     byHost: {},
   }
