@@ -208,7 +208,7 @@ describe("fitsTaste", () => {
 
   it("filters vegetarian and mild heat", () => {
     const meat = MORE.find((recipe) => !isVegetarian(recipe))!
-    const greens = MORE.find((recipe) => recipe.id === "home-garlic-greens")!
+    const greens = MORE.find((recipe) => recipe.id === "home-garlic-pak-choi")!
     assert.equal(fitsTaste(meat, veg), false)
     assert.equal(fitsTaste(greens, veg), true)
   })
@@ -221,9 +221,16 @@ describe("fitsTaste", () => {
 })
 
 describe("home recipe coverage", () => {
-  it("ships a solid cookable core beyond the original eight", () => {
-    assert.ok(MORE.length >= 75)
-    assert.ok(MORE.every((recipe) => recipe.id.startsWith("home-")))
-    assert.ok(MORE.every((recipe) => recipe.steps.length >= 3 && !isOutlineRecipe(recipe)))
+  it("ships a focused cookable core of searchable classics", () => {
+    assert.ok(MORE.length >= 30 && MORE.length <= 48)
+    assert.ok(
+      MORE.every(
+        (recipe) =>
+          recipe.id.startsWith("home-") &&
+          recipe.steps.length >= 3 &&
+          recipe.zh?.steps?.length === recipe.steps.length &&
+          !isOutlineRecipe(recipe),
+      ),
+    )
   })
 })
