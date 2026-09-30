@@ -82,6 +82,16 @@ export const ZH_FOOD: Record<string, string> = {
   Flour: "麵粉",
   Sugar: "糖",
   Salt: "鹽",
+  "Ground pork": "免治豬肉",
+  "Century egg": "皮蛋",
+  "Bean sprouts": "豆芽",
+  "Rice vermicelli": "米粉",
+  "Chinese sausage": "臘腸",
+  Cornstarch: "生粉",
+  "Shaoxing wine": "料酒",
+  "White pepper": "白胡椒",
+  "Silken tofu": "嫩豆腐",
+  "Snow peas": "荷蘭豆",
 }
 
 export const ZH_CUISINE: Record<string, string> = {

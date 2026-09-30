@@ -1,17 +1,11 @@
 import { createServerFn } from "@tanstack/react-start"
+import { allowRate, beginScan, clientIp, endScan } from "@/lib/rate-limit.server"
 import { SHELF } from "@/lib/shelf"
 
 export type ScanHit = { name: string; qty: string }
 
-const hits: number[] = []
-
-function allowScan() {
-  const now = Date.now()
-  while (hits.length && now - hits[0] > 3_600_000) hits.shift()
-  if (hits.length >= 8) return false
-  hits.push(now)
-  return true
-}
+const SCAN_TIMEOUT_MS = 20_000
+const SCAN_LIMIT_PER_HOUR = 8
 
 function extractText(body: unknown) {
   if (!body || typeof body !== "object") return ""
@@ -67,43 +61,58 @@ export const scanFoods = createServerFn({ method: "POST" })
     if (!apiKey) {
       return { ok: false, error: "Photo recognition is unavailable. Add the food by hand." }
     }
-    if (!allowScan()) {
+
+    const ip = clientIp()
+    if (!allowRate("scan", SCAN_LIMIT_PER_HOUR, ip)) {
       return { ok: false, error: "Scan limit reached for this hour. Add items by hand, or try later." }
     }
 
-    const names = SHELF.map((food) => food.name).join(", ")
-    const res = await fetch("https://api.x.ai/v1/responses", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: "grok-4.5",
-        max_output_tokens: 700,
-        input: [
-          {
-            role: "user",
-            content: [
-              { type: "input_image", image_url: data.image, detail: "low" },
-              {
-                type: "input_text",
-                text: `List only foods you can actually see in this photo. Reply with a JSON array only, no markdown. Each object is {"name":"short English name","qty":"amount"}. Prefer these names when they fit: ${names}. Maximum 12 items. Do not invent expiry dates or foods that are not visible. If this is not food, return [].`,
-              },
-            ],
-          },
-        ],
-      }),
-    })
-
-    if (!res.ok) {
-      return { ok: false, error: `Could not read the photo (${res.status}). Try again, or add items by hand.` }
-    }
+    const slot = beginScan(ip)
+    if (!slot.ok) return slot
 
     try {
-      const foods = parseHits(extractText(await res.json()))
-      return { ok: true, foods }
-    } catch {
-      return { ok: false, error: "The photo was read, but the list was unusable. Try again." }
+      const names = SHELF.map((food) => food.name).join(", ")
+      const res = await fetch("https://api.x.ai/v1/responses", {
+        method: "POST",
+        signal: AbortSignal.timeout(SCAN_TIMEOUT_MS),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: "grok-4.5",
+          max_output_tokens: 700,
+          input: [
+            {
+              role: "user",
+              content: [
+                { type: "input_image", image_url: data.image, detail: "low" },
+                {
+                  type: "input_text",
+                  text: `List only foods you can actually see in this photo. Reply with a JSON array only, no markdown. Each object is {"name":"short English name","qty":"amount"}. Prefer these names when they fit: ${names}. Maximum 12 items. Do not invent expiry dates or foods that are not visible. If this is not food, return [].`,
+                },
+              ],
+            },
+          ],
+        }),
+      })
+
+      if (!res.ok) {
+        return { ok: false, error: `Could not read the photo (${res.status}). Try again, or add items by hand.` }
+      }
+
+      try {
+        const foods = parseHits(extractText(await res.json()))
+        return { ok: true, foods }
+      } catch {
+        return { ok: false, error: "The photo was read, but the list was unusable. Try again." }
+      }
+    } catch (error) {
+      if (error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")) {
+        return { ok: false, error: "Photo recognition timed out. Try again, or add items by hand." }
+      }
+      return { ok: false, error: "Could not read the photo. Try again, or add items by hand." }
+    } finally {
+      endScan(ip)
     }
   })

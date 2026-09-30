@@ -750,5 +750,110 @@ export const SHELF: ShelfFood[] = [
     "category": "pantry",
     "location": "pantry",
     "days": 1825
+  },
+  {
+    "name": "Ground pork",
+    "aliases": [
+      "minced pork",
+      "pork mince",
+      "免治豬肉"
+    ],
+    "category": "meat",
+    "location": "fridge",
+    "days": 2
+  },
+  {
+    "name": "Century egg",
+    "aliases": [
+      "preserved egg",
+      "pidan",
+      "皮蛋"
+    ],
+    "category": "egg",
+    "location": "fridge",
+    "days": 30
+  },
+  {
+    "name": "Bean sprouts",
+    "aliases": [
+      "sprouts",
+      "豆芽"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 3
+  },
+  {
+    "name": "Rice vermicelli",
+    "aliases": [
+      "rice noodles",
+      "bee hoon",
+      "米粉"
+    ],
+    "category": "grain",
+    "location": "pantry",
+    "days": 365
+  },
+  {
+    "name": "Chinese sausage",
+    "aliases": [
+      "lap cheong",
+      "腊肠",
+      "臘腸"
+    ],
+    "category": "meat",
+    "location": "fridge",
+    "days": 30
+  },
+  {
+    "name": "Cornstarch",
+    "aliases": [
+      "corn flour",
+      "生粉"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 730
+  },
+  {
+    "name": "Shaoxing wine",
+    "aliases": [
+      "chinese cooking wine",
+      "rice wine",
+      "料酒"
+    ],
+    "category": "condiment",
+    "location": "pantry",
+    "days": 730
+  },
+  {
+    "name": "White pepper",
+    "aliases": [
+      "pepper",
+      "白胡椒"
+    ],
+    "category": "pantry",
+    "location": "pantry",
+    "days": 730
+  },
+  {
+    "name": "Silken tofu",
+    "aliases": [
+      "soft tofu",
+      "嫩豆腐"
+    ],
+    "category": "protein",
+    "location": "fridge",
+    "days": 5
+  },
+  {
+    "name": "Snow peas",
+    "aliases": [
+      "mangetout",
+      "荷蘭豆"
+    ],
+    "category": "veg",
+    "location": "fridge",
+    "days": 5
   }
 ]
