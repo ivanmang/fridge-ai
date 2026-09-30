@@ -12,7 +12,7 @@ import {
   type RankedRecipe,
 } from "@/lib/logic"
 import { foodLabel, recipeText } from "@/lib/i18n"
-import { recipeSearchUrl } from "@/lib/recipe-lookup"
+import { recipeGuideUrl, recipeSearchUrl } from "@/lib/recipe-lookup"
 import { useFridge } from "@/lib/store"
 import { surveyReady } from "@/lib/survey"
 import { cn } from "@/lib/utils"
@@ -292,13 +292,17 @@ export function DishCatalog({
                   </p>
                   {!outline && (
                     <a
-                      href={recipeSearchUrl(recipe, locale)}
+                      href={recipeGuideUrl(recipe) ?? recipeSearchUrl(recipe, locale)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-mint"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      {t("findRecipesOnline")}
+                      {recipeGuideUrl(recipe)
+                        ? recipe.sourceName
+                          ? t("aboutDishNamed", { name: recipe.sourceName })
+                          : t("aboutDish")
+                        : t("findRecipesOnline")}
                     </a>
                   )}
                 </div>

@@ -110,6 +110,21 @@ export function guideSitesFor(recipe: Recipe): readonly string[] {
  * Western → English name + BBC Food; Chinese/HK → ZH name + MWL / LKK / Woks of Life / Xiachufang.
  * `locale` is kept for call-site compatibility and is ignored for query language.
  */
+/** Direct verified recipe page when set — never a search URL. */
+export function recipeGuideUrl(recipe: Recipe): string | null {
+  const url = recipe.sourceUrl?.trim()
+  if (!url) return null
+  try {
+    const u = new URL(url)
+    if (/google\./i.test(u.hostname)) return null
+    if (u.searchParams.has("s") || u.searchParams.has("q") || u.searchParams.has("keyword")) return null
+    if (/\/search\/?$/i.test(u.pathname) || /\/search\//i.test(u.pathname)) return null
+    return url
+  } catch {
+    return null
+  }
+}
+
 export function recipeSearchUrl(recipe: Recipe, _locale: Locale): string {
   const origin = recipeOriginLang(recipe)
   const name =

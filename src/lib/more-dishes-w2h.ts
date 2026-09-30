@@ -40,7 +40,7 @@ export const MORE_W2H: Recipe[] = [
     zh: {
       name: "雲吞麵",
       steps: [
-        "免治豬肉 200 克加薑蓉和 1 茶匙生抽拌匀包雲吞。",
+        "免治豬肉 200 克加薑蓉和 1 茶匙生抽拌勻包雲吞。",
         "雲吞煮至浮起且肉全熟（74°C）約 4 至 5 分鐘；另煮麵。",
         "碗內放麵和雲吞，淋熱清湯（水+生抽+白胡椒），撒蔥。",
       ],
@@ -48,7 +48,7 @@ export const MORE_W2H: Recipe[] = [
   },
   {
     id: "home-wonton-soup",
-    name: "Wonton soup",
+    name: "Wonton soup (no noodle)",
     cuisine: "Cantonese",
     time: 30,
     servings: 2,
@@ -348,7 +348,7 @@ export const MORE_W2H: Recipe[] = [
     zh: {
       name: "海鮮炒飯",
       steps: [
-        "蝦（可加魷魚圈）炒至刚熟盛起。",
+        "蝦（可加魷魚圈）炒至剛熟盛起。",
         "炒蛋下飯炒熱。",
         "回海鮮加生抽蔥花。",
       ],
@@ -371,7 +371,7 @@ export const MORE_W2H: Recipe[] = [
       name: "麻醬涼麵",
       steps: [
         "麵煮熟過冷河瀝乾。",
-        "1 湯匙花生醬、1 茶匙麻油、1 湯匙生抽、醋、蒜蓉和少許糖加少許水調匀。",
+        "1 湯匙花生醬、1 茶匙麻油、1 湯匙生抽、醋、蒜蓉和少許糖加少許水調勻。",
         "拌麵和青瓜絲，撒芝麻。",
       ],
     },
@@ -416,7 +416,7 @@ export const MORE_W2H: Recipe[] = [
       steps: [
         "米洗淨按平時水量，鋪臘腸片和椰菜碎。",
         "煮至飯熟臘腸熱透。",
-        "加生抽和蔥拌匀。",
+        "加生抽和蔥拌勻。",
       ],
     },
   },
