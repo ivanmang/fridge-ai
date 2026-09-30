@@ -367,17 +367,17 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
     <section className="space-y-5">
       <div>
         <h2 className="font-display text-3xl">{t("shoppingList")}</h2>
-        <p className="mt-1 text-sm text-muted">{t("shopLead")}</p>
+        <p className="mt-1 text-base leading-relaxed text-muted">{t("shopLead")}</p>
       </div>
 
       {focus.length > 0 && (
         <div>
           <h3 className="font-display text-2xl">{t("forTonight")}</h3>
           {shopRows.length === 0 ? (
-            <p className="mt-2 text-sm text-muted">{t("nothingExtra")}</p>
+            <p className="mt-2 text-base leading-relaxed text-muted">{t("nothingExtra")}</p>
           ) : (
             <>
-              <p className="mt-1 text-sm text-muted">{t("tonightGapsLead")}</p>
+              <p className="mt-1 text-base leading-relaxed text-muted">{t("tonightGapsLead")}</p>
               <ul className="mt-3 space-y-2">
                 {shopRows.map((row) => {
                   const label = foodLabel(locale, row.name)
@@ -388,8 +388,8 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
                       className="flex items-center justify-between gap-3 rounded-card border border-line bg-surface px-4 py-3"
                     >
                       <span className="min-w-0">
-                        <span className="block font-medium">{label}</span>
-                        <span className="text-sm text-muted">
+                        <span className="block text-base font-medium leading-snug">{label}</span>
+                        <span className="mt-0.5 block text-sm leading-relaxed text-muted">
                           {t("forList", {
                             list: join(
                               row.recipeIds.map((id) => recipeText(locale, focus.find((idea) => idea.recipe.id === id)!.recipe).name),
@@ -523,7 +523,7 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
         <Sheet title={t("addToFridge")} onClose={() => setBought(null)}>
           <p className="font-medium">{bought.note.text}</p>
           <p className="mt-1 text-sm text-muted">{t("boughtPreview")}</p>
-          <p className="mt-1 text-xs text-muted">{t("estimateHint")}</p>
+          <p className="mt-1 text-sm leading-relaxed text-muted">{t("estimateHint")}</p>
           <div className="mt-4 grid grid-cols-2 gap-3">
             <label className="block text-sm text-muted">
               {t("qty")}
@@ -555,7 +555,7 @@ export function ShopPanel({ items }: { items: FoodItem[] }) {
               />
             </label>
           </div>
-          <p className="mt-2 text-xs text-muted">
+          <p className="mt-2 text-sm text-muted">
             {placeLabel(locale, bought.location)}
             {findShelf(bought.note.text) ? ` · ${whenText(locale, bought.expires || defaultExpiry(bought.note.text))}` : ""}
           </p>
@@ -595,7 +595,7 @@ export function ShopNotes({
     return (
       <div className="rounded-card border border-dashed border-line bg-surface px-4 py-5">
         <p className="font-display text-xl">{t("shopEmptyTitle")}</p>
-        <p className="mt-2 text-sm text-muted">{emptyHint}</p>
+        <p className="mt-2 text-base leading-relaxed text-muted">{emptyHint}</p>
       </div>
     )
   }
@@ -605,7 +605,7 @@ export function ShopNotes({
       <div className="mb-2 flex items-center justify-between gap-3">
         <div>
           <h3 className="font-display text-2xl">{t("yourList")}</h3>
-          <p className="text-xs text-muted">
+          <p className="text-sm text-muted">
             {t("openItems", { n: openCount })}
             {doneCount > 0 ? ` · ${t("doneItems", { n: doneCount })}` : ""}
           </p>
@@ -633,7 +633,7 @@ export function ShopNotes({
               >
                 {note.done && <Check className="size-3.5" />}
               </span>
-              <span className={cn("text-sm", note.done && "text-muted line-through")}>{note.text}</span>
+              <span className={cn("text-base font-medium leading-snug", note.done && "text-muted line-through")}>{note.text}</span>
             </button>
             <button
               type="button"

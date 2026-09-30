@@ -106,7 +106,7 @@ export function DishCatalog({
         <h2 className="font-display text-2xl">{t("allDishes")}</h2>
         <p className="text-sm text-muted">{t("dishCount", { n: filtered.length })}</p>
       </div>
-      <p className="text-xs text-muted">{t("modeBrowseLead")}</p>
+      <p className="text-base leading-relaxed text-muted">{t("modeBrowseLead")}</p>
 
       <label className="flex min-h-11 items-center gap-3 text-sm">
         <input
@@ -117,7 +117,7 @@ export function DishCatalog({
         />
         <span>
           {t("includeIdeas")}
-          <span className="mt-0.5 block text-xs text-muted">{includeOutlines ? t("includeIdeasOn") : t("includeIdeasOff")}</span>
+          <span className="mt-0.5 block text-sm leading-relaxed text-muted">{includeOutlines ? t("includeIdeasOn") : t("includeIdeasOff")}</span>
         </span>
       </label>
 
@@ -156,7 +156,7 @@ export function DishCatalog({
             setShown(12)
           }}
           placeholder={t("searchDish")}
-          className="h-11 w-full rounded-card border border-line bg-surface px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-mint"
+          className="h-12 w-full rounded-card border border-line bg-surface px-3 text-base outline-none focus-visible:outline-2 focus-visible:outline-mint"
           aria-autocomplete="list"
           aria-controls="dish-typeahead"
         />
@@ -168,14 +168,14 @@ export function DishCatalog({
                 <li key={row.recipe.id}>
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm hover:bg-surface"
+                    className="flex w-full items-center justify-between gap-2 px-3 py-3 text-left text-base hover:bg-surface"
                     onClick={() => {
                       setQuery(copy.name)
                       setShown(12)
                     }}
                   >
                     <span className="truncate font-medium">{copy.name}</span>
-                    <span className="shrink-0 text-xs text-muted">
+                    <span className="shrink-0 text-sm text-muted">
                       {trustLevel(row.recipe) === "idea" ? t("badgeIdea") : t("badgeFull")}
                     </span>
                   </button>
@@ -199,7 +199,7 @@ export function DishCatalog({
             key={key}
             type="button"
             onClick={toggle}
-            className={cn("h-10 rounded-full border px-3 text-sm", on ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg")}
+            className={cn("min-h-11 rounded-full border px-3 text-sm", on ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg")}
           >
             {t(key)}
           </button>
@@ -219,7 +219,7 @@ export function DishCatalog({
             type="button"
             onClick={() => setMaxTime(mins)}
             className={cn(
-              "h-10 shrink-0 rounded-full border px-3 text-sm",
+              "min-h-11 shrink-0 rounded-full border px-3 text-sm",
               maxTime === mins ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg",
             )}
           >
@@ -261,65 +261,69 @@ export function DishCatalog({
           const sourceLabel =
             from === "home" ? t("sourceHome") : from === "knorr" ? t("sourceKnorr") : from === "guardian" ? t("sourceGuardian") : t("sourceLkk")
           return (
-            <li key={recipe.id} className="flex items-center gap-3 rounded-card border border-line bg-surface px-4 py-3">
-              {recipe.image ? (
-                <img
-                  src={recipe.image}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="size-14 shrink-0 rounded-card object-cover bg-raised"
-                />
-              ) : null}
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap items-center gap-2">
-                  <p className="font-medium">{copy.name}</p>
-                  <span
-                    className={cn(
-                      "rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
-                      outline ? "border-line text-muted" : "border-mint/40 text-mint",
-                    )}
-                  >
-                    {outline ? t("badgeIdea") : t("badgeFull")}
-                  </span>
+            <li key={recipe.id} className="flex flex-col gap-3 rounded-card border border-line bg-surface px-4 py-3">
+              <div className="flex items-start gap-3">
+                {recipe.image ? (
+                  <img
+                    src={recipe.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="size-14 shrink-0 rounded-card object-cover bg-raised"
+                  />
+                ) : null}
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-base font-medium leading-snug">{copy.name}</p>
+                    <span
+                      className={cn(
+                        "rounded-full border px-2 py-0.5 text-xs font-semibold uppercase tracking-wide",
+                        outline ? "border-line text-muted" : "border-mint/40 text-mint",
+                      )}
+                    >
+                      {outline ? t("badgeIdea") : t("badgeFull")}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">
+                    {sourceLabel} · {copy.cuisine} · {t("minutes", { n: recipe.time })}
+                    {row.missing.length
+                      ? ` · ${t("missing", { list: row.missing.map((name) => foodLabel(locale, name)).join(locale === "zh" ? "、" : ", ") })}`
+                      : ""}
+                  </p>
+                  {!outline && (
+                    <a
+                      href={recipeSearchUrl(recipe, locale)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-mint"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {t("findRecipesOnline")}
+                    </a>
+                  )}
                 </div>
-                <p className="text-sm text-muted">
-                  {sourceLabel} · {copy.cuisine} · {t("minutes", { n: recipe.time })}
-                  {row.missing.length
-                    ? ` · ${t("missing", { list: row.missing.map((name) => foodLabel(locale, name)).join(locale === "zh" ? "、" : ", ") })}`
-                    : ""}
-                </p>
-                {!outline && (
-                  <a
-                    href={recipeSearchUrl(recipe, locale)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 inline-flex min-h-10 items-center text-sm font-semibold text-mint"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {t("findRecipesOnline")}
-                  </a>
-                )}
               </div>
-              <button
-                type="button"
-                onClick={() => toggleSavedRecipe(recipe.id)}
-                className="h-11 shrink-0 rounded-card border border-line px-3 text-sm"
-                aria-pressed={saved}
-              >
-                {saved ? t("savedDish") : t("saveDishBtn")}
-              </button>
-              {outline ? (
-                <span className="max-w-20 shrink-0 text-xs text-muted">{t("cannotCookOutline")}</span>
-              ) : (
+              <div className="flex gap-2">
                 <button
                   type="button"
-                  onClick={() => onCook(recipe.id)}
-                  className="h-11 shrink-0 rounded-card border border-line px-3 text-sm font-semibold"
+                  onClick={() => toggleSavedRecipe(recipe.id)}
+                  className="h-11 min-w-0 flex-1 rounded-card border border-line px-3 text-sm font-semibold"
+                  aria-pressed={saved}
                 >
-                  {t("cookThis")}
+                  {saved ? t("savedDish") : t("saveDishBtn")}
                 </button>
-              )}
+                {outline ? (
+                  <p className="flex min-h-11 flex-1 items-center justify-center text-center text-sm leading-snug text-muted">{t("cannotCookOutline")}</p>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => onCook(recipe.id)}
+                    className="h-11 min-w-0 flex-1 rounded-card border border-line px-3 text-sm font-semibold"
+                  >
+                    {t("cookThis")}
+                  </button>
+                )}
+              </div>
             </li>
           )
         })}

@@ -133,7 +133,7 @@ export function ItemSheet({ item, onClose }: { item?: FoodItem; onClose: () => v
         />
         {t("opened")}
       </label>
-      <p className="mt-2 text-xs text-muted">{draft.expirySource === "package" ? t("packageDateHint") : t("estimateHint")}</p>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{draft.expirySource === "package" ? t("packageDateHint") : t("estimateHint")}</p>
       <div className="mt-4 flex gap-2">
         <button type="button" onClick={save} className="h-11 flex-1 rounded-card bg-mint font-semibold text-mint-ink">
           {t("save")}
@@ -217,8 +217,8 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
 
   return (
     <Sheet title={t("settings")} onClose={onClose}>
-      <p className="mb-3 text-xs text-muted">{t("chooseHowBody")}</p>
-      <p className="mb-4 rounded-card border border-line bg-raised px-3 py-3 text-xs text-muted">{t("privacySettings")}</p>
+      <p className="mb-3 text-base leading-relaxed text-muted">{t("chooseHowBody")}</p>
+      <p className="mb-4 rounded-card border border-line bg-raised px-3 py-3 text-sm leading-relaxed text-muted">{t("privacySettings")}</p>
       <label className="flex min-h-11 items-center justify-between gap-3 text-sm">
         {t("veg")}
         <input
@@ -269,17 +269,17 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
           ))}
         </select>
       </label>
-      <p className="mt-2 text-xs text-muted">{t("remindNote")}</p>
-      <p className="mt-2 text-xs text-muted">{t("remindSpendNote")}</p>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{t("remindNote")}</p>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{t("remindSpendNote")}</p>
       <details className="mt-4 rounded-card border border-line p-3">
         <summary className="cursor-pointer text-sm font-semibold">{t("fridgeSnap")}</summary>
         <label className="mt-3 block text-sm text-muted">
           {t("doorAddr")}
           <input value={settings.puckHost ?? "http://fridgesnap.local"} onChange={(e) => setSettings({ puckHost: e.target.value })} spellCheck={false} autoCapitalize="off" className={cn(fieldClass, "mt-1")} />
         </label>
-        <p className="mt-2 text-xs text-muted">{t("doorNote")}</p>
+        <p className="mt-2 text-sm leading-relaxed text-muted">{t("doorNote")}</p>
         {httpsPuck && (
-          <p role="alert" className="mt-2 text-xs text-clay">
+          <p role="alert" className="mt-2 text-sm leading-relaxed text-clay">
             {t("httpsPuckWarn")}
           </p>
         )}

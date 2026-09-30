@@ -109,10 +109,10 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
 
   return (
     <section className="space-y-4">
-      <p className="text-sm text-muted">
+      <p className="text-base leading-relaxed text-muted">
         {t("scanIntro")}
       </p>
-      <p className="rounded-card border border-line bg-surface px-4 py-3 text-xs text-muted">{t("privacyScan")}</p>
+      <p className="rounded-card border border-line bg-surface px-4 py-3 text-sm leading-relaxed text-muted">{t("privacyScan")}</p>
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="flex min-h-32 cursor-pointer flex-col items-center justify-center rounded-card border border-dashed border-line bg-surface px-4 py-6 text-center">
           <Camera className="size-6 text-mint" />
@@ -132,7 +132,7 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
           className="min-h-32 rounded-card border border-line bg-surface px-4 text-center font-semibold disabled:opacity-60"
         >
           <span className="block">{pulling ? t("askingPuck") : t("fridgeSnap")}</span>
-          <span className="mt-1 block text-xs font-normal text-muted">{puckReady ? t("lastDoor") : t("fridgeSnapOffline")}</span>
+          <span className="mt-1 block text-sm font-normal leading-relaxed text-muted">{puckReady ? t("lastDoor") : t("fridgeSnapOffline")}</span>
         </button>
       </div>
       <div className="grid grid-cols-2 gap-2">
@@ -140,7 +140,7 @@ export function ScanPanel({ onManual }: { onManual: () => void }) {
         <button type="button" onClick={() => setSetupOpen(true)} className="min-h-11 rounded-card border border-line p-2 text-sm font-semibold">{t("fridgeSnapSetup")}</button>
       </div>
       {httpsPuck && (
-        <p role="status" className="rounded-card border border-clay/40 bg-clay/10 px-3 py-3 text-xs text-clay">
+        <p role="status" className="rounded-card border border-clay/40 bg-clay/10 px-3 py-3 text-sm leading-relaxed text-clay">
           {t("httpsPuckWarn")}
         </p>
       )}

@@ -391,7 +391,7 @@ export function Tonight({
         </div>
       )}
 
-      {phase === "pick" && items.length > 0 && active && <p className="text-sm text-muted">{t("modeCookLead")}</p>}
+      {phase === "pick" && items.length > 0 && active && <p className="text-base leading-relaxed text-muted">{t("modeCookLead")}</p>}
 
       {phase === "pick" && pendingMealId && pendingDishName && (
         <div className="rounded-card border border-mint/40 bg-surface px-4 py-3" role="status">
@@ -412,7 +412,7 @@ export function Tonight({
       )}
 
       {active && dish && phase !== "pick" && (
-        <ol className="grid grid-cols-3 gap-2 text-center text-xs">
+        <ol className="grid grid-cols-3 gap-2 text-center text-sm">
           {(
             [
               ["pick", "flowChoose"],
@@ -437,7 +437,7 @@ export function Tonight({
                     }
                   }}
                   className={cn(
-                    "h-11 w-full rounded-full border",
+                    "min-h-11 w-full rounded-full border px-1 text-sm font-medium leading-tight",
                     on ? "border-mint bg-mint text-mint-ink" : done ? "border-line bg-surface text-fg" : "border-line text-muted",
                   )}
                 >
@@ -452,15 +452,15 @@ export function Tonight({
       {!items.length && !active && phase === "pick" && (
         <div className="rounded-card border border-line bg-surface p-5">
           <h2 className="font-display text-2xl">{t("emptyTitle")}</h2>
-          <p className="mt-2 text-sm text-muted">{t("emptyBody")}</p>
-          <div className="mt-4 grid gap-2">
-            <button type="button" onClick={onAdd} className="h-11 rounded-card bg-mint font-semibold text-mint-ink">
+          <p className="mt-2 text-base leading-relaxed text-muted">{t("emptyBody")}</p>
+          <div className="mt-4 grid gap-3">
+            <button type="button" onClick={onAdd} className="h-12 rounded-card bg-mint text-base font-semibold text-mint-ink">
               {t("addFood")}
             </button>
-            <button type="button" onClick={onPhoto} className="h-11 rounded-card border border-line font-semibold">
+            <button type="button" onClick={onPhoto} className="h-12 rounded-card border border-line text-base font-semibold">
               {t("welcomePhoto")}
             </button>
-            <button type="button" onClick={onSample} className="h-11 rounded-card border border-line font-semibold">
+            <button type="button" onClick={onSample} className="h-12 rounded-card border border-line text-base font-semibold">
               {t("welcomeSample")}
             </button>
           </div>
@@ -483,14 +483,14 @@ export function Tonight({
             <button
               type="button"
               onClick={() => setHaveOnly((v) => !v)}
-              className={cn("h-10 rounded-full border px-3 text-sm", haveOnly ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg")}
+              className={cn("min-h-11 rounded-full border px-3 text-sm", haveOnly ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg")}
             >
               {t("filterHave")}
             </button>
             <button
               type="button"
               onClick={() => setUseSoon((v) => !v)}
-              className={cn("h-10 rounded-full border px-3 text-sm", useSoon ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg")}
+              className={cn("min-h-11 rounded-full border px-3 text-sm", useSoon ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg")}
             >
               {t("filterSoon")}
             </button>
@@ -509,7 +509,7 @@ export function Tonight({
                 type="button"
                 onClick={() => setMaxTime(mins)}
                 className={cn(
-                  "h-10 shrink-0 rounded-full border px-3 text-sm",
+                  "min-h-11 shrink-0 rounded-full border px-3 text-sm",
                   maxTime === mins ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg",
                 )}
               >
@@ -525,7 +525,7 @@ export function Tonight({
                   type="button"
                   onClick={() => setCuisine(name)}
                   className={cn(
-                    "shrink-0 rounded-full border px-3 py-2 text-sm",
+                    "min-h-11 shrink-0 rounded-full border px-3 py-2 text-sm",
                     cuisine === name ? "border-mint bg-mint text-mint-ink" : "border-line bg-raised text-fg",
                   )}
                 >
@@ -534,7 +534,7 @@ export function Tonight({
               ))}
             </div>
           ) : (
-            <p className="text-xs text-muted">{t("priorityHidesFilters")}</p>
+            <p className="text-sm leading-relaxed text-muted">{t("priorityHidesFilters")}</p>
           )}
         </div>
       )}
@@ -564,9 +564,9 @@ export function Tonight({
                   ) : null}
                   <button type="button" onClick={() => setMealId(row.recipe.id)} className="min-w-0 flex-1 text-left text-sm font-medium">
                     {copy.name}
-                    {lastTonightId === row.recipe.id ? <span className="ml-2 text-xs text-muted">{t("lastTonight")}</span> : null}
+                    {lastTonightId === row.recipe.id ? <span className="ml-2 text-sm text-muted">{t("lastTonight")}</span> : null}
                   </button>
-                  <button type="button" onClick={() => startCook(row.recipe.id)} className="h-10 shrink-0 rounded-card border border-line px-3 text-xs font-semibold">
+                  <button type="button" onClick={() => startCook(row.recipe.id)} className="min-h-11 shrink-0 rounded-card border border-line px-3 text-sm font-semibold">
                     {t("cookThis")}
                   </button>
                 </li>
@@ -579,16 +579,16 @@ export function Tonight({
       {active && dish && phase === "pick" && (
         <article className="rounded-card border border-line bg-surface p-5">
           <div className="flex flex-wrap items-center gap-2">
-            <p className="text-xs font-medium tracking-wide text-mint uppercase">{dish.cuisine}</p>
+            <p className="text-sm font-medium tracking-wide text-mint uppercase">{dish.cuisine}</p>
             <span
               className={cn(
-                "rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
+                "rounded-full border px-2 py-0.5 text-xs font-semibold uppercase tracking-wide",
                 isOutline ? "border-line text-muted" : "border-mint/40 text-mint",
               )}
             >
               {trustLevel(active.recipe) === "idea" ? t("badgeIdea") : t("badgeFull")}
             </span>
-            {lastTonightId === active.recipe.id && <span className="text-[10px] text-muted uppercase">{t("lastTonight")}</span>}
+            {lastTonightId === active.recipe.id && <span className="text-xs font-medium text-muted">{t("lastTonight")}</span>}
           </div>
           <h2 className={cn("mt-1 font-display text-3xl", locale === "en" && "italic")}>{dish.name}</h2>
           <p className="mt-2 text-sm text-muted">
@@ -597,14 +597,14 @@ export function Tonight({
           </p>
           <RecipeSourceMedia recipe={active.recipe} dishName={dish.name} />
           {active.urgent.length > 0 && <p className="mt-3 text-sm text-clay">{t("usesSoon", { list: join(active.urgent) })}</p>}
-          {isOutline && <p className="mt-3 text-xs text-muted">{t("recipeGuideOnly")}</p>}
+          {isOutline && <p className="mt-3 text-sm leading-relaxed text-muted">{t("recipeGuideOnly")}</p>}
           <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("youHave")}</p>
+              <p className="text-sm font-semibold uppercase tracking-wide text-muted">{t("youHave")}</p>
               <p className="mt-1 text-mint">{active.matched.length ? join(active.matched) : "—"}</p>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("stillNeedLabel")}</p>
+              <p className="text-sm font-semibold uppercase tracking-wide text-muted">{t("stillNeedLabel")}</p>
               <p className="mt-1 text-muted">{active.missing.length ? join(active.missing) : t("haveAll")}</p>
             </div>
           </div>
@@ -647,17 +647,17 @@ export function Tonight({
           >
             {t("exitCook")}
           </button>
-          <p className="text-xs font-medium tracking-wide text-mint uppercase">{dish.cuisine}</p>
+          <p className="text-sm font-medium tracking-wide text-mint uppercase">{dish.cuisine}</p>
           <h2 className={cn("mt-1 font-display text-3xl", locale === "en" && "italic")}>{dish.name}</h2>
-          <p className="mt-2 text-sm text-muted">{t("prepLead")}</p>
+          <p className="mt-2 text-base leading-relaxed text-muted">{t("prepLead")}</p>
           <RecipeSourceMedia recipe={active.recipe} dishName={dish.name} compact />
           <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("pullThese")}</p>
+              <p className="text-sm font-semibold uppercase tracking-wide text-muted">{t("pullThese")}</p>
               <p className="mt-1 text-mint">{active.matched.length ? join(active.matched) : "—"}</p>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted">{t("stillNeedLabel")}</p>
+              <p className="text-sm font-semibold uppercase tracking-wide text-muted">{t("stillNeedLabel")}</p>
               <p className="mt-1 text-muted">{active.missing.length ? join(active.missing) : t("haveAll")}</p>
             </div>
           </div>
@@ -680,7 +680,7 @@ export function Tonight({
           <button type="button" onClick={() => setOutlineOpen(false)} className="mb-4 h-11 self-start text-sm text-muted underline">
             {t("hideOutline")}
           </button>
-          <p className="text-xs font-medium tracking-wide text-mint uppercase">{dish.name}</p>
+          <p className="text-sm font-medium tracking-wide text-mint">{dish.name}</p>
           <p className="mt-1 text-sm text-muted">{t("quickOutline")} · {t("stepOf", { n: stepIndex + 1, m: dish.steps.length })}</p>
           <ol className="mt-4 flex-1 space-y-4 text-lg leading-relaxed">
             {dish.steps.map((step, i) => (
@@ -772,7 +772,7 @@ export function Tonight({
       {active && dish && phase === "plate" && (
         <article className="rounded-card border border-line bg-surface p-5">
           <h2 className={cn("font-display text-3xl", locale === "en" && "italic")}>{dish.name}</h2>
-          <p className="mt-2 text-sm text-muted">{used.length ? t("plateLead") : t("nothingUsed")}</p>
+          <p className="mt-2 text-base leading-relaxed text-muted">{used.length ? t("plateLead") : t("nothingUsed")}</p>
           {used.length > 0 && (
             <ul className="mt-4 space-y-3">
               {used.map((item) => {
@@ -792,10 +792,10 @@ export function Tonight({
                         {foodLabel(locale, item.name)}
                         <span className="text-muted"> · {item.qty}</span>
                       </span>
-                      <span className="text-xs text-muted">{on && !(remaining[item.id] ?? "").trim() ? t("usedUp") : null}</span>
+                      <span className="text-sm text-muted">{on && !(remaining[item.id] ?? "").trim() ? t("usedUp") : null}</span>
                     </label>
                     {on && (
-                      <label className="mt-2 block text-xs text-muted">
+                      <label className="mt-2 block text-sm text-muted">
                         {t("remainingQty")}
                         <input
                           value={remaining[item.id] ?? ""}
@@ -856,32 +856,34 @@ export function Tonight({
             const copy = recipeText(locale, row.recipe)
             const outline = isOutlineRecipe(row.recipe)
             return (
-              <li key={row.recipe.id} className="flex items-center gap-3 rounded-card border border-line bg-surface px-4 py-3">
-                {row.recipe.image ? (
-                  <img
-                    src={row.recipe.image}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    className="size-14 shrink-0 rounded-card object-cover bg-raised"
-                  />
-                ) : null}
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p className="font-medium">{copy.name}</p>
-                    <span className={cn("rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide", outline ? "border-line text-muted" : "border-mint/40 text-mint")}>
-                      {outline ? t("badgeIdea") : t("badgeFull")}
-                    </span>
+              <li key={row.recipe.id} className="flex flex-col gap-3 rounded-card border border-line bg-surface px-4 py-3">
+                <div className="flex items-start gap-3">
+                  {row.recipe.image ? (
+                    <img
+                      src={row.recipe.image}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="size-14 shrink-0 rounded-card object-cover bg-raised"
+                    />
+                  ) : null}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-base font-medium leading-snug">{copy.name}</p>
+                      <span className={cn("rounded-full border px-2 py-0.5 text-xs font-semibold uppercase tracking-wide", outline ? "border-line text-muted" : "border-mint/40 text-mint")}>
+                        {outline ? t("badgeIdea") : t("badgeFull")}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">
+                      {copy.cuisine} · {t("minutes", { n: row.recipe.time })}
+                      {row.missing.length ? ` · ${t("missing", { list: join(row.missing) })}` : ""}
+                    </p>
                   </div>
-                  <p className="text-sm text-muted">
-                    {copy.cuisine} · {t("minutes", { n: row.recipe.time })}
-                    {row.missing.length ? ` · ${t("missing", { list: join(row.missing) })}` : ""}
-                  </p>
                 </div>
                 {outline ? (
-                  <span className="shrink-0 text-xs text-muted">{t("cannotCookOutline")}</span>
+                  <p className="text-sm leading-snug text-muted">{t("cannotCookOutline")}</p>
                 ) : (
-                  <button type="button" onClick={() => startCook(row.recipe.id)} className="h-11 shrink-0 rounded-card border border-line px-3 text-sm font-semibold">
+                  <button type="button" onClick={() => startCook(row.recipe.id)} className="h-11 w-full rounded-card border border-line text-sm font-semibold">
                     {t("cookThis")}
                   </button>
                 )}
@@ -904,7 +906,7 @@ export function Tonight({
         <section className="rounded-card border border-line bg-surface px-4 py-3">
           <p className="text-sm text-muted">{t("chooseHowBody")}</p>
           <SuggestControl />
-          {priority >= 2 && <p className="mt-2 text-xs text-muted">{t("priorityHidesFilters")}</p>}
+          {priority >= 2 && <p className="mt-2 text-sm leading-relaxed text-muted">{t("priorityHidesFilters")}</p>}
         </section>
       )}
       {phase === "pick" && items.length > 0 && !taste && !surveyOpen && <TastePrompt onOpen={() => setSurveyOpen(true)} />}

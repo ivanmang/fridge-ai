@@ -65,7 +65,7 @@ export function RecipeSourceMedia({
         className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-card bg-mint px-4 text-sm font-semibold text-mint-ink"
       >
         <Search className="size-4 shrink-0" aria-hidden />
-        <span className="truncate">{t("findRecipesOnline")}</span>
+        <span className="text-center leading-snug">{t("findRecipesOnline")}</span>
       </a>
       {lookup?.aboutUrl && (
         <a
@@ -75,7 +75,7 @@ export function RecipeSourceMedia({
           className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-card border border-line px-4 text-sm font-semibold text-mint"
         >
           <ExternalLink className="size-4 shrink-0" aria-hidden />
-          <span className="truncate">
+          <span className="text-center leading-snug">
             {lookup.aboutName ? t("aboutDishNamed", { name: lookup.aboutName }) : t("aboutDish")}
           </span>
         </a>

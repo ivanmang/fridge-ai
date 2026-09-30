@@ -6,8 +6,8 @@
   --color-bg: #101614;
   --color-surface: #1b2621;
   --color-raised: #24312b;
-  --color-fg: #e8f3ee;
-  --color-muted: #8fa89c;
+  --color-fg: #eef6f1;
+  --color-muted: #b8d0c4;
   --color-line: #2c3b34;
   --color-mint: #3cba86;
   --color-mint-ink: #06281a;
@@ -19,11 +19,19 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   body {
     background: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  html[lang="zh-Hant"] body,
+  html:lang(zh) body {
+    line-height: 1.65;
   }
   button:not(:disabled),
   [role="button"]:not(:disabled) {

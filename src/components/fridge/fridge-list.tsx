@@ -31,7 +31,7 @@ export function FridgeList({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t("search")}
-          className="h-11 min-w-0 flex-1 rounded-card border border-line bg-surface px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-mint"
+          className="h-12 min-w-0 flex-1 rounded-card border border-line bg-surface px-3 text-base outline-none focus-visible:outline-2 focus-visible:outline-mint"
         />
         <button
           type="button"
@@ -49,8 +49,8 @@ export function FridgeList({
             type="button"
             onClick={() => setFilter(key)}
             className={cn(
-              "shrink-0 rounded-full border px-3 py-2 text-sm",
-              filter === key ? "border-mint bg-mint text-mint-ink" : "border-line text-muted",
+              "min-h-11 shrink-0 rounded-full border px-3 py-2 text-sm",
+              filter === key ? "border-mint bg-mint text-mint-ink" : "border-line bg-surface text-fg",
             )}
           >
             {key === "all" ? t("all") : statusText(locale, key)}
@@ -63,7 +63,7 @@ export function FridgeList({
           body={items.length ? t("clearSearch") : t("addOrScan")}
         />
       )}
-      <p className="mt-4 text-xs text-muted">{t("sourceWarning")}</p>
+      <p className="mt-4 text-sm leading-relaxed text-muted">{t("sourceWarning")}</p>
       <ul className="mt-4 space-y-2">
         {shown.map((item, index) => {
           const status = statusOf(item.expires)
@@ -75,7 +75,7 @@ export function FridgeList({
               <button
                 type="button"
                 onClick={() => onOpen(item)}
-                className="flex w-full items-center gap-3 rounded-card border border-line bg-surface px-4 py-3 text-left"
+                className="flex min-h-14 w-full items-start gap-3 rounded-card border border-line bg-surface px-4 py-3.5 text-left"
               >
                 <span
                   className={cn(
@@ -84,14 +84,14 @@ export function FridgeList({
                   )}
                 />
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate font-medium">{foodLabel(locale, item.name)}</span>
-                  <span className="block text-sm text-muted">
+                  <span className="block break-words text-base font-medium leading-snug">{foodLabel(locale, item.name)}</span>
+                  <span className="mt-0.5 block text-sm leading-relaxed text-muted">
                     {item.qty} · {placeLabel(locale, item.location)} · {item.expirySource === "package" ? t("packageDate") : t("estimatedDate")}
                   </span>
                 </span>
                 <span
                   className={cn(
-                    "text-right text-sm tabular-nums",
+                    "shrink-0 text-right text-sm leading-snug tabular-nums",
                     status === "expired" || status === "today" ? "text-clay" : "text-muted",
                   )}
                 >

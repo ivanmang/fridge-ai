@@ -87,7 +87,7 @@ export function FridgeApp() {
   if (!hydrated) {
     return (
       <main className="mx-auto grid min-h-dvh max-w-lg place-items-center bg-bg px-5 text-fg">
-        <p role="status" className="text-sm text-muted">
+        <p role="status" className="text-base text-muted">
           {t("loadingFridge")}
         </p>
       </main>
@@ -95,22 +95,22 @@ export function FridgeApp() {
   }
 
   return (
-    <main className="mx-auto min-h-dvh max-w-lg bg-bg pb-28 text-fg">
-      <header className="flex items-start justify-between gap-3 px-5 pt-6">
-        <div>
-          <p className="text-xs font-medium tracking-wide text-muted uppercase">{t("kicker")}</p>
+    <main className="mx-auto min-h-dvh max-w-lg bg-bg pb-[calc(7.5rem+env(safe-area-inset-bottom,0px))] text-fg">
+      <header className="flex items-start justify-between gap-3 px-5 pt-[max(1.5rem,env(safe-area-inset-top,0px))]">
+        <div className="min-w-0">
+          <p className="text-sm font-medium tracking-wide text-muted uppercase">{t("kicker")}</p>
           <h1 className="font-display text-4xl leading-none">FridgeAI</h1>
-          <p className="mt-2 text-sm tabular-nums text-muted">
+          <p className="mt-2 text-base tabular-nums text-muted">
             {t("stored", { n: items.length })}
             {urgentCount > 0 ? ` · ${t("useTodayCount", { n: urgentCount })}` : ""}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex shrink-0 gap-2">
           <button type="button" onClick={() => setAdding(true)} className="grid size-11 place-items-center rounded-full border border-line bg-surface" aria-label={t("quickAdd")} title={t("quickAdd")}><Plus className="size-5" /></button>
           <button
             type="button"
             onClick={() => setSettings({ locale: locale === "zh" ? "en" : "zh" })}
-            className="grid h-11 min-w-11 place-items-center rounded-full border border-line bg-surface px-3 text-sm font-semibold text-fg"
+            className="grid h-11 min-w-11 place-items-center rounded-full border border-line bg-surface px-3 text-base font-semibold text-fg"
             aria-label={locale === "zh" ? t("switchToEn") : t("switchToZh")}
           >
             {locale === "zh" ? "EN" : "中"}
@@ -131,10 +131,10 @@ export function FridgeApp() {
           <button
             type="button"
             onClick={() => setTab("tonight")}
-            className="mt-4 flex w-full items-center gap-3 rounded-card border border-line bg-surface px-4 py-3 text-left"
+            className="mt-4 flex min-h-12 w-full items-center gap-3 rounded-card border border-line bg-surface px-4 py-3 text-left"
           >
-          <Bell className="size-4 shrink-0 text-clay" />
-          <span className="text-sm">
+          <Bell className="size-5 shrink-0 text-clay" />
+          <span className="text-base leading-snug">
             {urgentCount === 1 ? t("bannerOne") : t("bannerMany", { n: urgentCount })}
           </span>
           </button>
@@ -169,12 +169,12 @@ export function FridgeApp() {
                 onClick={() => setTab(item.id)}
                 aria-current={on ? "page" : undefined}
                 className={cn(
-                  "flex min-h-16 flex-col items-center justify-center gap-1 text-xs",
+                  "flex min-h-[4.25rem] flex-col items-center justify-center gap-1 px-1 text-sm font-medium leading-tight",
                   on ? "text-mint" : "text-muted",
                 )}
               >
-                <Icon className="size-5" />
-                {t(item.id)}
+                <Icon className="size-5 shrink-0" aria-hidden />
+                <span className="max-w-full text-center break-words">{t(item.id)}</span>
               </button>
             )
           })}
