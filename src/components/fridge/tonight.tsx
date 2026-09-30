@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react"
 import { DishCatalog } from "@/components/fridge/dish-catalog"
 import { DishSearch } from "@/components/fridge/shop-panel"
-import { CUISINES, Empty, RecipeSourceMedia, Sheet, SuggestControl, TastePrompt, useI18n } from "@/components/fridge/shared"
+import { RecipeSourceMedia } from "@/components/fridge/recipe-source-media"
+import { CUISINES, Empty, Sheet, SuggestControl, TastePrompt, useI18n } from "@/components/fridge/shared"
 import { SurveyPanel, TasteProfile } from "@/components/fridge/survey-panel"
 import { cuisineLabel, foodLabel, recipeText } from "@/lib/i18n"
 import {

@@ -1,12 +1,9 @@
 import { RECIPES, type Recipe } from "@/lib/recipes"
 import { MORE, MORE_ZH } from "@/lib/more-dishes"
 import { EXTRA } from "@/lib/extra-dishes"
-import { enrichRecipe } from "@/lib/recipe-media"
 import { surveyAnswered, surveyReady, type SurveyAnswers } from "@/lib/survey"
 import { SHELF, type ShelfFood } from "@/lib/shelf"
 import { ZH_CUISINE, ZH_FOOD, ZH_RECIPE } from "@/lib/zh"
-
-export { enrichRecipe } from "@/lib/recipe-media"
 
 export type FoodItem = {
   id: string
@@ -343,13 +340,13 @@ export function dishSource(id: string): "home" | "lkk" | "knorr" | "guardian" {
 
 /** Real cookable core: home recipes + user extras. Outline catalogue is excluded. */
 function cookableBook(vegetarian: boolean, extras: Recipe[] = []): Recipe[] {
-  const book = [...MORE, ...EXTRA, ...extras.filter(isCookableRecipe)].map(enrichRecipe)
+  const book = [...MORE, ...EXTRA, ...extras.filter(isCookableRecipe)]
   return vegetarian ? book.filter(isVegetarian) : book
 }
 
 /** Full searchable set including imported outlines (for browse / search only). */
 function fullBook(vegetarian: boolean, extras: Recipe[] = []): Recipe[] {
-  const book = [...MORE, ...EXTRA, ...extras, ...RECIPES].map(enrichRecipe)
+  const book = [...MORE, ...EXTRA, ...extras, ...RECIPES]
   return vegetarian ? book.filter(isVegetarian) : book
 }
 
@@ -413,7 +410,7 @@ export function suggestRecipes(
 
 export function ideasByIds(ids: string[], items: FoodItem[], extras: Recipe[] = []): RankedRecipe[] {
   const byId = new Map<string, Recipe>()
-  for (const recipe of [...MORE, ...EXTRA, ...extras, ...RECIPES].map(enrichRecipe)) byId.set(recipe.id, recipe)
+  for (const recipe of [...MORE, ...EXTRA, ...extras, ...RECIPES]) byId.set(recipe.id, recipe)
   return ids.flatMap((id) => {
     const recipe = byId.get(id)
     return recipe ? [scoreOne(recipe, items, 3, [])] : []
