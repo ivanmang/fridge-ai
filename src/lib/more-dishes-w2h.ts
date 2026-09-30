@@ -177,30 +177,7 @@ export const MORE_W2H: Recipe[] = [
         "盛碗加少許生抽，撒蔥。",
       ],
     },
-  },
-  {
-    id: "home-tomato-egg-rice-bowl",
-    name: "Tomato egg rice bowl",
-    cuisine: "Chinese",
-    time: 18,
-    servings: 2,
-    need: ["Tomato", "Eggs", "Cooked rice"],
-    optional: ["Sugar", "Salt", "Spring onion", "Soy sauce"],
-    steps: [
-      "Scramble 2 eggs until just set; remove. Cook tomato wedges until saucy with a pinch of sugar.",
-      "Fold eggs back in.",
-      "Spoon over hot rice; finish with spring onion.",
-    ],
-    zh: {
-      name: "番茄蛋蓋飯",
-      steps: [
-        "炒蛋至剛凝固盛起；番茄加少許糖煮至出汁。",
-        "拌回雞蛋。",
-        "蓋熱飯上，撒蔥。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-pork-mince-rice-bowl",
     name: "Pork mince rice bowl",
     cuisine: "Chinese",

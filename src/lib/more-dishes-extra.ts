@@ -97,32 +97,7 @@ export const MORE_EXTRA: Recipe[] = [
     },
     sourceUrl: "https://www.madewithlau.com/recipes/egg-foo-young",
     sourceName: "Made With Lau",
-  },
-  {
-    id: "home-stir-fried-bok-choy",
-    name: "Stir-fried bok choy",
-    cuisine: "Cantonese",
-    time: 12,
-    servings: 2,
-    need: ["Pak choi", "Garlic"],
-    optional: ["Soy sauce", "Sesame oil", "Sugar", "Cooking oil", "Salt", "Chicken stock"],
-    steps: [
-      "Trim and wash pak choi; separate thick stems from leaves. Slice garlic.",
-      "Stir-fry garlic, then stems 30–60 seconds; add leaves and a splash of water.",
-      "Season lightly and finish with sesame oil if using. Serve at once.",
-    ],
-    zh: {
-      name: "蒜蓉炒白菜",
-      steps: [
-        "白菜洗淨，梗葉分開；蒜切蓉。",
-        "爆香蒜蓉，先炒梗再下葉，加少許水。",
-        "調味，可淋麻油即上碟。",
-      ],
-    },
-    sourceUrl: "https://www.madewithlau.com/recipes/stir-fried-bok-choy",
-    sourceName: "Made With Lau",
-  },
-  {
+  },  {
     id: "home-orange-chicken",
     name: "Orange chicken",
     cuisine: "Chinese",
@@ -601,32 +576,7 @@ export const MORE_EXTRA: Recipe[] = [
     },
     sourceUrl: "https://thewoksoflife.com/beef-snow-peas/",
     sourceName: "The Woks of Life",
-  },
-  {
-    id: "home-soy-steamed-fish",
-    name: "Soy sauce steamed fish",
-    cuisine: "Cantonese",
-    time: 20,
-    servings: 2,
-    need: ["White fish", "Ginger", "Spring onion"],
-    optional: ["Soy sauce", "Sesame oil", "Sugar"],
-    steps: [
-      "Lay fish on a plate over spring onion; tuck ginger on top.",
-      "Steam over high heat until the flesh flakes and is opaque (usually 8–12 minutes depending on thickness).",
-      "Pour off liquid; top with fresh spring onion, hot oil, and seasoned soy sauce.",
-    ],
-    zh: {
-      name: "豉油清蒸魚",
-      steps: [
-        "魚底鋪蔥，面放薑片。",
-        "大火蒸至肉質不透明可輕鬆拆開（約 8 至 12 分鐘）。",
-        "倒去蒸汁，鋪蔥絲，淋熱油和蒸魚豉油。",
-      ],
-    },
-    sourceUrl: "https://hk.lkk.com/zh-hk/recipes/steamed-fish-in-double-fermented-soy-sauce",
-    sourceName: "Lee Kum Kee",
-  },
-  {
+  },  {
     id: "home-braised-tofu-chicken",
     name: "Braised tofu with chicken",
     cuisine: "Cantonese",

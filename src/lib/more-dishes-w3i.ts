@@ -315,31 +315,7 @@ export const MORE_W3I: Recipe[] = [
         "豬扒回汁炆 3 至 5 分鐘入味。",
       ],
     },
-  },
-  {
-    id: "home-pork-rib-clear-soup",
-    name: "Watercress-style pork rib soup",
-    cuisine: "Cantonese",
-    time: 60,
-    servings: 3,
-    // Stand-in: Spinach + Spare ribs for watercress soup
-    need: ["Spare ribs", "Spinach"],
-    optional: ["Ginger", "Salt", "Dried mushrooms", "Carrots", "White pepper"],
-    steps: [
-      "Blanch 500 g spare ribs in boiling water 2 minutes; rinse. Slice ginger; optional carrot chunks and soaked dried mushrooms.",
-      "Simmer ribs with ginger (and carrot/mushrooms) in about 1.5 L water for 45–50 minutes until broth is clear and meaty.",
-      "Add a big handful of spinach for the last 2–3 minutes (watercress stand-in). Season with salt.",
-    ],
-    zh: {
-      name: "西洋菜風排骨湯",
-      steps: [
-        "排骨約 500 克焯水 2 分鐘洗净。薑切片；可加紅蘿蔔塊和浸軟冬菇。",
-        "排骨連薑加水約 1.5 升炆 45 至 50 分鐘至湯清味濃。",
-        "最後 2 至 3 分鐘下大量菠菜（代替西洋菜），加鹽調味。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-red-braised-pork",
     name: "Braised pork belly-style (chops)",
     cuisine: "Cantonese",

@@ -243,30 +243,7 @@ export const MORE_W4D: Recipe[] = [
         "飯上放火腿和蛋，加生抽白胡椒蔥花。",
       ],
     },
-  },
-  {
-    id: "home-savory-ginger-congee",
-    name: "Ginger savory congee",
-    cuisine: "Breakfast",
-    time: 30,
-    servings: 2,
-    need: ["Rice", "Ginger"],
-    optional: ["Salt", "White pepper", "Spring onion", "Sesame oil", "Century egg", "Peanuts"],
-    steps: [
-      "Simmer 3/4 cup rice with about 6 cups water and smashed ginger 25–28 minutes until creamy.",
-      "Season with salt and white pepper.",
-      "Top with spring onion, sesame oil, optional century egg cubes and crushed peanuts.",
-    ],
-    zh: {
-      name: "薑絲白粥",
-      steps: [
-        "米約四分三杯加薑片和水約六杯煮 25 至 28 分鐘至稠。",
-        "加鹽和白胡椒。",
-        "撒蔥花滴麻油，可加皮蛋粒和花生碎。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-honey-yogurt-oats",
     name: "Honey yogurt oat cup",
     cuisine: "Breakfast",
@@ -419,31 +396,7 @@ export const MORE_W4D: Recipe[] = [
         "可放煎蛋蔥花，配茄汁。",
       ],
     },
-  },
-  {
-    id: "home-avocado-egg-bowl",
-    name: "Avocado egg breakfast bowl",
-    cuisine: "Breakfast",
-    time: 12,
-    servings: 1,
-    // BBC smashed avocado on toast (egg-free source) — no cooked rice; eggs not on page.
-    need: ["Avocado", "Bread"],
-    optional: ["Dried chili", "Garlic", "Lime", "Salt", "Olive oil", "Cilantro"],
-    steps: [
-      "Toast a slice of sourdough or other bread.",
-      "Mash ripe avocado with chilli flakes, optional grated garlic, lime juice, sea salt, and a drizzle of olive oil.",
-      "Spread on toast (or serve in a bowl with toast alongside) and finish with chopped cilantro.",
-    ],
-    zh: {
-      name: "牛油果早餐碗",
-      steps: [
-        "烤香一片酸種或其他麵包。",
-        "牛油果壓蓉，加辣椒碎、蒜蓉（可選）、青檸汁、海鹽和橄欖油。",
-        "塗在多士上（或放碗內配多士），撒香菜即可。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-soy-milk-oats",
     name: "Warm milk oats",
     cuisine: "Breakfast",
@@ -508,30 +461,7 @@ export const MORE_W4D: Recipe[] = [
         "加白胡椒；可放煎蛋蔥花。",
       ],
     },
-  },
-  {
-    id: "home-tomato-cheese-melt",
-    name: "Tomato cheese melt toast",
-    cuisine: "Breakfast",
-    time: 12,
-    servings: 1,
-    need: ["Bread", "Tomato", "Cheddar"],
-    optional: ["Butter", "Salt", "White pepper", "Eggs"],
-    steps: [
-      "Toast 2 bread slices lightly; butter if using. Slice tomato.",
-      "Layer tomato and grated cheddar on toast; grill or pan-cover until cheese melts (3–4 minutes).",
-      "Season with salt and white pepper. Optional fried egg on the side.",
-    ],
-    zh: {
-      name: "番茄芝士熔多士",
-      steps: [
-        "兩片麵包略烤，可塗牛油。番茄切片。",
-        "鋪番茄和切達芝士，焗或加蓋至芝士融化約 3 至 4 分鐘。",
-        "加鹽白胡椒；可配煎蛋。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-mushroom-egg-cups",
     name: "Mushroom egg breakfast cups",
     cuisine: "Breakfast",

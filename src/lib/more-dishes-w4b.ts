@@ -419,30 +419,7 @@ export const MORE_W4B: Recipe[] = [
         "上桌前將蔬菜、醬汁和花生拌匀。",
       ],
     },
-  },
-  {
-    id: "home-pumpkin-miso-glaze",
-    name: "Miso-glazed pumpkin",
-    cuisine: "Japanese",
-    time: 30,
-    servings: 2,
-    need: ["Pumpkin", "Miso"],
-    optional: ["Sugar", "Soy sauce", "Sesame seeds", "Sesame oil"],
-    steps: [
-      "Cut 400 g pumpkin into wedges. Mix 1.5 tbsp miso with 1 tsp sugar, splash of soy sauce, and 2 tbsp water.",
-      "Pan-steam pumpkin with a little water covered 12–15 minutes until soft; drain excess liquid.",
-      "Brush or toss with miso glaze; cook 2 more minutes until sticky. Sprinkle sesame seeds.",
-    ],
-    zh: {
-      name: "味噌烤南瓜",
-      steps: [
-        "南瓜約 400 克切角。一湯匙半味噌加一茶匙糖、少許生抽和兩湯匙水拌匀。",
-        "南瓜加少許水加蓋焖 12 至 15 分鐘至軟，倒去多餘水。",
-        "塗或拌入味噌醬再煮 2 分鐘至黏，撒芝麻。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-winter-melon-shrimp",
     name: "Winter melon shrimp",
     cuisine: "Cantonese",

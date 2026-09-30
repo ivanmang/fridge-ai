@@ -11,7 +11,6 @@ import { withRecipeSource } from "@/lib/recipe-sources"
  */
 export const RECIPE_IMAGES: Record<string, string> = {
   "home-apple-pork-bone-soup": "https://thewoksoflife.com/wp-content/uploads/2021/11/Chinese-pork-bone-soup-5.jpg", // source-page
-  "home-avocado-egg-bowl": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-avocado-toast": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-bacon-egg-rice": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-bacon-pasta": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/one-pot_bacon_spinach_50776_16x9.jpg", // source-page
@@ -51,7 +50,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-braised-tofu-pork": "https://thewoksoflife.com/wp-content/uploads/2018/04/braised-tofu-5.jpg", // source-page
   "home-braised-tofu-veg": "https://thewoksoflife.com/wp-content/uploads/2018/04/braised-tofu-5.jpg", // source-page
   "home-breakfast-fried-noodles": "https://cdn.sanity.io/images/2r0kdewr/production/9c5103c7424d11c820d40024b9b66b98651f803b-1000x563.jpg", // source-page
-  "home-broccoli-beef-garlic": "https://cdn.sanity.io/images/2r0kdewr/production/5283c364dc5b47a3e0a64e604661f68d13669d8c-6000x3375.jpg", // source-page
   "home-broccoli-pork": "https://thewoksoflife.com/wp-content/uploads/2021/11/Chinese-pork-bone-soup-5.jpg", // source-page
   "home-bulgogi-beef": "https://thewoksoflife.com/wp-content/uploads/2015/12/bulgogi-10.jpg", // source-page
   "home-cabbage-meatball-soup": "https://thewoksoflife.com/wp-content/uploads/2021/11/Chinese-pork-bone-soup-5.jpg", // source-page
@@ -86,7 +84,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-chicken-veg-soup": "https://thewoksoflife.com/wp-content/uploads/2023/05/Chinese-chicken-noodle-soup-13.jpg", // source-page
   "home-chickpea-curry": "https://thewoksoflife.com/wp-content/uploads/2017/03/cashew-chickpea-curry-3.jpg", // source-page
   "home-chili-fried-tofu": "https://cdn-akamai.lkk.com/-/media/beef-meatball-banh-mi/600x465.jpg?bc=white&h=315&w=600&hash=FD5C9EC20AC75FAC44A50291F85E1D2E&v=639263630557795662", // source-page
-  "home-chili-garlic-eggplant": "https://cdn.sanity.io/images/2r0kdewr/production/0d16eaf6f1f8b5742dfeb2fda5878966121fb76b-1000x563.jpg", // source-page
   "home-chili-oil-lettuce": "https://thewoksoflife.com/wp-content/uploads/2022/10/Chili-garlic-sauce-4.jpg", // source-page
   "home-chili-oil-noodles": "https://thewoksoflife.com/wp-content/uploads/2022/10/Chili-garlic-sauce-4.jpg", // source-page
   "home-chili-oil-wonton": "https://thewoksoflife.com/wp-content/uploads/2015/09/spicy-wontons-2.jpg", // source-page
@@ -127,12 +124,10 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-dan-dan-noodles": "https://thewoksoflife.com/wp-content/uploads/2014/11/dan-dan-noodles-12.jpg", // source-page
   "home-doenjang-beef-soup": "https://thewoksoflife.com/wp-content/uploads/2025/02/chinese-noodle-soup-10.jpg", // source-page
   "home-doenjang-jjigae": "https://thewoksoflife.com/wp-content/uploads/2014/07/beef-kimchi-fried-rice-09.jpg", // source-page
-  "home-doenjang-veg-stew": "https://thewoksoflife.com/wp-content/uploads/2016/02/kimchi-stew-8.jpg", // source-page
   "home-dried-mushroom-chicken-soup": "https://thewoksoflife.com/wp-content/uploads/2016/03/chicken-mushroom-soup-2.jpg", // source-page
   "home-dried-mushroom-greens": "https://thewoksoflife.com/wp-content/uploads/2016/03/chicken-mushroom-soup-2.jpg", // source-page
   "home-dry-fried-green-beans": "https://thewoksoflife.com/wp-content/uploads/2014/11/dry-fried-string-beans-10.jpg", // source-page
   "home-dry-pot-cauliflower": "https://thewoksoflife.com/wp-content/uploads/2018/05/dry-pot-cauliflower-8.jpg", // source-page
-  "home-dumpling-filling-stir": "https://thewoksoflife.com/wp-content/uploads/2023/07/pork-chive-dumplings-18.jpg", // source-page
   "home-egg-cheese-tortilla": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-egg-drop-soup": "https://cdn.sanity.io/images/2r0kdewr/production/65262d682512229ffb09f533e1201e0ceaff07ef-1000x563.jpg", // source-page
   "home-egg-foo-young": "https://cdn.sanity.io/images/2r0kdewr/production/6e863c3a2bbe83429886fdaa07b95de4af564413-1000x563.jpg", // source-page
@@ -140,7 +135,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-egg-mayo-sandwich": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-egg-muffin-cups": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-egg-tofu-stew": "https://thewoksoflife.com/wp-content/uploads/2024/10/tofu-soup-17.jpg", // source-page
-  "home-egg-white-tomato": "https://thewoksoflife.com/wp-content/uploads/2019/05/tomato-egg-11.jpg", // source-page
   "home-eggplant-mapo-veg": "https://thewoksoflife.com/wp-content/uploads/2022/03/mapo-eggplant-15.jpg", // source-page
   "home-eggplant-mince": "https://thewoksoflife.com/wp-content/uploads/2017/08/braised-eggplant-noodles-2.jpg", // source-page
   "home-eggplant-pork-claypot": "https://thewoksoflife.com/wp-content/uploads/2018/04/braised-tofu-5.jpg", // source-page
@@ -184,7 +178,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-gyudon": "https://thewoksoflife.com/wp-content/uploads/2022/11/Miso-Egg-Drop-Soup-14.jpg", // source-page
   "home-ham-cheese-toastie": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/theperfectomelette_86680_16x9.jpg", // source-page
   "home-ham-egg-rice-bowl": "https://cdn.sanity.io/images/2r0kdewr/production/0050287d61032bf11e545aa23fd1d00fe963307b-1000x563.jpg", // source-page
-  "home-ham-macaroni-soup": "https://thewoksoflife.com/wp-content/uploads/2021/11/Chinese-pork-bone-soup-5.jpg", // source-page
   "home-herb-tofu-salad": "https://thewoksoflife.com/wp-content/uploads/2017/08/chinese-tofu-salad-5.jpg", // source-page
   "home-hk-borscht": "https://thewoksoflife.com/wp-content/uploads/2015/08/beef-tomato-stir-fry-9.jpg", // source-page
   "home-hk-curry-brisket": "https://thewoksoflife.com/wp-content/uploads/2016/01/beef-curry-4.jpg", // source-page
@@ -197,7 +190,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-honey-yogurt-oats": "https://thewoksoflife.com/wp-content/uploads/2025/04/banana-oat-pancakes-20.jpg", // source-page
   "home-hot-dry-noodles": "https://thewoksoflife.com/wp-content/uploads/2019/02/hot-dry-noodles-11.jpg", // source-page
   "home-hot-sour-soup": "https://cdn.sanity.io/images/2r0kdewr/production/a9408b104a7ed78c87de8b960a15ec2962151e8d-6000x3375.jpg", // source-page
-  "home-hotwater-noodle-bowl": "https://thewoksoflife.com/wp-content/uploads/2017/03/beef-noodle-soup-16.jpg", // source-page
   "home-hummus-style-bowl": "https://thewoksoflife.com/wp-content/uploads/2022/03/beef-black-bean-sauce-15.jpg", // source-page
   "home-instant-noodles-egg": "https://thewoksoflife.com/wp-content/uploads/2022/05/pork-pan-fried-noodle-12.jpg", // source-page
   "home-jacket-potato-tuna": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/jacket_potato_with_tuna_30924_16x9.jpg", // source-page
@@ -227,7 +219,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-leftover-meat-udon": "https://thewoksoflife.com/wp-content/uploads/2022/11/Miso-Egg-Drop-Soup-14.jpg", // source-page
   "home-leftover-noodle-toss": "https://thewoksoflife.com/wp-content/uploads/2017/03/beef-noodle-soup-16.jpg", // source-page
   "home-leftover-pasta-bake": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/one-pot_bacon_spinach_50776_16x9.jpg", // source-page
-  "home-leftover-pork-fried-rice": "https://cdn.sanity.io/images/2r0kdewr/production/0050287d61032bf11e545aa23fd1d00fe963307b-1000x563.jpg", // source-page
   "home-leftover-rice-porridge": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-leftover-roast-sandwich": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-leftover-shrimp-fried-rice": "https://thewoksoflife.com/wp-content/uploads/2017/01/shrimp-fried-rice-2.jpg", // source-page
@@ -240,7 +231,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-leftover-wonton-clear": "https://thewoksoflife.com/wp-content/uploads/2013/12/wonton-soup-recipe-3.jpg", // source-page
   "home-leftover-wrap": "https://thewoksoflife.com/wp-content/uploads/2024/07/avocado-scallion-pancake-5.jpg", // source-page
   "home-lemon-chicken": "https://cdn.sanity.io/images/2r0kdewr/production/69aaf993ce4409da4ae659b179e425fd236ef0f9-1000x563.jpg", // source-page
-  "home-lemon-garlic-shrimp-pasta": "https://cdn.sanity.io/images/2r0kdewr/production/92c842dbce77e850fb43aee90cc1525113e3ba32-1000x563.jpg", // source-page
   "home-lemon-spare-ribs": "https://cdn.sanity.io/images/2r0kdewr/production/2802f6a523953f512a2e981512ec37381445643c-3936x2214.jpg", // source-page
   "home-lemon-tuna-pasta": "https://cdn.sanity.io/images/2r0kdewr/production/92c842dbce77e850fb43aee90cc1525113e3ba32-1000x563.jpg", // source-page
   "home-lemongrass-chicken": "https://thewoksoflife.com/wp-content/uploads/2017/10/lemongrass-chicken-7.jpg", // source-page
@@ -248,7 +238,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-lemongrass-shrimp": "https://thewoksoflife.com/wp-content/uploads/2024/08/coconut-curry-shrimp-19-1.jpg", // source-page
   "home-lemongrass-tofu": "https://cdn-akamai.lkk.com/-/media/beef-meatball-banh-mi/600x465.jpg?bc=white&h=315&w=600&hash=FD5C9EC20AC75FAC44A50291F85E1D2E&v=639263630557795662", // source-page
   "home-lemongrass-veg-stir": "https://thewoksoflife.com/wp-content/uploads/2017/10/lemongrass-chicken-7.jpg", // source-page
-  "home-lentil-style-bean-stew": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/one-pot_bacon_spinach_50776_16x9.jpg", // source-page
   "home-lettuce-fish": "https://thewoksoflife.com/wp-content/uploads/2022/10/Chili-garlic-sauce-4.jpg", // source-page
   "home-lo-mein": "https://thewoksoflife.com/wp-content/uploads/2014/09/vegetable-lo-mein-5.jpg", // source-page
   "home-lotus-beef-stir": "https://thewoksoflife.com/wp-content/uploads/2019/06/stir-fry-lotus-root-recipe-9.jpg", // source-page
@@ -262,7 +251,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-luncheon-fried-rice": "https://thewoksoflife.com/wp-content/uploads/2018/03/spam-fried-rice-2.jpg", // source-page
   "home-mapo-eggplant": "https://thewoksoflife.com/wp-content/uploads/2022/03/mapo-eggplant-15.jpg", // source-page
   "home-mapo-tofu": "https://thewoksoflife.com/wp-content/uploads/2019/06/mapo-tofu-10.jpg", // source-page
-  "home-mapo-tofu-veg": "https://cdn.sanity.io/images/2r0kdewr/production/2cb085c4ddab4bbca101f8d712ebfe2e40fb3ff5-1000x563.jpg", // source-page
   "home-meatball-tomato-pasta": "https://thewoksoflife.com/wp-content/uploads/2015/08/beef-tomato-stir-fry-9.jpg", // source-page
   "home-milk-butter-toast": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-minced-pork-pickles": "https://thewoksoflife.com/wp-content/uploads/2018/04/braised-tofu-5.jpg", // source-page
@@ -315,12 +303,10 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-pork-chop-onion": "https://thewoksoflife.com/wp-content/uploads/2025/03/baked-pork-chop-rice-36.jpg", // source-page
   "home-pork-mince-noodles": "https://thewoksoflife.com/wp-content/uploads/2022/05/pork-pan-fried-noodle-12.jpg", // source-page
   "home-pork-mince-rice-bowl": "https://thewoksoflife.com/wp-content/uploads/2025/03/baked-pork-chop-rice-36.jpg", // source-page
-  "home-pork-rib-clear-soup": "https://thewoksoflife.com/wp-content/uploads/2018/03/chinese-watercress-soup-9.jpg", // source-page
   "home-potato-chicken": "https://cdn-akamai.lkk.com/-/media/oyster-flavoured-braised-chicken-wings-with-potatoes_600x465.jpg?bc=white&h=315&w=600&hash=DE199C3F99C50F4A78D5F46D37A2BA60&v=639263632658690237", // source-page
   "home-potato-spare-ribs": "https://cdn.sanity.io/images/2r0kdewr/production/2802f6a523953f512a2e981512ec37381445643c-3936x2214.jpg", // source-page
   "home-potato-stirfry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/jacket_potato_with_tuna_30924_16x9.jpg", // source-page
   "home-pumpkin-garlic-stir": "https://cdn.sanity.io/images/2r0kdewr/production/5283c364dc5b47a3e0a64e604661f68d13669d8c-6000x3375.jpg", // source-page
-  "home-pumpkin-miso-glaze": "https://thewoksoflife.com/wp-content/uploads/2022/11/Miso-Egg-Drop-Soup-14.jpg", // source-page
   "home-pumpkin-rice": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-pumpkin-spare-ribs": "https://cdn.sanity.io/images/2r0kdewr/production/2802f6a523953f512a2e981512ec37381445643c-3936x2214.jpg", // source-page
   "home-quesadilla-clearout": "https://cdn.sanity.io/images/2r0kdewr/production/65262d682512229ffb09f533e1201e0ceaff07ef-1000x563.jpg", // source-page
@@ -349,7 +335,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-sausage-pasta": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/one-pot_bacon_spinach_50776_16x9.jpg", // source-page
   "home-sausage-sticky-rice": "https://thewoksoflife.com/wp-content/uploads/2015/03/sticky-rice-chinese-sausage-7.jpg", // source-page
   "home-sausage-veg-rice": "https://thewoksoflife.com/wp-content/uploads/2018/11/chinese-sausage-fried-rice-9.jpg", // source-page
-  "home-savory-ginger-congee": "https://cdn.sanity.io/images/2r0kdewr/production/1f7f12640734ec6af8cba322fa663860871d17f5-1000x563.jpg", // source-page
   "home-savory-oatmeal": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-scallion-noodles": "https://thewoksoflife.com/wp-content/uploads/2019/06/scallion-oil-noodles-15.jpg", // source-page
   "home-scallion-pancake": "https://thewoksoflife.com/wp-content/uploads/2024/07/avocado-scallion-pancake-5.jpg", // source-page
@@ -360,7 +345,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-sesame-chicken-taiwanese": "https://cdn.sanity.io/images/2r0kdewr/production/8888e07c5256f5e8fe9cc8454bc04a9ad21bbc5d-1000x563.jpg", // source-page
   "home-sesame-garlic-chicken-pasta": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk_recipe_600_abalone-dices-on-fried-wanton-wrappers/r2600x465/600x465_/asparagus_600x465/rice_600x465/pasta_600x465.jpg?bc=white&h=315&w=600&hash=BE9191A09C9E1B1C8082653A77F07EC9&v=639263630584874365", // source-page
   "home-sesame-green-beans": "https://cdn.sanity.io/images/2r0kdewr/production/2fe9f24a14b6d988154025291b6355c4afbfc4d8-1000x563.jpg", // source-page
-  "home-sesame-noodle-salad": "https://thewoksoflife.com/wp-content/uploads/2017/03/beef-noodle-soup-16.jpg", // source-page
   "home-shakshuka": "https://thewoksoflife.com/wp-content/uploads/2024/09/shakshuka-recipe-18.jpg", // source-page
   "home-sheet-pan-chicken-veg": "https://cdn-akamai.lkk.com/-/media/beef-meatball-banh-mi/600x465.jpg?bc=white&h=315&w=600&hash=FD5C9EC20AC75FAC44A50291F85E1D2E&v=639263630557795662", // source-page
   "home-shogayaki": "https://thewoksoflife.com/wp-content/uploads/2021/11/Chinese-pork-bone-soup-5.jpg", // source-page
@@ -383,7 +367,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-smashed-cucumber": "https://cdn.sanity.io/images/2r0kdewr/production/ffd18ec0c3a2d56cc0436561c0e3355d5e837364-1000x563.jpg", // source-page
   "home-sour-cabbage-pork": "https://thewoksoflife.com/wp-content/uploads/2023/07/pork-chive-dumplings-18.jpg", // source-page
   "home-soy-braised-wings": "https://cdn.sanity.io/images/2r0kdewr/production/e04689161535a74545a028ea0ba3dbd702e95225-1000x563.jpg", // source-page
-  "home-soy-butter-corn": "https://thewoksoflife.com/wp-content/uploads/2016/08/soy-sauce-noodles-14.jpg", // source-page
   "home-soy-butter-noodles": "https://thewoksoflife.com/wp-content/uploads/2016/08/soy-sauce-noodles-14.jpg", // source-page
   "home-soy-chicken": "https://cdn.sanity.io/images/2r0kdewr/production/bdc4bd6661f7e60e49ed49fd59d1007112b07b8f-1000x563.jpg", // source-page
   "home-soy-egg-tofu-braise": "https://thewoksoflife.com/wp-content/uploads/2018/04/braised-tofu-5.jpg", // source-page
@@ -392,7 +375,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-soy-greens-rice": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-soy-milk-oats": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-soy-sauce-eggs": "https://thewoksoflife.com/wp-content/uploads/2020/12/eggs-soy-sauce-scallions-7.jpg", // source-page
-  "home-soy-steamed-fish": "https://cdn-akamai.lkk.com/-/media/feature/recipe/recipe-photos/recipe-steamed-fish/recipe-steamed-fish.jpg?bc=white&h=315&w=600&hash=BC762555AB8CEBC877FFA67BBAA902E4&v=639263630596516183", // source-page
   "home-spicy-pork-bulgogi": "https://thewoksoflife.com/wp-content/uploads/2021/11/Chinese-pork-bone-soup-5.jpg", // source-page
   "home-spinach-egg-drop": "https://cdn.sanity.io/images/2r0kdewr/production/65262d682512229ffb09f533e1201e0ceaff07ef-1000x563.jpg", // source-page
   "home-spinach-egg-wrap": "https://thewoksoflife.com/wp-content/uploads/2024/07/avocado-scallion-pancake-5.jpg", // source-page
@@ -411,11 +393,9 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-steamed-egg-shrimp": "https://thewoksoflife.com/wp-content/uploads/2022/11/shrimp-egg-foo-young-28.jpg", // source-page
   "home-steamed-eggs": "https://cdn.sanity.io/images/2r0kdewr/production/c8a76c5ab9896ab1d10be90a72a1f3ca5565b6d8-6000x3375.jpg", // source-page
   "home-steamed-fish": "https://cdn.sanity.io/images/2r0kdewr/production/9f8d509edaa9610875b6f1db47839768f269c0aa-1000x563.jpg", // source-page
-  "home-steamed-fish-fillets": "https://thewoksoflife.com/wp-content/uploads/2021/04/fish-congee-16.jpg", // source-page
   "home-steamed-fish-tofu": "https://thewoksoflife.com/wp-content/uploads/2023/09/fish-clay-pot-tofu-18.jpg", // source-page
   "home-steamed-pork-patty": "https://cdn.sanity.io/images/2r0kdewr/production/060966c684e799f75412646ceb85e36cacd48227-1000x563.jpg", // source-page
   "home-steamed-tofu-pork": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk600_steamed-tofu-with-minced-pork2.jpg?bc=white&h=315&w=600&hash=ED7F7A65BD45E5D004FFDFC6EA8FA925&v=639263632659340517", // source-page
-  "home-stir-fried-bok-choy": "https://cdn.sanity.io/images/2r0kdewr/production/1069c3d60b0ba3cdba92729529108e487ea8d408-1500x844.jpg", // source-page
   "home-sundubu-jjigae": "https://cdn-akamai.lkk.com/-/media/beef-meatball-banh-mi/600x465.jpg?bc=white&h=315&w=600&hash=FD5C9EC20AC75FAC44A50291F85E1D2E&v=639263630557795662", // source-page
   "home-sweet-potato-pork-soup": "https://thewoksoflife.com/wp-content/uploads/2021/11/Chinese-pork-bone-soup-5.jpg", // source-page
   "home-sweet-potato-rice": "https://thewoksoflife.com/wp-content/uploads/2020/06/suan-la-fen-14.jpg", // source-page
@@ -447,12 +427,10 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-tomato-beef": "https://thewoksoflife.com/wp-content/uploads/2015/08/beef-tomato-stir-fry-9.jpg", // source-page
   "home-tomato-brisket-soup": "https://thewoksoflife.com/wp-content/uploads/2015/08/beef-tomato-stir-fry-9.jpg", // source-page
   "home-tomato-cabbage": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/one-pot_bacon_spinach_50776_16x9.jpg", // source-page
-  "home-tomato-cheese-melt": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-tomato-egg": "https://cdn.sanity.io/images/2r0kdewr/production/18e19453b570aa2866f14072eb22f9c28948a0c2-1000x563.jpg", // source-page
   "home-tomato-egg-drop-soup": "https://thewoksoflife.com/wp-content/uploads/2019/06/tomato-egg-drop-soup-10.jpg", // source-page
   "home-tomato-egg-noodles": "https://thewoksoflife.com/wp-content/uploads/2019/05/tomato-egg-11.jpg", // source-page
   "home-tomato-egg-rice": "https://cdn.sanity.io/images/2r0kdewr/production/0050287d61032bf11e545aa23fd1d00fe963307b-1000x563.jpg", // source-page
-  "home-tomato-egg-rice-bowl": "https://cdn.sanity.io/images/2r0kdewr/production/0050287d61032bf11e545aa23fd1d00fe963307b-1000x563.jpg", // source-page
   "home-tomato-egg-veg-soup": "https://thewoksoflife.com/wp-content/uploads/2019/05/tomato-egg-11.jpg", // source-page
   "home-tomato-mozzarella-toast": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-tomato-pork-chops": "https://cdn.sanity.io/images/2r0kdewr/production/73c51e9a7bbc0d2a470171c7a340f128c18b2a61-1000x563.jpg", // source-page
@@ -467,7 +445,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-tuna-melt": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/jacket_potato_with_tuna_30924_16x9.jpg", // source-page
   "home-tuna-nori-rice": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-tuna-pasta": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/creamy_tuna_one-pot_19168_16x9.jpg", // source-page
-  "home-tuna-rice-ball": "https://thewoksoflife.com/wp-content/uploads/2015/04/bacon-egg-fried-rice-11.jpg", // source-page
   "home-tuna-white-bean-salad": "https://thewoksoflife.com/wp-content/uploads/2022/03/beef-black-bean-sauce-15.jpg", // source-page
   "home-twice-cooked-pork": "https://cdn.sanity.io/images/2r0kdewr/production/369c6ab47a67ff66b3e6e799a4a90279a0b6fe81-1000x563.jpg", // source-page
   "home-udon-curry-home": "https://thewoksoflife.com/wp-content/uploads/2017/03/cashew-chickpea-curry-3.jpg", // source-page
@@ -480,7 +457,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-veg-ramen-home": "https://thewoksoflife.com/wp-content/uploads/2015/05/vegetable-ramen-13.jpg", // source-page
   "home-veg-sweet-sour": "https://thewoksoflife.com/wp-content/uploads/2023/09/sweet-and-sour-sauce-12.jpg", // source-page
   "home-vegan-mapo-tofu": "https://thewoksoflife.com/wp-content/uploads/2019/12/vegan-mapo-tofu-13.jpg", // source-page
-  "home-viet-lemongrass-bowl": "https://thewoksoflife.com/wp-content/uploads/2017/10/lemongrass-chicken-7.jpg", // source-page
   "home-vietnamese-caramel-pork": "https://thewoksoflife.com/wp-content/uploads/2021/11/Chinese-pork-bone-soup-5.jpg", // source-page
   "home-vietnamese-garlic-fish": "https://cdn.sanity.io/images/2r0kdewr/production/5283c364dc5b47a3e0a64e604661f68d13669d8c-6000x3375.jpg", // source-page
   "home-water-spinach-beef": "https://thewoksoflife.com/wp-content/uploads/2020/10/water-spinach-2.jpg", // source-page
@@ -501,7 +477,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-yakisoba": "https://thewoksoflife.com/wp-content/uploads/2020/04/vegetable-yakisoba-12.jpg", // source-page
   "home-yangzhou-fried-rice": "https://cdn.sanity.io/images/2r0kdewr/production/d7c3c91224833e5444fceb592847de7bc4492079-1000x563.jpg", // source-page
   "home-yogurt-berry-bowl": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
-  "home-yogurt-berry-breakfast": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
   "home-yogurt-cucumber-bowl": "https://thewoksoflife.com/wp-content/uploads/2019/08/chinese-garlic-cucumber-salad-7.jpg", // source-page
   "home-yuxiang-eggplant": "https://thewoksoflife.com/wp-content/uploads/2024/08/fish-fragrant-eggplant-24.jpg", // source-page
   "home-yuxiang-shredded-pork": "https://thewoksoflife.com/wp-content/uploads/2013/12/DSC_0034.jpg", // source-page

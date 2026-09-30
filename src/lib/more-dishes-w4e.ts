@@ -1,30 +1,7 @@
 import type { Recipe } from "@/lib/recipes"
 
 /** Auto-built cookable classics — original outlines, searchable names. */
-export const MORE_W4E: Recipe[] = [
-  {
-    id: "home-leftover-pork-fried-rice",
-    name: "Leftover pork fried rice",
-    cuisine: "Chinese",
-    time: 15,
-    servings: 2,
-    need: ["Cooked leftovers", "Cooked rice", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Sesame oil", "White pepper", "Carrots", "Corn", "Salt", "Cooking oil", "Sugar", "Chicken stock"],
-    steps: [
-      "Dice about 1 cup leftover pork (or mixed leftovers). Beat 2 eggs. Loosen 2 bowls cold cooked rice.",
-      "Scramble eggs; remove. Stir-fry garlic if using, then leftovers 1 minute; add rice and soy sauce. Any leftover meat or poultry must reach 74°C / 165°F.",
-      "Return eggs; toss 1–2 minutes. Finish with spring onion, sesame oil, and white pepper.",
-    ],
-    zh: {
-      name: "剩豬肉炒飯",
-      steps: [
-        "剩豬肉（或雜剩菜）約一杯切粒。打散兩隻蛋。兩碗隔夜飯抓散。",
-        "炒蛋盛起；可爆香蒜蓉，下剩菜 1 分鐘，下飯和生抽。 隔夜肉類或家禽須煮至 74°C / 165°F。",
-        "回蛋炒 1 至 2 分鐘，撒蔥花滴麻油加白胡椒。",
-      ],
-    },
-  },
-  {
+export const MORE_W4E: Recipe[] = [  {
     id: "home-leftover-soup-noodle",
     name: "Leftover soup noodle clearer",
     cuisine: "Asian",
@@ -45,30 +22,7 @@ export const MORE_W4E: Recipe[] = [
         "撒蔥花和白胡椒。",
       ],
     },
-  },
-  {
-    id: "home-dumpling-filling-stir",
-    name: "Dumpling-filling stir-fry",
-    cuisine: "Chinese",
-    time: 15,
-    servings: 2,
-    need: ["Ground pork", "Cabbage"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Sesame oil", "Spring onion", "Cornstarch", "Salt"],
-    steps: [
-      "Mix 250 g ground pork with shredded cabbage, minced garlic/ginger, soy sauce, and cornstarch as for dumpling filling.",
-      "Stir-fry the mixture on medium-high heat 6–8 minutes until pork reaches 74°C / 165°F and cabbage softens.",
-      "Finish with sesame oil and spring onion. Eat with rice or wrap in lettuce.",
-    ],
-    zh: {
-      name: "餃子餡炒菜",
-      steps: [
-        "免治豬肉約 250 克加椰菜絲、蒜薑蓉、生抽和生粉拌成餃子餡狀。",
-        "中大火炒 6 至 8 分鐘至豬肉全熟（74°C）椰菜軟。",
-        "滴麻油撒蔥花；伴飯或生菜包。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-leftover-veg-frittata",
     name: "Leftover vegetable frittata",
     cuisine: "Western",

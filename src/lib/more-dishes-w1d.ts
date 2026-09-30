@@ -67,30 +67,7 @@ export const MORE_W1D: Recipe[] = [
         "淋在豆腐上，撒蔥花，可加少許辣椒油，凍食。",
       ],
     },
-  },
-  {
-    id: "home-mapo-tofu-veg",
-    name: "Mapo tofu (vegetarian)",
-    cuisine: "Sichuan",
-    time: 20,
-    servings: 2,
-    need: ["Tofu", "Chili oil", "Garlic", "Ground pork"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Cornstarch", "White pepper", "Shallot", "Cooking oil", "Oyster sauce", "Sugar", "Salt", "Sesame oil"],
-    steps: [
-      "Cube 1 block tofu; mince 3 garlic cloves and a little ginger if using.",
-      "Warm 1–2 tbsp chili oil; fry garlic (and ginger) 30 seconds. Add ½ cup water and the tofu; simmer gently 5–7 minutes.",
-      "Season with 1 tbsp soy sauce and a pinch of white pepper. Thicken with a little cornstarch slurry if desired; finish with spring onion. No meat.",
-    ],
-    zh: {
-      name: "素麻婆豆腐",
-      steps: [
-        "一磚豆腐切丁；拍碎 3 瓣蒜，有薑可切碎。",
-        "熱 1 至 2 湯匙辣椒油爆蒜（及薑）約 30 秒。加半杯水和豆腐，小火煮 5 至 7 分鐘。",
-        "加 1 湯匙生抽和少許白胡椒；可勾薄芡，撒蔥花。不含肉。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-tofu-skin-stirfry",
     name: "Tofu skin stir-fry",
     cuisine: "Cantonese",
@@ -287,30 +264,7 @@ export const MORE_W1D: Recipe[] = [
         "先炒菜莖一分鐘再下葉，炒 2 至 3 分鐘至熟爽；淋生抽或蠔油和麻油。",
       ],
     },
-  },
-  {
-    id: "home-broccoli-beef-garlic",
-    name: "Broccoli beef (soy-garlic)",
-    cuisine: "Chinese",
-    time: 25,
-    servings: 2,
-    need: ["Broccoli", "Beef steak", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Cornstarch", "Ginger", "Sesame oil", "Carrots", "Cooking oil", "Salt", "Baking soda", "White pepper", "Sugar", "Shaoxing wine"],
-    steps: [
-      "Slice 250 g beef steak thin against the grain; toss with 1 tbsp soy sauce and 1 tsp cornstarch. Cut broccoli into florets; mince 3 garlic cloves.",
-      "Blanch or stir-fry broccoli 2–3 minutes until bright green; set aside. Sear beef in a hot oiled pan until browned and cooked through (74°C / 165°F).",
-      "Return broccoli with garlic, 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water; toss 1 minute until glossy.",
-    ],
-    zh: {
-      name: "蒜香西蘭花牛肉",
-      steps: [
-        "約 250 克牛扒逆紋切薄片，拌 1 湯匙生抽和 1 茶匙生粉。西蘭花切小朵；拍碎 3 瓣蒜。",
-        "焯或炒西蘭花 2 至 3 分鐘至翠綠盛起。熱油快炒牛肉至上色全熟（74°C）。",
-        "倒回西蘭花和蒜，加 1 湯匙生抽、1 茶匙蠔油（如有）和少許水炒約一分鐘至亮汁。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-eggplant-mince",
     name: "Eggplant with minced pork",
     cuisine: "Chinese",

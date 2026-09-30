@@ -243,30 +243,7 @@ export const MORE_W2E: Recipe[] = [
         "淋蒜蓉、白胡椒、生抽和辣椒油，再舀少許熱湯，撒蔥。",
       ],
     },
-  },
-  {
-    id: "home-chili-garlic-eggplant",
-    name: "Chili garlic eggplant",
-    cuisine: "Sichuan",
-    time: 25,
-    servings: 2,
-    need: ["Eggplant", "Garlic"],
-    optional: ["Ginger", "Chili oil", "Soy sauce", "Vinegar", "Sugar", "Spring onion", "Dried chili", "Cooking oil", "Oyster sauce", "Cornstarch", "Shaoxing wine", "Sesame oil"],
-    steps: [
-      "Cut eggplant into batons; pan-fry in oil until soft and browned, then drain excess oil.",
-      "Fry garlic and ginger; add 1 tbsp soy sauce, 1 tsp vinegar, 1 tsp sugar, and chili oil.",
-      "Toss eggplant in the sauce 1–2 minutes; finish with spring onion.",
-    ],
-    zh: {
-      name: "魚香茄子（辣）",
-      steps: [
-        "茄子切條，煎至軟身上色，倒去多餘油。",
-        "爆香蒜薑，加 1 湯匙生抽、1 茶匙醋、1 茶匙糖和辣椒油。",
-        "下茄子拌炒 1 至 2 分鐘，撒蔥。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-chili-oil-wonton",
     name: "Spicy wonton in chili oil",
     cuisine: "Sichuan",

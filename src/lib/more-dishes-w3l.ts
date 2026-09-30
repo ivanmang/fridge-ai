@@ -287,30 +287,7 @@ export const MORE_W3L: Recipe[] = [
         "撒蔥（無牛）。",
       ],
     },
-  },
-  {
-    id: "home-lentil-style-bean-stew",
-    name: "Bean tomato stew",
-    cuisine: "Western",
-    time: 25,
-    servings: 3,
-    need: ["Beans", "Tomato", "Onion"],
-    optional: ["Garlic", "Curry powder", "Salt", "Spinach"],
-    steps: [
-      "Sauté onion and garlic; add tomato and drained beans.",
-      "Simmer 15 minutes; optional curry powder.",
-      "Fold spinach; season. Vegan-leaning.",
-    ],
-    zh: {
-      name: "番茄燉豆",
-      steps: [
-        "炒洋蔥蒜，下番茄和瀝乾豆。",
-        "炆 15 分鐘，可加咖哩粉。",
-        "拌菠菜調味（偏素）。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-veg-sweet-sour",
     name: "Sweet and sour tofu",
     cuisine: "Chinese",
@@ -529,30 +506,7 @@ export const MORE_W3L: Recipe[] = [
         "下菠菜豆腐，撒蔥紫菜（素食友好）。",
       ],
     },
-  },
-  {
-    id: "home-egg-white-tomato",
-    name: "Tomato egg white scramble",
-    cuisine: "Chinese",
-    time: 12,
-    servings: 1,
-    need: ["Eggs", "Tomato"],
-    optional: ["Salt", "Spring onion", "Sugar"],
-    steps: [
-      "Use 3 egg whites (or whole eggs). Scramble softly; remove.",
-      "Cook tomato until saucy.",
-      "Fold whites back; spring onion.",
-    ],
-    zh: {
-      name: "番茄蛋白炒",
-      steps: [
-        "用 3 隻蛋白（或全蛋）炒嫩盛起。",
-        "番茄煮至出汁。",
-        "拌回蛋白，撒蔥。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-garlic-broccoli-tofu",
     name: "Garlic broccoli tofu",
     cuisine: "Chinese",
@@ -617,30 +571,7 @@ export const MORE_W3L: Recipe[] = [
         "調味（清淡素湯）。",
       ],
     },
-  },
-  {
-    id: "home-soy-butter-corn",
-    name: "Soy butter corn rice",
-    cuisine: "Japanese",
-    time: 10,
-    servings: 2,
-    need: ["Cooked rice", "Corn", "Butter"],
-    optional: ["Soy sauce", "Spring onion"],
-    steps: [
-      "Warm rice with butter.",
-      "Stir in corn and soy sauce.",
-      "Spring onion. Vegetarian.",
-    ],
-    zh: {
-      name: "醬油牛油粟米飯",
-      steps: [
-        "牛油炒熱飯。",
-        "拌粟米和生抽。",
-        "撒蔥（素）。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-herb-tofu-salad",
     name: "Cold tofu herb salad",
     cuisine: "Chinese",

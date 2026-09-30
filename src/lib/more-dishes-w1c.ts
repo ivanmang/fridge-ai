@@ -155,30 +155,7 @@ export const MORE_W1C: Recipe[] = [
         "可加少許生抽；喜好可打入一隻蛋略煮，撒蔥花。",
       ],
     },
-  },
-  {
-    id: "home-tuna-rice-ball",
-    name: "Tuna leftover rice ball",
-    cuisine: "Japanese",
-    time: 15,
-    servings: 2,
-    need: ["Canned tuna", "Cooked rice"],
-    optional: ["Soy sauce", "Mayonnaise", "Spring onion", "Sesame oil"],
-    steps: [
-      "Drain one can of tuna (about 100–120 g). Loosen 2 bowls of warm cooked rice; cool until handleable.",
-      "Mix tuna with 1 tsp soy sauce and 1 tbsp mayonnaise if using; fold optional spring onion or a drop of sesame oil.",
-      "Wet hands, portion the rice, press a spoon of tuna filling in the centre, and shape into 4 firm balls or triangles.",
-    ],
-    zh: {
-      name: "吞拿魚飯團",
-      steps: [
-        "一罐吞拿魚（約 100 至 120 克）瀝乾。兩碗熱飯搓散，略涼至可手握。",
-        "魚肉拌 1 茶匙生抽和 1 湯匙蛋黃醬（如有）；可加蔥花或少許麻油。",
-        "手沾水分份，中間包入吞拿魚餡，捏成 4 個結實飯團或三角。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-soy-greens-rice",
     name: "Soy sauce leftover greens rice",
     cuisine: "Hong Kong",
@@ -199,27 +176,4 @@ export const MORE_W1C: Recipe[] = [
         "下飯和 1 至 2 湯匙生抽炒至全熱，加麻油蔥花；可另煎蛋蓋面。",
       ],
     },
-  },
-  {
-    id: "home-hotwater-noodle-bowl",
-    name: "Hot water leftover noodle bowl",
-    cuisine: "Hong Kong",
-    time: 10,
-    servings: 1,
-    need: ["Cooked leftovers", "Noodles"],
-    optional: ["Soy sauce", "Sesame oil", "Spring onion", "Eggs", "Chili oil"],
-    steps: [
-      "Place 100–120 g dry noodles in a deep bowl with about 1 cup diced cooked leftovers.",
-      "Pour over enough boiling water to cover; cover the bowl 3–5 minutes until noodles soften and leftovers are steaming hot—any meat must reach 74°C / 165°F (microwave 1–2 minutes more if needed).",
-      "Season with soy sauce, sesame oil, chili oil, and spring onion. Stir in a soft-boiled or beaten egg if you like.",
-    ],
-    zh: {
-      name: "即食清湯麵",
-      steps: [
-        "深碗放入約 100 至 120 克乾麵和約 1 杯切粒隔夜菜。",
-        "倒入滾水浸過面，加蓋 3 至 5 分鐘至麵軟、隔夜菜熱透；有肉須達 74°C（不足可微波 1 至 2 分鐘）。",
-        "加生抽、麻油、辣椒油和蔥花；可拌入半熟蛋或打散蛋液。",
-      ],
-    },
-  },
-]
+  },]

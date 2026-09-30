@@ -75,14 +75,14 @@ describe("ingredient registry", () => {
     }
   })
 
-  it("avocado egg breakfast bowl matches BBC toast materials (no rice)", () => {
-    const bowl = MORE.find((r) => r.id === "home-avocado-egg-bowl")
-    assert.ok(bowl)
-    assert.deepEqual(bowl!.need.slice().sort(), ["Avocado", "Bread"].sort())
-    assert.ok(!bowl!.need.includes("Cooked rice"))
-    assert.ok(!bowl!.need.includes("Eggs"))
-    assert.ok(bowl!.optional.includes("Lime"))
-    assert.ok(bowl!.optional.includes("Dried chili"))
-    assert.ok(bowl!.optional.includes("Cilantro"))
+  it("avocado toast matches BBC toast materials (no rice)", () => {
+    const toast = MORE.find((r) => r.id === "home-avocado-toast")
+    assert.ok(toast)
+    assert.deepEqual(toast!.need.slice().sort(), ["Avocado", "Bread"].sort())
+    assert.ok(!toast!.need.includes("Cooked rice"))
+    assert.ok(!toast!.need.includes("Eggs"))
+    assert.ok(toast!.optional.includes("Lime"))
+    assert.ok(toast!.optional.includes("Dried chili"))
+    assert.ok(toast!.optional.includes("Cilantro"))
   })
 })

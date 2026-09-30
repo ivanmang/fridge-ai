@@ -384,30 +384,7 @@ export const MORE_W1A: Recipe[] = [
         "打散一至兩隻蛋，邊攪邊倒下成蛋花至全熟，可撒蔥花。",
       ],
     },
-  },
-  {
-    id: "home-ham-macaroni-soup",
-    name: "Ham macaroni soup",
-    cuisine: "Hong Kong",
-    time: 20,
-    servings: 2,
-    need: ["Pasta", "Ham"],
-    optional: ["Onion", "Carrots", "Celery", "Salt", "Butter", "Spring onion"],
-    steps: [
-      "Dice ham. Soften a little onion, carrot, or celery in butter if using.",
-      "Add about 4 cups water or light stock and bring to a boil. Add pasta and cook until tender (8–10 minutes).",
-      "Stir in ham and warm 1–2 minutes (no egg). Season with salt; finish with spring onion.",
-    ],
-    zh: {
-      name: "火腿通粉湯",
-      steps: [
-        "火腿切粒。可先用牛油炒軟少許洋蔥、紅蘿蔔或西芹。",
-        "加水或清湯約四杯煮滾，下通粉煮 8 至 10 分鐘至軟。",
-        "加入火腿焯熱 1 至 2 分鐘（不加蛋），加鹽調味，可撒蔥花。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-beef-fried-noodles",
     name: "Fried noodle with beef",
     cuisine: "Hong Kong",

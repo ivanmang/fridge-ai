@@ -221,30 +221,7 @@ export const MORE_W3K: Recipe[] = [
         "可放羅勒葉。",
       ],
     },
-  },
-  {
-    id: "home-lemon-garlic-shrimp-pasta",
-    name: "Lemon garlic shrimp pasta",
-    cuisine: "Western",
-    time: 20,
-    servings: 2,
-    need: ["Pasta", "Shrimp", "Lemon", "Garlic"],
-    optional: ["Butter", "Olive oil", "Salt", "Spring onion"],
-    steps: [
-      "Boil pasta. Sauté garlic in butter/oil; add shrimp until opaque and pink.",
-      "Toss pasta with shrimp, lemon juice/zest, and a splash of pasta water.",
-      "Finish with spring onion.",
-    ],
-    zh: {
-      name: "檸檬蒜香蝦意粉",
-      steps: [
-        "煮意粉。牛油／油爆蒜，下蝦炒至轉色。",
-        "拌麵、檸檬汁和少許麵水。",
-        "撒蔥。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-meatball-tomato-pasta",
     name: "Beef meatball tomato pasta",
     cuisine: "Western",
@@ -331,30 +308,7 @@ export const MORE_W3K: Recipe[] = [
         "歇 1 分鐘切開。",
       ],
     },
-  },
-  {
-    id: "home-yogurt-berry-breakfast",
-    name: "Yogurt berry breakfast bowl",
-    cuisine: "Breakfast",
-    time: 5,
-    servings: 1,
-    need: ["Yogurt", "Berries"],
-    optional: ["Honey", "Oats", "Banana"],
-    steps: [
-      "Spoon yogurt into a bowl.",
-      "Top with berries and optional banana slices.",
-      "Drizzle honey; sprinkle oats if using.",
-    ],
-    zh: {
-      name: "乳酪莓果早餐碗",
-      steps: [
-        "乳酪盛碗。",
-        "放莓果和香蕉片。",
-        "淋蜜糖，可撒燕麥。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-overnight-oats",
     name: "Overnight oats",
     cuisine: "Breakfast",

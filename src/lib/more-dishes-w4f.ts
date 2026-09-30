@@ -243,30 +243,7 @@ export const MORE_W4F: Recipe[] = [
         "炆 2 至 3 分鐘至裹醬；伴飯青瓜，可滴辣椒油。",
       ],
     },
-  },
-  {
-    id: "home-doenjang-veg-stew",
-    name: "Doenjang vegetable stew",
-    cuisine: "Korean",
-    time: 25,
-    servings: 2,
-    need: ["Doenjang", "Zucchini", "Tofu"],
-    optional: ["Onion", "Garlic", "Mushroom", "Potato", "Spring onion", "Salt"],
-    steps: [
-      "Cube zucchini, tofu, and optional potato/mushroom. Soften onion/garlic in a pot.",
-      "Dissolve 2 tbsp doenjang in about 3.5 cups water; add vegetables and tofu.",
-      "Simmer 12–15 minutes until soft. Adjust salt; top with spring onion.",
-    ],
-    zh: {
-      name: "大醬蔬菜鍋",
-      steps: [
-        "翠玉瓜、豆腐切塊，可加薯仔蘑菇。炒軟洋蔥蒜蓉。",
-        "兩湯匙大醬溶於約三杯半水，下蔬菜豆腐。",
-        "煮 12 至 15 分鐘至軟，調鹽撒蔥花。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-kimchi-quesadilla",
     name: "Kimchi cheese quesadilla",
     cuisine: "Korean",
@@ -287,30 +264,7 @@ export const MORE_W4F: Recipe[] = [
         "外皮可薄掃麻油增香，切件。",
       ],
     },
-  },
-  {
-    id: "home-viet-lemongrass-bowl",
-    name: "Vietnamese-style lemongrass bowl",
-    cuisine: "Vietnamese",
-    time: 25,
-    servings: 2,
-    need: ["Chicken thighs", "Lemongrass", "Cooked rice"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Cucumber", "Lettuce", "Carrots", "Chili oil"],
-    steps: [
-      "Mince lemongrass and garlic. Cut 350 g chicken into strips; toss with lemongrass, garlic, soy sauce, and sugar 10 minutes.",
-      "Stir-fry until chicken reaches 74°C / 165°F (6–8 minutes).",
-      "Serve over rice with cucumber, lettuce, carrot, and chili oil if using.",
-    ],
-    zh: {
-      name: "越式香茅雞飯",
-      steps: [
-        "香茅蒜蓉切碎。雞脾約 350 克切條，加香茅蒜、生抽和糖醃 10 分鐘。",
-        "炒至全熟（74°C）約 6 至 8 分鐘。",
-        "蓋飯上，配青瓜生菜紅蘿蔔，可滴辣椒油。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-thai-coconut-noodles",
     name: "Thai coconut noodle bowl",
     cuisine: "Thai",
@@ -397,30 +351,7 @@ export const MORE_W4F: Recipe[] = [
         "下蝦煮 3 至 4 分鐘至變色，加鹽和少許糖，拌九層塔伴飯。",
       ],
     },
-  },
-  {
-    id: "home-sesame-noodle-salad",
-    name: "Cold sesame noodle salad",
-    cuisine: "Asian",
-    time: 20,
-    servings: 2,
-    need: ["Noodles", "Sesame seeds", "Soy sauce"],
-    optional: ["Peanut butter", "Cucumber", "Carrots", "Sesame oil", "Vinegar", "Sugar", "Spring onion"],
-    steps: [
-      "Cook noodles; rinse under cold water and drain. Toast sesame seeds.",
-      "Mix 2 tbsp soy sauce, 1 tbsp peanut butter or sesame oil, 1 tsp vinegar, and pinch of sugar with a splash of water into a dressing.",
-      "Toss noodles with dressing, julienned cucumber/carrot, sesame seeds, and spring onion. Serve cold.",
-    ],
-    zh: {
-      name: "芝麻涼麵沙律",
-      steps: [
-        "麵煮熟過冷河瀝乾。芝麻略炒。",
-        "兩湯匙生抽、一湯匙花生醬或麻油、一茶匙醋、少許糖和少許水拌成汁。",
-        "麵拌醬汁、青瓜紅蘿蔔絲、芝麻蔥花，凍食。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-hummus-style-bowl",
     name: "Hummus-style bean bowl",
     cuisine: "Western",

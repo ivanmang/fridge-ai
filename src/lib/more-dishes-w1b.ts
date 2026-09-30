@@ -400,30 +400,7 @@ export const MORE_W1B: Recipe[] = [
         "可勾薄芡，撒蔥花滴麻油。",
       ],
     },
-  },
-  {
-    id: "home-steamed-fish-fillets",
-    name: "Steamed fish fillets",
-    cuisine: "Cantonese",
-    time: 20,
-    servings: 2,
-    need: ["White fish", "Ginger", "Spring onion"],
-    optional: ["Soy sauce", "Sesame oil", "Garlic", "Shaoxing wine", "Salt"],
-    steps: [
-      "Pat 300–350 g white fish fillets dry; place on a plate with ginger matchsticks underneath and on top. Optional splash of wine and pinch of salt.",
-      "Steam over high heat 8–10 minutes until flesh is opaque and flakes easily (fully cooked).",
-      "Top with shredded spring onion. Heat 1 tbsp oil (and minced garlic if using), pour over, then add 1½ tbsp soy sauce and a drop of sesame oil.",
-    ],
-    zh: {
-      name: "清蒸魚塊",
-      steps: [
-        "約 300–350 克白魚柳抹乾，舖薑絲上下；可加少許料酒和鹽。",
-        "大火蒸 8–10 分鐘至肉轉白、輕壓可散（全熟）。",
-        "舖蔥絲。熱約 1 湯匙油（可加蒜蓉）淋上，再淋 1½ 湯匙生抽和少許麻油。",
-      ],
-    },
-  },
-  {
+  },  {
     id: "home-eggplant-pork-claypot",
     name: "Claypot eggplant with minced pork",
     cuisine: "Cantonese",
