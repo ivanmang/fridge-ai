@@ -12,7 +12,7 @@ import {
   type RankedRecipe,
 } from "@/lib/logic"
 import { foodLabel, recipeText } from "@/lib/i18n"
-import { recipeGuideUrl, recipeSearchUrl } from "@/lib/recipe-lookup"
+import { recipeGuideUrl } from "@/lib/recipe-lookup"
 import { useFridge } from "@/lib/store"
 import { surveyReady } from "@/lib/survey"
 import { cn } from "@/lib/utils"
@@ -258,6 +258,7 @@ export function DishCatalog({
           const from = dishSource(recipe.id)
           const outline = isOutlineRecipe(recipe)
           const saved = savedRecipes.includes(recipe.id)
+          const guideUrl = recipeGuideUrl(recipe)
           const sourceLabel =
             from === "home" ? t("sourceHome") : from === "knorr" ? t("sourceKnorr") : from === "guardian" ? t("sourceGuardian") : t("sourceLkk")
           return (
@@ -290,19 +291,17 @@ export function DishCatalog({
                       ? ` · ${t("missing", { list: row.missing.map((name) => foodLabel(locale, name)).join(locale === "zh" ? "、" : ", ") })}`
                       : ""}
                   </p>
-                  {!outline && (
+                  {!outline && guideUrl && (
                     <a
-                      href={recipeGuideUrl(recipe) ?? recipeSearchUrl(recipe, locale)}
+                      href={guideUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-mint"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      {recipeGuideUrl(recipe)
-                        ? recipe.sourceName
-                          ? t("aboutDishNamed", { name: recipe.sourceName })
-                          : t("aboutDish")
-                        : t("findRecipesOnline")}
+                      {recipe.sourceName
+                        ? t("viewFullRecipeNamed", { name: recipe.sourceName })
+                        : t("viewFullRecipe")}
                     </a>
                   )}
                 </div>
