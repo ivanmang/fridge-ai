@@ -240,9 +240,12 @@ export function rankRecipes(
   favorites: string[] = [],
   taste: SurveyAnswers | null = null,
   extras: Recipe[] = [],
+  options: { savedIds?: string[]; lastTonightId?: string; cookedIds?: string[] } = {},
 ): RankedRecipe[] {
   const profile = Boolean(taste && surveyReady(taste) && !taste.skipped && surveyAnswered(taste))
   const fridgeOnly = !profileLeads(taste) && (taste?.goal === "fridge" || priority < 2)
+  const saved = new Set(options.savedIds ?? [])
+  const cooked = new Set(options.cookedIds ?? [])
   // Tonight ranking uses the cookable core only — imported outlines stay search/browse-only.
   const pool = cookableBook(vegetarian, extras)
   return pool
@@ -256,6 +259,9 @@ export function rankRecipes(
       } else {
         row.score += fit + (profile && liked ? 18 : 0)
       }
+      if (saved.has(recipe.id)) row.score += 8
+      if (cooked.has(recipe.id)) row.score += 4
+      if (options.lastTonightId && recipe.id === options.lastTonightId) row.score += 10
       return row
     })
     .filter((row) => fitsTaste(row.recipe, taste))
@@ -275,6 +281,47 @@ export function isOutlineRecipe(recipe: Recipe): boolean {
 
 export function isCookableRecipe(recipe: Recipe): boolean {
   return !isOutlineRecipe(recipe)
+}
+
+/** One-glance trust: full steps vs idea-only outline. */
+export function trustLevel(recipe: Recipe): "full" | "idea" {
+  return isOutlineRecipe(recipe) ? "idea" : "full"
+}
+
+export type RecipeFilters = {
+  /** Only dishes with no missing required ingredients. */
+  haveOnly?: boolean
+  /** Only dishes that use food due within 3 days. */
+  useSoon?: boolean
+  /** Cuisine filter; "All" or empty means no filter. */
+  cuisine?: string
+  /** Max cook time in minutes. */
+  maxTime?: number | null
+  /** Drop zero-match dishes (default true for Cook tonight). */
+  hideZeroMatch?: boolean
+  /** Restrict to saved recipe ids. */
+  savedOnly?: boolean
+  /** Restrict to cooked-before recipe ids. */
+  cookedOnly?: boolean
+  savedIds?: string[]
+  cookedIds?: string[]
+}
+
+export function applyRecipeFilters(rows: RankedRecipe[], filters: RecipeFilters = {}): RankedRecipe[] {
+  const cuisine = filters.cuisine && filters.cuisine !== "All" ? filters.cuisine : ""
+  const hideZero = filters.hideZeroMatch !== false
+  const saved = new Set(filters.savedIds ?? [])
+  const cooked = new Set(filters.cookedIds ?? [])
+  return rows.filter((row) => {
+    if (hideZero && row.matched.length === 0) return false
+    if (filters.haveOnly && row.missing.length > 0) return false
+    if (filters.useSoon && row.urgent.length === 0) return false
+    if (cuisine && row.recipe.cuisine !== cuisine) return false
+    if (filters.maxTime != null && row.recipe.time > filters.maxTime) return false
+    if (filters.savedOnly && !saved.has(row.recipe.id)) return false
+    if (filters.cookedOnly && !cooked.has(row.recipe.id)) return false
+    return true
+  })
 }
 
 /**
@@ -314,11 +361,19 @@ export function listRecipes(
     .sort((a, b) => profileBonus(b, taste) - profileBonus(a, taste) || a.name.localeCompare(b.name))
 }
 
-export function searchRecipes(query: string, items: FoodItem[], vegetarian: boolean, taste: SurveyAnswers | null = null): RankedRecipe[] {
+export function searchRecipes(
+  query: string,
+  items: FoodItem[],
+  vegetarian: boolean,
+  taste: SurveyAnswers | null = null,
+  options: { includeOutlines?: boolean; limit?: number } = {},
+): RankedRecipe[] {
   const q = norm(query)
   if (!q) return []
+  const includeOutlines = options.includeOutlines === true
+  const limit = options.limit ?? 12
   const cookable = cookableBook(vegetarian)
-  const outlines = fullBook(vegetarian).filter(isOutlineRecipe)
+  const outlines = includeOutlines ? fullBook(vegetarian).filter(isOutlineRecipe) : []
   const match = (recipe: Recipe) => {
     const blob = norm(
       [
@@ -339,7 +394,18 @@ export function searchRecipes(query: string, items: FoodItem[], vegetarian: bool
     .filter(match)
     .filter((recipe) => fitsTaste(recipe, taste))
     .map((recipe) => scoreOne(recipe, items, 3, []))
-  return [...cookHits, ...outlineHits].slice(0, 12)
+  return [...cookHits, ...outlineHits].slice(0, limit)
+}
+
+/** Typeahead suggestions for dish search (name + ingredients). */
+export function suggestRecipes(
+  query: string,
+  items: FoodItem[],
+  vegetarian: boolean,
+  taste: SurveyAnswers | null = null,
+  options: { includeOutlines?: boolean; limit?: number } = {},
+): RankedRecipe[] {
+  return searchRecipes(query, items, vegetarian, taste, { includeOutlines: options.includeOutlines, limit: options.limit ?? 8 })
 }
 
 export function ideasByIds(ids: string[], items: FoodItem[], extras: Recipe[] = []): RankedRecipe[] {
@@ -395,8 +461,9 @@ export function planMeals(
   favorites: string[] = [],
   taste: SurveyAnswers | null = null,
   extras: Recipe[] = [],
+  options: { savedIds?: string[]; lastTonightId?: string; cookedIds?: string[] } = {},
 ) {
-  const ranked = rankRecipes(items, vegetarian, priority, favorites, taste, extras)
+  const ranked = rankRecipes(items, vegetarian, priority, favorites, taste, extras, options)
   if (profileLeads(taste)) {
     const ideas = ranked.slice(0, 3)
     return { ideas, shop: shopForIdeas(items, ideas) }

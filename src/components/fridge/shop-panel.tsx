@@ -25,6 +25,7 @@ export function DishSearch() {
   const taste = useFridge((s) => (surveyReady(s.settings.survey) ? s.settings.survey : null))
   const wanted = useFridge((s) => s.settings.wanted) ?? []
   const extras = useFridge((s) => s.extras) ?? []
+  const includeOutlines = useFridge((s) => s.settings.includeOutlines ?? false)
   const setSettings = useFridge((s) => s.setSettings)
   const saveExtra = useFridge((s) => s.saveExtra)
   const [query, setQuery] = useState("")
@@ -37,7 +38,7 @@ export function DishSearch() {
   const [warn, setWarn] = useState("")
   const [stepText, setStepText] = useState("")
   const requestRef = useRef(0)
-  const hits = useMemo(() => searchRecipes(query, items, vegetarian, taste), [query, items, vegetarian, taste])
+  const hits = useMemo(() => searchRecipes(query, items, vegetarian, taste, { includeOutlines }), [query, items, vegetarian, taste, includeOutlines])
   const picked = useMemo(() => ideasByIds(wanted, items, extras), [wanted, items, extras])
 
   async function lookUp() {

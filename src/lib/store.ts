@@ -29,6 +29,14 @@ export type FridgeSettings = {
   survey: SurveyAnswers
   /** True once the user has dismissed the first-run setup. */
   onboarded: boolean
+  /** When false (default), browse/search hide the imported outline catalogue. */
+  includeOutlines: boolean
+  /** Bookmarked recipe ids for quick return. */
+  savedRecipes: string[]
+  /** Recently cooked recipe ids, newest first. */
+  cookedHistory: string[]
+  /** Last Tonight pick so repeat visits reopen the same dish when still ranked. */
+  lastTonightId: string
 }
 
 type FridgeState = {
@@ -45,6 +53,8 @@ type FridgeState = {
   clearItems: () => void
   replaceAll: (items: FoodItem[]) => void
   setSettings: (patch: Partial<FridgeSettings>) => void
+  toggleSavedRecipe: (id: string) => void
+  markCooked: (id: string) => void
   saveExtra: (recipe: Recipe) => void
   addShop: (text: string) => void
   toggleShop: (id: string) => void
@@ -64,6 +74,10 @@ const emptySettings: FridgeSettings = {
   wanted: [],
   survey: emptySurvey,
   onboarded: false,
+  includeOutlines: false,
+  savedRecipes: [],
+  cookedHistory: [],
+  lastTonightId: "",
 }
 
 export const useFridge = create<FridgeState>()(
@@ -90,6 +104,18 @@ export const useFridge = create<FridgeState>()(
       clearItems: () => set({ items: [] }),
       replaceAll: (items) => set({ items }),
       setSettings: (patch) => set((s) => ({ settings: { ...s.settings, ...patch } })),
+      toggleSavedRecipe: (id) =>
+        set((s) => {
+          const saved = s.settings.savedRecipes ?? []
+          const next = saved.includes(id) ? saved.filter((item) => item !== id) : [id, ...saved].slice(0, 48)
+          return { settings: { ...s.settings, savedRecipes: next } }
+        }),
+      markCooked: (id) =>
+        set((s) => {
+          const history = s.settings.cookedHistory ?? []
+          const cookedHistory = [id, ...history.filter((item) => item !== id)].slice(0, 24)
+          return { settings: { ...s.settings, cookedHistory, lastTonightId: id } }
+        }),
       saveExtra: (recipe) =>
         set((s) => {
           const next = [recipe, ...(s.extras ?? []).filter((item) => item.id !== recipe.id)]
