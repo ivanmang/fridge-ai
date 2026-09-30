@@ -123,6 +123,17 @@ describe("rankRecipes / planMeals", () => {
     assert.ok(ranked.every((row) => row.recipe.id.startsWith("home-") || row.recipe.id.startsWith("mine-") || row.recipe.id.startsWith("x-")))
   })
 
+  it("ranks the cookable book without blocking the main thread", () => {
+    const items = sampleItems()
+    // Warm caches, then require ranking to stay interactive (<100ms).
+    rankRecipes(items, false, 0, [])
+    const t0 = performance.now()
+    const ranked = rankRecipes(items, false, 0, [])
+    const ms = performance.now() - t0
+    assert.ok(ranked.length > 50)
+    assert.ok(ms < 100, `rankRecipes took ${ms.toFixed(1)}ms`)
+  })
+
   it("boosts home recipes and covers urgent food in planMeals", () => {
     const items = [
       item("Chicken breast", 1),

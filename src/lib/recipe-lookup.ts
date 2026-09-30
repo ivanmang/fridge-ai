@@ -184,7 +184,7 @@ async function wikiSearchTitles(lang: "en" | "zh", query: string): Promise<strin
   const url =
     `https://${lang}.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}` +
     `&srlimit=8&format=json&origin=*`
-  const res = await fetch(url)
+  const res = await fetch(url, { signal: AbortSignal.timeout(8_000) })
   if (!res.ok) return []
   const data = (await res.json()) as { query?: { search?: { title: string }[] } }
   return (data.query?.search ?? []).map((row) => row.title)
@@ -195,7 +195,7 @@ async function wikiSummary(
   title: string,
 ): Promise<(DishLookup & { description: string; extract: string }) | null> {
   const url = `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replaceAll(" ", "_"))}`
-  const res = await fetch(url, { headers: { Accept: "application/json" } })
+  const res = await fetch(url, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(8_000) })
   if (!res.ok) return null
   const data = (await res.json()) as {
     type?: string

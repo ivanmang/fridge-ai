@@ -8,6 +8,8 @@ export function puckError(locale: Locale, err: unknown) {
   return translate(locale, "puckOffline")
 }
 
+const PUCK_TIMEOUT_MS = 12_000
+
 export async function fetchDoorPhoto(host: string) {
   const url = doorPhotoUrl(host)
   if (!url) throw new Error("puckBad")
@@ -16,6 +18,7 @@ export async function fetchDoorPhoto(host: string) {
     res = await fetch(url, {
       mode: "cors",
       cache: "no-store",
+      signal: AbortSignal.timeout(PUCK_TIMEOUT_MS),
       targetAddressSpace: "local",
     } as RequestInit)
   } catch {

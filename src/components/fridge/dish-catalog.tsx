@@ -1,4 +1,4 @@
-import { useMemo, useState, useTransition } from "react"
+import { useDeferredValue, useMemo, useState, useTransition } from "react"
 import { LoadingStatus, Spinner, useI18n } from "@/components/fridge/shared"
 import {
   applyRecipeFilters,
@@ -63,14 +63,16 @@ export function DishCatalog({
   const [openingId, setOpeningId] = useState<string | null>(null)
 
   const q = query.trim()
+  const deferredQ = useDeferredValue(q)
+  const searchPending = q !== deferredQ
   const typeahead = useMemo(
-    () => (q.length >= 1 ? searchRecipes(q, items, vegetarian, taste, { includeOutlines, limit: 8 }) : []),
-    [q, items, vegetarian, taste, includeOutlines],
+    () => (deferredQ.length >= 1 ? searchRecipes(deferredQ, items, vegetarian, taste, { includeOutlines, limit: 8 }) : []),
+    [deferredQ, items, vegetarian, taste, includeOutlines],
   )
 
   const dishes = useMemo(() => {
-    if (q) {
-      return searchRecipes(q, items, vegetarian, taste, { includeOutlines, limit: 48 })
+    if (deferredQ) {
+      return searchRecipes(deferredQ, items, vegetarian, taste, { includeOutlines, limit: 48 })
     }
     const list = listRecipes(vegetarian, taste, {
       includeOutlines: includeOutlines && source !== "home",
@@ -83,7 +85,7 @@ export function DishCatalog({
       return true
     })
     return rankList(list, items)
-  }, [q, items, vegetarian, taste, includeOutlines, source])
+  }, [deferredQ, items, vegetarian, taste, includeOutlines, source])
 
   const filtered = useMemo(
     () =>
@@ -91,16 +93,17 @@ export function DishCatalog({
         haveOnly,
         useSoon,
         maxTime,
-        hideZeroMatch: items.length > 0 && !includeOutlines && !q,
+        hideZeroMatch: items.length > 0 && !includeOutlines && !deferredQ,
         savedOnly,
         cookedOnly,
         savedIds: savedRecipes,
         cookedIds: cookedHistory,
       }),
-    [dishes, haveOnly, useSoon, maxTime, includeOutlines, q, savedOnly, cookedOnly, savedRecipes, cookedHistory, items.length],
+    [dishes, haveOnly, useSoon, maxTime, includeOutlines, deferredQ, savedOnly, cookedOnly, savedRecipes, cookedHistory, items.length],
   )
   const page = filtered.slice(0, shown)
   const emptyFridge = items.length === 0
+  const busy = listPending || searchPending
 
   return (
     <section className="space-y-3">
@@ -114,7 +117,10 @@ export function DishCatalog({
         <input
           type="checkbox"
           checked={includeOutlines}
-          onChange={(e) => setSettings({ includeOutlines: e.target.checked })}
+          onChange={(e) => {
+            const on = e.target.checked
+            startListTransition(() => setSettings({ includeOutlines: on }))
+          }}
           className="size-5 accent-mint"
         />
         <span>
@@ -232,9 +238,9 @@ export function DishCatalog({
         ))}
       </div>
 
-      {listPending && <LoadingStatus>{t("updatingIdeas")}</LoadingStatus>}
+      {busy && <LoadingStatus>{t("updatingIdeas")}</LoadingStatus>}
 
-      {emptyFridge && !q && (
+      {emptyFridge && !deferredQ && (
         <div className="rounded-card border border-line bg-surface p-4">
           <h3 className="font-display text-xl">{t("searchEmptyTitle")}</h3>
           <p className="mt-1 text-sm text-muted">{t("searchEmptyBody")}</p>
@@ -254,7 +260,7 @@ export function DishCatalog({
       )}
 
       {!emptyFridge && filtered.length === 0 && (
-        <p className="text-sm text-muted">{q ? t("searchNoHits") : t("filterBody")}</p>
+        <p className="text-sm text-muted">{deferredQ ? t("searchNoHits") : t("filterBody")}</p>
       )}
 
       <ul className="space-y-2">

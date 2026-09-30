@@ -89,25 +89,40 @@ function norm(s: string) {
   return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim()
 }
 
+/** Prebuilt alias rows — avoids rebuilding name lists on every findShelf call. */
+const SHELF_ROWS: { alias: string; food: ShelfFood; rank: number }[] = []
+for (const food of SHELF) {
+  const labels: { text: string; rank: number }[] = [
+    { text: food.name, rank: 300 },
+    ...food.aliases.map((text) => ({ text, rank: 200 })),
+  ]
+  const zh = ZH_FOOD[food.name]
+  if (zh) labels.push({ text: zh, rank: 200 })
+  for (const { text, rank } of labels) {
+    const alias = norm(text)
+    if (alias) SHELF_ROWS.push({ alias, food, rank })
+  }
+}
+
+/** Memoize fuzzy shelf matches — ranking calls findShelf thousands of times per tap. */
+const findShelfCache = new Map<string, ShelfFood | undefined>()
+
 export function findShelf(name: string): ShelfFood | undefined {
   const n = norm(name)
   if (!n) return undefined
+  if (findShelfCache.has(n)) return findShelfCache.get(n)
   let best: { food: ShelfFood; score: number } | undefined
-  for (const food of SHELF) {
-    const extra = ZH_FOOD[food.name] ? [ZH_FOOD[food.name]] : []
-    const names = [
-      { text: food.name, rank: 300 },
-      ...food.aliases.map((text) => ({ text, rank: 200 })),
-      ...extra.map((text) => ({ text, rank: 200 })),
-    ]
-    for (const { text, rank } of names) {
-      const alias = norm(text)
-      if (!alias) continue
-      const score = alias === n ? rank + alias.length : n.includes(alias) || alias.includes(n) ? rank / 2 + alias.length : 0
-      if (score > (best?.score ?? 0)) best = { food, score }
-    }
+  for (const { alias, food, rank } of SHELF_ROWS) {
+    const score = alias === n ? rank + alias.length : n.includes(alias) || alias.includes(n) ? rank / 2 + alias.length : 0
+    if (score > (best?.score ?? 0)) best = { food, score }
   }
+  findShelfCache.set(n, best?.food)
   return best?.food
+}
+
+/** Stable food identity for matching fridge stock to recipe needs. */
+function foodKey(name: string) {
+  return findShelf(name)?.name ?? `~${norm(name)}`
 }
 
 function shopName(name: string) {
@@ -126,10 +141,7 @@ export function defaultExpiry(name: string, bought = todayISO(), opened = false)
 }
 
 function sameFood(have: string, need: string) {
-  const left = findShelf(have)
-  const right = findShelf(need)
-  if (left && right) return left.name === right.name
-  return norm(have) === norm(need)
+  return foodKey(have) === foodKey(need)
 }
 
 export function isVegetarian(recipe: Recipe) {
@@ -147,24 +159,36 @@ export type RankedRecipe = {
 export type SuggestMode = "strict" | "free"
 export type Priority = 0 | 1 | 2 | 3
 
-function scoreOne(recipe: Recipe, items: FoodItem[], priority: Priority, favorites: string[]): RankedRecipe {
+type StockRow = { key: string; name: string; days: number }
+
+function stockRows(items: FoodItem[]): StockRow[] {
+  return items.map((item) => ({
+    key: foodKey(item.name),
+    name: item.name,
+    days: daysUntil(item.expires),
+  }))
+}
+
+function scoreOne(recipe: Recipe, stock: StockRow[], priority: Priority, favorites: string[]): RankedRecipe {
   const liked = favorites.includes(recipe.cuisine)
   const matched: string[] = []
   const missing: string[] = []
   const urgent: string[] = []
   for (const need of recipe.need) {
-    const hit = items.find((item) => daysUntil(item.expires) >= 0 && sameFood(item.name, need))
+    const key = foodKey(need)
+    const hit = stock.find((item) => item.days >= 0 && item.key === key)
     if (hit) {
       matched.push(need)
-      if (daysUntil(hit.expires) <= 3) urgent.push(hit.name)
+      if (hit.days <= 3) urgent.push(hit.name)
     } else missing.push(need)
   }
   let optionalHits = 0
   for (const extra of recipe.optional) {
-    const hit = items.find((item) => daysUntil(item.expires) >= 0 && sameFood(item.name, extra))
+    const key = foodKey(extra)
+    const hit = stock.find((item) => item.days >= 0 && item.key === key)
     if (!hit) continue
     optionalHits += 1
-    if (daysUntil(hit.expires) <= 3 && !urgent.includes(hit.name)) urgent.push(hit.name)
+    if (hit.days <= 3 && !urgent.includes(hit.name)) urgent.push(hit.name)
   }
   const favW = [0, 6, 18, 40][priority]
   const missW = [4, 2.5, 0.8, 0.25][priority]
@@ -249,11 +273,12 @@ export function rankRecipes(
   const fridgeOnly = !profileLeads(taste) && (taste?.goal === "fridge" || priority < 2)
   const saved = new Set(options.savedIds ?? [])
   const cooked = new Set(options.cookedIds ?? [])
+  const stock = stockRows(items)
   // Tonight ranking uses the cookable core only — imported outlines stay search/browse-only.
   const pool = cookableBook(vegetarian, extras)
   return pool
     .map((recipe) => {
-      const row = scoreOne(recipe, items, priority, favorites)
+      const row = scoreOne(recipe, stock, priority, favorites)
       const fit = profileBonus(recipe, taste)
       const liked = favorites.includes(recipe.cuisine)
       if (profileLeads(taste)) {
@@ -342,15 +367,25 @@ export function dishSource(id: string): "home" | "lkk" | "knorr" | "guardian" {
 }
 
 /** Real cookable core: home recipes + user extras. Outline catalogue is excluded. */
+const COOKABLE_BASE = [...MORE, ...EXTRA].map(enrichRecipe)
+const COOKABLE_VEG = COOKABLE_BASE.filter(isVegetarian)
+const FULL_BASE = [...MORE, ...EXTRA, ...RECIPES].map(enrichRecipe)
+const FULL_VEG = FULL_BASE.filter(isVegetarian)
+const RECIPE_BY_ID = new Map<string, Recipe>(FULL_BASE.map((recipe) => [recipe.id, recipe]))
+
 function cookableBook(vegetarian: boolean, extras: Recipe[] = []): Recipe[] {
-  const book = [...MORE, ...EXTRA, ...extras.filter(isCookableRecipe)].map(enrichRecipe)
-  return vegetarian ? book.filter(isVegetarian) : book
+  const base = vegetarian ? COOKABLE_VEG : COOKABLE_BASE
+  if (!extras.length) return base
+  const added = extras.filter(isCookableRecipe).map(enrichRecipe)
+  return vegetarian ? [...base, ...added.filter(isVegetarian)] : [...base, ...added]
 }
 
 /** Full searchable set including imported outlines (for browse / search only). */
 function fullBook(vegetarian: boolean, extras: Recipe[] = []): Recipe[] {
-  const book = [...MORE, ...EXTRA, ...extras, ...RECIPES].map(enrichRecipe)
-  return vegetarian ? book.filter(isVegetarian) : book
+  const base = vegetarian ? FULL_VEG : FULL_BASE
+  if (!extras.length) return base
+  const added = extras.map(enrichRecipe)
+  return vegetarian ? [...base, ...added.filter(isVegetarian)] : [...base, ...added]
 }
 
 export function listRecipes(
@@ -375,6 +410,7 @@ export function searchRecipes(
   if (!q) return []
   const includeOutlines = options.includeOutlines === true
   const limit = options.limit ?? 12
+  const stock = stockRows(items)
   const cookable = cookableBook(vegetarian)
   const outlines = includeOutlines ? fullBook(vegetarian).filter(isOutlineRecipe) : []
   const match = (recipe: Recipe) => {
@@ -392,11 +428,11 @@ export function searchRecipes(
     )
     return blob.includes(q)
   }
-  const cookHits = cookable.filter(match).filter((recipe) => fitsTaste(recipe, taste)).map((recipe) => scoreOne(recipe, items, 3, []))
+  const cookHits = cookable.filter(match).filter((recipe) => fitsTaste(recipe, taste)).map((recipe) => scoreOne(recipe, stock, 3, []))
   const outlineHits = outlines
     .filter(match)
     .filter((recipe) => fitsTaste(recipe, taste))
-    .map((recipe) => scoreOne(recipe, items, 3, []))
+    .map((recipe) => scoreOne(recipe, stock, 3, []))
   return [...cookHits, ...outlineHits].slice(0, limit)
 }
 
@@ -412,11 +448,11 @@ export function suggestRecipes(
 }
 
 export function ideasByIds(ids: string[], items: FoodItem[], extras: Recipe[] = []): RankedRecipe[] {
-  const byId = new Map<string, Recipe>()
-  for (const recipe of [...MORE, ...EXTRA, ...extras, ...RECIPES].map(enrichRecipe)) byId.set(recipe.id, recipe)
+  const stock = stockRows(items)
+  const extraById = extras.length ? new Map(extras.map((recipe) => [recipe.id, enrichRecipe(recipe)])) : null
   return ids.flatMap((id) => {
-    const recipe = byId.get(id)
-    return recipe ? [scoreOne(recipe, items, 3, [])] : []
+    const recipe = extraById?.get(id) ?? RECIPE_BY_ID.get(id)
+    return recipe ? [scoreOne(recipe, stock, 3, [])] : []
   })
 }
 
@@ -424,7 +460,8 @@ export function foodsForMeal(recipe: Recipe, items: FoodItem[]): FoodItem[] {
   const used = new Set<string>()
   const out: FoodItem[] = []
   for (const need of [...recipe.need, ...recipe.optional]) {
-    const hit = items.find((item) => daysUntil(item.expires) >= 0 && !used.has(item.id) && sameFood(item.name, need))
+    const key = foodKey(need)
+    const hit = items.find((item) => daysUntil(item.expires) >= 0 && !used.has(item.id) && foodKey(item.name) === key)
     if (!hit) continue
     used.add(hit.id)
     out.push(hit)
@@ -457,16 +494,13 @@ export function shopForIdeas(items: FoodItem[], ideas: RankedRecipe[]) {
   return [...rows.values()]
 }
 
-export function planMeals(
+export function planFromRanked(
+  ranked: RankedRecipe[],
   items: FoodItem[],
-  vegetarian: boolean,
   priority: Priority = 0,
   favorites: string[] = [],
   taste: SurveyAnswers | null = null,
-  extras: Recipe[] = [],
-  options: { savedIds?: string[]; lastTonightId?: string; cookedIds?: string[] } = {},
 ) {
-  const ranked = rankRecipes(items, vegetarian, priority, favorites, taste, extras, options)
   if (profileLeads(taste)) {
     const ideas = ranked.slice(0, 3)
     return { ideas, shop: shopForIdeas(items, ideas) }
@@ -495,6 +529,19 @@ export function planMeals(
     ideas.push(row)
   }
   return { ideas, shop: shopForIdeas(items, ideas) }
+}
+
+export function planMeals(
+  items: FoodItem[],
+  vegetarian: boolean,
+  priority: Priority = 0,
+  favorites: string[] = [],
+  taste: SurveyAnswers | null = null,
+  extras: Recipe[] = [],
+  options: { savedIds?: string[]; lastTonightId?: string; cookedIds?: string[] } = {},
+) {
+  const ranked = rankRecipes(items, vegetarian, priority, favorites, taste, extras, options)
+  return planFromRanked(ranked, items, priority, favorites, taste)
 }
 
 export function sampleItems(): FoodItem[] {

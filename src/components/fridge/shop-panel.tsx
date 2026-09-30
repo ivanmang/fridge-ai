@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react"
+import { useDeferredValue, useMemo, useRef, useState } from "react"
 import { BusyButton, fieldClass, LoadingStatus, Sheet, useI18n } from "@/components/fridge/shared"
 import { foodLabel, placeLabel, recipeText, whenText } from "@/lib/i18n"
 import {
@@ -43,8 +43,13 @@ export function DishSearch() {
   const [warn, setWarn] = useState("")
   const [stepText, setStepText] = useState("")
   const requestRef = useRef(0)
-  const hits = useMemo(() => searchRecipes(query, items, vegetarian, taste, { includeOutlines }), [query, items, vegetarian, taste, includeOutlines])
+  const deferredQuery = useDeferredValue(query)
+  const hits = useMemo(
+    () => searchRecipes(deferredQuery, items, vegetarian, taste, { includeOutlines }),
+    [deferredQuery, items, vegetarian, taste, includeOutlines],
+  )
   const picked = useMemo(() => ideasByIds(wanted, items, extras), [wanted, items, extras])
+  const searchPending = query.trim() !== deferredQuery.trim()
 
   async function lookUp() {
     const q = query.trim()
@@ -162,6 +167,7 @@ export function DishSearch() {
         </BusyButton>
       )}
       {warn && !adding && <p role="status" className="mt-2 text-sm text-clay">{warn}</p>}
+      {searchPending && query.trim() && <LoadingStatus>{t("updatingIdeas")}</LoadingStatus>}
       {query.trim() && (
         <div className="mt-2 space-y-2">
           {!hits.length && !others.length && !looking && <p className="text-sm text-muted">{t("noDish")}</p>}

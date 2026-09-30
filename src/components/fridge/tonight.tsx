@@ -11,7 +11,7 @@ import {
   foodsForMeal,
   ideasByIds,
   isOutlineRecipe,
-  planMeals,
+  planFromRanked,
   rankRecipes,
   shopForIdeas,
   todayISO,
@@ -160,8 +160,8 @@ export function Tonight({
     [items, vegetarian, priority, favorites, taste, extras, rankOpts],
   )
   const plan = useMemo(
-    () => planMeals(items, vegetarian, priority, favorites, taste, extras, rankOpts),
-    [items, vegetarian, priority, favorites, taste, extras, rankOpts],
+    () => planFromRanked(all, items, priority, favorites, taste),
+    [all, items, priority, favorites, taste],
   )
   const picked = useMemo(() => ideasByIds(wanted, items, extras).filter((row) => !isOutlineRecipe(row.recipe)), [wanted, items, extras])
   const shopRows = picked.length ? shopForIdeas(items, picked) : plan.shop
