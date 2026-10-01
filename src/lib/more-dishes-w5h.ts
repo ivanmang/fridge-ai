@@ -74,7 +74,7 @@ export const MORE_W5H: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Ginger", "Spring onion"],
+    need: ["Daikon", "Ginger", "Spring onion"],
     optional: ["Salt", "Sugar", "Cornstarch"],
     steps: [
       "Arrange Chicken thighs with Cooked rice on a heatproof plate; scatter ginger and spring onion.",
@@ -162,7 +162,7 @@ export const MORE_W5H: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Mozzarella", "Shrimp", "Carrots", "Beans", "Eggs"],
+    need: ["Mozzarella", "Shrimp", "Lily bulb", "Carrots", "Beans", "Eggs"],
     optional: ["Chicken stock"],
     steps: [
       "Blanch Tofu briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -558,7 +558,7 @@ export const MORE_W5H: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Peanuts", "Beans", "Mozzarella"],
+    need: ["Chinese yam", "Peanuts", "Beans", "Mozzarella"],
     optional: ["Salt"],
     steps: [
       "Blanch Chicken thighs briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -624,7 +624,7 @@ export const MORE_W5H: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Cooked rice", "Ginger", "Celery", "Mozzarella"],
+    need: ["Daikon", "Cooked rice", "Ginger", "Celery", "Mozzarella"],
     optional: ["Sugar"],
     steps: [
       "Blanch White fish briefly if it is meat; rinse. Cut Cooked rice into chunks.",

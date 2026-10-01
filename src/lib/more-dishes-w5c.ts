@@ -140,7 +140,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Dried chili", "Garlic", "Ginger", "Rice"],
+    need: ["Dried chili", "Garlic", "Ginger", "Rice", "Mozzarella"],
     optional: ["Cooking oil", "Oyster sauce", "Sesame oil", "Cornstarch", "Sugar"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -162,7 +162,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Bell pepper", "Onion", "Ginger", "Garlic", "Dried chili", "Shallot", "Spring onion", "Cilantro"],
+    need: ["Eggs", "Bell pepper", "Onion", "Ginger", "Garlic", "Dried chili", "Shallot", "Spring onion", "Cilantro"],
     optional: ["Oyster sauce", "Soy sauce", "Sugar"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -206,7 +206,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Spring onion", "Ginger", "Dried mushrooms", "Onion", "Fermented black beans"],
+    need: ["Chicken thighs", "Spring onion", "Ginger", "Dried mushrooms", "Onion", "Mozzarella", "Fermented black beans"],
     optional: [],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -228,7 +228,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Zucchini", "Tomato", "Gochujang"],
+    need: ["Chicken thighs", "Zucchini", "Tomato", "Gochujang"],
     optional: ["Oyster sauce", "Honey"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -250,7 +250,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Mushroom", "Tomato", "Eggs", "Cheddar"],
+    need: ["Chicken thighs", "Mushroom", "Tomato", "Eggs", "Cheddar"],
     optional: ["Oyster sauce", "Sesame oil"],
     steps: [
       "Prep Chicken thighs and Eggs plus Tomato; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -294,7 +294,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Celery", "Carrots"],
+    need: ["Celery", "Carrots", "Mozzarella"],
     optional: ["Soy sauce", "Sesame oil", "Sugar"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -316,7 +316,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Western",
     time: 15,
     servings: 2,
-    need: ["Cucumber", "Carrots", "Mustard"],
+    need: ["Chicken thighs", "Cucumber", "Carrots", "Mustard"],
     optional: ["Oyster sauce", "Soy sauce", "Vinegar", "Sugar"],
     steps: [
       "Prep Chicken thighs and vegetables; cook any protein through and cool slightly.",
@@ -404,7 +404,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Spring onion", "Garlic"],
+    need: ["Spring onion", "Garlic", "Mozzarella"],
     optional: ["Cooking oil", "Cornstarch"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -426,7 +426,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Ham", "Wonton wrappers", "Eggs"],
+    need: ["Eggs", "Ham", "Wonton wrappers"],
     optional: ["Chicken stock", "Salt", "Sugar", "Sesame oil", "Cornstarch"],
     steps: [
       "Blanch Chicken thighs briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -470,7 +470,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Onion", "Dried chili", "Eggs", "Gochujang"],
+    need: ["Daikon", "Onion", "Dried chili", "Eggs", "Gochujang"],
     optional: ["Salt", "White pepper", "Oyster sauce", "Sugar"],
     steps: [
       "Cut White fish and vegetables into pieces; lightly brown White fish in a little oil.",
@@ -536,7 +536,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Potato", "Dried chili", "Spring onion", "Ginger", "Garlic", "Lotus root", "Doubanjiang"],
+    need: ["Chicken thighs", "Potato", "Dried chili", "Spring onion", "Ginger", "Garlic", "Lotus root", "Doubanjiang", "Mozzarella"],
     optional: ["Chicken stock", "Soy sauce", "Sugar"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -558,7 +558,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Ham", "Shrimp", "Ginger", "Mushroom"],
+    need: ["Napa cabbage", "Ham", "Dried shrimp", "Ginger", "Mushroom"],
     optional: [],
     steps: [
       "Prep Ham and White fish plus Pak choi; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -646,7 +646,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Noodles", "Duck", "Bean sprouts", "Garlic"],
+    need: ["Chinese yam", "Duck", "Bean sprouts", "Garlic"],
     optional: ["Chicken stock", "Oyster sauce", "Soy sauce", "Vinegar", "Sugar", "Sesame oil", "White pepper"],
     steps: [
       "Prep Noodles and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -712,7 +712,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Hong Kong",
     time: 45,
     servings: 3,
-    need: ["Dried mushrooms", "Glass noodles", "Eggs"],
+    need: ["Ground pork", "Dried mushrooms", "Glass noodles", "Eggs"],
     optional: ["Oyster sauce", "Soy sauce", "Sesame oil", "White pepper", "Sugar", "Vinegar", "Cornstarch"],
     steps: [
       "Blanch Tofu briefly if it is meat; rinse. Cut Mushroom into chunks.",
@@ -778,8 +778,8 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Cooked rice", "Corn", "Bell pepper", "Mango", "Beef steak", "Garlic"],
-    optional: ["Oyster sauce", "White pepper"],
+    need: ["Cooked rice", "Corn", "Bell pepper", "Mango", "Beef steak", "Garlic", "Mozzarella"],
+    optional: ["Paprika", "Oyster sauce", "White pepper"],
     steps: [
       "Prep Beef steak and Corn plus Cooked rice; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Beef steak and cook until just cooked.",
@@ -800,8 +800,8 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Chicken wings", "Chicken thighs"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
+    need: ["Mozzarella"],
+    optional: ["Oyster sauce", "Honey"],
     steps: [
       "Pat Chicken wings dry; season with salt and white pepper. Slice Chicken thighs if using as a side.",
       "Pan-fry in a lightly oiled skillet over medium heat until browned and cooked until cooked through (74°C / 165°F).",
@@ -866,7 +866,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Ground beef", "Corn", "Eggs", "Cilantro"],
+    need: ["Ground beef", "Corn", "Eggs", "Cilantro", "Mozzarella"],
     optional: ["Cornstarch", "Oyster sauce", "Chicken stock", "Sesame oil", "White pepper"],
     steps: [
       "Blanch Beef steak briefly if it is meat; rinse. Cut Corn into chunks.",
@@ -910,7 +910,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Flour", "Eggs", "Bread", "Lemon", "Yogurt", "Garlic", "Cucumber"],
+    need: ["Flour", "Mozzarella", "Eggs", "Bread", "Lemon", "Yogurt", "Garlic", "Cucumber"],
     optional: ["Cornstarch", "Baking soda", "Salt", "White pepper", "Oyster sauce"],
     steps: [
       "Prep Tofu and Pak choi; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -932,7 +932,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Ground pork", "Cabbage", "Corn", "Mushroom"],
+    need: ["Ground pork", "Cabbage", "Corn", "Quinoa", "Mushroom"],
     optional: ["Sesame oil", "White pepper", "Soy sauce", "Chili oil"],
     steps: [
       "Pat Ground pork dry; season with salt and white pepper. Slice vegetables if using as a side.",
@@ -1020,8 +1020,8 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Squid", "Tofu", "Shrimp", "Garlic", "Shallot"],
-    optional: ["Chili oil", "Oyster sauce", "Sugar"],
+    need: ["Squid", "Tofu", "Dried shrimp", "Garlic", "Shallot"],
+    optional: ["Paprika", "Chili oil", "Oyster sauce", "Sugar"],
     steps: [
       "Prep Shrimp and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Shrimp and cook until just cooked.",
@@ -1042,7 +1042,7 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Shallot", "Dried chili", "Garlic", "Satay sauce"],
+    need: ["Shallot", "Dried chili", "Garlic", "Satay sauce", "Mozzarella"],
     optional: ["Oyster sauce", "Sesame oil", "Sugar"],
     steps: [
       "Prep Spare ribs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",

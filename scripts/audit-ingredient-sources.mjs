@@ -126,10 +126,18 @@ function cleanIngredientName(raw) {
     /^[\d./½¼¾⅓⅔⅛⅜⅝⅞\s\-–—到至约約]*\s*(kg|g|grams?|ounces?|oz|lb|lbs|pounds?|cups?|tbsp|tsp|tablespoons?|teaspoons?|ml|l|liters?|litres?|slices?|cloves?|stalks?|pieces?|pcs?|pinch(?:es)?|dashes?|cans?|packs?|packets?|bunches?|heads?|large|medium|small|whole|湯匙|茶匙|杯|克|公斤|兩|钱|錢|片|粒|隻|只|条|條|个|個|瓣|棵|根|适量|適量)?\s*/i,
     "",
   )
+  // Knorr / LKK ZH lines often keep qty at the end: "牛蒡 1條", "蜆 2斤", "鹽 1茶匙"
+  s = s.replace(
+    /\s*[\d./½¼¾⅓⅔⅛⅜⅝⅞]+\s*(kg|g|grams?|oz|lb|cups?|tbsp|tsp|ml|l|湯匙|茶匙|杯|克|公斤|斤|兩|钱|錢|片|粒|隻|只|条|條|个|個|瓣|棵|根|匙|磅)?\s*$/i,
+    "",
+  )
+  s = s.replace(/\s*(适量|適量|少許|少许|各少許|各少许)\s*$/i, "")
   s = s.replace(/,.*$/, "")
   s = s.replace(/\s+/g, " ").trim()
   // drop leading adjectives that confuse matching
   s = s.replace(/^(fresh|large|medium|small|lean|ripe|dried|ground|minced|sliced|chopped|cooked|raw|frozen|neutral|extra virgin)\s+/i, "")
+  // Knorr group headers / brand stock powders / slurry labels
+  if (/^(調味|调味|未分組|未分组|材料|醃料|腌料|配料|芡汁|芡|勾芡)$/u.test(s)) return ""
   return s.trim()
 }
 
@@ -201,18 +209,46 @@ function mapToCanonical(rawName) {
     [/^生抽|老抽|豉油|酱油|醬油$/, "Soy sauce"],
     [/^盐|鹽|sea salt|kosher salt$/, "Salt"],
     [/^糖|白糖|冰糖|brown sugar|caster sugar$/, "Sugar"],
-    [/^生粉|淀粉|澱粉|potato starch|corn ?starch$/, "Cornstarch"],
+    [/^生粉|淀粉|澱粉|potato starch|corn ?starch|鷹粟粉|鹰粟粉$/, "Cornstarch"],
     [/^料酒|黄酒|紹興|绍兴$/, "Shaoxing wine"],
-    [/^葱|蔥|青葱|青蔥$/, "Spring onion"],
-    [/^蒜|蒜头|蒜頭|蒜蓉$/, "Garlic"],
-    [/^姜|薑$/, "Ginger"],
-    [/^胡椒|黑胡椒|白胡椒粉?$/, "White pepper"],
+    [/^葱|蔥|青葱|青蔥|蔥花|葱花$/, "Spring onion"],
+    [/^蒜|蒜头|蒜頭|蒜蓉|蒜香$/, "Garlic"],
+    [/^姜|薑|薑片|姜片|薑蓉$/, "Ginger"],
+    [/^胡椒|黑胡椒|白胡椒粉?|胡椒粉$/, "White pepper"],
     [/^醋|香醋|米醋|陈醋|陳醋$/, "Vinegar"],
     [/^蚝油|蠔油$/, "Oyster sauce"],
     [/^麻油|香油$/, "Sesame oil"],
-    [/^鸡蛋|雞蛋|蛋$/, "Eggs"],
-    [/^番茄|西红柿|番茄$/, "Tomato"],
-    [/^鸡粉|雞粉|鸡汤|雞湯|bouillon|chicken stock|chicken broth$/, "Chicken stock"],
+    [/^鸡蛋|雞蛋|蛋|蛋花$/, "Eggs"],
+    [/^番茄|西红柿|蕃茄$/, "Tomato"],
+    [/^鸡粉|雞粉|鸡汤|雞湯|純味鮮雞粉|纯味鲜鸡粉|鮮雞粉|鲜鸡粉|家樂牌.*雞粉|家乐牌.*鸡粉|bouillon|chicken stock|chicken broth$/, "Chicken stock"],
+    [/^蜆|蚬|蜆肉|蚬肉$/, "Clams"],
+    [/^牛蒡$/, "Burdock"],
+    [/^冬瓜$/, "Winter melon"],
+    [/^金菇|金針菇|金针菇$/, "Enoki"],
+    [/^肥牛$/, "Beef steak"],
+    [/^烏冬|乌冬$/, "Udon"],
+    [/^通粉|通心粉$/, "Macaroni"],
+    [/^藜麥|藜麦$/, "Quinoa"],
+    [/^秋葵$/, "Okra"],
+    [/^淮山|鮮淮山|鲜淮山$/, "Chinese yam"],
+    [/^馬蹄|马蹄$/, "Water chestnuts"],
+    [/^百合$/, "Lily bulb"],
+    [/^年糕$/, "Rice cakes"],
+    [/^粉絲|粉丝$/, "Glass noodles"],
+    [/^紫菜$/, "Nori"],
+    [/^蝦米|虾米$/, "Dried shrimp"],
+    [/^津白|大白菜|黃芽白|黄芽白$/, "Napa cabbage"],
+    [/^白蘿蔔|白萝卜$/, "Daikon"],
+    [/^豬軟骨|猪软骨|排骨|豬骨|猪骨$/, "Spare ribs"],
+    [/^豬手|猪手|豬蹄|猪蹄$/, "Pork knuckle"],
+    [/^沙薑|沙姜$/, "Sand ginger"],
+    [/^雞柳|鸡柳$/, "Chicken breast"],
+    [/^牛尾$/, "Beef steak"],
+    [/^魚柳|鱼柳|魚腩|鱼腩$/, "White fish"],
+    [/^雞翼|鸡翼$/, "Chicken wings"],
+    [/^雞肉|鸡肉$/, "Chicken thighs"],
+    [/^牛肉$/, "Beef steak"],
+    [/^豬肉|猪肉|肉碎|肉片|肉絲|肉丝|肉粒$/, "Ground pork"],
   ]
   for (const [re, canonical] of heuristics) {
     if (re.test(n) || re.test(cleaned)) {
@@ -585,6 +621,76 @@ function parseAfterworkIngredients(html) {
   }
 }
 
+/** Knorr HK blocks live fetches (403). Prefer Wayback snapshot + JSON-LD. */
+async function fetchKnorrViaWayback(url) {
+  let wb = null
+  try {
+    const availUrl = `https://archive.org/wayback/available?url=${encodeURIComponent(url)}`
+    const { text: availText } = await fetchText(availUrl, 25000)
+    const snap = JSON.parse(availText)?.archived_snapshots?.closest
+    if (snap?.available && snap?.url) wb = String(snap.url).replace(/^http:\/\//i, "https://")
+  } catch {
+    /* fall through to CDX */
+  }
+  if (!wb) {
+    // available API sometimes misses snapshots that CDX still lists
+    const cdxUrl = `https://web.archive.org/cdx/search/cdx?url=${encodeURIComponent(url)}&output=json&filter=statuscode:200&limit=5`
+    const { text: cdxText } = await fetchText(cdxUrl, 25000)
+    const rows = JSON.parse(cdxText)
+    // [header, ...rows]; pick newest timestamp
+    const hits = (rows || []).slice(1).filter((r) => r[1] && r[2])
+    hits.sort((a, b) => String(b[1]).localeCompare(String(a[1])))
+    if (hits[0]) {
+      const ts = hits[0][1]
+      const original = hits[0][2]
+      wb = `https://web.archive.org/web/${ts}/${original}`
+    }
+  }
+  if (!wb) throw new Error("Knorr: no Wayback snapshot")
+  const { text } = await fetchText(wb, 45000)
+  if (/Access Denied/i.test(text) && text.length < 2000) throw new Error("Knorr Wayback access denied")
+  const ld = parseJsonLdIngredients(text)
+  if (ld.ingredients?.length) {
+    const ingredients = ld.ingredients.filter(
+      (x) => !/^(調味|调味|未分組|未分组)$/u.test(String(x).trim()),
+    )
+    return {
+      title: ld.title,
+      ingredients,
+      structured: structureFromRawLines(ingredients, ["調味", "调味", "未分組", "未分组", "材料"]),
+      via: "knorr-wayback-jsonld",
+    }
+  }
+  const plain = text
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, "\n")
+  const lines = plain
+    .split("\n")
+    .map((l) => l.replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+  const ings = []
+  let capture = false
+  for (const line of lines) {
+    if (line === "材料" || line.startsWith("材料")) {
+      capture = true
+      continue
+    }
+    if (!capture) continue
+    if (/^(做法|步驟|步骤|營養|营养|探索)/.test(line)) break
+    if (/^(調味|调味|未分組|未分组)$/.test(line)) continue
+    if (line.length < 2 || line.length > 40) continue
+    ings.push(line)
+  }
+  const titleMatch = text.match(/<title>([^<]+)/i)
+  return {
+    title: titleMatch ? titleMatch[1].replace(/\s*[|｜].*$/, "").trim() : null,
+    ingredients: ings,
+    structured: structureFromRawLines(ings, ["調味", "调味"]),
+    via: "knorr-wayback-html",
+  }
+}
+
 async function fetchSourceIngredients(url) {
   if (cache[url]?.ingredients && cache[url]?.structured && !process.env.REFRESH) return cache[url]
   const host = new URL(url).hostname
@@ -592,6 +698,8 @@ async function fetchSourceIngredients(url) {
   try {
     if (host.includes("thewoksoflife.com")) {
       result = await fetchWolViaWp(url)
+    } else if (host.includes("knorr.com")) {
+      result = await fetchKnorrViaWayback(url)
     } else {
       const { text } = await fetchText(url)
       if (host.includes("madewithlau.com") || host.includes("bbc.co.uk")) {
@@ -636,7 +744,8 @@ function titleMatchScore(recipe, title) {
   const hay = norm(title)
   let score = 0
   const zh = recipe.zh || ""
-  if (zh && hay.includes(norm(zh))) score += 5
+  // Full ZH dish name on the page is a strong exclusive-quality signal.
+  if (zh && zh.length >= 2 && hay.includes(norm(zh))) score += 6
   const en = norm(recipe.name)
     .split(" ")
     .filter((w) => w.length >= 3)

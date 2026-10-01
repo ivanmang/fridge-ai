@@ -228,7 +228,7 @@ export const MORE_W3L: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Noodles", "Chicken breast", "Onion", "Garlic", "Celery", "Mushroom", "Water chestnuts", "Cabbage", "Pak choi", "Bean sprouts"],
+    need: ["Noodles", "Chicken breast", "Onion", "Garlic", "Celery", "Mushroom", "Water chestnuts", "Napa cabbage", "Pak choi", "Bean sprouts"],
     optional: ["Cooking oil", "Soy sauce", "Sesame oil", "Cornstarch", "Chicken stock", "Salt", "Sugar", "White pepper"],
     steps: [
       "Stir-fry chicken until 74°C / 165°F; remove.",

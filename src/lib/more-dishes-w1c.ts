@@ -74,8 +74,8 @@ export const MORE_W1C: Recipe[] = [
     cuisine: "Hong Kong",
     time: 18,
     servings: 2,
-    need: ["Cooked leftovers", "Noodles"],
-    optional: ["Soy sauce", "Garlic", "Spring onion", "Bean sprouts", "Oyster sauce"],
+    need: ["Noodles", "Onion", "Carrots", "Cabbage", "Bean sprouts", "Chicken thighs"],
+    optional: ["Cooking oil", "Oyster sauce", "Cornstarch", "White pepper", "Soy sauce", "Sugar", "Chicken stock", "Sesame oil"],
     steps: [
       "Parboil 250 g noodles; drain well. Dice 2 cups of cooked leftovers; mince 2 garlic cloves if using.",
       "Heat a wok with 1–2 tbsp oil. Stir-fry leftovers and garlic until piping hot—leftover meat must hit 74°C / 165°F.",

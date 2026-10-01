@@ -187,8 +187,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 30,
     servings: 2,
-    need: ["Pork chops", "Pickled mustard", "Water chestnuts", "Onion"],
-    optional: ["Oyster sauce", "Sugar", "Cornstarch", "Sesame oil", "Chicken stock", "White pepper", "Cooking oil"],
+    need: ["Eggs", "Ground pork", "Ginger", "Corn", "Water chestnuts", "Spring onion", "Cilantro"],
+    optional: ["Cornstarch", "Sugar", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Sesame oil"],
     steps: [
       "Beat 1 egg with ½ tsp salt (salted-egg style seasoning). Mix into 300 g ground pork with 1 tsp cornstarch, a pinch of white pepper, and 1 tbsp water until sticky.",
       "Press into a shallow heatproof dish about 1.5 cm thick; optional drizzle of soy on top.",

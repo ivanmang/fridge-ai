@@ -8,8 +8,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Chinese",
     time: 15,
     servings: 2,
-    need: ["Potato"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
+    need: ["Potato", "Onion", "Bacon", "Spring onion"],
+    optional: [],
     steps: [
       "Prep Potato and vegetables; cook any protein through and cool slightly.",
       "Whisk a dressing of soy/vinegar/sesame oil (or lemon + olive oil).",
@@ -30,8 +30,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Shrimp"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    need: ["Shrimp", "Napa cabbage", "Cheddar", "Cream"],
+    optional: ["Cornstarch"],
     steps: [
       "Cut Shrimp and vegetables into pieces; lightly brown Shrimp in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -52,8 +52,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 35,
     servings: 2,
-    need: ["White fish", "Lettuce", "Rice"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
+    need: ["Rice", "White fish", "Lettuce", "Ginger", "Spring onion"],
+    optional: [],
     steps: [
       "Rinse ½ cup rice; simmer with about 1.2 L water 30–35 minutes, stirring occasionally until creamy.",
       "Add sliced White fish in the last 8–10 minutes until just cooked.",
@@ -74,8 +74,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Bell pepper"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    need: ["Bell pepper", "Apple", "Eggs"],
+    optional: ["Chicken stock", "Oyster sauce", "Cornstarch"],
     steps: [
       "Prep Bell pepper and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Bell pepper and cook until just cooked.",
@@ -96,8 +96,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Eggs", "Spinach"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Shaoxing wine"],
+    need: ["Eggs", "Spinach", "Spring onion"],
+    optional: ["Shaoxing wine"],
     steps: [
       "Arrange Eggs with Spinach on a heatproof plate; scatter ginger and spring onion.",
       "Steam over high heat 10–15 minutes until cooked through.",
@@ -118,8 +118,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Lotus root"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    need: ["Chicken breast", "Garlic", "Lotus root", "Dried chili", "Spring onion", "Corn"],
+    optional: ["Sesame seeds", "White pepper", "Soy sauce", "Sugar", "Shaoxing wine"],
     steps: [
       "Prep Lotus root and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Lotus root and cook until just cooked.",
@@ -140,8 +140,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Salmon", "White fish", "Green beans"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    need: ["Salmon", "Chinese yam", "Okra", "Garlic", "Spring onion"],
+    optional: ["Chicken stock", "White pepper", "Paprika"],
     steps: [
       "Prep Salmon and White fish plus Green beans; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Salmon and cook until just cooked.",
@@ -162,8 +162,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Ground pork"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    need: ["Spare ribs", "Daikon", "Garlic", "Ginger", "Shallot", "Spring onion"],
+    optional: [],
     steps: [
       "Cut Ground pork and vegetables into pieces; lightly brown Ground pork in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -184,8 +184,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Ground pork", "Pork chops"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
+    need: ["Pork chops", "Ginger", "Mozzarella"],
+    optional: ["Sesame seeds", "Chicken stock", "Sugar", "Soy sauce", "Mirin", "Cornstarch"],
     steps: [
       "Pat Ground pork dry; season with salt and white pepper. Slice Pork chops if using as a side.",
       "Pan-fry in a lightly oiled skillet over medium heat until browned and cooked until cooked through (74°C / 165°F).",
@@ -206,8 +206,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Western",
     time: 25,
     servings: 2,
-    need: ["Shrimp", "Tomato", "Pasta"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Olive oil", "Cheddar", "Onion"],
+    need: ["Shrimp", "Pasta", "Tomato", "Garlic", "Shallot", "Thai basil"],
+    optional: [],
     steps: [
       "Boil pasta in salted water until al dente; reserve ½ cup pasta water.",
       "Meanwhile sauté garlic/onion and Shrimp in olive oil until just cooked.",
@@ -228,8 +228,8 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Kimchi", "Rice cakes"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    need: ["Cabbage", "Rice cakes", "Kimchi", "Carrots"],
+    optional: [],
     steps: [
       "Cut Kimchi and Rice cakes into pieces; lightly brown Kimchi in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -294,7 +294,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Garlic"],
+    need: ["Chinese yam", "Garlic"],
     optional: ["Soy sauce", "Sesame oil", "Chili oil"],
     steps: [
       "Blanch Chicken thighs briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -316,7 +316,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Duck", "Lettuce", "Water chestnuts", "Dried mushrooms", "Pineapple", "Shallot", "Spring onion", "Cilantro", "Ginger", "Rice", "Hoisin sauce"],
+    need: ["Duck", "Lettuce", "Water chestnuts", "Dried mushrooms", "Pineapple", "Shallot", "Spring onion", "Cilantro", "Ginger", "Mozzarella", "Rice", "Hoisin sauce"],
     optional: ["Oyster sauce", "Chicken stock"],
     steps: [
       "Prep Lettuce and Tortilla; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -404,7 +404,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Chicken wings"],
+    need: ["Enoki", "Chicken wings"],
     optional: [],
     steps: [
       "Prep Ground pork and Mushroom; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -448,7 +448,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Beef steak", "Noodles", "Bell pepper", "Garlic", "Gochujang"],
+    need: ["Beef steak", "Noodles", "Bell pepper", "Garlic", "Gochujang", "Mozzarella"],
     optional: ["Sesame oil", "Oyster sauce", "Sugar"],
     steps: [
       "Prep Beef steak and Noodles; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -558,7 +558,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Avocado", "Mango", "Carrots", "Cucumber"],
+    need: ["Avocado", "Mango", "Carrots", "Cucumber", "Quinoa"],
     optional: [],
     steps: [
       "Prep Avocado and Mango; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -888,7 +888,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Spring onion", "Ginger", "Rice", "Mozzarella"],
+    need: ["Chicken thighs", "Spring onion", "Ginger", "Rice", "Mozzarella"],
     optional: ["Sesame oil", "Chicken stock", "Cornstarch", "White pepper"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -1020,7 +1020,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Ginger", "Mozzarella"],
+    need: ["Spare ribs", "Ginger", "Mozzarella"],
     optional: ["Salt"],
     steps: [
       "Blanch Tofu briefly if it is meat; rinse. Cut Mushroom into chunks.",
@@ -1042,7 +1042,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Ginger", "Mozzarella"],
+    need: ["Spare ribs", "Chinese yam", "Ginger", "Mozzarella"],
     optional: ["Salt"],
     steps: [
       "Blanch Ground pork briefly if it is meat; rinse. Cut Spare ribs into chunks.",
@@ -1086,7 +1086,7 @@ export const MORE_W5J: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Corn", "Mozzarella"],
+    need: ["Corn", "Spare ribs", "Mozzarella"],
     optional: ["Salt"],
     steps: [
       "Blanch Corn briefly if it is meat; rinse. Cut vegetables into chunks.",

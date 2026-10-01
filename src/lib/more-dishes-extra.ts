@@ -8,8 +8,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Cantonese",
     time: 30,
     servings: 2,
-    need: ["Noodles", "Chicken thighs", "Cabbage"],
-    optional: ["Carrots", "Bean sprouts", "Onion", "Oyster sauce", "Soy sauce", "Garlic", "Spring onion", "Cooking oil", "Cornstarch", "White pepper", "Sugar", "Chicken stock", "Sesame oil"],
+    need: ["Noodles", "Chicken breast", "Onion", "Garlic", "Celery", "Mushroom", "Water chestnuts", "Napa cabbage", "Pak choi", "Bean sprouts"],
+    optional: ["Cooking oil", "Soy sauce", "Sesame oil", "Cornstarch", "Chicken stock", "Salt", "Sugar", "White pepper"],
     steps: [
       "Slice chicken and toss with soy sauce. Shred cabbage; boil or soak noodles until just tender.",
       "Stir-fry chicken until cooked through (74°C / 165°F); remove. Stir-fry cabbage and veg until crisp-tender.",
@@ -23,8 +23,8 @@ export const MORE_EXTRA: Recipe[] = [
         "下面加蠔油生抽炒熱，回雞和芽菜拌勻。",
       ],
     },
-    sourceUrl: "https://www.madewithlau.com/recipes/chow-mein",
-    sourceName: "Made With Lau",
+    sourceUrl: "https://thewoksoflife.com/chicken-chow-mein/",
+    sourceName: "The Woks of Life",
   },
   {
     id: "home-singapore-noodles",
@@ -439,7 +439,7 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Tofu", "Ground pork", "Spring onion", "Garlic", "Shallot", "Bell pepper"],
+    need: ["Tofu", "Ground pork", "Spring onion", "Mozzarella", "Garlic", "Shallot", "Bell pepper"],
     optional: ["Oyster sauce", "Soy sauce", "Sesame oil"],
     steps: [
       "Slice tofu into a dish. Mix ground pork with oyster sauce and cornstarch; mound on tofu.",
@@ -487,7 +487,7 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Hong Kong",
     time: 25,
     servings: 2,
-    need: ["Shrimp", "Onion", "Ginger", "Eggs", "Cooked rice"],
+    need: ["Chicken thighs", "Shrimp", "Onion", "Ginger", "Eggs", "Cooked rice"],
     optional: ["Oyster sauce", "Soy sauce"],
     steps: [
       "Dice chicken (and shrimp); stir-fry with onion until chicken is cooked through (74°C / 165°F).",
@@ -511,7 +511,7 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Shrimp", "Ham", "Bean sprouts", "Onion", "Spring onion", "Eggs", "Cilantro"],
+    need: ["Shrimp", "Ham", "Bean sprouts", "Onion", "Spring onion", "Eggs", "Mozzarella", "Cilantro"],
     optional: ["Oyster sauce"],
     steps: [
       "Beat eggs with a little oyster sauce. Stir-fry shrimp and ham; mix into eggs with sprouts if using.",

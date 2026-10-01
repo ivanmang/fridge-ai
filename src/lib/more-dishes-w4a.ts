@@ -140,8 +140,8 @@ export const MORE_W4A: Recipe[] = [
     cuisine: "Western",
     time: 35,
     servings: 3,
-    need: ["Pumpkin", "Onion", "Milk"],
-    optional: ["Butter", "Garlic", "Salt", "White pepper", "Bread", "Chicken stock"],
+    need: ["Butter", "Onion", "Garlic", "Cream", "Cardamom", "Pumpkin", "Bacon"],
+    optional: ["Chicken stock"],
     steps: [
       "Cube 500 g pumpkin; chop 1 onion. Soften onion and garlic in butter or oil 4–5 minutes.",
       "Add pumpkin and about 3 cups water; simmer 18–20 minutes until soft. Mash or blend until smooth.",
@@ -162,7 +162,7 @@ export const MORE_W4A: Recipe[] = [
     cuisine: "Cantonese",
     time: 55,
     servings: 4,
-    need: ["Ginger", "Cabbage", "Spring onion", "Cilantro"],
+    need: ["Ginger", "Napa cabbage", "Spring onion", "Cilantro"],
     optional: ["Cooking oil", "Salt", "White pepper"],
     steps: [
       "Cut 400 g pork chops into pieces; blanch and rinse. Core and quarter 2 apples; chunk 1 carrot.",
@@ -316,7 +316,7 @@ export const MORE_W4A: Recipe[] = [
     cuisine: "Cantonese",
     time: 50,
     servings: 3,
-    need: ["Ginger", "Cabbage", "Spring onion", "Cilantro"],
+    need: ["Ginger", "Napa cabbage", "Spring onion", "Cilantro"],
     optional: ["Cooking oil", "Salt", "White pepper"],
     steps: [
       "Cut 400 g pork chops into pieces; blanch and rinse. Cut 3 celery stalks and 1 carrot into chunks.",
@@ -470,8 +470,8 @@ export const MORE_W4A: Recipe[] = [
     cuisine: "Thai",
     time: 30,
     servings: 3,
-    need: ["Pumpkin", "Coconut milk"],
-    optional: ["Onion", "Garlic", "Lemongrass", "Salt", "Sugar", "Chili oil", "Butter", "Chicken stock", "White pepper"],
+    need: ["Pumpkin", "Butter", "Fenugreek", "Cheddar", "Cream"],
+    optional: ["Chicken stock", "Salt", "White pepper"],
     steps: [
       "Cube 450 g pumpkin; chop onion/garlic if using. Soften aromatics 3–4 minutes; add a bruised lemongrass stalk if available.",
       "Add pumpkin and 1 cup water; simmer 15 minutes until soft. Mash lightly.",

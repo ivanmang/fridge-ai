@@ -145,7 +145,7 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Salmon", "Ginger", "Mushroom", "Dried chili", "Bean sprouts", "Cabbage", "Tofu", "Spring onion", "Cilantro"],
+    need: ["Salmon", "Ginger", "Mushroom", "Dried chili", "Bean sprouts", "Napa cabbage", "Tofu", "Spring onion", "Cilantro"],
     optional: ["Cornstarch", "Soy sauce", "Shaoxing wine", "Sesame oil", "Salt", "White pepper", "Cooking oil", "Chicken stock"],
     steps: [
       "Cut white fish into bite-size pieces; lightly dust with cornstarch if using. Cube tofu; slice ginger.",

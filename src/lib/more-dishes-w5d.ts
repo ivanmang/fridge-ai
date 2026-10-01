@@ -30,8 +30,8 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Flour", "Ground pork", "Shrimp", "Water chestnuts", "Spring onion", "Ginger", "Garlic"],
-    optional: ["Salt", "Oyster sauce", "Shaoxing wine", "Sesame oil", "Soy sauce", "Sugar", "White pepper"],
+    need: ["Flour", "Ground pork", "Shrimp", "Water chestnuts", "Spring onion", "Ginger", "Mozzarella", "Garlic"],
+    optional: ["Salt", "Oyster sauce", "Shaoxing wine", "Sesame oil", "Olive oil", "Soy sauce", "Sugar", "White pepper"],
     steps: [
       "Prep Ground pork and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Ground pork and cook until cooked through (74°C / 165°F).",
@@ -52,7 +52,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Winter melon", "Shrimp", "Mushroom"],
+    need: ["Winter melon", "Chicken thighs", "Shrimp", "Mushroom"],
     optional: ["Sesame oil"],
     steps: [
       "Blanch Winter melon briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -74,7 +74,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Rice", "Carrots", "Dried mushrooms", "Beans", "Garlic", "Spring onion"],
+    need: ["Rice", "Chicken thighs", "Carrots", "Dried mushrooms", "Beans", "Garlic", "Spring onion"],
     optional: ["Oyster sauce", "Cornstarch", "White pepper"],
     steps: [
       "Prep Chicken thighs and Mushroom plus Cooked rice; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -96,7 +96,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Western",
     time: 40,
     servings: 2,
-    need: ["Rice", "Spring onion"],
+    need: ["Cooked rice", "Spring onion"],
     optional: ["Oyster sauce"],
     steps: [
       "Heat oven to 200°C. Toss Chicken thighs and Cooked rice with a little oil, salt, and garlic.",
@@ -404,7 +404,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Rice"],
+    need: ["Cooked rice"],
     optional: ["Chicken stock"],
     steps: [
       "Prep Mushroom and Cooked rice; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -426,7 +426,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Western",
     time: 40,
     servings: 2,
-    need: ["Sausages", "Rice", "Beans", "Cilantro", "Lemon", "Onion", "Garlic", "Tomato"],
+    need: ["Sausages", "Rice", "Beans", "Mozzarella", "Cilantro", "Lemon", "Onion", "Garlic", "Tomato"],
     optional: ["Chicken stock", "Paprika"],
     steps: [
       "Heat oven to 200°C. Toss Chicken thighs and vegetables with a little oil, salt, and garlic.",
@@ -514,7 +514,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Chicken breast", "Eggs", "Spring onion"],
+    need: ["Chicken breast", "Eggs", "Spring onion", "Mayonnaise"],
     optional: ["Mirin", "Soy sauce", "Cornstarch", "Sugar"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -580,7 +580,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Chinese",
     time: 45,
     servings: 3,
-    need: ["Tomato"],
+    need: ["Tomato", "Okra", "Mozzarella"],
     optional: ["Salt"],
     steps: [
       "Blanch Tomato briefly if it is meat; rinse. Cut Green beans into chunks.",
@@ -646,7 +646,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Chinese",
     time: 45,
     servings: 3,
-    need: ["Corn", "Onion", "Butter", "Cream", "Bacon"],
+    need: ["Corn", "Onion", "Butter", "Mozzarella", "Cream", "Bacon"],
     optional: ["Salt"],
     steps: [
       "Blanch Corn briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -690,8 +690,8 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Potato", "Shallot", "Garlic"],
-    optional: ["Honey", "Soy sauce", "Sugar", "Cornstarch", "Oyster sauce"],
+    need: ["Potato", "Shallot", "Garlic", "Mozzarella"],
+    optional: ["Paprika", "Honey", "Soy sauce", "Sugar", "Cornstarch", "Olive oil", "Oyster sauce"],
     steps: [
       "Prep Beef steak and Potato plus Bell pepper; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Beef steak and cook until just cooked.",
@@ -734,7 +734,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Western",
     time: 40,
     servings: 2,
-    need: ["Rice", "Dried mushrooms", "Shrimp", "Chinese sausage", "Flour"],
+    need: ["Eggs", "Rice", "Dried mushrooms", "Shrimp", "Chinese sausage", "Flour", "Mozzarella"],
     optional: ["Soy sauce", "Oyster sauce"],
     steps: [
       "Heat oven to 200°C. Toss Chicken thighs and Mushroom with a little oil, salt, and garlic.",
@@ -800,7 +800,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Western",
     time: 40,
     servings: 2,
-    need: ["Carrots", "Mushroom", "Onion", "Garlic"],
+    need: ["Eggs", "Carrots", "Mushroom", "Onion", "Garlic"],
     optional: ["Salt"],
     steps: [
       "Heat oven to 200°C. Toss Chicken thighs and vegetables with a little oil, salt, and garlic.",
@@ -976,7 +976,7 @@ export const MORE_W5D: Recipe[] = [
     cuisine: "Western",
     time: 25,
     servings: 2,
-    need: ["Flour", "Eggs", "Pumpkin", "Noodles"],
+    need: ["Flour", "Eggs", "Mayonnaise", "Pumpkin", "Noodles"],
     optional: ["Olive oil", "Salt"],
     steps: [
       "Boil pasta in salted water until al dente; reserve ½ cup pasta water.",

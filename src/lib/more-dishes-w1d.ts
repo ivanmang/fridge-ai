@@ -358,8 +358,8 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Cantonese",
     time: 10,
     servings: 2,
-    need: ["Beans", "Beef steak", "Bell pepper", "Garlic", "Ginger"],
-    optional: ["Chicken stock", "Sugar", "Shaoxing wine", "Sesame oil"],
+    need: ["Beans", "Lily bulb", "Beef steak", "Bell pepper", "Garlic", "Ginger"],
+    optional: ["Chicken stock", "Sugar", "Olive oil", "Shaoxing wine", "Sesame oil"],
     steps: [
       "Trim 250 g snow peas; rinse and drain. Mince 3 garlic cloves; slice a little ginger if using.",
       "Heat 1 tbsp oil; fry garlic (and ginger) 15 seconds until fragrant.",

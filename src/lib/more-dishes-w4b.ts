@@ -30,8 +30,8 @@ export const MORE_W4B: Recipe[] = [
     cuisine: "Chinese",
     time: 40,
     servings: 3,
-    need: ["Pumpkin", "Rice"],
-    optional: ["Chinese sausage", "Salt", "Spring onion", "Dried mushrooms"],
+    need: ["Pumpkin", "Cooked rice", "Mozzarella"],
+    optional: ["Olive oil", "Salt"],
     steps: [
       "Cube 300 g pumpkin; rinse 1.5 cups rice. Slice Chinese sausage or soak mushrooms if using.",
       "Combine rice, pumpkin, sausage/mushrooms, and a pinch of salt with water to the usual rice line in a pot or cooker.",

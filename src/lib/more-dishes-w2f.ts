@@ -52,8 +52,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Beef steak", "Onion", "Cooked rice"],
-    optional: ["Soy sauce", "Sugar", "Ginger", "Spring onion", "Eggs"],
+    need: ["Beef steak", "Onion", "Garlic", "Spring onion", "Eggs"],
+    optional: ["Soy sauce", "Mirin", "Chicken stock", "Sugar"],
     steps: [
       "Slice beef thin. Simmer onion in ½ cup water with 2 tbsp soy sauce and 1 tsp sugar.",
       "Add beef and cook just until no longer pink, about 3–4 minutes.",
@@ -316,8 +316,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 25,
     servings: 2,
-    need: ["Eggs", "Mushroom"],
-    optional: ["Soy sauce", "Shrimp", "Spring onion", "Salt"],
+    need: ["Eggs", "Bread", "Chicken thighs", "Shrimp", "Salmon"],
+    optional: ["Chicken stock", "Soy sauce", "Mirin", "Dashi"],
     steps: [
       "Beat 2 eggs with 1 cup warm water or light broth and a pinch of salt/soy — strain if possible.",
       "Divide mushrooms (and shrimp if using) into cups; pour egg mix.",

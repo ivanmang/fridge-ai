@@ -162,7 +162,7 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Taiwanese",
     time: 15,
     servings: 2,
-    need: ["Rice vermicelli", "Shallot", "Onion", "Shrimp", "Dried mushrooms", "Spring onion", "Carrots", "Cabbage"],
+    need: ["Rice vermicelli", "Shallot", "Onion", "Dried shrimp", "Dried mushrooms", "Ground pork", "Spring onion", "Carrots", "Cabbage"],
     optional: ["Shaoxing wine", "Sugar"],
     steps: [
       "Loosen cold cooked rice; beat 2 eggs if eggs are in the dish. Dice other mix-ins small.",
@@ -206,7 +206,7 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Rice", "Chinese sausage", "Dried mushrooms", "Shrimp", "Ginger", "Thai basil"],
+    need: ["Rice", "Ground pork", "Chinese sausage", "Dried mushrooms", "Dried shrimp", "Ginger", "Thai basil"],
     optional: ["Soy sauce", "Salt", "Shaoxing wine"],
     steps: [
       "Prep Chicken thighs and Cooked rice; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -404,7 +404,7 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Shrimp", "Celery", "Carrots", "Garlic"],
+    need: ["Shrimp", "Celery", "Carrots", "Lily bulb", "Garlic"],
     optional: ["Cornstarch", "Salt", "Chicken stock"],
     steps: [
       "Prep Shrimp and Celery; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -492,8 +492,8 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Beef steak", "Noodles"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    need: ["Instant noodles", "Beef steak", "Satay sauce", "Mozzarella", "Spring onion"],
+    optional: ["Salt"],
     steps: [
       "Prep Beef steak and Noodles; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Beef steak and cook until just cooked.",
@@ -580,7 +580,7 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Eggs", "Curry powder", "Garlic", "Ginger"],
+    need: ["Eggs", "Daikon", "Curry powder", "Garlic", "Ginger"],
     optional: [],
     steps: [
       "Prep Ground pork and White fish; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -756,7 +756,7 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Dried mushrooms", "Carrots", "Rice vermicelli", "Shrimp", "Mozzarella"],
+    need: ["Dried mushrooms", "Daikon", "Rice vermicelli", "Shrimp", "Mozzarella"],
     optional: ["Chicken stock", "Salt", "Sesame oil", "Sugar"],
     steps: [
       "Blanch Rice vermicelli briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -778,7 +778,7 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Garlic", "Spring onion", "Ginger"],
+    need: ["Chinese yam", "Garlic", "Spring onion", "Ginger"],
     optional: [],
     steps: [
       "Blanch Chicken thighs briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -822,7 +822,7 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Eggs", "Mozzarella", "Garlic", "Ginger", "Hoisin sauce", "Noodles"],
+    need: ["Eggs", "Daikon", "Mozzarella", "Garlic", "Ginger", "Hoisin sauce", "Noodles"],
     optional: [],
     steps: [
       "Prep Ground pork and White fish; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -1086,7 +1086,7 @@ export const MORE_W5G: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Pickled mustard", "Ginger", "Garlic"],
+    need: ["White fish", "Pickled mustard", "Ginger", "Garlic"],
     optional: ["Olive oil"],
     steps: [
       "Arrange White fish with Cabbage on a heatproof plate; scatter ginger and spring onion.",

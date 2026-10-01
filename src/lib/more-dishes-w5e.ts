@@ -184,7 +184,7 @@ export const MORE_W5E: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Lemon", "Garlic", "Dried chili"],
+    need: ["Eggs", "Lemon", "Garlic", "Dried chili"],
     optional: ["Sesame seeds", "Salt", "Shaoxing wine", "Sugar", "Soy sauce", "Chicken stock", "Sesame oil"],
     steps: [
       "Prep Chicken thighs and Lemon; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -250,7 +250,7 @@ export const MORE_W5E: Recipe[] = [
     cuisine: "Japanese",
     time: 45,
     servings: 3,
-    need: ["Onion", "Butter"],
+    need: ["Onion", "Butter", "Mozzarella", "UHT Milk (opened)"],
     optional: ["Chicken stock", "Miso"],
     steps: [
       "Blanch Mushroom briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -558,7 +558,7 @@ export const MORE_W5E: Recipe[] = [
     cuisine: "Western",
     time: 15,
     servings: 2,
-    need: ["Chicken breast", "Lettuce", "Parmesan", "Garlic", "Mustard", "Lemon", "Eggs"],
+    need: ["Chicken breast", "Lettuce", "Parmesan", "Garlic", "Mustard", "Lemon", "Mayonnaise"],
     optional: ["Salt", "White pepper", "Cooking oil", "Olive oil"],
     steps: [
       "Prep Chicken breast and Chicken thighs; cook any protein through and cool slightly.",
@@ -602,7 +602,7 @@ export const MORE_W5E: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Cucumber", "Shallot", "Garlic"],
+    need: ["Cucumber", "Daikon", "Shallot", "Garlic"],
     optional: ["Soy sauce"],
     steps: [
       "Prep Zucchini and Noodles; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -668,7 +668,7 @@ export const MORE_W5E: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Beans"],
+    need: ["Beans", "Mozzarella"],
     optional: [],
     steps: [
       "Prep Ground pork and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
@@ -823,7 +823,7 @@ export const MORE_W5E: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Onion", "Bell pepper", "Garlic", "Tomato"],
-    optional: ["Chicken stock"],
+    optional: ["Paprika", "Chicken stock"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Chicken thighs and cook until cooked through (74°C / 165°F).",
@@ -932,7 +932,7 @@ export const MORE_W5E: Recipe[] = [
     cuisine: "Chinese",
     time: 40,
     servings: 2,
-    need: ["Butter", "Garlic", "Chicken thighs", "Mushroom", "Carrots"],
+    need: ["Eggs", "Butter", "Garlic", "Chicken thighs", "Mushroom", "Carrots"],
     optional: ["Salt", "White pepper"],
     steps: [
       "Heat oven to 200°C. Toss Chicken thighs and Mushroom with a little oil, salt, and garlic.",

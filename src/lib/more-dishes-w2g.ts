@@ -118,7 +118,7 @@ export const MORE_W2G: Recipe[] = [
     cuisine: "Korean",
     time: 20,
     servings: 2,
-    need: ["Nori", "Shrimp", "Eggs", "Cabbage", "Pork chops"],
+    need: ["Nori", "Shrimp", "Eggs", "Napa cabbage", "Pork chops"],
     optional: ["Salt", "Cornstarch", "Cooking oil", "Chicken stock", "Sesame oil", "Fish sauce", "White pepper"],
     steps: [
       "Soak nori briefly if needed; sauté sliced beef with sesame oil and garlic until browned.",
@@ -140,7 +140,7 @@ export const MORE_W2G: Recipe[] = [
     cuisine: "Korean",
     time: 30,
     servings: 2,
-    need: ["Rice", "Bean sprouts", "Spinach", "Carrots", "Garlic", "Ground beef", "Eggs", "Cabbage", "Gochujang"],
+    need: ["Rice", "Bean sprouts", "Spinach", "Carrots", "Garlic", "Ground beef", "Eggs", "Napa cabbage", "Gochujang"],
     optional: ["Salt", "Sesame oil", "Cooking oil", "Soy sauce", "Sesame seeds"],
     steps: [
       "Sauté spinach, carrot matchsticks, and bean sprouts separately with garlic and a drop of sesame oil.",

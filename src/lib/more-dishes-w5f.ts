@@ -624,7 +624,7 @@ export const MORE_W5F: Recipe[] = [
     cuisine: "Western",
     time: 15,
     servings: 2,
-    need: ["Silken tofu", "Tomato"],
+    need: ["Silken tofu", "Daikon", "Tomato"],
     optional: ["Sesame seeds"],
     steps: [
       "Prep Tofu and vegetables; cook any protein through and cool slightly.",
@@ -712,7 +712,7 @@ export const MORE_W5F: Recipe[] = [
     cuisine: "Chinese",
     time: 45,
     servings: 3,
-    need: ["Chicken thighs", "Carrots", "Onion", "Garlic", "Celery", "Tomato", "Flour"],
+    need: ["Chicken thighs", "Carrots", "Onion", "Garlic", "Celery", "Mozzarella", "Tomato", "Flour"],
     optional: ["Chicken stock", "Tomato paste"],
     steps: [
       "Cut Chicken thighs and Tomato into pieces; lightly brown Chicken thighs in a little oil.",
@@ -954,7 +954,7 @@ export const MORE_W5F: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Eggplant", "Shrimp", "Cooked rice", "Spring onion", "Garlic"],
+    need: ["Eggplant", "Dried shrimp", "Cooked rice", "Spring onion", "Garlic"],
     optional: ["Sesame oil", "Salt"],
     steps: [
       "Arrange Shrimp with White fish on a heatproof plate; scatter ginger and spring onion.",
