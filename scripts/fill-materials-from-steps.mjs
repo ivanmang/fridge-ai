@@ -410,17 +410,38 @@ function mergeSync(derivedRows) {
   let src = existsSync(SYNC_OUT) ? readFileSync(SYNC_OUT, "utf8") : ""
   let added = 0
   let skippedExisting = 0
+  // Insert into MATERIALS_SYNC only — never lastIndexOf("}") (hits MATERIALS_CONFIDENCE).
+  const syncMarker = "export const MATERIALS_SYNC"
+  const syncAt = src.indexOf(syncMarker)
+  if (syncAt < 0) throw new Error("MATERIALS_SYNC export not found")
+  const syncOpen = src.indexOf("{", syncAt)
+  let depth = 0
+  let syncClose = -1
+  for (let i = syncOpen; i < src.length; i++) {
+    if (src[i] === "{") depth++
+    else if (src[i] === "}") {
+      depth--
+      if (depth === 0) {
+        syncClose = i
+        break
+      }
+    }
+  }
+  if (syncClose < 0) throw new Error("MATERIALS_SYNC closing brace not found")
+
+  let syncBody = src.slice(syncOpen + 1, syncClose)
+  const after = src.slice(syncClose)
   for (const row of derivedRows) {
     const re = new RegExp(`  ${JSON.stringify(row.id)}: \\[`, "m")
-    if (re.test(src)) {
+    if (re.test(src) || re.test(syncBody)) {
       skippedExisting += 1
       continue // never overwrite rewrite overlays
     }
     const block = `  ${JSON.stringify(row.id)}: [\n${row.materials.map((m) => `    ${serializeRow(m)},`).join("\n")}\n  ],`
-    const closeIdx = src.lastIndexOf("\n}")
-    src = src.slice(0, closeIdx) + "\n" + block + src.slice(closeIdx)
+    syncBody = syncBody.replace(/\s*$/, "\n") + block + "\n"
     added += 1
   }
+  src = src.slice(0, syncOpen + 1) + syncBody + after
   if (!DRY) writeFileSync(SYNC_OUT, src)
   return { added, skippedExisting }
 }
