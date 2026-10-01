@@ -12,6 +12,130 @@ import { withRecipeSource } from "@/lib/recipe-sources"
  * Never Unsplash category buckets. New home-* ids must get an entry here.
  */
 export const RECIPE_IMAGES: Record<string, string> = {
+  "home-teriyaki-salmon": "https://thewoksoflife.com/wp-content/uploads/2016/04/salmon-teriyaki-6.jpg", // source-page
+  "home-butter-chicken": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/butter_chicken_01541_16x9.jpg", // source-page
+  "home-chicken-tikka-masala": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chickentikkamasala_67780_16x9.jpg", // source-page
+  "home-chana-masala": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chana_masala_24511_16x9.jpg", // source-page
+  "home-keralan-egg-curry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/keralan_egg_curry_02305_16x9.jpg", // source-page
+  "home-aloo-gobi-jeera": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/aloo_gobi_and_jeera_rice_60396_16x9.jpg", // source-page
+  "home-palak-paneer": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/palak_paneer_85769_16x9.jpg", // source-page
+  "home-keema-peas": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/keema_with_peas_51958_16x9.jpg", // source-page
+  "home-indian-fish-curry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/fish_curry_09718_16x9.jpg", // source-page
+  "home-cucumber-mint-raita": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/cucumberandmintraita_67787_16x9.jpg", // source-page
+  "home-mulligatawny": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/mulligatawny_soup_68949_16x9.jpg", // source-page
+  "home-chicken-korma": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chicken_korma_with_82650_16x9.jpg", // source-page
+  "home-vegetable-curry-bbc": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/vegetablecurry_80763_16x9.jpg", // source-page
+  "home-coconut-prawn-curry-bbc": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/coconut_prawn_curry_with_79671_16x9.jpg", // source-page
+  "home-baked-aloo-gobi": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/baked_aloo_gobi_with_32681_16x9.jpg", // source-page
+  "home-chicken-tikka": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chicken_tikka_40165_16x9.jpg", // source-page
+  "home-aubergine-biryani": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/aubergine_biryani_56949_16x9.jpg", // source-page
+  "home-chana-dal-tarka": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chana_daal_with_tarka_62765_16x9.jpg", // source-page
+  "home-golden-egg-curry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/golden_egg_curry_00708_16x9.jpg", // source-page
+  "home-saffron-chicken-korma": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/saffron_chicken_korma_69369_16x9.jpg", // source-page
+  "home-whole-eggs-coconut-curry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/whole_eggs_in_coconut_23624_16x9.jpg", // source-page
+  "home-chickpea-spinach-egg": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chickpea_spinach_and_egg_50755_16x9.jpg", // source-page
+  "home-nasi-goreng": "https://thewoksoflife.com/wp-content/uploads/2026/03/nasi-goreng-17.jpg", // source-page
+  "home-char-kway-teow": "https://thewoksoflife.com/wp-content/uploads/2018/08/char-kway-teow-11.jpg", // source-page
+  "home-hainanese-chicken-rice": "https://thewoksoflife.com/wp-content/uploads/2023/07/hainan-chicken-rice-7.jpg", // source-page
+  "home-coconut-rice-sea": "https://thewoksoflife.com/wp-content/uploads/2017/08/coconut-rice-1.jpg", // source-page
+  "home-curry-mee": "https://thewoksoflife.com/wp-content/uploads/2017/03/chicken-curry-mee-2.jpg", // source-page
+  "home-chicken-satay-woks": "https://thewoksoflife.com/wp-content/uploads/2023/05/chicken-satay-11.jpg", // source-page
+  "home-ayam-kecap": "https://thewoksoflife.com/wp-content/uploads/2026/03/ayam-kecap-12.jpg", // source-page
+  "home-bbc-laksa": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/laksa_69012_16x9.jpg", // source-page
+  "home-bbc-prawn-laksa": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/prawn_laksa_96549_16x9.jpg", // source-page
+  "home-bbc-nasi-goreng": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/nasi_goreng_with_lime_87031_16x9.jpg", // source-page
+  "home-bbc-beef-rendang": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/beefrendang_78767_16x9.jpg", // source-page
+  "home-bbc-mee-goreng": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/tofu_mee_goreng_25209_16x9.jpg", // source-page
+  "home-bbc-sambal-tofu": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/sticky_sambal_tofu_and_85375_16x9.jpg", // source-page
+  "home-bbc-quick-chicken-laksa": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/quick_chicken_laksa_27176_16x9.jpg", // source-page
+  "home-pineapple-shrimp-fried-rice": "https://thewoksoflife.com/wp-content/uploads/2019/06/pineapple-fried-rice-19.jpg", // source-page
+  "home-katsudon": "https://thewoksoflife.com/wp-content/uploads/2015/03/katsudon-8.jpg", // source-page
+  "home-chicken-katsu-curry-rice": "https://thewoksoflife.com/wp-content/uploads/2022/03/chicken-katsu-curry-rice-16.jpg", // source-page
+  "home-tempura-donburi": "https://thewoksoflife.com/wp-content/uploads/2019/10/tempura-16.jpg", // source-page
+  "home-tan-tan-ramen": "https://thewoksoflife.com/wp-content/uploads/2021/01/tan-tan-ramen-16.jpg", // source-page
+  "home-miso-fish": "https://thewoksoflife.com/wp-content/uploads/2023/07/miso-fish-13.jpg", // source-page
+  "home-bbc-okonomiyaki": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/easy_okonomiyaki_78828_16x9.jpg", // source-page
+  "home-bbc-okonomiyaki-classic": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/okonomiyaki_26987_16x9.jpg", // source-page
+  "home-bbc-ramen-noodles": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/ramen_noodles_with_87615_16x9.jpg", // source-page
+  "home-beef-udon-woks": "https://thewoksoflife.com/wp-content/uploads/2026/03/beef-udon-niku-udon-19.jpg", // source-page
+  "home-japchae-woks": "https://thewoksoflife.com/wp-content/uploads/2017/05/japchae-6.jpg", // source-page
+  "home-kimchi-noodle-soup-woks": "https://thewoksoflife.com/wp-content/uploads/2025/11/kimchi-noodle-soup-8.jpg", // source-page
+  "home-oi-muchim": "https://thewoksoflife.com/wp-content/uploads/2022/09/cucumber-kimchi-oi-8.jpg", // source-page
+  "home-bbc-kimchi-jjigae": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/korean_kimchi_jjigae_27026_16x9.jpg", // source-page
+  "home-bbc-pork-kimchi-stew": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/pork_and_kimchi_stew_09539_16x9.jpg", // source-page
+  "home-bbc-bibimbap-sesame": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/bibimbap_with_sesame_78959_16x9.jpg", // source-page
+  "home-bbc-beef-bulgogi": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/beef_bulgogi_88615_16x9.jpg", // source-page
+  "home-bbc-japchae": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/japchae_09863_16x9.jpg", // source-page
+  "home-chinese-rice-cake-soup": "https://thewoksoflife.com/wp-content/uploads/2019/10/chinese-rice-cake-soup-14.jpg", // source-page
+  "home-jajangmyeon-woks": "https://thewoksoflife.com/wp-content/uploads/2017/05/korean-black-bean-noodles-2.jpg", // source-page
+  "home-mung-bean-soup": "https://thewoksoflife.com/wp-content/uploads/2024/08/mung-bean-soup-4.jpg", // source-page
+  "home-taro-sago": "https://thewoksoflife.com/wp-content/uploads/2022/11/taro-sago-dessert-soup-14.jpg", // source-page
+  "home-cumin-lamb": "https://thewoksoflife.com/wp-content/uploads/2015/08/cumin-lamb-2.jpg", // source-page
+  "home-chinese-roast-duck": "https://thewoksoflife.com/wp-content/uploads/2023/10/cantonese-roast-duck-16.jpg", // source-page
+  "home-steamed-ribs-nam-yu": "https://thewoksoflife.com/wp-content/uploads/2025/01/steamed-ribs-fermented-tofu-8.jpg", // source-page
+  "home-bbc-mussels-papillote": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/mussels_en_papillote_74126_16x9.jpg", // source-page
+  "home-bbc-linguine-mussels": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/linguine_with_mussels_15573_16x9.jpg", // source-page
+  "home-bbc-curried-mussels": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/curried_mussels_on_toast_57689_16x9.jpg", // source-page
+  "home-bbc-five-spice-duck": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/fivespiceduckbreasts_90212_16x9.jpg", // source-page
+  "home-grilled-lamb-chops-woks": "https://thewoksoflife.com/wp-content/uploads/2026/07/grilled-lamb-chops-12.jpg", // source-page
+  "home-bbc-lamb-saffron-curry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/lamb_saffron_curry_20298_16x9.jpg", // source-page
+  "home-red-bean-popsicle": "https://thewoksoflife.com/wp-content/uploads/2026/06/red-bean-popsicles-10.jpg", // source-page
+  "home-bo-kho": "https://thewoksoflife.com/wp-content/uploads/2017/10/vietnamese-bho-kho-12.jpg", // source-page
+  "home-lemongrass-chicken-banh-mi": "https://thewoksoflife.com/wp-content/uploads/2019/06/lemongrass-chicken-banh-mi-10.jpg", // source-page
+  "home-typhoon-shelter-shrimp": "https://thewoksoflife.com/wp-content/uploads/2019/04/typhoon-shrimp-15.jpg", // source-page
+  "home-dal-makhani": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/dal_makhani_67645_16x9.jpg", // source-page
+  "home-chana-dal-easy": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chana_dal_92101_16x9.jpg", // source-page
+  "home-lemon-pepper-tarka-dal": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/lemon_pepper_tarka_dal_94049_16x9.jpg", // source-page
+  "home-sambar": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/spicy_lentil_soup_with_91081_16x9.jpg", // source-page
+  "home-pork-vindaloo": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/porkvindaloo_89999_16x9.jpg", // source-page
+  "home-lamb-vindaloo": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/lamb_vindaloo_41903_16x9.jpg", // source-page
+  "home-quick-chicken-madras": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/quickchickenmadras_67786_16x9.jpg", // source-page
+  "home-lamb-rogan-josh": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/lamb_rogan_josh_04376_16x9.jpg", // source-page
+  "home-chicken-rogan-josh": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chicken_rogan_josh_51718_16x9.jpg", // source-page
+  "home-saag-aloo": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/saag_aloo_32582_16x9.jpg", // source-page
+  "home-saag-paneer": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/spinach_paneer_41837_16x9.jpg", // source-page
+  "home-saag-gosht": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/saag_gosht_lamb_and_29043_16x9.jpg", // source-page
+  "home-pad-thai-chicken": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/pad_thai_38349_16x9.jpg", // source-page
+  "home-tom-yum-soup": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/tom_yum_gai_61132_16x9.jpg", // source-page
+  "home-tom-yum-chicken-prawn": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/tomyumsoup_85069_16x9.jpg", // source-page
+  "home-thai-green-curry-easy": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/thaigreencurry_67788_16x9.jpg", // source-page
+  "home-thai-massaman-chicken": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/thai_massaman_chicken_82428_16x9.jpg", // source-page
+  "home-vietnamese-beef-pho": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/vietnamese_beef_pho_22510_16x9.jpg", // source-page
+  "home-chicken-pho": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chicken_pho_97726_16x9.jpg", // source-page
+  "home-banh-mi": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/bahn_mi_52432_16x9.jpg", // source-page
+  "home-summer-rolls": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/summer_rolls_15105_16x9.jpg", // source-page
+  "home-gyoza": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/tasty_gyoza_japanese_16947_16x9.jpg", // source-page
+  "home-steamed-prawn-gyoza": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/steamed_prawn_gyoza_29138_16x9.jpg", // source-page
+  "home-chicken-teriyaki": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/teriyakichicken_85358_16x9.jpg", // source-page
+  "home-teriyaki-chicken-noodles": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/teriyaki_chicken_noodles_03220_16x9.jpg", // source-page
+  "home-yaki-udon": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/yaki_udon_00603_16x9.jpg", // source-page
+  "home-curry-udon": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/japanese_curry_udon_soup_71851_16x9.jpg", // source-page
+  "home-udon-miso-soup": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/udon_noodles_in_miso_41653_16x9.jpg", // source-page
+  "home-tonkatsu-pork": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/tonkatsu_pork_20288_16x9.jpg", // source-page
+  "home-chicken-yakitori": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/chickenyakitori_11599_16x9.jpg", // source-page
+  "home-onigiri": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/onigiri_39079_16x9.jpg", // source-page
+  "home-miso-soup-spring": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/springmisosoup_72270_16x9.jpg", // source-page
+  "home-miso-vegetable-ramen": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/miso_vegetable_ramen_88418_16x9.jpg", // source-page
+  "home-doenjang-jjigae-bbc": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/doenjang_jjigae_korean_67063_16x9.jpg", // source-page
+  "home-korean-fried-chicken": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/korean_fried_chicken_51459_16x9.jpg", // source-page
+  "home-korean-bulgogi-chicken": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/korean_bulgogi_chicken_43080_16x9.jpg", // source-page
+  "home-spicy-chicken-congee": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/spicy_chicken_congee_16522_16x9.jpg", // source-page
+  "home-black-sesame-tangyuan": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/black_sesame_tangyuan_58301_16x9.jpg", // source-page
+  "home-beef-black-bean": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/beef_in_black_bean_sauce_10415_16x9.jpg", // source-page
+  "home-black-bean-scallops": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/blackbeansteamedscal_89273_16x9.jpg", // source-page
+  "home-lamb-lentil-curry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/lamb_and_lentil_curry_83678_16x9.jpg", // source-page
+  "home-easy-lamb-curry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/how_to_make_lamb_curry_32719_16x9.jpg", // source-page
+  "home-spaghetti-vongole": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/spaghettivongole_88988_16x9.jpg", // source-page
+  "home-tempura-squid": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/tempura_squid_with_55145_16x9.jpg", // source-page
+  "home-goat-biryani": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/goat_biryani_55073_16x9.jpg", // source-page
+  "home-veggie-meatball-biryani": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/veggie_meatball_biryani_21364_16x9.jpg", // source-page
+  "home-mixed-veg-biryani": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/1_mixed_vegetable_and_84703_16x9.jpg", // source-page
+  "home-indonesian-biryani": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/indonesian_biryani_17351_16x9.jpg", // source-page
+  "home-yasai-yaki-soba": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/japanesevegetablesti_92442_16x9.jpg", // source-page
+  "home-miso-salmon-soba": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/ovenbakedsweetmisoma_73596_16x9.jpg", // source-page
+  "home-aubergine-banh-mi": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/aubergine_banh_mi_82492_16x9.jpg", // source-page
+  "home-quick-beef-massaman": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/quick_beef_massaman_36307_16x9.jpg", // source-page
+  "home-thai-green-prawn-curry": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/how_to_make_thai_green_83259_16x9.jpg", // source-page
   "home-3-colored-beef-rolls-in-chicken-marinade": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk_recipe_600_assorted-vegetables-in-seasoned-soy-sauce-for-seafood/600x465_3-colored_beef_rolls_in_chicken_marinade.jpg?bc=white&h=315&w=600&hash=C833AABC699C18A68D92BDF1E8412663&v=639263942174881334", // source-page
   "home-abalone-and-avocado-toast-with-mushroom-soup": "https://cdn-akamai.lkk.com/-/media/hk-site---homecook/hk_recipe_600_braised-broccoli-with-oyster-sauce_rgb_11-apr/abalone--avocado-toast-with-mushroom-soup600x465.jpg?bc=white&h=315&w=600&hash=B023712AE3CADB94AED6BD9B296EB7A0&v=639263942184504996", // source-page
   "home-abalone-and-braised-tofu-in-abalone-sauce": "https://cdn-akamai.lkk.com/-/media/20260116-lkk-cny-abalone/low-res-recipe-photo/600-x-465-abalone-braised-tofu-in-abalone-sauce.png?bc=white&h=315&w=600&hash=341675FF07F5D5A56D69485FC864B985&v=639263942193714707", // source-page
@@ -888,7 +1012,6 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-tamagoyaki-using-vermicular-egg-and-toast-pan": "https://static1.squarespace.com/static/5e762e3d21acd35898d85e9c/5e765b5656403358c4993df5/6703ffe0bdec113b9da2ffb2/1729590123528/DSC08587.jpg?format=1500w", // source-page
   "home-tangy-eggplant-vermicelli": "https://cdn.sanity.io/images/0ue7ztht/production/baa063a403241ec80f613e0e31513e13f9c6d42d-1000x750.jpg", // source-page
   "home-teriyaki-chicken": "https://thewoksoflife.com/wp-content/uploads/2016/03/mall-chicken-teriyaki-4.jpg", // source-page
-  "home-teriyaki-salmon": "https://thewoksoflife.com/wp-content/uploads/2016/04/salmon-teriyaki-6.jpg", // source-page
   "home-thai-basil-chicken": "https://thewoksoflife.com/wp-content/uploads/2013/07/chicken-thai-basil-9.jpg", // source-page
   "home-thai-basil-green-beans": "https://cdn.sanity.io/images/2r0kdewr/production/2fe9f24a14b6d988154025291b6355c4afbfc4d8-1000x563.jpg", // source-page
   "home-thai-basil-pork-mince": "https://thewoksoflife.com/wp-content/uploads/2020/06/thai-basil-pork-belly-6.jpg", // source-page

@@ -139,6 +139,31 @@ export const ZH_FOOD: Record<string, string> = {
   "Chicken stock": "雞湯",
   "Water chestnuts": "馬蹄",
   "Pickled mustard": "芽菜",
+  "Garam masala": "印度綜合香料",
+  Cumin: "孜然",
+  Turmeric: "薑黃",
+  "Ground coriander": "芫荽粉",
+  Paprika: "紅椒粉",
+  Cardamom: "豆蔻",
+  Fenugreek: "葫蘆巴",
+  Chickpeas: "鷹嘴豆",
+  "Red lentils": "紅扁豆",
+  "Tomato paste": "番茄膏",
+  Cream: "淡忌廉",
+  Lamb: "羊肉",
+  Duck: "鴨",
+  Mussels: "青口",
+  "Fish sauce": "魚露",
+  Mirin: "味醂",
+  "Shrimp paste": "蝦醬",
+  "Wide rice noodles": "河粉",
+  Taro: "芋頭",
+  Sago: "西米",
+  "Red beans": "紅豆",
+  "Mung beans": "綠豆",
+  Papaya: "木瓜",
+  Gochugaru: "韓式辣椒粉",
+  Dashi: "日式高湯",
 }
 
 export const ZH_CUISINE: Record<string, string> = {
@@ -157,6 +182,10 @@ export const ZH_CUISINE: Record<string, string> = {
   Taiwanese: "台菜",
   Thai: "泰式",
   Vietnamese: "越式",
+  Indian: "印度菜",
+  Malaysian: "馬來菜",
+  Indonesian: "印尼菜",
+  Singaporean: "星洲菜",
 }
 
 export const ZH_RECIPE: Record<string, { name: string; steps: string[] }> = {
