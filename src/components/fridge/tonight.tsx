@@ -32,38 +32,6 @@ const GROUP_LABEL: Record<string, "materialsMarinade" | "materialsSauce" | "mate
   other: "materialsOther",
 }
 
-function alertTimerDone(soundOn: boolean) {
-  try {
-    navigator.vibrate?.([220, 120, 220, 120, 320])
-  } catch {
-    /* ignore */
-  }
-  if (!soundOn) return
-  try {
-    const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-    if (!AudioCtx) return
-    const ctx = new AudioCtx()
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.type = "sine"
-    osc.frequency.value = 880
-    gain.gain.value = 0.12
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-    osc.start()
-    window.setTimeout(() => {
-      try {
-        osc.stop()
-        void ctx.close()
-      } catch {
-        /* ignore */
-      }
-    }, 700)
-  } catch {
-    /* ignore */
-  }
-}
-
 export function Tonight({
   items,
   onAdd,
@@ -89,7 +57,6 @@ export function Tonight({
   const vegetarian = useFridge((s) => s.settings.vegetarian)
   const taste = useFridge((s) => (surveyReady(s.settings.survey) ? s.settings.survey : null))
   const setSettings = useFridge((s) => s.setSettings)
-  const timerSound = useFridge((s) => s.settings.timerSound !== false)
   const priority = useFridge((s) => (s.settings.priority ?? (s.settings.suggest === "free" ? 3 : 0)) as 0 | 1 | 2 | 3)
   const favorites = useFridge((s) => s.settings.favorites) ?? []
   const wanted = useFridge((s) => s.settings.wanted) ?? []
@@ -115,9 +82,7 @@ export function Tonight({
   const [useSoon, setUseSoon] = useState(false)
   const [maxTime, setMaxTime] = useState<number | null>(null)
   const [phase, setPhase] = useState<"pick" | "prep" | "plate">("pick")
-  const [outlineOpen, setOutlineOpen] = useState(false)
   const [mealId, setMealId] = useState<string | null>(null)
-  const [stepIndex, setStepIndex] = useState(0)
   const [checked, setChecked] = useState<string[]>([])
   const [remaining, setRemaining] = useState<Record<string, string>>({})
   const [leftovers, setLeftovers] = useState(false)
@@ -125,10 +90,6 @@ export function Tonight({
   const [surveyOpen, setSurveyOpen] = useState(false)
   const [prefsOpen, setPrefsOpen] = useState(false)
   const [wantOpen, setWantOpen] = useState(false)
-  const [timerSeconds, setTimerSeconds] = useState(0)
-  const [timerRunning, setTimerRunning] = useState(false)
-  const [timerFinished, setTimerFinished] = useState(false)
-  const [customMinutes, setCustomMinutes] = useState("3")
   const [rankingPending, startRankingTransition] = useTransition()
 
   useEffect(() => {
@@ -136,7 +97,6 @@ export function Tonight({
     setSurveyOpen(true)
     setMode("cook")
     setPhase("pick")
-    setOutlineOpen(false)
     onSurveyHandled?.()
   }, [openSurvey, onSurveyHandled])
 
@@ -144,42 +104,8 @@ export function Tonight({
     if (!openBrowse) return
     setMode("browse")
     setPhase("pick")
-    setOutlineOpen(false)
     onBrowseHandled?.()
   }, [openBrowse, onBrowseHandled])
-
-  useEffect(() => {
-    if (phase !== "prep" || !outlineOpen) return
-    let lock: WakeLockSentinel | null = null
-    let cancelled = false
-    if ("wakeLock" in navigator) {
-      void navigator.wakeLock
-        .request("screen")
-        .then((sentinel) => {
-          if (cancelled) void sentinel.release()
-          else lock = sentinel
-        })
-        .catch(() => undefined)
-    }
-    return () => {
-      cancelled = true
-      if (lock) void lock.release()
-    }
-  }, [phase, outlineOpen])
-
-  useEffect(() => {
-    if (!timerRunning || timerSeconds <= 0) return
-    const id = window.setInterval(() => setTimerSeconds((seconds) => Math.max(0, seconds - 1)), 1000)
-    return () => window.clearInterval(id)
-  }, [timerRunning, timerSeconds])
-
-  useEffect(() => {
-    if (timerRunning && timerSeconds === 0) {
-      setTimerRunning(false)
-      setTimerFinished(true)
-      alertTimerDone(timerSound)
-    }
-  }, [timerRunning, timerSeconds, timerSound])
 
   const rankOpts = useMemo(
     () => ({ savedIds: savedRecipes, cookedIds: cookedHistory, lastTonightId }),
@@ -275,11 +201,6 @@ export function Tonight({
     }
     setMealId(id)
     setSettings({ lastTonightId: id, pendingMealId: id })
-    setStepIndex(0)
-    setTimerRunning(false)
-    setTimerSeconds(0)
-    setTimerFinished(false)
-    setOutlineOpen(false)
     setNote("")
     setMode("cook")
     setPhase("prep")
@@ -291,7 +212,6 @@ export function Tonight({
     setChecked(mealFoods.map((item) => item.id))
     setRemaining(Object.fromEntries(mealFoods.map((item) => [item.id, ""])))
     setLeftovers(false)
-    setOutlineOpen(false)
     setMode("cook")
     setPhase("plate")
   }
@@ -319,7 +239,6 @@ export function Tonight({
       return
     }
     setMealId(row.recipe.id)
-    setOutlineOpen(false)
     setMode("cook")
     setPhase("prep")
   }
@@ -330,7 +249,6 @@ export function Tonight({
       setNote(t("nothingUsed"))
       setSettings({ pendingMealId: "" })
       setPhase("pick")
-      setOutlineOpen(false)
       setMealId(null)
       return
     }
@@ -355,7 +273,6 @@ export function Tonight({
     setSettings({ pendingMealId: "" })
     setNote(t("mealDone"))
     setPhase("pick")
-    setOutlineOpen(false)
     setMealId(null)
   }
 
@@ -372,13 +289,6 @@ export function Tonight({
     }
     setNote(t("onList"))
     if (goShop) onShop?.()
-  }
-
-  function startTimer(minutes: number) {
-    const mins = Math.max(1, Math.min(180, Math.round(minutes)))
-    setTimerFinished(false)
-    setTimerSeconds(mins * 60)
-    setTimerRunning(true)
   }
 
   if (mode === "browse" && phase === "pick") {
@@ -473,14 +383,8 @@ export function Tonight({
                 <button
                   type="button"
                   onClick={() => {
-                    if (id === "pick") {
-                      setPhase("pick")
-                      setOutlineOpen(false)
-                    }
-                    if (id === "prep" && phase === "plate") {
-                      setPhase("prep")
-                      setOutlineOpen(false)
-                    }
+                    if (id === "pick") setPhase("pick")
+                    if (id === "prep" && phase === "plate") setPhase("prep")
                   }}
                   className={cn(
                     "min-h-11 w-full rounded-full border px-1 text-sm font-medium leading-tight",
@@ -697,14 +601,11 @@ export function Tonight({
         </article>
       )}
 
-      {active && dish && phase === "prep" && !outlineOpen && (
+      {active && dish && phase === "prep" && (
         <article className="rounded-card border border-line bg-surface p-5">
           <button
             type="button"
-            onClick={() => {
-              setPhase("pick")
-              setOutlineOpen(false)
-            }}
+            onClick={() => setPhase("pick")}
             className="mb-3 h-11 self-start text-sm text-muted underline"
           >
             {t("exitCook")}
@@ -799,111 +700,6 @@ export function Tonight({
               </div>
             )
           })()}
-          <button type="button" onClick={() => { setOutlineOpen(true); setStepIndex(0) }} className="mt-2 h-11 w-full rounded-card border border-line text-sm font-semibold">
-            {t("quickOutline")}
-          </button>
-        </article>
-      )}
-
-      {active && dish && phase === "prep" && outlineOpen && (
-        <article className="flex min-h-[58dvh] flex-col rounded-card border border-line bg-surface p-5">
-          <button type="button" onClick={() => setOutlineOpen(false)} className="mb-4 h-11 self-start text-sm text-muted underline">
-            {t("hideOutline")}
-          </button>
-          <p className="text-sm font-medium tracking-wide text-mint">{dish.name}</p>
-          <p className="mt-1 text-sm text-muted">{t("quickOutline")} · {t("stepOf", { n: stepIndex + 1, m: dish.steps.length })}</p>
-          <ol className="mt-4 flex-1 space-y-4 text-lg leading-relaxed">
-            {dish.steps.map((step, i) => (
-              <li key={`${i}-${step}`} className={cn("flex gap-3", i !== stepIndex && "text-muted")}>
-                <span className={cn("tabular-nums", i === stepIndex && "text-mint")}>{i + 1}</span>
-                <span>{step}</span>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-5 rounded-card border border-line p-3">
-            <p className="text-sm font-semibold">
-              {t("timer")}
-              {timerSeconds > 0 ? ` · ${Math.floor(timerSeconds / 60)}:${String(timerSeconds % 60).padStart(2, "0")}` : ""}
-            </p>
-            {timerFinished && (
-              <p role="alert" className="mt-1 text-sm font-semibold text-clay">
-                {t("timerAlert")}
-              </p>
-            )}
-            <div className="mt-2 flex flex-wrap gap-2">
-              {[5, 10, 15].map((minutes) => (
-                <button
-                  key={minutes}
-                  type="button"
-                  onClick={() => startTimer(minutes)}
-                  className="h-10 rounded-full border border-line px-3 text-sm"
-                >
-                  {t("minutes", { n: minutes })}
-                </button>
-              ))}
-              {timerSeconds > 0 && (
-                <button type="button" onClick={() => setTimerRunning((running) => !running)} className="h-10 rounded-full border border-line px-3 text-sm">
-                  {timerRunning ? t("pause") : t("resume")}
-                </button>
-              )}
-              <button
-                type="button"
-                onClick={() => setSettings({ timerSound: !timerSound })}
-                className="h-10 rounded-full border border-line px-3 text-sm"
-                aria-pressed={timerSound}
-              >
-                {timerSound ? t("timerSoundOn") : t("timerSoundOff")}
-              </button>
-            </div>
-            <form
-              className="mt-2 flex gap-2"
-              onSubmit={(e) => {
-                e.preventDefault()
-                const mins = Number(customMinutes)
-                if (!Number.isFinite(mins) || mins < 1) return
-                startTimer(mins)
-              }}
-            >
-              <label className="sr-only" htmlFor="timer-custom">
-                {t("timerCustom")}
-              </label>
-              <input
-                id="timer-custom"
-                type="number"
-                min={1}
-                max={180}
-                value={customMinutes}
-                onChange={(e) => setCustomMinutes(e.target.value)}
-                placeholder={t("timerCustom")}
-                className="h-10 min-w-0 flex-1 rounded-full border border-line bg-raised px-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-mint"
-              />
-              <button type="submit" className="h-10 shrink-0 rounded-full border border-line px-3 text-sm font-semibold">
-                {t("timerStart")}
-              </button>
-            </form>
-          </div>
-          <div className="mt-4 flex gap-2">
-            <button
-              type="button"
-              onClick={() => setStepIndex((n) => Math.max(0, n - 1))}
-              disabled={stepIndex === 0}
-              className="h-11 rounded-card border border-line px-4 text-sm font-semibold disabled:opacity-40"
-            >
-              {t("prev")}
-            </button>
-            {stepIndex < dish.steps.length - 1 ? (
-              <button type="button" onClick={() => setStepIndex((n) => n + 1)} className="h-11 flex-1 rounded-card border border-line font-semibold">
-                {t("next")}
-              </button>
-            ) : (
-              <button type="button" onClick={openPlate} className="h-11 flex-1 rounded-card bg-mint font-semibold text-mint-ink">
-                {t("clearFridgeCta")}
-              </button>
-            )}
-          </div>
-          <button type="button" onClick={openPlate} className="mt-3 h-11 w-full rounded-card bg-mint font-semibold text-mint-ink">
-            {t("clearFridgeCta")}
-          </button>
         </article>
       )}
 

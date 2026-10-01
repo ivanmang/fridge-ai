@@ -28,7 +28,7 @@ export type FridgeSettings = {
   locale: Locale
   /** Kitchen appearance — mint-on-dark default; light for bright counters. */
   theme: ThemeMode
-  /** Beep + vibrate when the cooking timer finishes (outline assist). */
+  /** Optional legacy flag; cooking timer UI was removed. Kept for backup compat. */
   timerSound: boolean
   suggest: SuggestMode
   priority: Priority

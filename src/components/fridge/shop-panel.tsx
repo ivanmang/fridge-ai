@@ -42,7 +42,6 @@ export function DishSearch() {
   const [ingredient, setIngredient] = useState("")
   const [needs, setNeeds] = useState<string[]>([])
   const [warn, setWarn] = useState("")
-  const [stepText, setStepText] = useState("")
   const requestRef = useRef(0)
   const deferredQuery = useDeferredValue(query)
   const hits = useMemo(
@@ -94,11 +93,6 @@ export function DishSearch() {
       setWarn(t("needIngredient"))
       return
     }
-    const steps = stepText.split("\n").map((line) => line.trim()).filter(Boolean)
-    if (!steps.length) {
-      setWarn(t("needStep"))
-      return
-    }
     const id = `mine-${crypto.randomUUID()}`
     saveExtra({
       id,
@@ -108,7 +102,7 @@ export function DishSearch() {
       servings: 2,
       need: needs,
       optional: [],
-      steps,
+      steps: [],
     })
     if (!wanted.includes(id)) setSettings({ wanted: [...wanted, id] })
     setAdding(false)
@@ -189,7 +183,6 @@ export function DishSearch() {
             setName(query.trim())
             setNeeds([])
             setIngredient("")
-            setStepText("")
             setWarn("")
             setAdding(true)
           }}
@@ -242,10 +235,6 @@ export function DishSearch() {
               ))}
             </div>
           )}
-          <label className="block text-sm">
-            {t("cookingSteps")}
-            <textarea value={stepText} onChange={(e) => setStepText(e.target.value)} rows={4} placeholder={t("stepsHint")} className="mt-1 w-full rounded-card border border-line bg-raised p-3 text-fg outline-none" />
-          </label>
           {warn && <p role="alert" className="text-sm text-clay">{warn}</p>}
           <div className="flex gap-2">
             <button type="button" onClick={() => setAdding(false)} className="h-11 rounded-card border border-line px-4 text-sm font-semibold">

@@ -313,7 +313,7 @@ export function rankRecipes(
 const OUTLINE_STEP =
   /cook them until just done|prep the ingredients|season, toss briefly|prep .+, .+\.|煮至剛熟|調味後上碟/i
 
-/** Imported catalogue rows that only have the three-line outline template. */
+/** Imported catalogue rows that only have the three-line outline template (not cookable here). */
 export function isOutlineRecipe(recipe: Recipe): boolean {
   if (recipe.id.startsWith("home-") || recipe.id.startsWith("mine-") || recipe.id.startsWith("x-")) return false
   if (!recipe.steps.length) return true
@@ -324,7 +324,7 @@ export function isCookableRecipe(recipe: Recipe): boolean {
   return !isOutlineRecipe(recipe)
 }
 
-/** One-glance trust: full steps vs idea-only outline. */
+/** One-glance trust: cookable dish vs browse-only idea. */
 export function trustLevel(recipe: Recipe): "full" | "idea" {
   return isOutlineRecipe(recipe) ? "idea" : "full"
 }

@@ -368,16 +368,6 @@ export function SettingsSheet({ onClose, onEditTaste }: { onClose: () => void; o
         </p>
       )}
       <p className="mt-2 text-sm leading-relaxed text-muted">{t("remindSpendNote")}</p>
-      <label className="mt-3 flex min-h-12 items-center justify-between gap-3 text-base">
-        {t("timerSound")}
-        <input
-          type="checkbox"
-          checked={settings.timerSound !== false}
-          onChange={(e) => setSettings({ timerSound: e.target.checked })}
-          className="size-5 accent-mint"
-        />
-      </label>
-      <p className="mt-2 text-sm leading-relaxed text-muted">{t("timerSoundNote")}</p>
       <details className="mt-4 rounded-card border border-line p-3">
         <summary className="cursor-pointer text-sm font-semibold">{t("fridgeSnap")}</summary>
         <label className="mt-3 block text-base text-muted">

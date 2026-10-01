@@ -192,7 +192,6 @@ function renderRecipes() {
         Have: ${haveNeed.join(", ") || "—"}${urgentBoost ? " · uses food that should go first" : ""}
         ${missing.length ? `<div class="missing">Missing: ${missing.join(", ")}</div>` : `<div>You can cook this now.</div>`}
       </div>
-      <ol class="steps">${recipe.steps.map((s) => `<li>${s}</li>`).join("")}</ol>
     </article>
   `).join("");
 }
