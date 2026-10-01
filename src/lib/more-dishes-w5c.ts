@@ -9,7 +9,7 @@ export const MORE_W5C: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Cabbage", "Ground beef", "Ground pork", "Dried mushrooms", "Onion", "Corn", "Mushroom", "Celery"],
-    optional: ["White pepper", "Sesame oil"],
+    optional: ["White pepper", "Cornstarch", "Sesame oil"],
     steps: [
       "Blanch Cabbage briefly if it is meat; rinse. Cut vegetables into chunks.",
       "Simmer with ginger and about 1.2–1.5 L water (or stock) 25–35 minutes until flavours come together.",
@@ -31,7 +31,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cabbage", "Ground pork", "Dried mushrooms", "Carrots", "Onion", "Corn", "Mushroom", "Celery"],
-    optional: ["White pepper", "Salt", "Sesame oil"],
+    optional: ["White pepper", "Salt", "Cornstarch", "Sesame oil"],
     steps: [
       "Prep Ground pork and Cabbage plus Corn; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Ground pork and cook until cooked through (74°C / 165°F).",
@@ -119,7 +119,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Ground pork"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Hoisin sauce"],
     steps: [
       "Prep Ground pork and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Ground pork and cook until cooked through (74°C / 165°F).",
@@ -163,7 +163,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Eggs", "Bell pepper", "Onion", "Ginger", "Garlic", "Dried chili", "Shallot", "Spring onion", "Cilantro"],
-    optional: ["Oyster sauce", "Soy sauce", "Sugar"],
+    optional: ["Cornstarch", "Oyster sauce", "Soy sauce", "Sugar"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Chicken thighs and cook until cooked through (74°C / 165°F).",
@@ -185,7 +185,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Chicken thighs"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "White pepper", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Chicken thighs and cook until cooked through (74°C / 165°F).",
@@ -294,8 +294,8 @@ export const MORE_W5C: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Celery", "Carrots", "Mozzarella"],
-    optional: ["Soy sauce", "Sesame oil", "Sugar"],
+    need: ["Chicken breast", "Celery", "Carrots", "Mozzarella"],
+    optional: ["Soy sauce", "Sesame oil", "Sugar", "Cornstarch"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Chicken thighs and cook until cooked through (74°C / 165°F).",
@@ -449,7 +449,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Duck", "Pineapple", "Bell pepper", "Eggs", "Gochujang"],
-    optional: ["Oyster sauce", "Sesame oil", "Sugar"],
+    optional: ["Cornstarch", "Oyster sauce", "Sesame oil", "Sugar"],
     steps: [
       "Prep Pineapple and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Pineapple and cook until just cooked.",
@@ -471,7 +471,7 @@ export const MORE_W5C: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Daikon", "Onion", "Dried chili", "Eggs", "Gochujang"],
-    optional: ["Salt", "White pepper", "Oyster sauce", "Sugar"],
+    optional: ["Cornstarch", "Salt", "White pepper", "Oyster sauce", "Sugar"],
     steps: [
       "Cut White fish and vegetables into pieces; lightly brown White fish in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -493,7 +493,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Shrimp", "Onion", "Butter", "Spring onion", "Gochujang"],
-    optional: ["Sugar", "Oyster sauce"],
+    optional: ["Sugar", "Cornstarch", "Oyster sauce"],
     steps: [
       "Prep Shrimp and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Shrimp and cook until just cooked.",
@@ -625,7 +625,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Eggplant", "Ground pork", "Dried mushrooms", "Spring onion"],
-    optional: ["Oyster sauce", "Sesame oil"],
+    optional: ["Oyster sauce", "Sesame oil", "Cornstarch"],
     steps: [
       "Pat Eggs dry; season with salt and white pepper. Slice Eggplant if using as a side.",
       "Pan-fry in a lightly oiled skillet over medium heat until browned and cooked until just cooked.",
@@ -779,7 +779,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cooked rice", "Corn", "Bell pepper", "Mango", "Beef steak", "Garlic", "Mozzarella"],
-    optional: ["Paprika", "Oyster sauce", "White pepper"],
+    optional: ["Paprika", "Oyster sauce", "White pepper", "Cornstarch"],
     steps: [
       "Prep Beef steak and Corn plus Cooked rice; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Beef steak and cook until just cooked.",
@@ -933,7 +933,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Ground pork", "Cabbage", "Corn", "Quinoa", "Mushroom"],
-    optional: ["Sesame oil", "White pepper", "Soy sauce", "Chili oil"],
+    optional: ["Cornstarch", "Sesame oil", "White pepper", "Soy sauce", "Chili oil"],
     steps: [
       "Pat Ground pork dry; season with salt and white pepper. Slice vegetables if using as a side.",
       "Pan-fry in a lightly oiled skillet over medium heat until browned and cooked until cooked through (74°C / 165°F).",
@@ -1043,7 +1043,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Shallot", "Dried chili", "Garlic", "Satay sauce", "Mozzarella"],
-    optional: ["Oyster sauce", "Sesame oil", "Sugar"],
+    optional: ["Oyster sauce", "Sesame oil", "Cornstarch", "Sugar"],
     steps: [
       "Prep Spare ribs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Spare ribs and cook until just cooked.",
@@ -1065,7 +1065,7 @@ export const MORE_W5C: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Bell pepper", "Pine nuts", "Wonton wrappers", "XO sauce"],
-    optional: ["White pepper"],
+    optional: ["White pepper", "Cornstarch"],
     steps: [
       "Prep White fish and Tortilla; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add White fish and cook until just cooked.",

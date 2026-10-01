@@ -229,7 +229,7 @@ export const MORE_W5H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Corn", "Cooked rice"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "White pepper", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep Corn and Cooked rice; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Corn and cook until just cooked.",
@@ -866,7 +866,7 @@ export const MORE_W5H: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Spring onion", "Garlic"],
+    need: ["Chicken breast", "Spring onion", "Garlic"],
     optional: ["Sugar", "Sesame oil", "Cornstarch"],
     steps: [
       "Prep Chicken thighs and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",

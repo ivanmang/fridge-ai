@@ -8,7 +8,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 15,
     servings: 1,
     need: ["Cooked leftovers", "Noodles"],
-    optional: ["Spring onion", "Soy sauce", "Eggs", "Salt", "White pepper", "Spinach", "Tomato", "Sesame oil", "Vinegar", "Shrimp", "Cooking oil"],
+    optional: ["Chicken stock", "White pepper", "Soy sauce", "Spinach", "Onion", "Spring onion", "Salt", "Sesame oil", "Vinegar", "Cooking oil"],
     steps: [
       "Bring leftover soup (or leftovers plus about 3 cups water) to a simmer; season with soy sauce or salt. Any leftover meat or poultry must reach 74°C / 165°F.",
       "Cook noodles in the broth until tender. Optional: drop in a cracked egg and spinach for 2 minutes.",
@@ -51,7 +51,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 15,
     servings: 1,
     need: ["Cooked leftovers", "Eggs", "Cooked rice"],
-    optional: ["Curry powder", "Spring onion", "Salt", "Soy sauce"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Curry powder", "Salt"],
     steps: [
       "Warm leftover curry or saucy leftovers; loosen over cooked rice. Optional pinch of curry powder to refresh.",
       "Beat 2–3 eggs with salt; cook a thin omelette. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -73,7 +73,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 20,
     servings: 2,
     need: ["Cooked leftovers", "Noodles"],
-    optional: ["Spring onion", "Soy sauce", "Ginger", "Salt", "White pepper", "Choi sum", "Tomato", "Sesame oil", "Vinegar", "Shrimp", "Cooking oil", "Eggs"],
+    optional: ["Chicken stock", "White pepper", "Choi sum", "Soy sauce", "Onion", "Spring onion", "Ginger", "Salt", "Sesame oil", "Vinegar", "Cooking oil"],
     steps: [
       "Slice leftover brisket or beef leftovers. Simmer with ginger in about 4 cups water 8–10 minutes; season with soy sauce. Any leftover meat or poultry must reach 74°C / 165°F.",
       "Cook noodles separately; blanch choi sum if using.",
@@ -95,7 +95,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 20,
     servings: 2,
     need: ["Cooked rice"],
-    optional: ["Ginger", "Salt", "White pepper", "Spring onion", "Century egg", "Cooked leftovers", "Sesame oil"],
+    optional: ["White pepper", "Cooked leftovers", "Cooking oil", "Onion", "Spring onion", "Salt", "Sesame oil", "Ginger", "Century egg"],
     steps: [
       "Combine 2 bowls cooked rice with about 4 cups water; simmer 15 minutes, mashing lightly until porridge-like.",
       "Add diced leftovers or century egg if using for the last 5 minutes.",
@@ -117,7 +117,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 12,
     servings: 1,
     need: ["Cooked leftovers", "Bread"],
-    optional: ["Cheddar", "Lettuce", "Tomato", "Mayonnaise", "Mustard", "Onion"],
+    optional: ["Tomato", "Lettuce", "Onion", "Cheddar", "Mayonnaise", "Mustard"],
     steps: [
       "Slice leftover roast meat or firm leftovers. Toast bread lightly.",
       "Spread mayonnaise or mustard; layer leftovers, cheddar, lettuce, tomato, and onion if using. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -204,8 +204,8 @@ export const MORE_W4E: Recipe[] = [  {
     cuisine: "Japanese",
     time: 15,
     servings: 1,
-    need: ["Cooked leftovers", "Udon"],
-    optional: ["Soy sauce", "Spring onion", "Miso", "Spinach", "Eggs", "Nori"],
+    need: ["Cooked leftovers", "Noodles"],
+    optional: ["Soy sauce", "Nori", "Spinach", "Onion", "Spring onion", "Udon", "Miso"],
     steps: [
       "Cook udon until tender; drain. Warm leftover sliced meat in a pan with soy sauce or a little miso dissolved in water.",
       "Optional: wilt spinach and soft-cook an egg. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -227,7 +227,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 12,
     servings: 1,
     need: ["Cooked leftovers", "Tofu", "Cooked rice"],
-    optional: ["Soy sauce", "Spring onion", "Sesame oil", "Chili oil", "Garlic"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Sesame oil"],
     steps: [
       "Crumble 200 g tofu; chop leftover vegetables or bits.",
       "Stir-fry garlic if using; scramble tofu with leftovers and soy sauce 3–4 minutes. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -249,7 +249,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 30,
     servings: 2,
     need: ["Cooked leftovers", "Pasta", "Cheddar"],
-    optional: ["Tomato", "Onion", "Milk", "Salt", "White pepper"],
+    optional: ["White pepper", "Tomato", "Onion", "Salt", "Milk"],
     steps: [
       "Boil 180 g pasta until just tender; drain. Chop leftovers and tomato/onion if using.",
       "Mix pasta with leftovers, a splash of milk, salt, and white pepper in a baking dish; top with grated cheddar.",
@@ -271,7 +271,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 12,
     servings: 1,
     need: ["Cooked leftovers", "Noodles", "Chili oil"],
-    optional: ["Soy sauce", "Garlic", "Spring onion", "Vinegar", "Sesame seeds", "Cucumber"],
+    optional: ["Soy sauce", "Garlic", "Vinegar", "Cooking oil", "Onion", "Spring onion", "Sesame seeds", "Cucumber"],
     steps: [
       "Boil noodles until tender; drain. Warm leftover protein/veg briefly.",
       "Mix chili oil, soy sauce, minced garlic, and a splash of vinegar in a bowl. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -293,7 +293,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 15,
     servings: 2,
     need: ["Cooked leftovers", "Bean sprouts"],
-    optional: ["Garlic", "Salt", "Soy sauce", "Spring onion", "Sesame oil", "Eggs"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Salt", "Sesame oil"],
     steps: [
       "Simmer leftover bones/bits or diced leftovers in about 4 cups water with garlic 8 minutes. Any leftover meat or poultry must reach 74°C / 165°F.",
       "Add a big handful of bean sprouts; cook 3–4 minutes. Optional cracked egg swirled in.",
@@ -336,8 +336,8 @@ export const MORE_W4E: Recipe[] = [  {
     cuisine: "Chinese",
     time: 15,
     servings: 2,
-    need: ["Cooked rice", "Beef steak", "Ginger", "Onion", "Eggs"],
-    optional: ["Oyster sauce", "Soy sauce", "White pepper", "Shaoxing wine", "Cornstarch", "Salt", "Sesame oil"],
+    need: ["Cooked rice", "Beef steak", "Onion", "Eggs"],
+    optional: ["Sand ginger", "Oyster sauce", "Soy sauce", "White pepper", "Shaoxing wine", "Cornstarch", "Salt", "Sesame oil"],
     steps: [
       "Slice leftover beef thinly. Beat 2 eggs; loosen 2 bowls cold rice.",
       "Scramble eggs; remove. Stir-fry onion/garlic, then beef 1 minute; add rice and soy sauce. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -381,7 +381,7 @@ export const MORE_W4E: Recipe[] = [  {
     time: 20,
     servings: 2,
     need: ["Cooked leftovers", "Tofu"],
-    optional: ["Ginger", "Salt", "White pepper", "Spring onion", "Corn", "Carrots"],
+    optional: ["White pepper", "Corn", "Onion", "Spring onion", "Salt", "Carrots", "Ginger"],
     steps: [
       "Chop leftover vegetables. Cube 200 g tofu. Simmer leftovers with ginger in about 4 cups water 10 minutes. Any leftover meat or poultry must reach 74°C / 165°F.",
       "Add tofu (and corn/carrot if using) for 5 minutes.",

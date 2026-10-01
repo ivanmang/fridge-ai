@@ -8,8 +8,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 12,
     servings: 2,
-    need: ["Miso", "Silken tofu", "Spring onion"],
-    optional: ["Nori", "Mushroom", "Chicken stock", "Eggs"],
+    need: ["Miso", "Tofu", "Spring onion"],
+    optional: ["Chicken stock", "Mushroom", "Nori", "Onion"],
     steps: [
       "Bring 3 cups water to a gentle simmer with sliced mushroom if using.",
       "Add cubed silken tofu and warm 2 minutes — do not boil hard.",
@@ -74,8 +74,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 25,
     servings: 2,
-    need: ["Chicken thighs", "Ginger"],
-    optional: ["Mirin", "Soy sauce", "Sugar", "Sesame oil", "Cornstarch", "Cooking oil"],
+    need: ["Chicken thighs"],
+    optional: ["Mirin", "Soy sauce", "Sugar", "Sand ginger", "Sesame oil", "Cornstarch", "Cooking oil"],
     steps: [
       "Pat 400 g chicken thighs dry; pan-sear skin-side down until golden, then flip.",
       "Add 2 tbsp soy sauce, 1 tbsp sugar or honey, and a little ginger; simmer until chicken reaches 74°C / 165°F and glaze thickens.",
@@ -119,7 +119,7 @@ export const MORE_W2F: Recipe[] = [
     time: 8,
     servings: 1,
     need: ["Cooked rice", "Eggs"],
-    optional: ["Soy sauce", "Spring onion", "Sesame oil", "Nori"],
+    optional: ["Soy sauce", "Nori", "Cooking oil", "Onion", "Spring onion", "Sesame oil"],
     steps: [
       "Put a hot bowl of cooked rice in a serving bowl.",
       "Crack 1 raw egg yolk (use very fresh eggs) or softly scramble 1 egg; mix into rice with 1 tsp soy sauce.",
@@ -141,7 +141,7 @@ export const MORE_W2F: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Chicken thighs", "Potato", "Carrots", "Onion", "Cooked rice", "Curry powder"],
-    optional: ["Garlic", "Soy sauce", "Flour", "Butter", "Cooking oil", "Salt", "Sugar", "Chicken stock", "Cornstarch", "Eggs"],
+    optional: ["Butter", "Flour", "Garlic", "Soy sauce", "Cooking oil", "Salt", "Sugar", "Chicken stock", "Cornstarch"],
     steps: [
       "Brown diced chicken until cooked through (74°C / 165°F); remove. Sauté onion, potato, and carrot.",
       "Return chicken, add water to cover, simmer 15 minutes until veg is tender.",
@@ -184,8 +184,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 15,
     servings: 1,
-    need: ["Udon", "Spring onion"],
-    optional: ["Soy sauce", "Miso", "Mushroom", "Eggs", "Nori"],
+    need: ["Noodles", "Spring onion"],
+    optional: ["Chicken stock", "Soy sauce", "Mushroom", "Nori", "Onion", "Udon", "Miso"],
     steps: [
       "Heat 2 cups water with 1 tbsp soy sauce (or dissolve 1 tsp miso off-boil).",
       "Cook udon in the broth until hot and tender.",
@@ -207,7 +207,7 @@ export const MORE_W2F: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked rice", "Canned tuna", "Nori"],
-    optional: ["Mayonnaise", "Salt", "Sesame seeds"],
+    optional: ["Sesame seeds", "Salt", "Mayonnaise", "Tortilla"],
     steps: [
       "Drain tuna and mix with 1 tbsp mayonnaise and a pinch of salt.",
       "With damp hands, shape hot rice around a spoon of tuna into triangles or balls.",
@@ -229,7 +229,7 @@ export const MORE_W2F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Eggplant", "Miso"],
-    optional: ["Sugar", "Soy sauce", "Sesame oil", "Sesame seeds"],
+    optional: ["Soy sauce", "Cooking oil", "Sesame oil", "Sugar", "Sesame seeds"],
     steps: [
       "Halve eggplant lengthwise; score flesh and pan-fry or bake until soft.",
       "Mix 1 tbsp miso with 1 tsp sugar and a splash of soy sauce.",
@@ -251,7 +251,7 @@ export const MORE_W2F: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Spinach", "Sesame seeds"],
-    optional: ["Soy sauce", "Sugar", "Sesame oil"],
+    optional: ["Soy sauce", "Cooking oil", "Sesame oil", "Sugar"],
     steps: [
       "Blanch spinach 30–45 seconds; squeeze dry and chop.",
       "Crush sesame seeds; mix with 1 tsp soy sauce and a pinch of sugar.",
@@ -273,7 +273,7 @@ export const MORE_W2F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken breast", "Eggs", "Flour", "Bread"],
-    optional: ["Salt", "White pepper", "Cabbage", "Cooking oil", "Onion", "Garlic", "Curry powder", "Sugar", "Carrots", "Chicken stock", "Cornstarch"],
+    optional: ["Cabbage", "Cooking oil", "Salt", "White pepper", "Onion", "Garlic", "Sugar", "Chicken stock", "Cornstarch"],
     steps: [
       "Pound chicken breast thin; season. Coat in flour, beaten egg, then crushed dry breadcrumbs from toast.",
       "Pan-fry in a thin oil layer 3–4 minutes per side until golden and 74°C / 165°F inside.",
@@ -295,7 +295,7 @@ export const MORE_W2F: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Beef steak", "Potato", "Onion", "Carrots"],
-    optional: ["Soy sauce", "Sugar", "Spring onion"],
+    optional: ["Soy sauce", "Spring onion", "Sugar"],
     steps: [
       "Brown sliced beef briefly; add onion, chunked potato, and carrot.",
       "Add water to nearly cover with 3 tbsp soy sauce and 1 tbsp sugar; simmer 20 minutes until potato is tender.",
@@ -339,7 +339,7 @@ export const MORE_W2F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pork chops", "Ginger", "Onion"],
-    optional: ["Soy sauce", "Sugar", "Cabbage"],
+    optional: ["Soy sauce", "Cabbage", "Sugar"],
     steps: [
       "Slice pork thin; grate a thumb of ginger.",
       "Pan-fry pork until cooked through (74°C / 165°F); add onion strips.",
@@ -361,7 +361,7 @@ export const MORE_W2F: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Cooked rice", "Corn", "Butter"],
-    optional: ["Soy sauce", "Salt", "Spring onion", "Nori"],
+    optional: ["Soy sauce", "Nori", "Onion", "Spring onion", "Salt"],
     steps: [
       "Warm rice in a pan with a knob of butter.",
       "Stir in drained corn until hot; season with a splash of soy sauce or salt.",
@@ -383,7 +383,7 @@ export const MORE_W2F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Tofu", "Miso", "Mushroom"],
-    optional: ["Nori", "Spring onion", "Spinach", "Garlic"],
+    optional: ["Spinach", "Onion", "Spring onion", "Garlic"],
     steps: [
       "Simmer mushrooms in 3 cups water 5 minutes.",
       "Add tofu cubes and spinach; warm 3 minutes.",
@@ -405,7 +405,7 @@ export const MORE_W2F: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Cooked rice", "Salmon", "Nori"],
-    optional: ["Soy sauce", "Spring onion", "Sesame seeds"],
+    optional: ["Chicken stock", "Soy sauce", "Cooked leftovers", "Onion", "Spring onion", "Sesame seeds"],
     steps: [
       "Flake leftover or quickly pan-cooked salmon over a bowl of hot rice.",
       "Pour hot water or light tea/broth around the rice (not drowning).",
@@ -427,7 +427,7 @@ export const MORE_W2F: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Eggs", "Bread", "Mayonnaise"],
-    optional: ["Butter", "Salt", "Sugar", "Milk"],
+    optional: ["Salt", "Butter", "Sugar"],
     steps: [
       "Boil 2 eggs 10 minutes; cool, peel, and mash with 1 tbsp mayonnaise and a pinch of salt/sugar.",
       "Butter soft bread slices lightly.",

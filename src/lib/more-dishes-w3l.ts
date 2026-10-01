@@ -9,7 +9,7 @@ export const MORE_W3L: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Cauliflower", "Peanuts", "Bell pepper"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Sugar", "Vinegar", "Cornstarch", "Shallot", "Cooking oil", "Salt", "Shaoxing wine", "White pepper", "Oyster sauce"],
+    optional: ["White pepper", "Soy sauce", "Garlic", "Vinegar", "Cooking oil", "Chili oil", "Ginger", "Sugar", "Cornstarch", "Salt", "Shaoxing wine", "Oyster sauce"],
     steps: [
       "Blanch cauliflower florets 2 minutes; drain well.",
       "Stir-fry with garlic, ginger, and bell pepper; add soy sauce, vinegar, sugar, and chili oil.",
@@ -30,8 +30,8 @@ export const MORE_W3L: Recipe[] = [
     cuisine: "Sichuan",
     time: 20,
     servings: 2,
-    need: ["Sichuan peppercorns", "Ginger", "Garlic", "Fermented black beans", "Dried chili", "Mushroom", "Doubanjiang", "Silken tofu", "Spring onion"],
-    optional: ["Cooking oil", "Chili oil", "Cornstarch", "Sesame oil", "Sugar"],
+    need: ["Sichuan peppercorns", "Garlic", "Fermented black beans", "Dried chili", "Mushroom", "Doubanjiang", "Silken tofu", "Spring onion"],
+    optional: ["Cooking oil", "Sand ginger", "Chili oil", "Cornstarch", "Sesame oil", "Sugar"],
     steps: [
       "Cube tofu; simmer gently in water 2 minutes and drain.",
       "Fry garlic, ginger, chili oil; add soy sauce, sugar, white pepper, and a splash of water.",
@@ -53,7 +53,7 @@ export const MORE_W3L: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Rice vermicelli", "Eggs", "Chicken breast"],
-    optional: ["Bean sprouts", "Onion", "Spring onion", "Soy sauce", "Curry powder", "Shrimp", "Bell pepper", "Celery", "Carrots", "Cooking oil", "Cornstarch", "Oyster sauce", "Salt", "Sugar", "Sesame oil"],
+    optional: ["Soy sauce", "Noodles", "Onion", "Bean sprouts", "Curry powder", "Spring onion", "Shrimp", "Cooking oil", "Cornstarch", "Oyster sauce", "Salt", "Sugar", "Sesame oil"],
     steps: [
       "Soak vermicelli. Stir-fry chicken until 74°C / 165°F; scramble eggs.",
       "Toss noodles with curry powder or soy sauce, onion, and bean sprouts.",
@@ -75,7 +75,7 @@ export const MORE_W3L: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Tofu", "Cooked rice"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Tomato", "Cornstarch", "Cooking oil", "White pepper", "Carrots", "Sesame oil", "Salt", "Shaoxing wine", "Corn"],
+    optional: ["Soy sauce", "Tomato", "Garlic", "Onion", "Spring onion", "Cornstarch", "Cooking oil", "White pepper", "Sesame oil", "Salt", "Shaoxing wine"],
     steps: [
       "Crumble tofu; stir-fry with garlic until hot and lightly browned.",
       "Add cold rice and soy sauce; toss until steaming.",
@@ -97,7 +97,7 @@ export const MORE_W3L: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken breast", "Tomato", "Onion"],
-    optional: ["Soy sauce", "Sugar", "Cornstarch", "Garlic", "Beef steak", "Baking soda", "Cooking oil", "Oyster sauce", "Sesame oil", "White pepper", "Ginger", "Shallot", "Spring onion", "Ketchup", "Shaoxing wine"],
+    optional: ["Soy sauce", "Sugar", "Cornstarch", "Garlic", "Beef steak", "Baking soda", "Cooking oil", "Oyster sauce", "Sesame oil", "White pepper", "Ginger", "Spring onion", "Ketchup", "Shaoxing wine"],
     steps: [
       "Slice chicken; sear until cooked through (74°C / 165°F); remove.",
       "Cook tomato and onion until saucy with a pinch of sugar.",
@@ -119,7 +119,7 @@ export const MORE_W3L: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Noodles", "Peanut butter"],
-    optional: ["Chili oil", "Soy sauce", "Garlic", "Spring onion", "Sesame oil", "Cucumber", "Sichuan peppercorns", "Cooking oil", "Ground pork", "Shaoxing wine", "Five-spice powder", "Pickled mustard", "Sugar", "Lettuce", "Peanuts"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Cucumber", "Butter", "Sesame oil", "Shaoxing wine", "Five-spice powder", "Sugar"],
     steps: [
       "Boil noodles. Whisk peanut butter, soy sauce, chili oil, garlic, and noodle water.",
       "Toss noodles in sauce.",
@@ -140,8 +140,8 @@ export const MORE_W3L: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Tofu", "Ginger", "Onion", "Spring onion", "Cooked rice"],
-    optional: ["Cornstarch", "Cooking oil", "Mirin", "Soy sauce", "Sugar", "Sesame oil", "Sesame seeds"],
+    need: ["Tofu", "Onion", "Spring onion", "Cooked rice"],
+    optional: ["Cornstarch", "Cooking oil", "Sand ginger", "Mirin", "Soy sauce", "Sugar", "Sesame oil", "Sesame seeds"],
     steps: [
       "Pan-fry tofu slabs until golden.",
       "Add soy sauce, sugar, garlic, and ginger; glaze 2–3 minutes.",
@@ -163,7 +163,7 @@ export const MORE_W3L: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Mushroom", "Onion", "Soy sauce"],
-    optional: ["Sugar", "Garlic", "Sesame oil", "Sesame seeds", "Gochujang"],
+    optional: ["Gochujang", "Garlic", "Cooking oil", "Sesame seeds", "Sesame oil", "Sugar"],
     steps: [
       "Slice mushrooms; marinate briefly in soy sauce, sugar, garlic, sesame oil.",
       "Stir-fry with onion on high until browned.",
@@ -185,7 +185,7 @@ export const MORE_W3L: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Cooked rice", "Spinach", "Carrots", "Eggs"],
-    optional: ["Bean sprouts", "Soy sauce", "Sesame oil", "Gochujang", "Zucchini"],
+    optional: ["Gochujang", "Cooking oil", "Bean sprouts", "Sesame oil", "Soy sauce"],
     steps: [
       "Sauté spinach, carrots, sprouts separately with sesame oil.",
       "Fry an egg. Arrange over rice.",
@@ -206,8 +206,8 @@ export const MORE_W3L: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Eggplant", "Chili oil", "Garlic"],
-    optional: ["Soy sauce", "Sugar", "Cornstarch", "Spring onion", "Ginger", "Ground pork", "Shaoxing wine", "Baking soda", "White pepper", "Cooking oil", "Sichuan peppercorns", "Doubanjiang", "Fermented black beans", "Chicken stock", "Sesame oil"],
+    need: ["Ground pork", "Eggplant", "Ginger", "Garlic", "Sichuan peppercorns", "Doubanjiang", "Fermented black beans", "Spring onion"],
+    optional: ["Shaoxing wine", "Cornstarch", "Baking soda", "White pepper", "Cooking oil", "Chicken stock", "Chili oil", "Sugar", "Sesame oil"],
     steps: [
       "Pan-fry eggplant until soft.",
       "Sauce with garlic, chili oil, soy sauce, sugar, and water; thicken.",
@@ -251,7 +251,7 @@ export const MORE_W3L: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tofu", "Eggs", "Flour", "Bread"],
-    optional: ["Salt", "Cabbage"],
+    optional: ["Cabbage", "Salt"],
     steps: [
       "Press tofu; cut slabs. Coat flour–egg–crumbs.",
       "Pan-fry until golden and hot through.",
@@ -273,7 +273,7 @@ export const MORE_W3L: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Mushroom", "Onion", "Cooked rice"],
-    optional: ["Soy sauce", "Sugar", "Ginger", "Spring onion", "Salt", "White pepper", "Eggs", "Shaoxing wine", "Sesame oil", "Cooking oil"],
+    optional: ["Soy sauce", "Spring onion", "Sugar", "Ginger", "Salt", "White pepper", "Shaoxing wine", "Sesame oil", "Cooking oil"],
     steps: [
       "Simmer onion and mushrooms in soy sauce, sugar, and water until soft.",
       "Spoon over rice.",
@@ -294,7 +294,7 @@ export const MORE_W3L: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tofu", "Bell pepper", "Pineapple"],
-    optional: ["Ketchup", "Vinegar", "Sugar", "Cornstarch", "Garlic", "Cooking oil", "Ginger", "Soy sauce"],
+    optional: ["White pepper", "Vinegar", "Ketchup", "Sugar", "Cornstarch", "Garlic", "Cooking oil", "Ginger", "Soy sauce"],
     steps: [
       "Pan-fry tofu cubes golden. Stir-fry pepper and pineapple.",
       "Mix ketchup, vinegar, sugar, and water into sauce; thicken.",
@@ -316,7 +316,7 @@ export const MORE_W3L: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Tofu", "Spinach", "Garlic"],
-    optional: ["Soy sauce", "Sesame oil", "Spring onion", "Cooking oil", "Ginger", "Sugar", "Salt", "White pepper", "Shaoxing wine"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Ginger", "Sugar", "Salt", "White pepper", "Shaoxing wine"],
     steps: [
       "Crumble tofu; stir-fry with garlic.",
       "Add spinach until wilted; soy sauce.",
@@ -338,7 +338,7 @@ export const MORE_W3L: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cabbage", "Tofu"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Sesame oil"],
+    optional: ["Soy sauce", "Garlic", "Sugar", "Sesame oil"],
     steps: [
       "Stir-fry cabbage with garlic until softening.",
       "Add tofu slabs and splash of water; simmer 8 minutes.",
@@ -381,8 +381,8 @@ export const MORE_W3L: Recipe[] = [
     cuisine: "Chinese",
     time: 15,
     servings: 2,
-    need: ["Ground pork", "Ginger", "Spring onion", "Garlic", "Zucchini"],
-    optional: ["Shaoxing wine", "Cornstarch", "Chicken stock", "Oyster sauce", "Soy sauce", "Sugar", "Cooking oil"],
+    need: ["Ground pork", "Spring onion", "Garlic", "Zucchini"],
+    optional: ["Shaoxing wine", "Cornstarch", "Chicken stock", "Oyster sauce", "Soy sauce", "Sugar", "Cooking oil", "Sand ginger"],
     steps: [
       "Julienne zucchini as noodle strands. Scramble eggs; remove.",
       "Stir-fry zucchini and carrot quickly with garlic.",
@@ -404,7 +404,7 @@ export const MORE_W3L: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Tofu", "Bell pepper"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Oyster sauce", "Beef steak", "Baking soda", "Sesame oil", "Cornstarch", "Cooking oil", "Shaoxing wine", "Salt", "Sugar", "White pepper", "Chicken stock"],
+    optional: ["White pepper", "Garlic", "Onion", "Oyster sauce", "Soy sauce", "Baking soda", "Sesame oil", "Cornstarch", "Cooking oil", "Shaoxing wine", "Salt", "Sugar", "Chicken stock"],
     steps: [
       "Pan-fry tofu; remove. Stir-fry pepper and onion with garlic.",
       "Return tofu with soy/oyster sauce.",
@@ -526,7 +526,7 @@ export const MORE_W3L: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Broccoli", "Tofu", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Sesame oil", "Shaoxing wine", "Sugar", "Chicken stock", "White pepper", "Cooking oil", "Cornstarch"],
+    optional: ["Cooking oil", "Oyster sauce", "Sesame oil", "Soy sauce", "Shaoxing wine", "Sugar", "Chicken stock", "White pepper", "Cornstarch"],
     steps: [
       "Blanch broccoli; pan-fry tofu.",
       "Fry garlic; toss broccoli and tofu with soy/oyster sauce.",
@@ -548,7 +548,7 @@ export const MORE_W3L: Recipe[] = [
     time: 8,
     servings: 2,
     need: ["Cucumber", "Miso"],
-    optional: ["Sugar", "Sesame seeds", "Sesame oil", "Garlic", "Cooking oil", "Vinegar"],
+    optional: ["Cooking oil", "Sesame seeds", "Salt", "Sesame oil", "Sugar", "Garlic", "Vinegar"],
     steps: [
       "Slice cucumber; salt briefly and drain.",
       "Mix miso with a pinch of sugar and sesame oil.",

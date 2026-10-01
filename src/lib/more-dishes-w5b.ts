@@ -119,7 +119,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Broccoli", "Shrimp", "Spring onion", "Ginger"],
-    optional: ["Chicken stock", "Oyster sauce"],
+    optional: ["Chicken stock", "Oyster sauce", "Cornstarch"],
     steps: [
       "Cut Broccoli and vegetables into pieces; lightly brown Broccoli in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -207,7 +207,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Eggs", "Shallot", "Ginger", "Garlic", "Dried chili", "Onion", "Celery", "Mozzarella"],
-    optional: ["Sugar"],
+    optional: ["Sugar", "Cornstarch"],
     steps: [
       "Cut Chicken thighs and vegetables into pieces; lightly brown Chicken thighs in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -229,7 +229,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Chicken thighs", "Celery", "Carrots", "Onion"],
-    optional: ["Sugar", "Salt", "Soy sauce"],
+    optional: ["Cornstarch", "Sugar", "Salt", "Soy sauce"],
     steps: [
       "Cut Chicken thighs and vegetables into pieces; lightly brown Chicken thighs in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -317,7 +317,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Noodles", "Ground pork", "Mushroom", "Spring onion", "Ginger", "Mozzarella"],
-    optional: ["Oyster sauce", "Sesame oil"],
+    optional: ["Oyster sauce", "Cornstarch", "Sesame oil"],
     steps: [
       "Cut Eggs and Noodles into pieces; lightly brown Eggs in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -383,7 +383,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Chicken thighs", "Shrimp"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Sugar", "Salt", "Ginger", "White pepper", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Cut Chicken thighs and Shrimp into pieces; lightly brown Chicken thighs in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -427,7 +427,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Ground pork", "Bell pepper", "Cilantro", "Mozzarella"],
-    optional: ["Ketchup", "Sugar", "Oyster sauce"],
+    optional: ["Cornstarch", "Ketchup", "Sugar", "Oyster sauce"],
     steps: [
       "Cut Tomato and vegetables into pieces; lightly brown Tomato in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -471,7 +471,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Dried mushrooms", "Ginger", "Spring onion"],
-    optional: ["Chicken stock", "White pepper", "Shaoxing wine"],
+    optional: ["Chicken stock", "White pepper", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Cut White fish and Mushroom into pieces; lightly brown White fish in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -536,7 +536,7 @@ export const MORE_W5B: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Pork chops", "Water chestnuts", "Peanuts", "Ginger", "Spring onion"],
+    need: ["Pork knuckle", "Water chestnuts", "Peanuts", "Ginger", "Spring onion"],
     optional: ["Shaoxing wine", "Oyster sauce", "Soy sauce", "Sugar"],
     steps: [
       "Cut Ground pork and vegetables into pieces; lightly brown Ground pork in a little oil.",
@@ -558,7 +558,7 @@ export const MORE_W5B: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Pork chops", "Peanuts", "Ginger"],
+    need: ["Pork knuckle", "Peanuts", "Ginger"],
     optional: ["Sugar"],
     steps: [
       "Cut Ground pork and vegetables into pieces; lightly brown Ground pork in a little oil.",
@@ -580,7 +580,7 @@ export const MORE_W5B: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Pork chops", "Shallot", "Spring onion", "Hoisin sauce"],
+    need: ["Pork knuckle", "Shallot", "Spring onion", "Hoisin sauce"],
     optional: ["Vinegar", "Oyster sauce", "Soy sauce"],
     steps: [
       "Cut Ground pork and vegetables into pieces; lightly brown Ground pork in a little oil.",
@@ -646,7 +646,7 @@ export const MORE_W5B: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Pork chops", "Peanuts", "Spring onion", "Garlic"],
+    need: ["Pork knuckle", "Peanuts", "Spring onion", "Garlic"],
     optional: ["Oyster sauce", "White pepper"],
     steps: [
       "Cut Ground pork and vegetables into pieces; lightly brown Ground pork in a little oil.",
@@ -735,7 +735,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Quinoa", "Daikon", "Carrots"],
-    optional: ["White pepper", "Chicken stock"],
+    optional: ["White pepper", "Cornstarch", "Chicken stock"],
     steps: [
       "Blanch Chicken thighs briefly if it is meat; rinse. Cut vegetables into chunks.",
       "Simmer with ginger and about 1.2–1.5 L water (or stock) 25–35 minutes until flavours come together.",
@@ -757,7 +757,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Chicken thighs", "Dried mushrooms", "Ham", "Carrots", "Spring onion", "Ginger"],
-    optional: ["Oyster sauce", "Soy sauce", "Sugar"],
+    optional: ["Oyster sauce", "Soy sauce", "Cornstarch", "Sugar"],
     steps: [
       "Cut White fish and Cucumber into pieces; lightly brown White fish in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -779,7 +779,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Dried mushrooms", "Carrots", "Ginger", "Mozzarella"],
-    optional: ["Sugar", "Oyster sauce", "Sesame oil"],
+    optional: ["Sugar", "Oyster sauce", "Sesame oil", "Cornstarch"],
     steps: [
       "Cut Cucumber and Mushroom into pieces; lightly brown Cucumber in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -845,7 +845,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Winter melon", "Dried mushrooms"],
-    optional: ["Oyster sauce"],
+    optional: ["Oyster sauce", "Cornstarch"],
     steps: [
       "Cut Spare ribs and Winter melon into pieces; lightly brown Spare ribs in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -889,7 +889,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Tofu", "Dried mushrooms", "Carrots", "Ground pork", "Choi sum", "Spring onion"],
-    optional: ["Oyster sauce", "Sesame oil"],
+    optional: ["Oyster sauce", "Sesame oil", "Cornstarch"],
     steps: [
       "Cut Tofu and Mushroom into pieces; lightly brown Tofu in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -1087,7 +1087,7 @@ export const MORE_W5B: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Cabbage"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Chicken stock", "Dried mushrooms"],
+    optional: ["Chicken stock", "White pepper", "Salt", "Ginger", "Cooking oil", "Soy sauce", "Garlic", "Spring onion", "Sugar", "Sesame oil"],
     steps: [
       "Blanch Cabbage briefly if it is meat; rinse. Cut vegetables into chunks.",
       "Simmer with ginger and about 1.2–1.5 L water (or stock) 25–35 minutes until flavours come together.",

@@ -9,7 +9,7 @@ export const MORE_W2H: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Beef steak", "Rice vermicelli", "Bean sprouts"],
-    optional: ["Onion", "Spring onion", "Soy sauce", "Oyster sauce", "Garlic"],
+    optional: ["Soy sauce", "Noodles", "Onion", "Spring onion", "Oyster sauce", "Garlic"],
     steps: [
       "Soak rice vermicelli until pliable; drain. Slice 250 g beef; toss with 1 tsp soy sauce.",
       "Sear beef hot until just browned; remove. Stir-fry onion and bean sprouts briefly.",
@@ -97,7 +97,7 @@ export const MORE_W2H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Noodles", "Bean sprouts"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Onion", "Sesame oil", "Shaoxing wine", "Sugar", "Cooking oil", "Sweet potato"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Shaoxing wine", "Sugar"],
     steps: [
       "Parboil noodles; drain well.",
       "Pan-fry noodles in a little oil until edges crisp; push aside and soften garlic/onion.",
@@ -141,7 +141,7 @@ export const MORE_W2H: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Wonton wrappers", "Shrimp"],
-    optional: ["Ground pork", "Ginger", "Spring onion", "Soy sauce", "White pepper"],
+    optional: ["Chicken stock", "White pepper", "Onion", "Spring onion", "Salt", "Tortilla", "Ginger", "Soy sauce"],
     steps: [
       "Chop shrimp (mix optional pork); season with ginger, white pepper, and a pinch of salt.",
       "Wrap in wonton skins. Boil until shrimp is opaque and pink, about 3–4 minutes.",
@@ -162,8 +162,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Chicken thighs", "Ginger", "Spring onion", "Noodles", "Lettuce"],
-    optional: ["Cooking oil", "Shaoxing wine", "Salt", "White pepper", "Chili oil"],
+    need: ["Chicken thighs", "Spring onion", "Noodles", "Lettuce"],
+    optional: ["Cooking oil", "Shaoxing wine", "Sand ginger", "Salt", "White pepper", "Chili oil"],
     steps: [
       "Simmer chicken thighs with ginger slices in water 15 minutes until 74°C / 165°F; shred meat.",
       "Cook noodles and optional greens in the broth.",
@@ -184,7 +184,7 @@ export const MORE_W2H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Ground pork", "Cooked rice"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Spring onion", "Eggs", "Salt", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Flour", "Cooking oil", "Butter", "Ketchup", "Sesame oil"],
+    optional: ["Soy sauce", "Eggs", "Garlic", "Onion", "Spring onion", "Sugar", "Salt", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Flour", "Cooking oil", "Ketchup", "Sesame oil"],
     steps: [
       "Brown ground pork with garlic until cooked through (74°C / 165°F).",
       "Season with 1 tbsp soy sauce and a pinch of sugar; simmer 2 minutes.",
@@ -206,7 +206,7 @@ export const MORE_W2H: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggs", "Cooked rice"],
-    optional: ["Soy sauce", "Sugar", "Garlic", "Spring onion"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Sugar", "Garlic"],
     steps: [
       "Soft-boil or hard-boil 2–4 eggs; peel.",
       "Simmer eggs in ½ cup water with 3 tbsp soy sauce and 1 tsp sugar 8–10 minutes, basting often.",
@@ -227,8 +227,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Hong Kong",
     time: 40,
     servings: 2,
-    need: ["Rice", "Dried mushrooms", "Chicken thighs"],
-    optional: ["Soy sauce", "Spring onion", "Ginger", "Garlic", "Chinese sausage", "Salt", "Sugar", "White pepper", "Eggs", "Shaoxing wine", "Sesame oil", "Cooking oil"],
+    need: ["Cooked rice", "Dried mushrooms", "Chicken thighs"],
+    optional: ["Soy sauce", "Mushroom", "Onion", "Spring onion", "Ginger", "Garlic", "Salt", "Sugar", "White pepper", "Shaoxing wine", "Sesame oil", "Cooking oil"],
     steps: [
       "Soak dried mushrooms; slice. Mix raw rinsed rice with water in a heavy pot.",
       "Top with chicken pieces and mushrooms; cover and cook on low until rice is done and chicken reaches 74°C / 165°F, about 25–30 minutes.",
@@ -249,8 +249,8 @@ export const MORE_W2H: Recipe[] = [
     cuisine: "Hong Kong",
     time: 20,
     servings: 2,
-    need: ["Cooked rice", "Onion", "Ginger", "Lettuce", "Chicken breast", "Eggs"],
-    optional: ["Salt", "Cooking oil", "White pepper", "Fish sauce", "Oyster sauce", "Cornstarch"],
+    need: ["Cooked rice", "Onion", "Lettuce", "Chicken breast", "Eggs"],
+    optional: ["Sand ginger", "Salt", "Cooking oil", "White pepper", "Fish sauce", "Oyster sauce", "Cornstarch"],
     steps: [
       "Dice chicken; stir-fry until cooked through (74°C / 165°F). Flake drained canned tuna as salty fish stand-in.",
       "Scramble optional egg; add cold rice and toss until steaming hot.",
@@ -294,7 +294,7 @@ export const MORE_W2H: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Beef steak", "Tomato", "Cooked rice"],
-    optional: ["Onion", "Soy sauce", "Sugar", "Cornstarch", "Garlic", "Ginger", "Spring onion", "Eggs", "Oyster sauce", "White pepper", "Shaoxing wine", "Sesame oil"],
+    optional: ["Soy sauce", "Cornstarch", "Onion", "Sugar", "Garlic", "Ginger", "Spring onion", "Oyster sauce", "White pepper", "Shaoxing wine", "Sesame oil"],
     steps: [
       "Slice beef; sear quickly and remove. Cook tomato and onion until saucy with a pinch of sugar.",
       "Return beef with 1 tbsp soy sauce; thicken lightly with cornstarch if desired.",
@@ -316,7 +316,7 @@ export const MORE_W2H: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cooked rice", "Shrimp", "Eggs"],
-    optional: ["Squid", "Spring onion", "Soy sauce", "Garlic", "Cooking oil", "Bacon", "Onion", "Salt", "Sugar", "Shaoxing wine", "White pepper"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Squid", "Garlic", "Cooking oil", "Salt", "Sugar", "Shaoxing wine", "White pepper"],
     steps: [
       "Stir-fry shrimp (and squid rings if using) until just cooked; remove.",
       "Scramble eggs, add rice, toss hot.",
@@ -404,7 +404,7 @@ export const MORE_W2H: Recipe[] = [
     time: 12,
     servings: 1,
     need: ["Noodles", "Butter"],
-    optional: ["Soy sauce", "Garlic", "Spring onion", "Sesame seeds", "Shaoxing wine", "Sesame oil", "Sugar", "Cooking oil"],
+    optional: ["Soy sauce", "Garlic", "Onion", "Spring onion", "Sesame seeds", "Shaoxing wine", "Sesame oil", "Sugar", "Cooking oil"],
     steps: [
       "Boil noodles; reserve a splash of cooking water and drain.",
       "Melt butter with minced garlic in the pan; add soy sauce and noodle water.",

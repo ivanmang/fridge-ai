@@ -53,7 +53,7 @@ export const MORE_W5D: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Winter melon", "Chicken thighs", "Shrimp", "Mushroom"],
-    optional: ["Sesame oil"],
+    optional: ["Cornstarch", "Sesame oil"],
     steps: [
       "Blanch Winter melon briefly if it is meat; rinse. Cut vegetables into chunks.",
       "Simmer with ginger and about 1.2–1.5 L water (or stock) 25–35 minutes until flavours come together.",
@@ -295,7 +295,7 @@ export const MORE_W5D: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Beef steak", "Noodles"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Sugar", "Salt", "Ginger", "White pepper", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Cut Beef steak and Noodles into pieces; lightly brown Beef steak in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -449,7 +449,7 @@ export const MORE_W5D: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Rice", "Dried mushrooms", "Chinese sausage", "Spring onion", "Ginger"],
-    optional: ["Oyster sauce", "Soy sauce", "Sugar"],
+    optional: ["Oyster sauce", "Soy sauce", "Sugar", "Cornstarch"],
     steps: [
       "Prep Chicken thighs and Mushroom plus Cooked rice; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Chicken thighs and cook until cooked through (74°C / 165°F).",
@@ -471,7 +471,7 @@ export const MORE_W5D: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Chicken thighs"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Chicken stock", "Dried mushrooms"],
+    optional: ["Chicken stock", "White pepper", "Salt", "Ginger", "Cooking oil", "Soy sauce", "Garlic", "Spring onion", "Sugar", "Sesame oil"],
     steps: [
       "Blanch Chicken thighs briefly if it is meat; rinse. Cut vegetables into chunks.",
       "Simmer with ginger and about 1.2–1.5 L water (or stock) 25–35 minutes until flavours come together.",
@@ -625,7 +625,7 @@ export const MORE_W5D: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Cauliflower", "Cabbage"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Chicken stock", "Dried mushrooms"],
+    optional: ["Chicken stock", "White pepper", "Salt", "Ginger", "Cooking oil", "Soy sauce", "Garlic", "Spring onion", "Sugar", "Sesame oil"],
     steps: [
       "Blanch Cauliflower briefly if it is meat; rinse. Cut Cabbage into chunks.",
       "Simmer with ginger and about 1.2–1.5 L water (or stock) 25–35 minutes until flavours come together.",
@@ -713,7 +713,7 @@ export const MORE_W5D: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["White fish", "Lime"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "White pepper", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep White fish and Lime; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add White fish and cook until just cooked.",
@@ -735,7 +735,7 @@ export const MORE_W5D: Recipe[] = [
     time: 40,
     servings: 2,
     need: ["Eggs", "Rice", "Dried mushrooms", "Shrimp", "Chinese sausage", "Flour", "Mozzarella"],
-    optional: ["Soy sauce", "Oyster sauce"],
+    optional: ["Soy sauce", "Oyster sauce", "Cornstarch"],
     steps: [
       "Heat oven to 200°C. Toss Chicken thighs and Mushroom with a little oil, salt, and garlic.",
       "Spread on a tray and roast 20–30 minutes until browned and cooked through.",
@@ -779,7 +779,7 @@ export const MORE_W5D: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Tofu", "Pak choi"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Chicken stock", "Dried mushrooms"],
+    optional: ["Chicken stock", "White pepper", "Salt", "Ginger", "Cooking oil", "Soy sauce", "Garlic", "Spring onion", "Sugar", "Sesame oil"],
     steps: [
       "Blanch Tofu briefly if it is meat; rinse. Cut Pak choi into chunks.",
       "Simmer with ginger and about 1.2–1.5 L water (or stock) 25–35 minutes until flavours come together.",
@@ -867,7 +867,7 @@ export const MORE_W5D: Recipe[] = [
     time: 40,
     servings: 2,
     need: ["Chicken thighs"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
+    optional: ["Garlic", "Cooking oil", "Salt", "Honey", "Soy sauce", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
     steps: [
       "Heat oven to 200°C. Toss Chicken thighs and vegetables with a little oil, salt, and garlic.",
       "Spread on a tray and roast 20–30 minutes until browned and cooked through.",
@@ -999,7 +999,7 @@ export const MORE_W5D: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tomato", "Pasta"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Olive oil", "Cheddar", "Onion"],
+    optional: ["Olive oil", "White pepper", "Garlic", "Cooking oil", "Onion", "Cheddar", "Salt", "Soy sauce", "Ginger", "Spring onion", "Sugar", "Sesame oil"],
     steps: [
       "Boil pasta in salted water until al dente; reserve ½ cup pasta water.",
       "Meanwhile sauté garlic/onion and Tomato in olive oil until just cooked.",
@@ -1065,7 +1065,7 @@ export const MORE_W5D: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Lime"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
+    optional: ["Olive oil", "Vinegar", "Cooking oil", "Lemon", "Sesame oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar"],
     steps: [
       "Prep Lime and vegetables; cook any protein through and cool slightly.",
       "Whisk a dressing of soy/vinegar/sesame oil (or lemon + olive oil).",

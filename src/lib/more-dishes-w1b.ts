@@ -34,7 +34,7 @@ export const MORE_W1B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Beef steak", "Choi sum", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Cornstarch", "Ginger", "Shaoxing wine"],
+    optional: ["Shaoxing wine", "Soy sauce", "Cornstarch", "Oyster sauce", "Ginger"],
     steps: [
       "Slice 250 g beef steak thinly across the grain; toss with 1 tsp soy sauce, 1 tsp cornstarch, and a splash of Shaoxing wine if using. Cut choi sum into lengths; mince 2 garlic cloves.",
       "Stir-fry beef in a hot oiled wok 1–2 minutes until just browned; transfer out.",
@@ -55,8 +55,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 12,
     servings: 2,
-    need: ["Water spinach", "Ginger", "Garlic", "Fermented tofu"],
-    optional: ["Cooking oil", "White pepper", "Sugar", "Salt", "Shaoxing wine"],
+    need: ["Water spinach", "Garlic", "Fermented tofu"],
+    optional: ["Cooking oil", "Sand ginger", "White pepper", "Sugar", "Salt", "Shaoxing wine"],
     steps: [
       "Wash 300 g spinach (stand-in for water spinach / 通菜); drain. Mince 3 garlic cloves.",
       "Mix a quick 腐乳-style sauce: 1 tbsp soy sauce, ½ tsp sugar, and ½–1 tsp chili oil if you like heat.",
@@ -77,8 +77,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 35,
     servings: 2,
-    need: ["Fermented black beans", "Orange", "Spare ribs", "Spring onion", "Garlic", "Ginger"],
-    optional: ["Cornstarch", "White pepper", "Cooking oil", "Salt", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Sesame oil"],
+    need: ["Fermented black beans", "Orange", "Spare ribs", "Spring onion", "Garlic"],
+    optional: ["Cornstarch", "White pepper", "Cooking oil", "Salt", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Sand ginger", "Sesame oil"],
     steps: [
       "Cut 400 g pork chops into bite-size rib-style pieces. Mix with 2 tbsp soy sauce, 3 minced garlic cloves, 1 tsp sugar, 1 tsp cornstarch, a splash of Shaoxing wine, and optional chili oil (black-bean style stand-in).",
       "Spread on a heatproof plate; scatter ginger slices if using. Steam over high heat 20–25 minutes until pork is fully cooked through and juices run clear.",
@@ -99,8 +99,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 2,
-    need: ["Fermented black beans", "Orange", "Spare ribs", "Spring onion", "Garlic", "Ginger"],
-    optional: ["Cornstarch", "White pepper", "Cooking oil", "Salt", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Sesame oil"],
+    need: ["Fermented black beans", "Orange", "Spare ribs", "Spring onion", "Garlic"],
+    optional: ["Cornstarch", "White pepper", "Cooking oil", "Salt", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Sand ginger", "Sesame oil"],
     steps: [
       "Cut 400 g pork chops into chunks; peel and cube 2 medium potatoes (about 400 g). Slice ginger and mince 2 garlic cloves.",
       "Brown pork in a little oil 3–4 minutes. Add garlic, ginger, optional onion, 2 tbsp soy sauce, 1 tsp sugar, a splash of wine, and enough water to almost cover.",
@@ -209,8 +209,8 @@ export const MORE_W1B: Recipe[] = [
     cuisine: "Cantonese",
     time: 50,
     servings: 3,
-    need: ["Chicken breast", "Onion", "Ginger"],
-    optional: ["Cooking oil", "Salt", "Sesame oil"],
+    need: ["Chicken breast", "Onion"],
+    optional: ["Sand ginger", "Cooking oil", "Salt", "Sesame oil"],
     steps: [
       "Bring a pot of water to a boil with 4–5 ginger slices and a handful of spring onion if using. Add 600–700 g chicken thighs; return to a gentle simmer.",
       "Poach covered 20–25 minutes (or until thickest part hits 74°C / 165°F). Lift out into an ice bath 5 minutes to firm the skin, then drain and chop.",
@@ -254,7 +254,7 @@ export const MORE_W1B: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tofu", "Ground pork", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Ginger", "Spring onion", "Cornstarch", "Chili oil", "Cooking oil", "Chicken stock", "Sesame oil", "Sugar", "Salt", "Carrots", "Shaoxing wine"],
+    optional: ["Soy sauce", "Cornstarch", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Chili oil", "Ginger", "Chicken stock", "Sesame oil", "Sugar", "Salt", "Shaoxing wine"],
     steps: [
       "Drain and cube 1 block tofu (about 300–350 g). Mince 2 garlic cloves; have 150 g ground pork ready.",
       "Brown pork with garlic (and ginger if using) until cooked through (74°C / 165°F). Add 1 tbsp soy sauce, 1 tbsp oyster sauce if using, and ¾ cup water; nestle in tofu.",
@@ -342,7 +342,7 @@ export const MORE_W1B: Recipe[] = [
     time: 75,
     servings: 3,
     need: ["Pork chops", "Potato", "Carrots"],
-    optional: ["Ginger", "Salt", "White pepper", "Shaoxing wine", "Spring onion", "Lotus root", "Chicken stock", "Oyster sauce", "Sugar", "Cooking oil", "Garlic", "Cornstarch"],
+    optional: ["White pepper", "Onion", "Spring onion", "Salt", "Ginger", "Shaoxing wine", "Chicken stock", "Oyster sauce", "Sugar", "Cooking oil", "Garlic", "Cornstarch"],
     steps: [
       "Cut 400 g pork chops into pieces; peel and chunk 1 large potato and 2 carrots (root stand-in for lotus). Blanch pork in boiling water 1 minute; rinse.",
       "Simmer pork with 6 cups water, ginger slices, and a splash of wine if using for 30 minutes. Add potato and carrot; simmer another 25–30 minutes until soft.",
@@ -407,7 +407,7 @@ export const MORE_W1B: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Eggplant", "Ground pork", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Ginger", "Spring onion", "Chili oil", "Sugar", "Cornstarch"],
+    optional: ["Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Chili oil", "Ginger", "Sugar", "Soy sauce", "Cornstarch"],
     steps: [
       "Cut 2 eggplants into thick wedges; mince 2 garlic cloves. Brown 150 g ground pork in a deep pan or claypot until cooked through (74°C / 165°F).",
       "Push pork aside; fry eggplant in a little more oil until softened. Add garlic, ginger if using, 1 tbsp soy, 1 tbsp oyster sauce, ½ tsp sugar, and ½ cup water.",

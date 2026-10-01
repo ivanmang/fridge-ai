@@ -9,7 +9,7 @@ export const MORE_W4F: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Beans", "Flour", "Cooked rice"],
-    optional: ["Garlic", "Onion", "Cucumber", "Tomato", "Yogurt", "Lemon", "Salt", "Lettuce"],
+    optional: ["Tomato", "Garlic", "Yogurt", "Lettuce", "Onion", "Lemon", "Salt", "Cucumber"],
     steps: [
       "Mash 1 can drained beans with minced garlic, grated onion, salt, and 2–3 tbsp flour until moldable; shape small patties.",
       "Pan-fry patties 3–4 minutes per side until crisp and hot through.",
@@ -31,7 +31,7 @@ export const MORE_W4F: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Tortilla", "Cheddar", "Cooked leftovers"],
-    optional: ["Onion", "Bell pepper", "Tomato", "Sour cream", "Salt"],
+    optional: ["White pepper", "Tomato", "Cream", "Onion", "Sour cream", "Salt"],
     steps: [
       "Warm 1–2 tortillas. Scatter grated cheddar and chopped leftovers (onion/pepper/tomato OK) on half.",
       "Fold and cook in a dry pan 2–3 minutes per side until cheese melts and tortilla crisps. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -53,7 +53,7 @@ export const MORE_W4F: Recipe[] = [
     time: 20,
     servings: 1,
     need: ["Instant noodles", "Soy sauce", "Eggs"],
-    optional: ["Spring onion", "Nori", "Spinach", "Sesame oil", "Garlic", "Cooked leftovers"],
+    optional: ["Chicken stock", "Cooked leftovers", "Nori", "Garlic", "Noodles", "Cooking oil", "Spinach", "Onion", "Spring onion", "Sesame oil"],
     steps: [
       "Boil instant noodles; discard or lighten the seasoning packet. Soft-boil 1 egg 7 minutes; peel.",
       "Make broth with about 2 cups water, 1–1.5 tbsp soy sauce, minced garlic, and sesame oil if using.",
@@ -75,7 +75,7 @@ export const MORE_W4F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken thighs", "Satay sauce", "Coconut milk", "Curry powder"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Cooked rice", "Cucumber", "Chili oil", "Sugar", "Cooking oil", "Ginger", "Sesame oil"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Chili oil", "Cucumber", "Sugar", "Ginger", "Sesame oil"],
     steps: [
       "Cut 400 g chicken thighs into strips. Mix 3 tbsp satay sauce with a splash of soy sauce and water.",
       "Stir-fry onion/garlic; add chicken 6–8 minutes until cooked through (74°C / 165°F).",
@@ -119,7 +119,7 @@ export const MORE_W4F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Pork chops", "Lemongrass", "Cooked rice"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Cucumber", "Lettuce", "Chili oil"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Lettuce", "Chili oil", "Cucumber", "Sugar"],
     steps: [
       "Mince tender lemongrass and garlic. Slice 300 g pork chops thinly; toss with lemongrass, garlic, soy sauce, and pinch of sugar 10 minutes.",
       "Stir-fry pork 4–5 minutes until cooked through.",
@@ -141,7 +141,7 @@ export const MORE_W4F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken thighs", "Gochujang", "Cooked rice"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Sesame oil", "Sesame seeds", "Spring onion", "Cucumber"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Sesame seeds", "Sesame oil", "Cucumber", "Sugar"],
     steps: [
       "Cut 400 g chicken thighs into bite pieces. Mix 1.5 tbsp gochujang with 1 tbsp soy sauce, 1 tsp sugar, garlic, and sesame oil.",
       "Marinate chicken 10 minutes; pan-fry 8–10 minutes until chicken reaches 74°C / 165°F and glaze sticky.",
@@ -163,7 +163,7 @@ export const MORE_W4F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pasta", "Miso", "Butter"],
-    optional: ["Garlic", "Spring onion", "Soy sauce", "Sesame seeds", "Nori"],
+    optional: ["Soy sauce", "Nori", "Garlic", "Onion", "Spring onion", "Sesame seeds"],
     steps: [
       "Boil 180 g pasta until al dente; reserve 1/2 cup pasta water.",
       "Melt 1 tbsp butter with minced garlic if using; whisk in 1.5 tbsp miso and pasta water until smooth.",
@@ -185,7 +185,7 @@ export const MORE_W4F: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked rice", "Nori", "Butter"],
-    optional: ["Salt", "Soy sauce", "Sesame seeds", "Canned tuna"],
+    optional: ["Salt", "Tortilla", "Soy sauce", "Sesame seeds", "Canned tuna"],
     steps: [
       "Season warm cooked rice lightly with salt. Optional: mix in flaked tuna.",
       "Shape into triangles or balls with wet hands; wrap with nori strips.",
@@ -206,8 +206,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Japanese",
     time: 25,
     servings: 2,
-    need: ["Udon", "Curry powder", "Onion"],
-    optional: ["Chicken thighs", "Carrots", "Potato", "Soy sauce", "Spring onion"],
+    need: ["Noodles", "Curry powder", "Onion"],
+    optional: ["Soy sauce", "Spring onion", "Udon", "Potato", "Carrots"],
     steps: [
       "Cook udon; drain. Slice onion; cube optional chicken, carrot, and potato.",
       "Soften onion; stir in 1–2 tsp curry powder. Add veggies/chicken and about 2.5 cups water; simmer until chicken reaches 74°C / 165°F if using (12–15 minutes).",
@@ -229,7 +229,7 @@ export const MORE_W4F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Tofu", "Satay sauce"],
-    optional: ["Peanut butter", "Soy sauce", "Garlic", "Cucumber", "Cooked rice", "Chili oil"],
+    optional: ["Soy sauce", "Peanut butter", "Cooking oil", "Chili oil", "Cucumber", "Butter", "Garlic"],
     steps: [
       "Cube 300 g tofu; pan-sear until golden on most sides.",
       "Mix 2 tbsp satay sauce with optional peanut butter, soy sauce, and a splash of water; pour over tofu.",
@@ -250,7 +250,7 @@ export const MORE_W4F: Recipe[] = [
     time: 12,
     servings: 1,
     need: ["Kimchi", "Tortilla", "Cheddar"],
-    optional: ["Spring onion", "Sesame oil", "Cooked leftovers"],
+    optional: ["Cooked leftovers", "Cooking oil", "Onion", "Spring onion", "Sesame oil"],
     steps: [
       "Chop 1/2 cup kimchi; squeeze lightly. Warm tortilla; add cheddar, kimchi, optional leftover bits and spring onion.",
       "Fold and cook 2–3 minutes per side until cheese melts.",
@@ -270,8 +270,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Thai",
     time: 25,
     servings: 2,
-    need: ["Shallot", "Garlic", "Ginger", "Cilantro", "Lime", "Curry powder", "Shrimp paste", "Coconut milk", "Noodles", "Pickled mustard"],
-    optional: ["Turmeric", "Ground coriander", "Cooking oil", "Chicken stock", "Sugar", "Fish sauce"],
+    need: ["Shallot", "Garlic", "Cilantro", "Lime", "Curry powder", "Shrimp paste", "Coconut milk", "Noodles", "Pickled mustard"],
+    optional: ["Sand ginger", "Turmeric", "Ground coriander", "Cooking oil", "Chicken stock", "Sugar", "Fish sauce"],
     steps: [
       "Cook noodles; drain. Soften garlic and bruised lemongrass if using; add 1 cup coconut milk and 1 cup water.",
       "Simmer 5 minutes; add 200 g shrimp (and zucchini) until shrimp are pink 3–4 minutes.",
@@ -293,7 +293,7 @@ export const MORE_W4F: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Glass noodles", "Spinach", "Carrots"],
-    optional: ["Beef steak", "Onion", "Soy sauce", "Sugar", "Sesame oil", "Sesame seeds", "Garlic", "White pepper", "Spring onion", "Cooking oil"],
+    optional: ["Soy sauce", "Garlic", "Noodles", "Cooking oil", "Onion", "Sesame seeds", "Sesame oil", "Sugar", "Beef steak", "White pepper", "Spring onion"],
     steps: [
       "Soak glass noodles until pliable; boil 2–3 minutes, drain, and toss with sesame oil. Blanch spinach; squeeze dry. Julienne carrot and onion.",
       "Stir-fry optional sliced beef until just cooked; stir-fry vegetables separately.",
@@ -315,7 +315,7 @@ export const MORE_W4F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Shrimp", "Tortilla", "Cabbage"],
-    optional: ["Lemon", "Sour cream", "Chili oil", "Onion", "Salt", "Garlic", "Tomato"],
+    optional: ["Tomato", "Cream", "Garlic", "Cooking oil", "Onion", "Orange juice", "Lemon", "Chili oil", "Salt", "Sour cream"],
     steps: [
       "Peel 300 g shrimp; toss with salt, garlic, and chili oil if using. Shred cabbage; warm tortillas.",
       "Stir-fry shrimp 3–4 minutes until pink and opaque.",
@@ -336,8 +336,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Thai",
     time: 25,
     servings: 2,
-    need: ["Garlic", "Ginger", "Curry powder", "Onion", "Bell pepper", "Coconut milk", "Cilantro"],
-    optional: ["Cooking oil", "Sugar", "Salt"],
+    need: ["Garlic", "Curry powder", "Onion", "Bell pepper", "Coconut milk", "Cilantro"],
+    optional: ["Cooking oil", "Sand ginger", "Sugar", "Salt"],
     steps: [
       "Peel 300 g shrimp. Soften onion/garlic; stir in 1–2 tsp curry powder until fragrant.",
       "Add 1 cup coconut milk and a splash of water; simmer 3 minutes. Add zucchini if using.",
@@ -358,7 +358,7 @@ export const MORE_W4F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Beans", "Lemon", "Garlic"],
-    optional: ["Olive oil", "Yogurt", "Cucumber", "Tomato", "Bread", "Salt", "Sesame seeds", "Cooked rice"],
+    optional: ["Olive oil", "Tomato", "Bread", "Cooked rice", "Cooking oil", "Yogurt", "Orange juice", "Sesame seeds", "Salt", "Cucumber"],
     steps: [
       "Blend or mash 1 can drained beans with minced garlic, juice of 1/2 lemon, salt, and olive oil or yogurt until creamy.",
       "Warm bread or cooked rice as the base.",

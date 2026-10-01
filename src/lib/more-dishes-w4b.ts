@@ -9,7 +9,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Winter melon", "Garlic"],
-    optional: ["Dried mushrooms", "Oyster sauce", "Salt", "Cornstarch", "Spring onion", "Shrimp", "Eggs", "Chicken stock", "Sugar", "White pepper", "Olive oil", "Sesame oil"],
+    optional: ["Mushroom", "Dried mushrooms", "Cornstarch", "Onion", "Spring onion", "Oyster sauce", "Salt", "Chicken stock", "Sugar", "White pepper", "Olive oil", "Sesame oil"],
     steps: [
       "Peel and thin-slice 400 g winter melon; soak and slice dried mushrooms if using.",
       "Stir-fry garlic until fragrant; add winter melon and mushrooms. Cook 6–8 minutes, adding a splash of water if dry.",
@@ -53,7 +53,7 @@ export const MORE_W4B: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggplant", "Pumpkin"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Salt", "Chili oil", "Spring onion"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Salt", "Sugar"],
     steps: [
       "Cube 1 eggplant and 300 g pumpkin. Soften pumpkin first with a splash of water, covered 6–8 minutes.",
       "Add eggplant and garlic; cook 6–8 more minutes until both are tender, stirring often.",
@@ -74,8 +74,8 @@ export const MORE_W4B: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Lotus root", "Mushroom", "Bell pepper", "Ginger", "Garlic", "Spring onion"],
-    optional: ["Chicken stock", "Oyster sauce", "Salt", "Sugar", "White pepper", "Cooking oil", "Shaoxing wine", "Cornstarch"],
+    need: ["Lotus root", "Mushroom", "Bell pepper", "Garlic", "Spring onion"],
+    optional: ["Chicken stock", "Oyster sauce", "Salt", "Sugar", "White pepper", "Cooking oil", "Sand ginger", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Peel and thin-slice 300 g lotus root; soak in water briefly then drain. Julienne 1 carrot.",
       "Stir-fry garlic if using, then lotus and carrot on high heat 4–5 minutes until crisp-tender.",
@@ -119,7 +119,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pumpkin", "Garlic"],
-    optional: ["Soy sauce", "Sugar", "Salt", "Sesame oil", "Spring onion"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Salt", "Sesame oil", "Sugar"],
     steps: [
       "Cube 400 g pumpkin into 2 cm pieces. Mince 3 garlic cloves.",
       "Stir-fry garlic briefly; add pumpkin and a splash of water. Cover 8–10 minutes until soft, stirring once.",
@@ -162,8 +162,8 @@ export const MORE_W4B: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Ground pork", "Ginger", "Green beans", "Garlic", "Bell pepper", "Dried chili"],
-    optional: ["Shaoxing wine", "Soy sauce", "Sugar", "Cornstarch", "Cooking oil", "Sesame oil", "White pepper", "Salt"],
+    need: ["Ground pork", "Green beans", "Garlic", "Bell pepper", "Dried chili"],
+    optional: ["Shaoxing wine", "Soy sauce", "Sand ginger", "Sugar", "Cornstarch", "Cooking oil", "Sesame oil", "White pepper", "Salt"],
     steps: [
       "Trim 300 g green beans; cut into 5 cm lengths. Mix 200 g ground pork with a little cornstarch and soy sauce.",
       "Stir-fry pork until browned and cooked through (74°C / 165°F); remove. Blister beans in the pan 5–6 minutes.",
@@ -184,8 +184,8 @@ export const MORE_W4B: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Spare ribs", "Ginger", "Winter melon", "Cilantro"],
-    optional: ["Salt", "White pepper", "Soy sauce"],
+    need: ["Spare ribs", "Winter melon", "Cilantro"],
+    optional: ["Sand ginger", "Salt", "White pepper", "Soy sauce"],
     steps: [
       "Slice 250 g pork chops thinly; toss with soy sauce and cornstarch. Cube 350 g winter melon.",
       "Stir-fry pork 2–3 minutes until just cooked; remove. Soften garlic/ginger; add winter melon with a splash of water, cover 6–8 minutes.",
@@ -206,8 +206,8 @@ export const MORE_W4B: Recipe[] = [
     cuisine: "Chinese",
     time: 18,
     servings: 2,
-    need: ["Lotus root", "Mushroom", "Bell pepper", "Ginger", "Garlic", "Spring onion"],
-    optional: ["Chicken stock", "Oyster sauce", "Salt", "Sugar", "White pepper", "Cooking oil", "Shaoxing wine", "Cornstarch"],
+    need: ["Lotus root", "Mushroom", "Bell pepper", "Garlic", "Spring onion"],
+    optional: ["Chicken stock", "Oyster sauce", "Salt", "Sugar", "White pepper", "Cooking oil", "Sand ginger", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Thin-slice 250 g lotus root; julienne 1 carrot and 1 bell pepper.",
       "Stir-fry garlic if using; add vegetables on high heat 4–5 minutes until crisp-tender.",
@@ -228,8 +228,8 @@ export const MORE_W4B: Recipe[] = [
     cuisine: "Cantonese",
     time: 22,
     servings: 2,
-    need: ["Pork chops", "Ginger", "Bitter melon"],
-    optional: ["Salt"],
+    need: ["Pork chops", "Bitter melon"],
+    optional: ["Sand ginger", "Salt"],
     steps: [
       "Slice 250 g pork thinly; toss with soy sauce and cornstarch. Seed and slice bitter melon; blanch 1 minute, drain.",
       "Stir-fry pork until just cooked; remove. Soften garlic and rinsed black beans if using; toss bitter melon 2 minutes.",
@@ -273,7 +273,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pineapple", "Bell pepper", "Onion"],
-    optional: ["Carrots", "Cucumber", "Ketchup", "Vinegar", "Sugar", "Salt", "Cornstarch", "Cooking oil", "Ginger", "Soy sauce"],
+    optional: ["White pepper", "Cornstarch", "Vinegar", "Cucumber", "Carrots", "Ketchup", "Sugar", "Salt", "Cooking oil", "Ginger", "Soy sauce"],
     steps: [
       "Cube 1 cup pineapple; chunk bell pepper, onion, and carrot/cucumber if using.",
       "Stir-fry vegetables 3–4 minutes until crisp-tender; add pineapple for 1 minute.",
@@ -295,7 +295,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Tofu skin", "Pak choi"],
-    optional: ["Garlic", "Carrots", "Soy sauce", "Sesame oil", "Salt"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Salt", "Sesame oil", "Carrots"],
     steps: [
       "Soak 80 g tofu skin until soft; cut into strips. Chop pak choi and carrot if using.",
       "Stir-fry garlic; add carrot then pak choi 2–3 minutes. Add tofu skin and a splash of water.",
@@ -317,7 +317,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Dried mushrooms", "Choi sum"],
-    optional: ["Garlic", "Oyster sauce", "Soy sauce", "Sugar", "Cornstarch", "Salt"],
+    optional: ["Soy sauce", "Mushroom", "Garlic", "Oyster sauce", "Sugar", "Cornstarch", "Salt"],
     steps: [
       "Soak 8 dried mushrooms until soft; squeeze and slice. Cut choi sum into lengths.",
       "Stir-fry garlic; add mushrooms 2 minutes, then choi sum with a splash of water 2–3 minutes.",
@@ -339,7 +339,7 @@ export const MORE_W4B: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Green beans", "Sesame seeds"],
-    optional: ["Soy sauce", "Sesame oil", "Sugar", "Salt", "Garlic", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Cornstarch"],
+    optional: ["Soy sauce", "Bread", "Cooking oil", "Beans", "Sesame oil", "Sugar", "Salt", "Garlic", "Shaoxing wine", "Oyster sauce", "Cornstarch"],
     steps: [
       "Trim 300 g green beans; boil or steam 4–5 minutes until bright and tender-crisp; drain and cool slightly.",
       "Toast 1 tbsp sesame seeds; crush lightly. Mix with 1 tbsp soy sauce, 1/2 tsp sugar, and sesame oil if using.",
@@ -361,7 +361,7 @@ export const MORE_W4B: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Green beans", "Thai basil"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Chili oil", "Onion", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Salt", "Cornstarch"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Beans", "Chili oil", "Sugar", "Shaoxing wine", "Oyster sauce", "Salt", "Cornstarch"],
     steps: [
       "Trim 300 g green beans into 5 cm pieces. Pick a handful of Thai basil leaves.",
       "Stir-fry garlic and onion if using; add beans with a splash of water 5–6 minutes until tender-crisp.",
@@ -383,7 +383,7 @@ export const MORE_W4B: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Lemongrass", "Zucchini", "Bell pepper"],
-    optional: ["Garlic", "Onion", "Soy sauce", "Sugar", "Salt", "Chili oil"],
+    optional: ["White pepper", "Soy sauce", "Garlic", "Cooking oil", "Onion", "Chili oil", "Salt", "Sugar"],
     steps: [
       "Mince the tender white part of 2 lemongrass stalks. Slice zucchini and bell pepper; slice onion if using.",
       "Stir-fry lemongrass and garlic until fragrant 30–40 seconds; add vegetables 4–5 minutes.",
@@ -405,7 +405,7 @@ export const MORE_W4B: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cabbage", "Peanuts"],
-    optional: ["Carrots", "Cucumber", "Soy sauce", "Vinegar", "Sugar", "Sesame oil", "Salt"],
+    optional: ["Soy sauce", "Vinegar", "Cooking oil", "Sesame oil", "Cucumber", "Carrots", "Sugar", "Salt"],
     steps: [
       "Shred 1/4 cabbage and carrot/cucumber if using. Roughly crush 1/3 cup roasted peanuts.",
       "Mix 1 tbsp soy sauce, 1 tbsp vinegar, 1 tsp sugar, and sesame oil into a dressing.",
@@ -426,7 +426,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Winter melon", "Shrimp"],
-    optional: ["Garlic", "Ginger", "Salt", "Cornstarch", "White pepper", "Spring onion", "Eggs", "Chicken stock", "Sugar", "Olive oil", "Sesame oil"],
+    optional: ["White pepper", "Cornstarch", "Garlic", "Onion", "Spring onion", "Salt", "Ginger", "Chicken stock", "Sugar", "Olive oil", "Sesame oil"],
     steps: [
       "Cube 350 g winter melon; peel and devein 200 g shrimp, toss with cornstarch and white pepper.",
       "Stir-fry shrimp 1–2 minutes until pink; remove. Soften garlic/ginger; add winter melon with splash of water, cover 6–8 minutes.",
@@ -447,8 +447,8 @@ export const MORE_W4B: Recipe[] = [
     cuisine: "Chinese",
     time: 22,
     servings: 2,
-    need: ["Lotus root", "Mushroom", "Bell pepper", "Ginger", "Garlic", "Spring onion"],
-    optional: ["Chicken stock", "Oyster sauce", "Salt", "Sugar", "White pepper", "Cooking oil", "Shaoxing wine", "Cornstarch"],
+    need: ["Lotus root", "Mushroom", "Bell pepper", "Garlic", "Spring onion"],
+    optional: ["Chicken stock", "Oyster sauce", "Salt", "Sugar", "White pepper", "Cooking oil", "Sand ginger", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Slice 200 g beef thinly; toss with soy sauce and cornstarch. Thin-slice 250 g lotus root; soak briefly and drain.",
       "Stir-fry beef 1–2 minutes until just browned; remove. Stir-fry lotus 3–4 minutes until crisp-tender.",
@@ -470,7 +470,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Bitter melon", "Tofu"],
-    optional: ["Garlic", "Fermented black beans", "Soy sauce", "Sugar", "Salt", "Beef steak", "Baking soda", "Cooking oil", "Beans", "Shaoxing wine", "Sesame oil", "White pepper", "Cornstarch", "Oyster sauce"],
+    optional: ["Soy sauce", "Garlic", "Beans", "Sugar", "Salt", "Baking soda", "Cooking oil", "Shaoxing wine", "Sesame oil", "White pepper", "Cornstarch", "Oyster sauce"],
     steps: [
       "Seed and slice bitter melon; blanch 1 minute. Cube 300 g tofu; pan-sear until lightly golden.",
       "Soft garlic and rinsed black beans if using; toss bitter melon 2 minutes.",
@@ -492,7 +492,7 @@ export const MORE_W4B: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Water spinach", "Garlic", "Chili oil"],
-    optional: ["Salt", "Soy sauce", "Sesame oil"],
+    optional: ["Soy sauce", "Cooking oil", "Spinach", "Salt", "Sesame oil"],
     steps: [
       "Wash 300 g water spinach; mince 4 garlic cloves.",
       "Heat oil; fry garlic 15 seconds, then chili oil until fragrant.",
@@ -536,7 +536,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Zucchini", "Pork chops"],
-    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Cornstarch", "Salt"],
+    optional: ["Soy sauce", "Cornstarch", "Garlic", "Oyster sauce", "Salt"],
     steps: [
       "Slice 250 g pork thinly; toss with soy sauce and cornstarch. Slice 2 zucchini into half-moons.",
       "Stir-fry pork until just cooked; remove. Soften garlic; toss zucchini 3–4 minutes.",
@@ -558,7 +558,7 @@ export const MORE_W4B: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Sweet potato", "Bell pepper"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Sugar", "Salt", "Sesame oil"],
+    optional: ["White pepper", "Soy sauce", "Cooking oil", "Onion", "Sesame oil", "Potato", "Sugar", "Garlic", "Salt"],
     steps: [
       "Peel and thin-slice 1 large sweet potato; slice bell pepper and onion if using.",
       "Stir-fry sweet potato with a splash of water, covered 6–8 minutes until softening; add peppers and onion.",
@@ -580,7 +580,7 @@ export const MORE_W4B: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Corn", "Carrots"],
-    optional: ["Butter", "Salt", "Sugar", "Spring onion", "White pepper"],
+    optional: ["White pepper", "Cooking oil", "Onion", "Spring onion", "Salt", "Butter", "Sugar"],
     steps: [
       "Use 1.5 cups corn kernels; dice 1 carrot small.",
       "Melt butter or heat oil; stir-fry carrot 3 minutes, then corn 3–4 minutes until hot.",
@@ -602,7 +602,7 @@ export const MORE_W4B: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cauliflower", "Sesame seeds"],
-    optional: ["Garlic", "Soy sauce", "Sesame oil", "Salt", "Sugar"],
+    optional: ["Soy sauce", "Bread", "Garlic", "Cooking oil", "Salt", "Sesame oil", "Sugar"],
     steps: [
       "Cut 400 g cauliflower into small florets. Toast 1 tbsp sesame seeds; set aside.",
       "Stir-fry garlic if using; add cauliflower with a splash of water, cover 6–8 minutes until tender-crisp.",
@@ -624,7 +624,7 @@ export const MORE_W4B: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Spinach", "Peanuts"],
-    optional: ["Garlic", "Soy sauce", "Sesame oil", "Salt", "Vinegar"],
+    optional: ["Soy sauce", "Garlic", "Vinegar", "Cooking oil", "Sesame oil", "Salt"],
     steps: [
       "Blanch 300 g spinach 30–45 seconds; squeeze dry and chop. Crush 1/4 cup peanuts.",
       "Mix soy sauce, sesame oil, optional vinegar and minced garlic into a light dressing.",

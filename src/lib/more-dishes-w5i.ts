@@ -888,8 +888,8 @@ export const MORE_W5I: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Ginger", "Eggs"],
-    optional: ["Vinegar", "Shaoxing wine", "Salt"],
+    need: ["Pork knuckle", "Eggs"],
+    optional: ["Sand ginger", "Vinegar", "Shaoxing wine", "Salt"],
     steps: [
       "Prep Tofu and Pak choi; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Tofu and cook until just cooked.",
@@ -1020,7 +1020,7 @@ export const MORE_W5I: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Noodles", "Dried mushrooms"],
+    need: ["Noodles", "Chicken breast", "Dried mushrooms"],
     optional: ["Chicken stock", "Cornstarch"],
     steps: [
       "Blanch Noodles briefly if it is meat; rinse. Cut vegetables into chunks.",
@@ -1065,7 +1065,7 @@ export const MORE_W5I: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Thai basil", "Shrimp", "Eggs", "Milk"],
-    optional: ["Fish sauce"],
+    optional: ["Cornstarch", "Fish sauce"],
     steps: [
       "Pat Shrimp dry; season with salt and white pepper. Slice Eggs if using as a side.",
       "Pan-fry in a lightly oiled skillet over medium heat until browned and cooked until just cooked.",

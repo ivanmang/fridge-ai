@@ -31,7 +31,7 @@ export const MORE_W3K: Recipe[] = [
     time: 25,
     servings: 3,
     need: ["Beans", "Curry powder", "Coconut milk", "Tomato"],
-    optional: ["Onion", "Garlic", "Ginger", "Spinach", "Salt", "Bread", "Cilantro", "Cooking oil"],
+    optional: ["Garlic", "Spinach", "Onion", "Milk", "Ginger", "Salt", "Cooking oil"],
     steps: [
       "Sauté onion and garlic; stir in 1–2 tbsp curry powder 30 seconds.",
       "Add drained beans, chopped tomato, and 1 cup coconut milk; simmer 12 minutes.",
@@ -53,7 +53,7 @@ export const MORE_W3K: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Chicken thighs", "Broccoli", "Carrots"],
-    optional: ["Potato", "Olive oil", "Salt", "Garlic", "Lemon"],
+    optional: ["Garlic", "Cooking oil", "Lemon", "Salt", "Olive oil"],
     steps: [
       "Toss chicken and chopped veg with oil, salt, and garlic on a tray.",
       "Roast at 200°C / 400°F about 25–30 minutes until chicken is 74°C / 165°F.",
@@ -97,7 +97,7 @@ export const MORE_W3K: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Canned tuna", "Bread", "Cheddar"],
-    optional: ["Mayonnaise", "Onion", "Butter", "Tomato"],
+    optional: ["Tomato", "Onion", "Mayonnaise", "Butter"],
     steps: [
       "Mix drained tuna with 1 tbsp mayonnaise and minced onion.",
       "Pile on bread, top with cheddar; grill or pan-lid until cheese melts.",
@@ -119,7 +119,7 @@ export const MORE_W3K: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Beans", "Bread", "Tomato"],
-    optional: ["Butter", "Onion", "Sugar", "Salt", "Cheddar"],
+    optional: ["Onion", "Cheddar", "Salt", "Butter", "Sugar"],
     steps: [
       "Warm drained beans with chopped tomato, a pinch of sugar/salt, and optional onion 5–7 minutes.",
       "Toast bread and butter lightly.",
@@ -163,7 +163,7 @@ export const MORE_W3K: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["White fish", "Green beans"],
-    optional: ["Lemon", "Butter", "Salt", "Garlic", "Olive oil"],
+    optional: ["Garlic", "Beans", "Lemon", "Butter", "Salt", "Olive oil"],
     steps: [
       "Pat fish dry; season. Pan-sear 3–4 minutes per side until opaque and flaky.",
       "In same pan, sauté green beans with garlic 4–5 minutes.",
@@ -185,7 +185,7 @@ export const MORE_W3K: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Yogurt", "Cucumber"],
-    optional: ["Garlic", "Lemon", "Salt", "Olive oil", "Bread"],
+    optional: ["Olive oil", "Bread", "Garlic", "Cooking oil", "Lemon", "Salt"],
     steps: [
       "Dice cucumber; mix into thick yogurt with minced garlic, salt, and lemon.",
       "Drizzle olive oil.",
@@ -207,7 +207,7 @@ export const MORE_W3K: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Bread", "Tomato", "Mozzarella"],
-    optional: ["Olive oil", "Salt", "Thai basil"],
+    optional: ["Olive oil", "Cooking oil", "Salt"],
     steps: [
       "Toast bread. Slice tomato and mozzarella.",
       "Layer on toast with salt and olive oil.",
@@ -228,7 +228,7 @@ export const MORE_W3K: Recipe[] = [
     time: 30,
     servings: 3,
     need: ["Ground beef", "Pasta", "Tomato"],
-    optional: ["Onion", "Garlic", "Eggs", "Salt", "White pepper", "Beef steak", "Cornstarch", "Baking soda", "Cooking oil", "Oyster sauce", "Soy sauce", "Sugar", "Sesame oil", "Ginger", "Shallot", "Spring onion", "Ketchup", "Shaoxing wine"],
+    optional: ["White pepper", "Garlic", "Onion", "Salt", "Beef steak", "Cornstarch", "Baking soda", "Cooking oil", "Oyster sauce", "Soy sauce", "Sugar", "Sesame oil", "Ginger", "Spring onion", "Ketchup", "Shaoxing wine"],
     steps: [
       "Mix ground beef with salt, optional egg, and white pepper; roll small meatballs.",
       "Brown meatballs; simmer in tomato sauce with garlic/onion 12–15 minutes until 74°C / 165°F.",
@@ -250,7 +250,7 @@ export const MORE_W3K: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Chicken breast", "Tortilla", "Lettuce"],
-    optional: ["Mayonnaise", "Cheddar", "Lemon", "Garlic", "Salt"],
+    optional: ["Garlic", "Cheddar", "Lemon", "Mayonnaise", "Salt"],
     steps: [
       "Cook chicken until 74°C / 165°F; slice. Mix mayo with lemon and garlic for dressing.",
       "Warm tortilla; fill with lettuce, chicken, dressing, and optional cheese.",
@@ -272,7 +272,7 @@ export const MORE_W3K: Recipe[] = [
     time: 12,
     servings: 1,
     need: ["Eggs", "Bell pepper", "Onion"],
-    optional: ["Cheddar", "Ham", "Butter", "Salt"],
+    optional: ["White pepper", "Cheddar", "Butter", "Ham", "Salt"],
     steps: [
       "Beat 2–3 eggs. Soften diced pepper and onion in butter.",
       "Pour eggs; add optional ham/cheese. Cook until just set.",
@@ -315,7 +315,7 @@ export const MORE_W3K: Recipe[] = [
     time: 5,
     servings: 1,
     need: ["Oats", "Milk"],
-    optional: ["Yogurt", "Honey", "Berries", "Banana"],
+    optional: ["Yogurt", "Honey"],
     steps: [
       "Mix ½ cup oats with ½ cup milk (and yogurt if using) in a jar.",
       "Refrigerate at least 4 hours or overnight.",
@@ -337,7 +337,7 @@ export const MORE_W3K: Recipe[] = [
     time: 8,
     servings: 1,
     need: ["Bread", "Banana", "Peanut butter"],
-    optional: ["Honey", "Butter"],
+    optional: ["Butter", "Honey"],
     steps: [
       "Toast bread. Spread peanut butter.",
       "Top with banana slices.",
@@ -359,7 +359,7 @@ export const MORE_W3K: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Canned tuna", "Beans", "Cucumber"],
-    optional: ["Lemon", "Olive oil", "Onion", "Salt", "Lettuce"],
+    optional: ["Olive oil", "Cooking oil", "Lettuce", "Onion", "Lemon", "Salt"],
     steps: [
       "Drain tuna and beans; toss with diced cucumber and onion.",
       "Dress with olive oil, lemon, and salt.",
@@ -381,7 +381,7 @@ export const MORE_W3K: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Chicken thighs", "Mushroom", "Milk"],
-    optional: ["Onion", "Garlic", "Butter", "Salt", "Flour", "Ginger", "Shaoxing wine", "Shallot", "Oyster sauce", "Soy sauce", "Sugar", "White pepper", "Cornstarch", "Sesame oil", "Cooking oil"],
+    optional: ["Onion", "Butter", "Flour", "Garlic", "Salt", "Ginger", "Shaoxing wine", "Oyster sauce", "Soy sauce", "Sugar", "White pepper", "Cornstarch", "Sesame oil", "Cooking oil"],
     steps: [
       "Brown chicken until nearly done; remove. Sauté mushrooms and onion in butter.",
       "Sprinkle a little flour; whisk in milk into a light sauce.",

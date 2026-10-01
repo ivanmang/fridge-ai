@@ -75,7 +75,7 @@ export const MORE_W5A: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Rice", "Ground pork", "Ham", "Dried mushrooms", "Ginger", "Pickled mustard"],
-    optional: ["Oyster sauce", "Sugar"],
+    optional: ["Oyster sauce", "Cornstarch", "Sugar"],
     steps: [
       "Arrange Ham with White fish on a heatproof plate; scatter ginger and spring onion.",
       "Steam over high heat 10–15 minutes until cooked through.",
@@ -119,7 +119,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Zucchini", "Dried mushrooms", "Carrots", "XO sauce"],
-    optional: ["Chicken stock", "Sesame oil"],
+    optional: ["Chicken stock", "Sesame oil", "Cornstarch"],
     steps: [
       "Prep White fish and Eggs; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add White fish and cook until just cooked.",
@@ -163,7 +163,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["XO sauce", "Bell pepper", "Pine nuts", "Wonton wrappers", "Mozzarella"],
-    optional: ["Oyster sauce", "Sugar", "White pepper"],
+    optional: ["Oyster sauce", "Cornstarch", "Sugar", "White pepper"],
     steps: [
       "Prep Tortilla and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Tortilla and cook until just cooked.",
@@ -185,7 +185,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["White fish", "Noodles"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "White pepper", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep White fish and Noodles; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add White fish and cook until just cooked.",
@@ -207,7 +207,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["White fish", "Noodles"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "White pepper", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep White fish and Noodles; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add White fish and cook until just cooked.",
@@ -317,7 +317,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Garlic", "Rice"],
-    optional: ["Sugar", "Soy sauce", "Oyster sauce", "Cumin", "Five-spice powder", "Sesame seeds"],
+    optional: ["Sugar", "Cornstarch", "Soy sauce", "Oyster sauce", "Cumin", "Five-spice powder", "Sesame seeds"],
     steps: [
       "Prep Chicken wings and Chicken thighs; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Chicken wings and cook until cooked through (74°C / 165°F).",
@@ -382,7 +382,7 @@ export const MORE_W5A: Recipe[] = [
     cuisine: "Western",
     time: 15,
     servings: 2,
-    need: ["Bean sprouts", "Cucumber", "Carrots", "Peanuts", "Gochujang"],
+    need: ["Chicken breast", "Bean sprouts", "Cucumber", "Carrots", "Peanuts", "Gochujang"],
     optional: ["Oyster sauce"],
     steps: [
       "Prep Chicken thighs and vegetables; cook any protein through and cool slightly.",
@@ -405,7 +405,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Shrimp", "Water chestnuts", "Mozzarella"],
-    optional: ["Salt", "White pepper", "Oyster sauce", "Sesame oil"],
+    optional: ["Cornstarch", "Salt", "White pepper", "Oyster sauce", "Sesame oil"],
     steps: [
       "Prep Eggs and Tomato; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Eggs and cook until just cooked.",
@@ -427,7 +427,7 @@ export const MORE_W5A: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Eggs", "Tomato"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
+    optional: ["Olive oil", "Vinegar", "Cooking oil", "Lemon", "Sesame oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar"],
     steps: [
       "Prep Eggs and Tomato; cook any protein through and cool slightly.",
       "Whisk a dressing of soy/vinegar/sesame oil (or lemon + olive oil).",
@@ -669,7 +669,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Mushroom", "Cheddar", "Tomato", "Thai basil"],
-    optional: [],
+    optional: ["Hoisin sauce"],
     steps: [
       "Prep Ground pork and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Ground pork and cook until cooked through (74°C / 165°F).",
@@ -713,7 +713,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Tofu", "Spring onion"],
-    optional: ["Oyster sauce"],
+    optional: ["Oyster sauce", "Cornstarch"],
     steps: [
       "Prep Tofu and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Tofu and cook until just cooked.",
@@ -823,7 +823,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Carrots", "Mozzarella"],
-    optional: ["Oyster sauce", "Sugar"],
+    optional: ["Oyster sauce", "Cornstarch", "Sugar"],
     steps: [
       "Prep Beef steak and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Beef steak and cook until just cooked.",
@@ -911,7 +911,7 @@ export const MORE_W5A: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Ground pork", "Bell pepper"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["White pepper", "Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep Ground pork and Bell pepper; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Ground pork and cook until cooked through (74°C / 165°F).",
@@ -1043,7 +1043,7 @@ export const MORE_W5A: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Ginger", "Spring onion", "Garlic", "Lettuce", "Shrimp"],
-    optional: ["Olive oil", "Oyster sauce", "Soy sauce", "Chicken stock", "Sesame oil", "Sugar"],
+    optional: ["Olive oil", "Cornstarch", "Oyster sauce", "Soy sauce", "Chicken stock", "Sesame oil", "Sugar"],
     steps: [
       "Cut Shrimp and White fish into pieces; lightly brown Shrimp in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",
@@ -1065,7 +1065,7 @@ export const MORE_W5A: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Shrimp", "XO sauce", "Garlic", "Ginger", "Spring onion", "Mushroom"],
-    optional: ["White pepper", "Soy sauce"],
+    optional: ["White pepper", "Cornstarch", "Soy sauce"],
     steps: [
       "Cut White fish and vegetables into pieces; lightly brown White fish in a little oil.",
       "Add garlic, 1.5 tbsp soy sauce, a pinch of sugar, and enough water to come halfway up the ingredients.",

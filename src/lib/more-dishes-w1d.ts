@@ -31,7 +31,7 @@ export const MORE_W1D: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Tofu", "Carrots", "Pak choi"],
-    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Ginger", "Cornstarch", "Cooking oil", "Chicken stock", "Sesame oil", "Sugar", "Salt", "Spring onion", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Oyster sauce", "Ginger", "Cornstarch", "Chicken stock", "Sesame oil", "Sugar", "Salt", "Spring onion", "Shaoxing wine"],
     steps: [
       "Cube 1 block tofu. Slice 1 carrot into thin coins; cut 1 bunch pak choi into sections. Mince garlic/ginger if using.",
       "Lightly brown tofu in 1–2 tbsp oil; add carrot and aromatics, then ½ cup water, 1 tbsp soy sauce, and 1 tsp oyster sauce if using.",
@@ -74,7 +74,7 @@ export const MORE_W1D: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Tofu", "Bean sprouts", "Garlic"],
-    optional: ["Soy sauce", "Spring onion", "Sesame oil", "Carrots"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Carrots"],
     steps: [
       "Slice 1 block firm tofu into thin strips (stand-in for tofu skin). Rinse 2 cups bean sprouts; mince 2 garlic cloves; julienne half a carrot if using.",
       "Stir-fry garlic and carrot 1 minute in 1 tbsp oil, then add tofu strips and toss until lightly browned and hot.",
@@ -95,8 +95,8 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Cantonese",
     time: 18,
     servings: 2,
-    need: ["Silken tofu", "Eggs"],
-    optional: ["Soy sauce", "Spring onion", "Garlic", "Cornstarch", "Sesame oil"],
+    need: ["Tofu", "Eggs"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Salt", "Sesame oil", "Garlic", "Cornstarch"],
     steps: [
       "Drain 1 pack silken tofu and cut into thick rounds. Beat 2 eggs with a pinch of salt.",
       "Gently pan-fry tofu in 1 tbsp oil until lightly coloured. Pour beaten eggs around and over the tofu; cook on low until eggs set fully.",
@@ -118,7 +118,7 @@ export const MORE_W1D: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Spinach", "Eggs"],
-    optional: ["Garlic", "Sesame oil", "Soy sauce", "White pepper"],
+    optional: ["Chicken stock", "White pepper", "Soy sauce", "Garlic", "Cooking oil", "Sesame oil"],
     steps: [
       "Wash 200 g spinach and cut into short lengths. Beat 2 eggs. Bring 3 cups water or light stock to a simmer.",
       "Add spinach (and a smashed garlic clove if using); cook 1–2 minutes until wilted.",
@@ -140,7 +140,7 @@ export const MORE_W1D: Recipe[] = [
     time: 8,
     servings: 2,
     need: ["Lettuce", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Sesame oil", "Cooking oil"],
+    optional: ["Cooking oil", "Oyster sauce", "Sesame oil", "Soy sauce"],
     steps: [
       "Wash 1 large head of lettuce and tear or cut into large pieces; drain well. Mince 4 garlic cloves.",
       "Heat 1–2 tbsp oil until shimmering; fry garlic 15–20 seconds until fragrant but not burnt.",
@@ -162,7 +162,7 @@ export const MORE_W1D: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Tomato", "Cabbage"],
-    optional: ["Garlic", "Soy sauce", "Sugar", "Salt"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Salt", "Sugar"],
     steps: [
       "Cut ¼ medium cabbage into bite-sized pieces (about 3 cups). Cut 2 tomatoes into wedges; mince 2 garlic cloves if using.",
       "Stir-fry cabbage in 1 tbsp oil 3–4 minutes until it softens and shrinks. Add garlic and tomato.",
@@ -206,7 +206,7 @@ export const MORE_W1D: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Tofu", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "White pepper"],
+    optional: ["White pepper", "Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Salt"],
     steps: [
       "Crumble or dice ½ block (about 175 g) tofu. Beat 3 eggs with a pinch of salt and white pepper.",
       "Scramble eggs in 1 tbsp oil until just set; push aside. Warm tofu (and minced garlic if using) 1–2 minutes.",
@@ -227,8 +227,8 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Cantonese",
     time: 15,
     servings: 2,
-    need: ["Silken tofu", "Century egg"],
-    optional: ["Ginger", "Spring onion", "White pepper", "Sesame oil", "Salt", "Chicken stock", "Cooking oil", "Eggs", "Mushroom", "Cabbage", "Cilantro"],
+    need: ["Tofu", "Century egg"],
+    optional: ["White pepper", "Eggs", "Cooking oil", "Onion", "Spring onion", "Salt", "Sesame oil", "Ginger", "Chicken stock"],
     steps: [
       "Cube 1 pack silken tofu. Peel and chop 1–2 century eggs. Slice a few pieces of ginger if using.",
       "Bring 3 cups water to a simmer with ginger; add tofu and century egg. Cook gently 4–5 minutes.",
@@ -250,7 +250,7 @@ export const MORE_W1D: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Choi sum", "Ginger"],
-    optional: ["Garlic", "Soy sauce", "Oyster sauce", "Sesame oil"],
+    optional: ["Garlic", "Cooking oil", "Oyster sauce", "Sesame oil", "Soy sauce"],
     steps: [
       "Wash 1 bunch choi sum; cut stems and leaves into sections. Julienne a 3 cm piece of ginger (about 2 tbsp).",
       "Heat 1–2 tbsp oil; fry ginger (and minced garlic if using) 20–30 seconds until fragrant.",
@@ -270,8 +270,8 @@ export const MORE_W1D: Recipe[] = [
     cuisine: "Chinese",
     time: 25,
     servings: 2,
-    need: ["Eggplant", "Ground pork", "Noodles", "Bell pepper", "Ginger", "Garlic", "Dried chili", "Cilantro"],
-    optional: ["Salt", "Shaoxing wine", "White pepper", "Soy sauce", "Sesame oil", "Cornstarch", "Cooking oil", "Oyster sauce", "Chicken stock"],
+    need: ["Eggplant", "Ground pork", "Noodles", "Bell pepper", "Garlic", "Dried chili", "Cilantro"],
+    optional: ["Salt", "Shaoxing wine", "White pepper", "Soy sauce", "Sesame oil", "Cornstarch", "Cooking oil", "Sand ginger", "Oyster sauce", "Chicken stock"],
     steps: [
       "Cut 2 medium eggplants into batons (about 400 g). Mince 3 garlic cloves. Have 150 g ground pork ready.",
       "Brown the pork with garlic until cooked through (74°C / 165°F). Add eggplant and ½ cup water; cover and cook 6–8 minutes until soft.",
@@ -293,7 +293,7 @@ export const MORE_W1D: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Celery", "Tofu"],
-    optional: ["Garlic", "Soy sauce", "Sesame oil", "White pepper"],
+    optional: ["White pepper", "Soy sauce", "Garlic", "Cooking oil", "Sesame oil"],
     steps: [
       "Slice 3 celery stalks on the bias into thin pieces. Cube ½–1 block tofu; mince 2 garlic cloves if using.",
       "Pan-fry tofu in 1 tbsp oil until lightly golden; set aside. Stir-fry celery and garlic 2–3 minutes until crisp-tender.",
@@ -315,7 +315,7 @@ export const MORE_W1D: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cabbage", "Ground pork", "Garlic"],
-    optional: ["Ginger", "Soy sauce", "Sesame oil", "Spring onion", "White pepper"],
+    optional: ["White pepper", "Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Ginger"],
     steps: [
       "Finely chop 3 cups cabbage and squeeze out excess water. Mince 2 garlic cloves and a little ginger. Have 200 g ground pork ready.",
       "Brown pork with garlic and ginger until cooked through (74°C / 165°F). Add cabbage and stir-fry 4–5 minutes until softened.",
@@ -337,7 +337,7 @@ export const MORE_W1D: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Mushroom", "Garlic"],
-    optional: ["White pepper", "Salt", "Spring onion", "Chili oil", "Cornstarch", "Ginger", "Cooking oil", "Shaoxing wine", "Eggs", "Five-spice powder"],
+    optional: ["White pepper", "Cornstarch", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Salt", "Ginger", "Shaoxing wine", "Five-spice powder"],
     steps: [
       "Halve or thick-slice 300 g mushrooms; pat dry. Toss lightly with 1 tsp cornstarch if using. Mince 3 garlic cloves.",
       "Pan-fry mushrooms in 2 tbsp oil over medium-high heat 5–7 minutes until browned and dry. Add garlic for the last minute.",
@@ -381,7 +381,7 @@ export const MORE_W1D: Recipe[] = [
     time: 35,
     servings: 2,
     need: ["Tomato", "Potato"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Sugar", "Salt"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Salt", "Sugar"],
     steps: [
       "Peel and cube 2 medium potatoes (about 400 g). Cut 3 tomatoes into chunks; slice half an onion and mince 2 garlic cloves if using.",
       "Sauté onion and garlic in 1 tbsp oil 2 minutes. Add potato and tomato with 1 cup water; bring to a simmer.",

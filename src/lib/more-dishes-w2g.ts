@@ -9,7 +9,7 @@ export const MORE_W2G: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Kimchi", "Pork chops", "Tofu"],
-    optional: ["Garlic", "Ginger", "Gochujang", "Spring onion", "Onion"],
+    optional: ["Gochujang", "Garlic", "Onion", "Spring onion", "Ginger"],
     steps: [
       "Sauté chopped kimchi with sliced pork until pork is cooked through (74°C / 165°F).",
       "Add water to cover, optional gochujang and garlic; simmer 10 minutes.",
@@ -52,8 +52,8 @@ export const MORE_W2G: Recipe[] = [
     cuisine: "Korean",
     time: 25,
     servings: 2,
-    need: ["Beef steak", "Onion", "Garlic", "Ginger", "Spring onion", "Carrots", "Rice", "Kimchi"],
-    optional: ["Soy sauce", "Sugar", "White pepper", "Sesame oil", "Cooking oil", "Sesame seeds"],
+    need: ["Beef steak", "Onion", "Garlic", "Spring onion", "Carrots", "Rice", "Kimchi"],
+    optional: ["Sand ginger", "Soy sauce", "Sugar", "White pepper", "Sesame oil", "Cooking oil", "Sesame seeds"],
     steps: [
       "Slice beef thin; marinate 10 minutes in 2 tbsp soy sauce, 1 tsp sugar, garlic, and sesame oil.",
       "Stir-fry onion, then beef on high until just cooked, 3–5 minutes.",
@@ -75,7 +75,7 @@ export const MORE_W2G: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Pork chops", "Onion", "Gochujang"],
-    optional: ["Soy sauce", "Sugar", "Garlic", "Sesame oil", "Spring onion", "Bell pepper"],
+    optional: ["White pepper", "Soy sauce", "Garlic", "Cooking oil", "Spring onion", "Sesame oil", "Sugar"],
     steps: [
       "Slice pork; toss with 1 tbsp gochujang, 1 tbsp soy sauce, garlic, and a pinch of sugar.",
       "Stir-fry until cooked through (74°C / 165°F), about 6–8 minutes.",
@@ -163,7 +163,7 @@ export const MORE_W2G: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Rice cakes", "Gochujang"],
-    optional: ["Cabbage", "Soy sauce", "Sugar", "Garlic", "Spring onion", "Eggs"],
+    optional: ["Soy sauce", "Cabbage", "Sugar", "Garlic", "Spring onion"],
     steps: [
       "Soak rice cakes in warm water 5–10 minutes if hard.",
       "Simmer 1½ cups water with 1–2 tbsp gochujang, 1 tsp soy sauce, and 1 tsp sugar.",
@@ -185,7 +185,7 @@ export const MORE_W2G: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Bean sprouts", "Garlic"],
-    optional: ["Sesame oil", "Sesame seeds", "Salt", "Spring onion", "Soy sauce"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame seeds", "Salt", "Sesame oil"],
     steps: [
       "Blanch bean sprouts 1–2 minutes; drain and cool.",
       "Toss with minced garlic, sesame oil, a pinch of salt or soy sauce, and sesame seeds.",
@@ -228,8 +228,8 @@ export const MORE_W2G: Recipe[] = [
     cuisine: "Korean",
     time: 25,
     servings: 2,
-    need: ["Silken tofu", "Eggs", "Gochujang"],
-    optional: ["Ground pork", "Garlic", "Kimchi", "Spring onion", "Soy sauce"],
+    need: ["Tofu", "Eggs", "Gochujang"],
+    optional: ["Garlic", "Onion", "Spring onion", "Kimchi", "Ground pork", "Soy sauce"],
     steps: [
       "Sauté optional ground pork and kimchi until pork is cooked through (74°C / 165°F).",
       "Add water, gochujang, and garlic; bring to a simmer. Add silken tofu in chunks.",

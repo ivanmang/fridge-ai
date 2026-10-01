@@ -25,7 +25,7 @@ const DRY = Boolean(process.env.DRY)
 const MIN_SCORE = Number(process.env.MIN_SCORE || 6)
 const LIMIT = Number(process.env.LIMIT || 0)
 const ONLY = new Set(
-  String(process.env.ONLY || "shared,knorr")
+  String(process.env.ONLY || "shared,empty,knorr")
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean),
@@ -62,10 +62,29 @@ function scoreTitle(recipe, title) {
     .normalize("NFKC")
   const { zh, en } = tokens(recipe)
   let score = 0
-  for (const name of zh) if (name.length >= 2 && hay.includes(name.toLowerCase())) score += 5
+  let zhHit = false
+  // Full ZH dish name — exclusive-quality signal (matches audit TITLE scoring).
+  for (const name of zh) {
+    if (name.length >= 2 && hay.includes(name.toLowerCase())) {
+      score += 6
+      zhHit = true
+    }
+  }
+  const WEAK_EN = new Set([
+    "soup", "pork", "beef", "chicken", "rice", "noodle", "noodles", "egg", "eggs",
+    "tofu", "sauce", "garlic", "ginger", "fried", "stir", "bone", "meat", "fish",
+    "vegetable", "vegetables", "chinese", "home", "style",
+  ])
   const strong = en.filter((t) => t.length >= 4)
+  const distinctive = strong.filter((t) => !WEAK_EN.has(t))
   for (const t of strong) if (hay.includes(t)) score += 2
   for (const t of en.filter((x) => x.length === 3)) if (hay.includes(t)) score += 1
+  // Without ZH match, require at least one distinctive EN token hit — blocks
+  // "pork soup" → unrelated pork-bone soup stand-ins.
+  if (!zhHit) {
+    const distinctiveHits = distinctive.filter((t) => hay.includes(t)).length
+    if (distinctiveHits === 0) score = Math.min(score, 3)
+  }
   if (/\b(what to do|list of|guide to|how to use|back to school)\b/i.test(title || "")) score -= 5
   return score
 }
@@ -225,6 +244,47 @@ async function tryBbc(recipe) {
   }
 }
 
+async function tryLkk(recipe) {
+  return trySlugHost(recipe, "https://hk.lkk.com/zh-hk/recipes/{slug}", "Lee Kum Kee", "lkk-slug")
+}
+
+async function searchDdc(recipe) {
+  const q = (recipe.zh || recipe.name).replace(/\s+/g, " ").trim()
+  const key = `ddc-search:${q}`
+  if (cache[key] !== undefined) return cache[key]
+  try {
+    const url = `https://www.daydaycook.com/zh-Hant/search?keyword=${encodeURIComponent(q)}`
+    const { html } = await fetchHtml(url)
+    const paths = [
+      ...html.matchAll(/href="(\/zh-Hant\/recipe\/[^"]+)"/gi),
+      ...html.matchAll(/\\"path\\":\\"(\/zh-Hant\/recipe\/[^\\"]+)\\"/gi),
+    ].map((m) => m[1])
+    let best = null
+    const seen = new Set()
+    for (const path of paths.slice(0, 12)) {
+      if (seen.has(path)) continue
+      seen.add(path)
+      const pageUrl = `https://www.daydaycook.com${path}`
+      try {
+        const page = await fetchHtml(pageUrl)
+        const title = page.html.match(/<title>([^<]+)/i)?.[1] || ""
+        const score = scoreTitle(recipe, title)
+        if (!best || score > best.score) {
+          best = { url: pageUrl.split("?")[0], title, score, via: "ddc-search", name: "DayDayCook" }
+        }
+        if (best.score >= MIN_SCORE) break
+      } catch {
+        continue
+      }
+    }
+    cache[key] = best && best.score >= 4 ? best : null
+    return cache[key]
+  } catch {
+    cache[key] = null
+    return null
+  }
+}
+
 async function findBetter(recipe) {
   const candidates = []
   const push = (hit) => {
@@ -235,6 +295,8 @@ async function findBetter(recipe) {
   push(await trySlugHost(recipe, "https://thewoksoflife.com/{slug}/", "The Woks of Life", "woks-slug"))
   push(await trySlugHost(recipe, "https://www.daydaycook.com/zh-Hant/recipe/{slug}", "DayDayCook", "ddc-slug"))
   push(await trySlugHost(recipe, "https://www.afterwork-kitchen.com/recipes/{slug}", "Afterwork Kitchen", "afterwork-slug"))
+  push(await tryLkk(recipe))
+  push(await searchDdc(recipe))
   push(await tryBbc(recipe))
   candidates.sort((a, b) => b.score - a.score)
   return candidates[0] || null

@@ -93,7 +93,7 @@ const MORE_CORE: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked rice", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Carrots", "Corn", "Salt", "Cooking oil", "Sugar", "Chicken stock"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Garlic", "Salt", "Cooking oil", "Sugar", "Chicken stock"],
     steps: [
       "Break up 2 bowls of cold cooked rice. Beat 2 eggs and slice spring onion if using.",
       "Scramble the eggs in a hot oiled pan, then add the rice and toss until steaming hot throughout.",
@@ -139,7 +139,7 @@ const MORE_CORE: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Eggs"],
-    optional: ["Spring onion", "Sesame oil", "Corn", "Shrimp", "White pepper", "Cornstarch", "Carrots", "Silken tofu", "Chicken stock", "Salt", "Cooking oil", "Sugar"],
+    optional: ["Chicken stock", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "White pepper", "Cornstarch", "Salt", "Sugar"],
     steps: [
       "Bring 3 cups of water or light stock to a gentle simmer. Beat 2 eggs.",
       "Stir the pot in a circle and slowly pour in the eggs to make ribbons. Eggs should be fully set.",
@@ -161,7 +161,7 @@ const MORE_CORE: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Choi sum", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce"],
+    optional: ["Cooking oil", "Oyster sauce", "Soy sauce"],
     steps: [
       "Wash and drain a bunch of choi sum. Cut stems and leaves into bite-sized pieces; mince 2 garlic cloves.",
       "Heat a little oil in a pan. Stir-fry the stems for 2 minutes, then add the leaves and garlic.",
@@ -227,7 +227,7 @@ const MORE_CORE: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken breast", "Ginger"],
-    optional: ["Spring onion", "Soy sauce", "Cooked rice", "Garlic", "Cooking oil", "Shallot", "Shaoxing wine", "Chicken stock", "White pepper", "Oyster sauce", "Cornstarch"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Garlic", "Cooking oil", "Shaoxing wine", "Chicken stock", "White pepper", "Oyster sauce", "Cornstarch"],
     steps: [
       "Slice 300 g chicken thinly and cut a thumb of ginger into matchsticks.",
       "Cook chicken and ginger in a lightly oiled pan over medium heat until the chicken is fully cooked through (74°C / 165°F).",
@@ -293,7 +293,7 @@ const MORE_CORE: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Chicken breast", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Cooked rice"],
+    optional: ["Salt", "Spring onion", "Soy sauce"],
     steps: [
       "Slice 200 g chicken thinly; beat 3 eggs with a pinch of salt.",
       "Quickly stir-fry the chicken until fully cooked through (74°C / 165°F).",
@@ -361,7 +361,7 @@ const MORE_CORE: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Tofu", "Century egg"],
-    optional: ["Soy sauce", "Sesame oil", "Spring onion", "Garlic"],
+    optional: ["Soy sauce", "Eggs", "Garlic", "Cooking oil", "Onion", "Spring onion", "Sesame oil"],
     steps: [
       "Drain silken or soft tofu onto a plate. Peel and chop 1–2 century eggs.",
       "Scatter the century egg over the tofu.",
@@ -382,8 +382,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Hong Kong",
     time: 30,
     servings: 2,
-    need: ["Beef steak", "Tomato", "Onion"],
-    optional: ["Soy sauce", "Sugar", "Cooked rice", "Cornstarch", "Baking soda", "Cooking oil", "Oyster sauce", "Sesame oil", "White pepper", "Ginger", "Garlic", "Shallot", "Spring onion", "Ketchup", "Shaoxing wine"],
+    need: ["Beef steak", "Tomato", "Onion", "Spring onion"],
+    optional: ["Soy sauce", "White pepper", "Salt", "Sugar", "Shaoxing wine"],
     steps: [
       "Slice 250 g beef thinly; cut 2 tomatoes and half an onion into wedges.",
       "Quickly sear the beef until just browned, then set aside (finish cooking in the sauce).",
@@ -405,7 +405,7 @@ const MORE_CORE: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Ground pork", "Noodles", "Garlic"],
-    optional: ["Spring onion", "Soy sauce", "Chili oil", "Cornstarch", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Chicken stock", "Sesame oil", "Sugar", "White pepper", "Carrots"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Cornstarch", "Shaoxing wine", "Oyster sauce", "Chicken stock", "Sesame oil", "Sugar", "White pepper"],
     steps: [
       "Cook noodles per pack; drain. Brown ground pork with garlic until the pork is fully cooked through (74°C / 165°F).",
       "Add soy sauce and a splash of water to make a light sauce.",
@@ -426,8 +426,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 2,
-    need: ["Cooked rice", "Century egg", "Pork chops", "Ginger", "Cilantro", "Onion"],
-    optional: ["Salt", "Cooking oil", "White pepper", "Cornstarch", "Baking soda", "Sesame oil"],
+    need: ["Cooked rice", "Century egg", "Pork chops", "Cilantro", "Onion"],
+    optional: ["Salt", "Cooking oil", "Sand ginger", "White pepper", "Cornstarch", "Baking soda", "Sesame oil"],
     steps: [
       "Rinse 1/2 cup rice. Slice ginger; chop 1–2 century eggs. Break up 100 g ground pork.",
       "Simmer rice with 5 cups water (and ginger) until thick and creamy, 35–40 minutes, stirring now and then.",
@@ -448,8 +448,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 2,
-    need: ["Rice", "Ginger"],
-    optional: ["Spring onion", "Century egg", "Soy sauce"],
+    need: ["Cooked rice", "Ginger"],
+    optional: ["Onion", "Spring onion", "Century egg", "Soy sauce"],
     steps: [
       "Rinse 1/2 cup rice. Slice a thumb of ginger.",
       "Simmer rice with 5 cups water and ginger, stirring now and then, until thick and creamy (35–40 minutes).",
@@ -493,7 +493,7 @@ const MORE_CORE: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Shrimp", "Eggs"],
-    optional: ["Spring onion", "Sesame oil"],
+    optional: ["Cooking oil", "Onion", "Spring onion", "Sesame oil"],
     steps: [
       "Pat shrimp dry and season lightly. Beat 3 eggs.",
       "Quickly cook shrimp in a hot oiled pan until just pink and opaque; set aside.",
@@ -537,7 +537,7 @@ const MORE_CORE: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Noodles", "Tomato", "Eggs"],
-    optional: ["Spring onion", "Soy sauce"],
+    optional: ["Onion", "Spring onion", "Soy sauce"],
     steps: [
       "Cook noodles and set aside. Beat 2 eggs; cut 2 tomatoes into wedges.",
       "Scramble eggs lightly and remove. Cook tomatoes with a splash of water until saucy.",
@@ -559,7 +559,7 @@ const MORE_CORE: Recipe[] = [
     time: 20,
     servings: 1,
     need: ["Pasta", "Eggs", "Ham"],
-    optional: ["Spring onion", "Milk", "Corn"],
+    optional: ["Corn", "Macaroni", "Onion", "Spring onion", "Milk"],
     steps: [
       "Boil elbow pasta in lightly salted water until tender; drain, saving a cup of the cooking water.",
       "Warm the pasta with a little cooking water or milk into a light soup; add diced ham and corn if using.",
@@ -691,7 +691,7 @@ const MORE_CORE: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Broccoli", "Garlic"],
-    optional: ["Soy sauce", "Sesame oil", "Shaoxing wine", "Sugar", "Chicken stock", "White pepper", "Cooking oil", "Cornstarch"],
+    optional: ["Soy sauce", "Cooking oil", "Sesame oil", "Shaoxing wine", "Sugar", "Chicken stock", "White pepper", "Cornstarch"],
     steps: [
       "Cut broccoli into florets; mince 2 garlic cloves.",
       "Stir-fry garlic in oil, add broccoli and a splash of water; cover briefly.",
@@ -713,7 +713,7 @@ const MORE_CORE: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Potato", "Garlic"],
-    optional: ["Vinegar", "Chili oil", "Spring onion"],
+    optional: ["Vinegar", "Cooking oil", "Onion", "Spring onion", "Chili oil"],
     steps: [
       "Peel and julienne 2 potatoes; rinse and pat dry. Mince garlic.",
       "Stir-fry garlic, then potato over medium-high heat until tender-crisp (6–8 minutes).",
@@ -735,7 +735,7 @@ const MORE_CORE: Recipe[] = [
     time: 8,
     servings: 1,
     need: ["Bread", "Avocado"],
-    optional: ["Dried chili", "Garlic", "Lime", "Salt", "Olive oil", "Cilantro"],
+    optional: ["Olive oil", "Cilantro", "Dried chili", "Garlic", "Cooking oil", "Orange juice", "Salt", "Lime"],
     steps: [
       "Toast bread. Mash avocado with chilli flakes, optional garlic, lime juice, salt, and olive oil.",
       "Spread on toast.",
@@ -759,7 +759,7 @@ const MORE_CORE: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Bacon", "Eggs", "Cooked rice"],
-    optional: ["Spring onion", "Cooking oil", "Onion", "Salt", "Sugar", "Soy sauce", "Shaoxing wine", "White pepper"],
+    optional: ["Onion", "Spring onion", "Cooking oil", "Salt", "Sugar", "Soy sauce", "Shaoxing wine", "White pepper"],
     steps: [
       "Fry bacon until crisp; drain on paper.",
       "Fry eggs in the same pan until whites are fully set. Warm rice in a bowl.",
@@ -781,7 +781,7 @@ const MORE_CORE: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Instant noodles", "Eggs"],
-    optional: ["Luncheon meat", "Spring onion", "Choi sum"],
+    optional: ["Noodles", "Onion", "Spring onion", "Luncheon meat"],
     steps: [
       "Boil water and cook instant noodles per pack instructions.",
       "Crack in an egg and simmer until the white is set (yolk as you like).",
@@ -803,7 +803,7 @@ const MORE_CORE: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked rice", "Eggs", "Cooked leftovers"],
-    optional: ["Spring onion", "Soy sauce", "Garlic", "Carrots", "Corn", "Salt", "Cooking oil", "Sugar", "Chicken stock"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Garlic", "Salt", "Cooking oil", "Sugar", "Chicken stock"],
     steps: [
       "Dice leftovers and break up cold rice. Beat 2 eggs.",
       "Scramble eggs, add leftovers to warm through thoroughly, then toss with rice until steaming hot.",
@@ -922,8 +922,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Tofu", "Mushroom", "Eggs", "Tomato", "Ginger", "Spring onion"],
-    optional: ["Cornstarch", "Chicken stock", "Ketchup", "Salt", "Sugar", "Sesame oil", "Cooking oil"],
+    need: ["Tofu", "Mushroom", "Eggs", "Tomato", "Spring onion"],
+    optional: ["Sand ginger", "Cornstarch", "Chicken stock", "Ketchup", "Salt", "Sugar", "Sesame oil", "Cooking oil"],
     steps: [
       "Cut 2 tomatoes into chunks and tofu into cubes. Softly beat 2 eggs.",
       "Sauté tomato (and ginger) in a little oil until juicy, add 3 cups water or stock and the tofu, and simmer 5–8 minutes.",
@@ -1018,8 +1018,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Chinese",
     time: 12,
     servings: 2,
-    need: ["Glass noodles", "Cabbage", "Ginger", "Garlic", "Dried chili", "Spring onion"],
-    optional: ["Soy sauce", "Vinegar", "White pepper", "Sesame oil", "Sugar", "Cooking oil", "Salt"],
+    need: ["Glass noodles", "Cabbage", "Garlic", "Dried chili", "Spring onion"],
+    optional: ["Soy sauce", "Vinegar", "White pepper", "Sesame oil", "Sugar", "Cooking oil", "Sand ginger", "Salt"],
     steps: [
       "Slice 1/4–1/2 cabbage into ribbons. Slice garlic.",
       "Stir-fry garlic in a hot oiled pan 15 seconds, then add cabbage and a splash of water; cook 3–5 minutes until wilted but still crisp.",
@@ -1041,7 +1041,7 @@ const MORE_CORE: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Bean sprouts", "Garlic"],
-    optional: ["Spring onion", "Soy sauce", "Eggs", "Carrots"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Carrots"],
     steps: [
       "Rinse and drain bean sprouts well. Slice garlic and spring onion.",
       "Optional: scramble an egg and set aside. Stir-fry garlic, then sprouts (and carrot shreds) on high heat 1–2 minutes so they stay crisp.",
@@ -1063,7 +1063,7 @@ const MORE_CORE: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken breast", "Mushroom"],
-    optional: ["Garlic", "Ginger", "Oyster sauce", "Soy sauce", "Spring onion", "Shaoxing wine", "Shallot", "Sugar", "Salt", "White pepper", "Cornstarch", "Sesame oil", "Cooking oil"],
+    optional: ["Soy sauce", "Garlic", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Shaoxing wine", "Sugar", "Salt", "White pepper", "Cornstarch", "Sesame oil", "Cooking oil"],
     steps: [
       "Slice chicken and mushrooms. Marinate chicken briefly with soy sauce.",
       "Stir-fry chicken until cooked through (74°C / 165°F); remove. Cook mushrooms until they release moisture, then add garlic/ginger.",

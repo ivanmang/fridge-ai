@@ -9,7 +9,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Oats", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Sesame oil", "Salt", "White pepper", "Cheddar"],
+    optional: ["White pepper", "Soy sauce", "Cooking oil", "Onion", "Spring onion", "Cheddar", "Salt", "Milk", "Sesame oil"],
     steps: [
       "Simmer 1/2 cup oats with 1 cup water (or milk from pantry) 5–7 minutes until creamy; season with salt.",
       "Fry or poach 1–2 eggs until whites are set (yolks as you like).",
@@ -31,7 +31,7 @@ export const MORE_W4D: Recipe[] = [
     time: 30,
     servings: 3,
     need: ["Eggs", "Spinach", "Cheddar"],
-    optional: ["Ham", "Onion", "Salt", "White pepper", "Tomato"],
+    optional: ["White pepper", "Tomato", "Onion", "Salt", "Ham"],
     steps: [
       "Beat 6 eggs with salt and white pepper. Chop spinach, ham, onion, and tomato if using.",
       "Divide fillings into a greased muffin tin; pour egg over and top with grated cheddar.",
@@ -53,7 +53,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Eggs", "Tortilla"],
-    optional: ["Spring onion", "Chili oil", "Soy sauce", "Lettuce", "Ham", "Cucumber"],
+    optional: ["Soy sauce", "Cooking oil", "Lettuce", "Onion", "Spring onion", "Chili oil", "Cucumber", "Ham"],
     steps: [
       "Warm 1 large tortilla in a pan. Pour a beaten egg over it; cook until just set, flipping carefully if needed.",
       "Spread a little chili oil and soy sauce; add spring onion, lettuce, cucumber, and ham if using.",
@@ -75,7 +75,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked leftovers", "Eggs", "Tortilla"],
-    optional: ["Spring onion", "Soy sauce", "Chili oil", "Cucumber", "Lettuce"],
+    optional: ["Soy sauce", "Bread", "Cooking oil", "Lettuce", "Onion", "Spring onion", "Chili oil", "Cucumber"],
     steps: [
       "Warm leftover protein/veg in a pan with a splash of soy sauce. Warm tortillas or soft bread as bao stand-ins.",
       "Fry 2 eggs. Slice cucumber/lettuce if using. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -97,7 +97,7 @@ export const MORE_W4D: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Bread", "Milk", "Butter"],
-    optional: ["Sugar", "Condensed milk", "Eggs"],
+    optional: ["Condensed milk", "Sugar"],
     steps: [
       "Brush 2 bread slices lightly with milk; spread butter.",
       "Toast in a pan or toaster oven until golden on both sides (3–4 minutes).",
@@ -118,8 +118,8 @@ export const MORE_W4D: Recipe[] = [
     cuisine: "Breakfast",
     time: 35,
     servings: 2,
-    need: ["Rice", "White fish"],
-    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Sesame oil", "Oyster sauce", "Shaoxing wine", "Eggs", "Chicken stock"],
+    need: ["Cooked rice", "White fish"],
+    optional: ["White pepper", "Cooking oil", "Onion", "Spring onion", "Salt", "Sesame oil", "Ginger", "Oyster sauce", "Shaoxing wine", "Chicken stock"],
     steps: [
       "Rinse 3/4 cup rice; simmer with about 6 cups water 25 minutes, stirring often until creamy.",
       "Slice 200 g white fish thinly; add with ginger for the last 5 minutes until fish is opaque.",
@@ -140,8 +140,8 @@ export const MORE_W4D: Recipe[] = [
     cuisine: "Breakfast",
     time: 35,
     servings: 2,
-    need: ["Rice", "Ground pork"],
-    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Soy sauce", "Century egg", "Cooking oil", "Cornstarch", "Baking soda", "Sesame oil"],
+    need: ["Cooked rice", "Ground pork"],
+    optional: ["White pepper", "Soy sauce", "Onion", "Spring onion", "Salt", "Ginger", "Century egg", "Cooking oil", "Cornstarch", "Baking soda", "Sesame oil"],
     steps: [
       "Simmer 3/4 cup rice with about 6 cups water 25 minutes until creamy.",
       "Season 200 g ground pork with soy sauce; drop small pinches into the congee. Cook 8–10 minutes until pork reaches 74°C / 165°F.",
@@ -163,7 +163,7 @@ export const MORE_W4D: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Oats", "Yogurt", "Berries"],
-    optional: ["Honey", "Milk", "Banana"],
+    optional: ["Milk", "Banana", "Honey"],
     steps: [
       "Stir 1/2 cup oats with 1/2 cup yogurt and a splash of milk until loose.",
       "Top with a handful of berries and sliced banana if using.",
@@ -185,7 +185,7 @@ export const MORE_W4D: Recipe[] = [
     time: 12,
     servings: 1,
     need: ["Eggs", "Tortilla", "Cheddar"],
-    optional: ["Ham", "Spinach", "Onion", "Salt", "Tomato"],
+    optional: ["Tomato", "Spinach", "Onion", "Salt", "Ham"],
     steps: [
       "Scramble 2 eggs with salt until just set; fold in spinach/ham/onion if using.",
       "Warm tortilla; add eggs and grated cheddar. Optional tomato slices.",
@@ -207,7 +207,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Noodles", "Eggs"],
-    optional: ["Bean sprouts", "Spring onion", "Soy sauce", "Sesame oil", "Ham", "Beef steak", "Tomato", "Ginger", "Cooking oil", "Baking soda", "Oyster sauce", "White pepper", "Cornstarch", "Ketchup", "Sugar", "Salt"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Bean sprouts", "Sesame oil", "Ham", "Ginger", "Baking soda", "Oyster sauce", "White pepper", "Cornstarch", "Ketchup", "Sugar", "Salt"],
     steps: [
       "Boil noodles until tender; drain. Beat 1–2 eggs.",
       "Scramble eggs in a pan; add noodles, ham if using, soy sauce, and sesame oil.",
@@ -229,7 +229,7 @@ export const MORE_W4D: Recipe[] = [
     time: 12,
     servings: 1,
     need: ["Cooked rice", "Ham", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Butter", "White pepper"],
+    optional: ["White pepper", "Soy sauce", "Onion", "Spring onion", "Butter"],
     steps: [
       "Warm 1 bowl cooked rice with a knob of butter if using. Dice ham and warm in a pan.",
       "Fry 1–2 eggs to your liking.",
@@ -250,7 +250,7 @@ export const MORE_W4D: Recipe[] = [
     time: 8,
     servings: 1,
     need: ["Oats", "Yogurt", "Honey"],
-    optional: ["Banana", "Berries", "Milk", "Peanut butter"],
+    optional: ["Peanut butter", "Berries", "Milk", "Banana", "Butter"],
     steps: [
       "Layer 1/2 cup oats with 1/2 cup yogurt in a cup or bowl.",
       "Drizzle 1–2 tsp honey; add banana or berries if using.",
@@ -272,7 +272,7 @@ export const MORE_W4D: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Banana", "Oats", "Eggs"],
-    optional: ["Milk", "Honey", "Butter", "Berries", "Cooking oil", "Peanuts"],
+    optional: ["Berries", "Milk", "Honey", "Cooking oil"],
     steps: [
       "Mash 1 ripe banana; mix with 1 egg and 1/2 cup oats (splash of milk if thick).",
       "Cook small pancakes in a lightly buttered pan 2–3 minutes per side until set.",
@@ -294,7 +294,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Sausages", "Eggs", "Bread"],
-    optional: ["Butter", "Ketchup", "Cheddar", "Salt"],
+    optional: ["Cheddar", "Ketchup", "Butter", "Salt"],
     steps: [
       "Pan-fry 1–2 sausages until cooked through (74°C / 165°F if pork). Toast bread with butter if using.",
       "Fry 1–2 eggs.",
@@ -316,7 +316,7 @@ export const MORE_W4D: Recipe[] = [
     time: 12,
     servings: 1,
     need: ["Spinach", "Eggs", "Tortilla"],
-    optional: ["Cheddar", "Onion", "Salt", "Tomato"],
+    optional: ["Tomato", "Bread", "Cheddar", "Salt", "Onion"],
     steps: [
       "Wilt a handful of spinach in a pan; scramble 2 eggs with salt.",
       "Warm tortilla; fill with spinach, eggs, cheddar, and tomato if using.",
@@ -338,7 +338,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Miso", "Tofu", "Cooked rice"],
-    optional: ["Nori", "Spring onion", "Sesame seeds", "Eggs"],
+    optional: ["Chicken stock", "Nori", "Onion", "Spring onion", "Sesame seeds"],
     steps: [
       "Warm 1 bowl cooked rice. Cube 100 g tofu; simmer in 1.5 cups water 3 minutes.",
       "Off heat, dissolve 1 tbsp miso into the broth.",
@@ -360,7 +360,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Rice cakes", "Eggs"],
-    optional: ["Gochujang", "Soy sauce", "Spring onion", "Sesame oil", "Sugar"],
+    optional: ["Gochujang", "Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Sugar"],
     steps: [
       "Soak or boil rice cakes until soft. Beat 1–2 eggs.",
       "Stir-fry rice cakes with a little gochujang or soy sauce and pinch of sugar 2–3 minutes.",
@@ -382,7 +382,7 @@ export const MORE_W4D: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Corned beef", "Potato", "Onion"],
-    optional: ["Eggs", "Salt", "White pepper", "Spring onion", "Ketchup"],
+    optional: ["White pepper", "Eggs", "Spring onion", "Ketchup", "Salt"],
     steps: [
       "Dice 2 potatoes; boil 8–10 minutes until just tender, drain. Chop onion; flake corned beef.",
       "Fry onion and potato until golden; add corned beef and crisp 4–5 minutes. Season with white pepper.",
@@ -403,7 +403,7 @@ export const MORE_W4D: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Oats", "Milk"],
-    optional: ["Honey", "Banana", "Berries", "Condensed milk", "Sugar"],
+    optional: ["Condensed milk", "Berries", "Banana", "Honey", "Sugar"],
     steps: [
       "Simmer 1/2 cup oats with 1 cup milk 5–7 minutes until thick, stirring.",
       "Sweeten with honey, sugar, or a drizzle of condensed milk.",
@@ -425,7 +425,7 @@ export const MORE_W4D: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Cooked leftovers", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "White pepper", "Salt"],
+    optional: ["White pepper", "Soy sauce", "Onion", "Spring onion", "Salt"],
     steps: [
       "Mix leftover congee (as cooked leftovers) with 1 beaten egg, spring onion, salt, and white pepper until thick.",
       "Spoon into a lightly oiled pan as small cakes; fry 3–4 minutes per side until set and golden. Any leftover meat or poultry must reach 74°C / 165°F.",
@@ -447,7 +447,7 @@ export const MORE_W4D: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Bacon", "Potato", "Onion"],
-    optional: ["Eggs", "Bell pepper", "Salt", "White pepper", "Spring onion"],
+    optional: ["White pepper", "Eggs", "Bell pepper", "Spring onion", "Salt"],
     steps: [
       "Dice 2 potatoes; boil until just tender, drain. Chop bacon and onion.",
       "Render bacon until crisp; add onion, potato, and bell pepper if using. Crisp 6–8 minutes.",
@@ -468,7 +468,7 @@ export const MORE_W4D: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Mushroom", "Eggs"],
-    optional: ["Cheddar", "Spring onion", "Salt", "White pepper", "Butter"],
+    optional: ["White pepper", "Onion", "Spring onion", "Cheddar", "Butter", "Salt"],
     steps: [
       "Remove stems from 4 large mushrooms; brush caps with butter if using. Season lightly.",
       "Crack an egg into each cap; top with cheddar if using.",

@@ -33,7 +33,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Rice vermicelli", "Eggs", "Shrimp"],
-    optional: ["Chicken breast", "Bean sprouts", "Onion", "Spring onion", "Soy sauce", "Bell pepper", "Celery", "Carrots", "Cooking oil", "Cornstarch", "Curry powder", "Oyster sauce", "Salt", "Sugar", "Sesame oil"],
+    optional: ["Soy sauce", "Noodles", "Curry powder", "Chicken breast", "Onion", "Spring onion", "Cooking oil", "Cornstarch", "Oyster sauce", "Salt", "Sugar", "Sesame oil"],
     steps: [
       "Soak rice vermicelli until soft; drain. Beat eggs; prep shrimp (and chicken if using).",
       "Scramble eggs and set aside. Stir-fry chicken until cooked through if using, then shrimp until opaque and pink.",
@@ -56,8 +56,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Hong Kong",
     time: 30,
     servings: 2,
-    need: ["Wide rice noodles", "Chicken breast", "Shrimp", "Snow peas", "Carrots", "Mushroom", "Celery", "Onion", "Ginger", "Garlic"],
-    optional: ["Cooking oil", "Shaoxing wine", "Sesame oil", "Oyster sauce", "White pepper", "Sugar", "Cornstarch", "Soy sauce", "Chicken stock", "Salt"],
+    need: ["Wide rice noodles", "Chicken breast", "Shrimp", "Snow peas", "Carrots", "Mushroom", "Celery", "Onion", "Garlic"],
+    optional: ["Sand ginger", "Cooking oil", "Shaoxing wine", "Sesame oil", "Oyster sauce", "White pepper", "Sugar", "Cornstarch", "Soy sauce", "Chicken stock", "Salt"],
     steps: [
       "Soak rice vermicelli; drain well. Slice chicken; prep shrimp and veg.",
       "Pan-fry noodles in a thin oil layer until lightly crisp on spots; set aside. Stir-fry chicken until cooked through (74°C / 165°F), then shrimp until opaque.",
@@ -150,7 +150,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Shrimp", "Garlic"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Shaoxing wine"],
+    optional: ["Shaoxing wine", "Soy sauce", "Onion", "Spring onion", "Ginger"],
     steps: [
       "Pat shrimp dry; mince lots of garlic.",
       "Stir-fry garlic (and ginger) briefly, then shrimp until opaque and cooked through.",
@@ -171,8 +171,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Tofu", "Shrimp"],
-    optional: ["Garlic", "Spring onion", "Oyster sauce", "Soy sauce"],
+    need: ["Tofu", "Shrimp", "Beans", "Spring onion", "Ginger", "Mozzarella"],
+    optional: ["Salt", "Shaoxing wine", "Sugar", "Cornstarch"],
     steps: [
       "Cube tofu; pat shrimp dry.",
       "Pan-fry tofu until lightly golden; set aside. Stir-fry shrimp until opaque.",
@@ -193,8 +193,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Chinese",
     time: 25,
     servings: 2,
-    need: ["Ground beef", "Eggs"],
-    optional: ["Cornstarch", "Soy sauce", "White pepper", "Spring onion"],
+    need: ["Beef steak", "Dried mushrooms", "Eggs", "Mozzarella"],
+    optional: ["Chicken stock", "White pepper", "Salt", "Cornstarch"],
     steps: [
       "Brown ground beef in a pot until cooked through; add 3–4 cups water and simmer 5 minutes.",
       "Thicken lightly with cornstarch slurry. Softly beat 2 eggs and drizzle in while stirring for ribbons.",
@@ -303,8 +303,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Hong Kong",
     time: 40,
     servings: 2,
-    need: ["Rice", "Chicken thighs", "Chinese sausage"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Oyster sauce", "Mushroom", "Cornstarch", "Cooking oil"],
+    need: ["Cooked rice", "Chicken thighs", "Chinese sausage"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Cornstarch", "Cooking oil"],
     steps: [
       "Rinse rice and start cooking as usual. Slice chicken and sausage; marinate chicken with soy sauce.",
       "When rice is almost done, lay chicken and sausage on top; cover until chicken is cooked through (74°C / 165°F).",
@@ -325,8 +325,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Hong Kong",
     time: 30,
     servings: 2,
-    need: ["Noodles", "Beef steak", "Tomato", "Onion", "Ginger"],
-    optional: ["Cooking oil", "Baking soda", "Oyster sauce", "White pepper", "Cornstarch", "Ketchup", "Sugar", "Salt"],
+    need: ["Noodles", "Beef steak", "Tomato", "Onion"],
+    optional: ["Sand ginger", "Cooking oil", "Baking soda", "Oyster sauce", "White pepper", "Cornstarch", "Ketchup", "Sugar", "Salt"],
     steps: [
       "Slice beef thin; toss with soy and cornstarch. Cook noodles; set aside.",
       "Stir-fry beef until just cooked; remove. Cook tomato and onion until saucy.",
@@ -348,7 +348,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pork chops", "Cabbage"],
-    optional: ["Garlic", "Soy sauce", "Chili oil", "Spring onion"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Garlic"],
     steps: [
       "Slice pork thin; shred cabbage.",
       "Stir-fry pork until cooked through (74°C / 165°F); remove. Stir-fry cabbage until wilted.",
@@ -372,7 +372,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Noodles", "Shrimp", "Pak choi"],
-    optional: ["Garlic", "Soy sauce", "Sesame oil", "Spring onion", "White pepper", "Chicken stock", "Salt", "Olive oil"],
+    optional: ["Chicken stock", "Garlic", "Soy sauce", "Sesame oil", "Spring onion", "White pepper", "Salt", "Olive oil"],
     steps: [
       "Boil noodles; blanch pak choi. Warm 3 cups water or stock.",
       "Poach shrimp in the broth until opaque and pink.",
@@ -395,8 +395,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Western",
     time: 25,
     servings: 2,
-    need: ["Chicken breast", "Dried chili", "Ginger", "Garlic", "Mushroom", "Bell pepper", "Spring onion"],
-    optional: ["Salt", "Cornstarch", "Cooking oil", "Soy sauce", "Vinegar", "Shaoxing wine", "Sugar", "Chicken stock", "Chili oil"],
+    need: ["Chicken breast", "Dried chili", "Garlic", "Mushroom", "Bell pepper", "Spring onion"],
+    optional: ["Salt", "Cornstarch", "Cooking oil", "Soy sauce", "Vinegar", "Shaoxing wine", "Sugar", "Chicken stock", "Sand ginger", "Chili oil"],
     steps: [
       "Cut chicken into pieces; brown in a pan until cooked through (74°C / 165°F).",
       "Add minced garlic, then honey, soy sauce, and a splash of vinegar or water.",
@@ -440,7 +440,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Tofu", "Ground pork", "Spring onion", "Mozzarella", "Garlic", "Shallot", "Bell pepper"],
-    optional: ["Oyster sauce", "Soy sauce", "Sesame oil"],
+    optional: ["Oyster sauce", "Cornstarch", "Soy sauce", "Sesame oil"],
     steps: [
       "Slice tofu into a dish. Mix ground pork with oyster sauce and cornstarch; mound on tofu.",
       "Steam over high heat 10–12 minutes until pork is cooked through (74°C / 165°F).",
@@ -464,7 +464,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Tofu", "Mushroom", "Dried mushrooms", "Spring onion"],
-    optional: ["Soy sauce", "Sesame oil", "Sugar"],
+    optional: ["Soy sauce", "Sesame oil", "Cornstarch", "Sugar"],
     steps: [
       "Cube tofu; mince chicken and mushrooms. Mix chicken-mushroom with soy sauce and cornstarch.",
       "Spread over tofu in a heatproof dish. Steam or microwave covered until chicken is cooked through (74°C / 165°F).",
@@ -512,7 +512,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Shrimp", "Ham", "Bean sprouts", "Onion", "Spring onion", "Eggs", "Mozzarella", "Cilantro"],
-    optional: ["Oyster sauce"],
+    optional: ["Oyster sauce", "Cornstarch"],
     steps: [
       "Beat eggs with a little oyster sauce. Stir-fry shrimp and ham; mix into eggs with sprouts if using.",
       "Pan-fry until golden and fully set on both sides.",
@@ -583,7 +583,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tofu", "Chicken breast", "Eggs"],
-    optional: ["Ginger", "Oyster sauce", "Soy sauce", "Cornstarch", "Spring onion"],
+    optional: ["Cornstarch", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Soy sauce"],
     steps: [
       "Slice tofu; dust with cornstarch and dip lightly in beaten egg. Pan-fry both sides golden.",
       "Stir-fry chicken pieces until cooked through (74°C / 165°F).",
@@ -607,7 +607,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 8,
     servings: 2,
     need: ["Spinach", "Garlic"],
-    optional: ["Soy sauce", "Sesame oil"],
+    optional: ["Cooking oil", "Sesame oil", "Soy sauce"],
     steps: [
       "Wash spinach; slice garlic.",
       "Stir-fry garlic in a hot oiled pan, then add spinach and toss until just wilted.",
@@ -651,7 +651,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Carrots", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Garlic"],
+    optional: ["Onion", "Spring onion", "Soy sauce", "Garlic"],
     steps: [
       "Julienne carrots; beat eggs.",
       "Scramble eggs softly and set aside. Stir-fry carrots until tender-crisp.",
@@ -672,8 +672,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Chinese",
     time: 18,
     servings: 2,
-    need: ["Sichuan peppercorns", "Celery", "Carrots", "Spring onion", "Ginger", "Ground pork", "Wonton wrappers", "Flour"],
-    optional: ["Cooking oil", "Salt", "Sugar", "Sesame oil", "Oyster sauce", "Soy sauce", "Shaoxing wine"],
+    need: ["Sichuan peppercorns", "Celery", "Carrots", "Spring onion", "Ground pork", "Wonton wrappers", "Flour"],
+    optional: ["Cooking oil", "Salt", "Sand ginger", "Sugar", "Sesame oil", "Oyster sauce", "Soy sauce", "Shaoxing wine"],
     steps: [
       "Slice celery on the bias. Brown ground pork until cooked through (74°C / 165°F).",
       "Add garlic and celery; stir-fry until celery is crisp-tender.",
@@ -695,7 +695,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cauliflower", "Garlic"],
-    optional: ["Soy sauce", "Oyster sauce", "Carrots"],
+    optional: ["Oyster sauce", "Soy sauce"],
     steps: [
       "Cut cauliflower into small florets. Slice garlic.",
       "Stir-fry garlic, then cauliflower with a splash of water; cover 3–4 minutes until tender-crisp.",
@@ -717,7 +717,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Zucchini", "Eggs"],
-    optional: ["Garlic", "Soy sauce", "Spring onion"],
+    optional: ["Onion", "Spring onion", "Garlic", "Soy sauce"],
     steps: [
       "Slice zucchini into half-moons; beat eggs.",
       "Stir-fry zucchini until just soft; push aside and scramble eggs until set.",
@@ -738,8 +738,8 @@ export const MORE_EXTRA: Recipe[] = [
     cuisine: "Chinese",
     time: 35,
     servings: 2,
-    need: ["Rice", "Sweet potato"],
-    optional: ["Spring onion", "Soy sauce"],
+    need: ["Cooked rice", "Sweet potato"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Potato"],
     steps: [
       "Peel and cube sweet potato. Rinse rice; cook rice and sweet potato together with the usual water.",
       "When done, rest 5 minutes and fluff.",
@@ -761,7 +761,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked rice", "Canned tuna", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Onion", "Cooking oil", "Bacon", "Salt", "Sugar", "Shaoxing wine", "White pepper"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Cooking oil", "Salt", "Sugar", "Shaoxing wine", "White pepper"],
     steps: [
       "Drain tuna; break up cold rice; beat eggs.",
       "Scramble eggs, add tuna to warm through, then toss with rice until hot.",
@@ -783,7 +783,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Noodles", "Sausages", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Chili oil"],
+    optional: ["Soy sauce", "Spring onion", "Chili oil"],
     steps: [
       "Cook noodles; slice sausages. Fry sausages until browned and cooked through.",
       "Fry an egg until the white is set.",
@@ -829,7 +829,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Eggs", "Cheddar", "Spinach"],
-    optional: ["Butter", "Milk", "Onion"],
+    optional: ["Butter", "Onion"],
     steps: [
       "Wilt spinach in a knob of butter; beat 2 eggs.",
       "Pour eggs into a hot buttered pan; cook until almost set, add grated cheddar and spinach.",
@@ -925,7 +925,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pasta", "Mushroom", "Garlic"],
-    optional: ["Milk", "Butter", "Cheddar", "Onion", "Olive oil"],
+    optional: ["Cooking oil", "Onion", "Cheddar", "Milk", "Butter", "Olive oil"],
     steps: [
       "Boil pasta. Slice mushrooms; soften garlic (and onion) in butter/oil.",
       "Cook mushrooms until browned; add a splash of milk and simmer briefly.",
@@ -947,7 +947,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tomato", "Onion", "Garlic"],
-    optional: ["Butter", "Milk", "Sugar", "Bread", "Tofu", "Mushroom", "Eggs", "Ginger", "Spring onion", "Cornstarch", "Chicken stock", "Ketchup", "Salt", "Sesame oil", "Cooking oil"],
+    optional: ["Bread", "Milk", "Butter", "Sugar", "Ginger", "Spring onion", "Cornstarch", "Chicken stock", "Ketchup", "Salt", "Sesame oil", "Cooking oil"],
     steps: [
       "Chop tomatoes and onion. Soften onion and garlic in butter; add tomato and a cup of water.",
       "Simmer 15 minutes until soft; mash or blend until smooth.",
@@ -969,7 +969,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Chicken breast", "Lettuce", "Tomato"],
-    optional: ["Cucumber", "Mayonnaise", "Lemon", "Olive oil"],
+    optional: ["Olive oil", "Cooking oil", "Lemon", "Mayonnaise", "Cucumber"],
     steps: [
       "Cook chicken until done (74°C / 165°F); cool and slice or shred.",
       "Toss lettuce, tomato, and cucumber with olive oil or a little mayo and lemon.",
@@ -991,7 +991,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Eggs", "Spinach"],
-    optional: ["Tomato", "Cheddar", "Cream cheese", "Onion", "Olive oil"],
+    optional: ["Tomato", "Cooking oil", "Cheddar", "Onion", "Olive oil"],
     steps: [
       "Wilt spinach in a little oil; spread in an ovenproof dish with tomato if using.",
       "Make wells and crack in eggs; add cheddar dots.",
@@ -1013,7 +1013,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 10,
     servings: 1,
     need: ["Bread", "Ham", "Cheddar"],
-    optional: ["Butter", "Mustard", "Tomato"],
+    optional: ["Mustard", "Butter"],
     steps: [
       "Butter outside of two bread slices. Layer ham and cheddar (mustard optional) inside.",
       "Toast in a pan or press until bread is golden and cheese melts.",
@@ -1035,7 +1035,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Pasta", "Sausages", "Tomato"],
-    optional: ["Onion", "Garlic", "Olive oil", "Cheddar", "Chicken stock", "White pepper"],
+    optional: ["Garlic", "Onion", "Cheddar", "Olive oil", "Chicken stock", "White pepper"],
     steps: [
       "Boil pasta. Slice sausages; brown until cooked through.",
       "Add onion/garlic and chopped tomato; simmer until saucy.",
@@ -1057,7 +1057,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Eggs", "Bread", "Mayonnaise"],
-    optional: ["Spring onion", "Lettuce", "Butter"],
+    optional: ["Lettuce", "Onion", "Spring onion"],
     steps: [
       "Hard-boil 2 eggs (whites fully set, about 9–10 minutes); cool and peel.",
       "Mash with mayonnaise and spring onion if using.",
@@ -1079,7 +1079,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 5,
     servings: 1,
     need: ["Yogurt", "Berries"],
-    optional: ["Honey", "Banana", "Peanut butter"],
+    optional: ["Peanut butter", "Banana", "Butter", "Honey"],
     steps: [
       "Spoon yogurt into a bowl.",
       "Top with berries (and banana slices if using).",
@@ -1101,7 +1101,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Flour", "Eggs", "Milk"],
-    optional: ["Butter", "Sugar", "Berries", "Jam", "Honey"],
+    optional: ["Berries", "Jam", "Honey", "Sugar"],
     steps: [
       "Whisk 1 cup flour, 1 egg, and about 1 cup milk into a smooth batter; rest 5 minutes.",
       "Cook spoonfuls in a lightly buttered pan until bubbles form; flip and cook through.",
@@ -1145,7 +1145,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Chicken thighs", "Carrots", "Onion"],
-    optional: ["Celery", "Potato", "Garlic", "Spring onion", "Cooking oil", "Shaoxing wine", "Ginger", "Salt", "White pepper", "Lettuce", "Chili oil"],
+    optional: ["Spring onion", "Garlic", "Cooking oil", "Shaoxing wine", "Ginger", "Salt", "White pepper", "Chili oil"],
     steps: [
       "Simmer chicken thighs in water 20 minutes until cooked through (74°C / 165°F); remove and shred.",
       "Add chopped carrot, onion, and other veg; simmer until soft.",
@@ -1189,7 +1189,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Pork chops", "Onion"],
-    optional: ["Garlic", "Soy sauce", "Butter", "Sugar", "Salt", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Eggs", "Flour", "Cooking oil", "Ketchup", "Rice", "Sesame oil"],
+    optional: ["Garlic", "Soy sauce", "Sugar", "Salt", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Flour", "Cooking oil", "Ketchup", "Sesame oil"],
     steps: [
       "Pat pork chops dry; season. Soften sliced onion in the pan; push aside.",
       "Pan-fry chops until cooked through (aim for 71°C / 160°F).",
@@ -1211,7 +1211,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pasta", "Shrimp", "Garlic"],
-    optional: ["Olive oil", "Lemon", "Spring onion", "Chili oil"],
+    optional: ["Olive oil", "Cooking oil", "Onion", "Spring onion", "Lemon", "Chili oil"],
     steps: [
       "Boil pasta. Soften garlic in olive oil; add shrimp and cook until opaque.",
       "Toss with pasta and a splash of pasta water.",
@@ -1233,7 +1233,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Beans", "Tomato", "Onion"],
-    optional: ["Garlic", "Olive oil", "Spinach", "Bread"],
+    optional: ["Olive oil", "Bread", "Garlic", "Cooking oil", "Spinach"],
     steps: [
       "Soften onion and garlic in olive oil; add chopped tomato and drained beans.",
       "Simmer 10–15 minutes until thick; wilt in spinach if using.",
@@ -1255,7 +1255,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Corn", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Milk"],
+    optional: ["Onion", "Spring onion", "Soy sauce"],
     steps: [
       "Beat eggs; drain canned or use thawed corn.",
       "Scramble eggs softly; add corn and cook until hot and eggs are set.",
@@ -1299,7 +1299,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Beef steak", "Bell pepper"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Oyster sauce", "Cornstarch", "Baking soda", "Sesame oil", "Cooking oil", "Shaoxing wine", "Salt", "Sugar", "White pepper", "Chicken stock"],
+    optional: ["Cornstarch", "Onion", "Oyster sauce", "Garlic", "Soy sauce", "Baking soda", "Sesame oil", "Cooking oil", "Shaoxing wine", "Salt", "Sugar", "White pepper", "Chicken stock"],
     steps: [
       "Slice beef thin; toss with soy and cornstarch. Cut peppers into chunks.",
       "Stir-fry beef until just cooked; remove. Stir-fry peppers and onion crisp-tender.",
@@ -1321,7 +1321,7 @@ export const MORE_EXTRA: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Cooked rice", "Mushroom", "Eggs"],
-    optional: ["Soy sauce", "Garlic", "Spring onion"],
+    optional: ["Soy sauce", "Onion", "Spring onion", "Garlic"],
     steps: [
       "Slice mushrooms; beat eggs; loosen rice.",
       "Scramble eggs; stir-fry mushrooms until browned; toss with rice until hot.",

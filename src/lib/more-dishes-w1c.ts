@@ -9,7 +9,7 @@ export const MORE_W1C: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked leftovers", "Noodles"],
-    optional: ["Soy sauce", "Sesame oil", "Garlic", "Spring onion"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Sesame oil"],
     steps: [
       "Cook 200 g noodles until just tender; drain. Dice about 2 cups of cooked leftovers into bite-sized pieces.",
       "Warm 1 tbsp oil in a pan; add minced garlic if using, then the leftovers. Stir until steaming hot throughout—any leftover meat must reach 74°C / 165°F.",
@@ -31,7 +31,7 @@ export const MORE_W1C: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Cooked leftovers", "Eggs"],
-    optional: ["Spring onion", "Sesame oil", "Ginger", "Soy sauce", "Shrimp", "White pepper", "Cornstarch", "Carrots", "Silken tofu", "Chicken stock", "Salt", "Cooking oil", "Sugar"],
+    optional: ["Cooking oil", "Onion", "Spring onion", "Sesame oil", "Ginger", "Soy sauce", "White pepper", "Cornstarch", "Chicken stock", "Salt", "Sugar"],
     steps: [
       "Bring 4 cups of water to a simmer with a few ginger slices if using. Dice 1½ cups of cooked leftovers.",
       "Add leftovers and simmer 3–5 minutes until steaming hot; any leftover meat must reach 74°C / 165°F. Beat 2 eggs.",
@@ -52,8 +52,8 @@ export const MORE_W1C: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 2,
-    need: ["Rice", "Ginger", "Chicken breast", "Onion", "Cilantro"],
-    optional: ["Cornstarch", "Oyster sauce", "Chicken stock", "Cooking oil", "Salt"],
+    need: ["Rice", "Chicken breast", "Onion", "Cilantro"],
+    optional: ["Sand ginger", "Cornstarch", "Oyster sauce", "Chicken stock", "Cooking oil", "Salt"],
     steps: [
       "Rinse ½ cup raw rice. Slice 4–5 thin pieces of ginger. Shred about 1 cup of cooked leftovers (chicken or other).",
       "Simmer rice with 5–6 cups water and ginger 30–35 minutes, stirring often, until creamy.",
@@ -96,8 +96,8 @@ export const MORE_W1C: Recipe[] = [
     cuisine: "Hong Kong",
     time: 35,
     servings: 2,
-    need: ["Cooked leftovers", "Rice"],
-    optional: ["Soy sauce", "Spring onion", "Ginger", "Sesame oil"],
+    need: ["Cooked leftovers", "Cooked rice"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Ginger"],
     steps: [
       "Rinse 1 cup rice and add water as usual in the rice cooker. Dice 1½–2 cups of cooked leftovers; slice a little ginger if using.",
       "When the rice is mid-cook (or after the cook cycle starts), nestle leftovers and ginger on top in a thin layer so steam can circulate.",
@@ -119,7 +119,7 @@ export const MORE_W1C: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Cooked leftovers", "Tortilla"],
-    optional: ["Lettuce", "Mayonnaise", "Soy sauce", "Spring onion"],
+    optional: ["Soy sauce", "Lettuce", "Mayonnaise", "Spring onion"],
     steps: [
       "Warm 2 tortillas in a dry pan 20–30 seconds each side. Dice about 1½ cups of cooked leftovers.",
       "Reheat leftovers in a lightly oiled pan until steaming hot—any leftover meat must reach 74°C / 165°F. Season with a splash of soy sauce if needed.",
@@ -162,7 +162,7 @@ export const MORE_W1C: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Cooked leftovers", "Cooked rice", "Soy sauce"],
-    optional: ["Garlic", "Sesame oil", "Spring onion", "Eggs"],
+    optional: ["Eggs", "Garlic", "Cooking oil", "Onion", "Spring onion", "Sesame oil"],
     steps: [
       "Break up 2 bowls of cooked rice. Chop leafy or veggie leftovers into 2 cups of bite-sized pieces; mince garlic if using.",
       "Stir-fry leftovers (and garlic) until steaming hot—any leftover meat must reach 74°C / 165°F.",

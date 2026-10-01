@@ -11,8 +11,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 40,
     servings: 3,
-    need: ["Fermented black beans", "Orange", "Spare ribs", "Spring onion", "Garlic", "Ginger"],
-    optional: ["Cornstarch", "White pepper", "Cooking oil", "Salt", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Sesame oil"],
+    need: ["Fermented black beans", "Orange", "Spare ribs", "Spring onion", "Garlic"],
+    optional: ["Cornstarch", "White pepper", "Cooking oil", "Salt", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Sand ginger", "Sesame oil"],
     steps: [
       "Cut 500 g spare ribs into bite-size pieces; cube 400 g pumpkin. Toss ribs with 1 tbsp soy sauce, minced garlic/ginger, a pinch of sugar, and cornstarch if using.",
       "Layer pumpkin in a shallow heatproof dish; arrange ribs on top. Optional: scatter rinsed fermented black beans.",
@@ -56,8 +56,8 @@ export const MORE_W3I: Recipe[] = [
     time: 30,
     servings: 2,
     // Stand-in: Canned tuna for salted fish
-    need: ["Ground pork", "Ginger", "Spring onion", "Water chestnuts"],
-    optional: ["Sesame oil", "Salt", "White pepper", "Baking soda", "Shaoxing wine", "Cornstarch"],
+    need: ["Ground pork", "Spring onion", "Water chestnuts", "Ginger"],
+    optional: ["Sesame oil", "Salt", "White pepper", "Baking soda", "Shaoxing wine", "Cornstarch", "Sand ginger"],
     steps: [
       "Mix 300 g ground pork with drained flaked canned tuna (salted-fish stand-in), minced ginger, 1 tsp soy sauce, cornstarch, and a pinch of sugar and white pepper.",
       "Press into a flat patty in a heatproof dish; make a shallow well in the center.",
@@ -101,7 +101,7 @@ export const MORE_W3I: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Tofu", "Mushroom"],
-    optional: ["Garlic", "Ginger", "Oyster sauce", "Soy sauce", "Spring onion", "Cornstarch", "Sugar", "Pork chops"],
+    optional: ["Soy sauce", "Cornstarch", "Garlic", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Sugar", "Pork chops"],
     steps: [
       "Pat dry and cube 1 block tofu; slice mushrooms. Optional: thinly slice a little pork and brown first.",
       "Pan-fry tofu until golden on a few sides. Soften garlic/ginger and mushrooms in the same pan.",
@@ -123,8 +123,8 @@ export const MORE_W3I: Recipe[] = [
     time: 55,
     servings: 3,
     // Stand-in: Dried mushrooms + Rice for dried scallop aroma
-    need: ["Rice", "Dried mushrooms"],
-    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Century egg", "Pork chops"],
+    need: ["Cooked rice", "Dried mushrooms"],
+    optional: ["White pepper", "Mushroom", "Onion", "Spring onion", "Salt", "Ginger", "Century egg", "Pork chops"],
     steps: [
       "Rinse 1 cup rice. Soak dried mushrooms until soft; squeeze and slice (scallop-style stand-in). Thinly slice ginger.",
       "Simmer rice with about 6 cups water and mushrooms 40–45 minutes, stirring often, until creamy and porridge-like.",
@@ -168,7 +168,7 @@ export const MORE_W3I: Recipe[] = [
     time: 45,
     servings: 3,
     need: ["Spare ribs", "Lemon"],
-    optional: ["Soy sauce", "Sugar", "Honey", "Garlic", "Cornstarch", "Salt", "Ketchup", "Fermented black beans", "Spring onion", "Cooking oil", "Oyster sauce", "Shaoxing wine", "Ginger", "Sesame oil"],
+    optional: ["Soy sauce", "Cornstarch", "Garlic", "Orange juice", "Salt", "Ketchup", "Honey", "Sugar", "Spring onion", "Cooking oil", "Oyster sauce", "Shaoxing wine", "Ginger", "Sesame oil"],
     steps: [
       "Cut 600 g spare ribs into pieces; marinate with salt, soy sauce, and cornstarch 10 minutes. Pan-fry or bake until browned.",
       "Mix juice of 1 lemon with 2 tbsp sugar or honey, optional ketchup, and minced garlic into a tangy sauce.",
@@ -256,8 +256,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Beef steak", "Snow peas", "Celery", "Mushroom", "Carrots", "Onion", "Garlic", "Ginger"],
-    optional: ["Cooking oil", "Shaoxing wine", "Soy sauce", "Sesame oil", "Oyster sauce", "Cornstarch", "White pepper", "Baking soda", "Sugar"],
+    need: ["Beef steak", "Snow peas", "Celery", "Mushroom", "Carrots", "Onion", "Garlic"],
+    optional: ["Sand ginger", "Cooking oil", "Shaoxing wine", "Soy sauce", "Sesame oil", "Oyster sauce", "Cornstarch", "White pepper", "Baking soda", "Sugar"],
     steps: [
       "Slice 300 g beef thinly; toss with 1 tsp soy sauce and cornstarch. Slice onion if using.",
       "Stir-fry beef on high heat 1–2 minutes until just browned; remove. Soften garlic, ginger, and onion.",
@@ -278,8 +278,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 40,
     servings: 3,
-    need: ["Spare ribs", "Garlic"],
-    optional: ["Soy sauce", "Sugar", "Honey", "Ginger", "Cornstarch", "Salt", "Sesame oil", "Fermented black beans", "Spring onion", "Cooking oil", "Oyster sauce", "Shaoxing wine"],
+    need: ["Spare ribs", "Bell pepper", "Spring onion", "Garlic"],
+    optional: ["Soy sauce", "White pepper", "Shaoxing wine", "Cornstarch", "Olive oil"],
     steps: [
       "Cut 600 g spare ribs; marinate with salt, soy sauce, cornstarch, and half the minced garlic 15 minutes.",
       "Brown ribs in a pan 4–5 minutes. Add remaining garlic and ginger; cook until fragrant.",
@@ -300,8 +300,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Hong Kong",
     time: 35,
     servings: 2,
-    need: ["Pork chops", "Onion", "Ginger", "Garlic"],
-    optional: ["Cornstarch", "Cooking oil", "Salt", "Shaoxing wine", "Oyster sauce", "Soy sauce", "Sugar", "White pepper"],
+    need: ["Pork chops", "Onion", "Garlic"],
+    optional: ["Sand ginger", "Cornstarch", "Cooking oil", "Salt", "Shaoxing wine", "Oyster sauce", "Soy sauce", "Sugar", "White pepper"],
     steps: [
       "Pound 2 pork chops lightly; season with salt and soy sauce. Pan-fry 3–4 minutes per side until cooked through; remove.",
       "Cook chopped tomato and onion with ketchup, a pinch of sugar, and garlic if using until saucy (8–10 minutes).",
@@ -367,7 +367,7 @@ export const MORE_W3I: Recipe[] = [
     time: 35,
     servings: 2,
     need: ["Spare ribs", "White pepper", "Salt"],
-    optional: ["Garlic", "Chili oil", "Cornstarch", "Spring onion", "Eggs", "Fermented black beans", "Cooking oil", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Ginger", "Sesame oil"],
+    optional: ["Cornstarch", "Garlic", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Ginger", "Sesame oil"],
     steps: [
       "Cut 500 g spare ribs; toss with salt, white pepper, cornstarch, and optional beaten egg white. Rest 10 minutes.",
       "Pan-fry or shallow-fry ribs until browned and cooked through, about 8–10 minutes total; drain excess oil.",
@@ -389,7 +389,7 @@ export const MORE_W3I: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["White fish", "Lettuce"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Salt", "Cornstarch", "Sesame oil"],
+    optional: ["Soy sauce", "Cornstarch", "Garlic", "Cooking oil", "Salt", "Sesame oil", "Ginger"],
     steps: [
       "Cut white fish into slices; toss with salt and cornstarch. Separate lettuce leaves.",
       "Stir-fry garlic/ginger briefly; add fish and cook 2–3 minutes until just opaque.",
@@ -411,7 +411,7 @@ export const MORE_W3I: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Pork chops", "Broccoli"],
-    optional: ["Garlic", "Ginger", "Oyster sauce", "Soy sauce", "Cornstarch", "Salt", "Sugar"],
+    optional: ["Soy sauce", "Cornstarch", "Garlic", "Oyster sauce", "Ginger", "Sugar", "Salt"],
     steps: [
       "Slice pork thinly; toss with soy sauce and cornstarch. Cut broccoli into florets; blanch 1–2 minutes, drain.",
       "Stir-fry pork until cooked through, about 3–4 minutes; remove. Soften garlic/ginger.",
@@ -433,7 +433,7 @@ export const MORE_W3I: Recipe[] = [
     time: 35,
     servings: 3,
     need: ["Eggplant", "Tofu"],
-    optional: ["Garlic", "Ginger", "Oyster sauce", "Soy sauce", "Sugar", "Spring onion", "Cornstarch", "Chili oil"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Chili oil", "Ginger", "Sugar", "Cornstarch"],
     steps: [
       "Cut eggplant into batons and tofu into cubes. Pan-fry both until lightly golden; set aside.",
       "Soft garlic and ginger; add oyster sauce, soy sauce, a pinch of sugar, and 3/4 cup water.",
@@ -455,7 +455,7 @@ export const MORE_W3I: Recipe[] = [
     time: 55,
     servings: 3,
     need: ["Spare ribs", "Corn"],
-    optional: ["Carrots", "Ginger", "Salt", "Dried mushrooms", "Cooking oil", "Glass noodles", "Cabbage", "White pepper", "Spring onion", "Cilantro"],
+    optional: ["Mushroom", "Dried mushrooms", "Salt", "Carrots", "Ginger", "Cooking oil", "White pepper", "Spring onion"],
     steps: [
       "Blanch 500 g spare ribs; rinse. Cut corn into chunks; optional carrot and soaked dried mushrooms.",
       "Simmer ribs with ginger and corn in about 1.5 L water for 40–45 minutes.",
@@ -499,7 +499,7 @@ export const MORE_W3I: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["White fish", "Choi sum"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Oyster sauce", "Salt", "Cornstarch", "Sesame oil"],
+    optional: ["Cornstarch", "Garlic", "Cooking oil", "Oyster sauce", "Salt", "Sesame oil", "Ginger", "Soy sauce"],
     steps: [
       "Slice white fish; toss with salt and cornstarch. Trim choi sum; blanch 45–60 seconds, drain.",
       "Stir-fry garlic/ginger; add fish and cook until just opaque, 2–3 minutes.",
@@ -520,8 +520,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 40,
     servings: 3,
-    need: ["Spare ribs", "Ginger", "Garlic", "Fermented black beans", "Bell pepper", "Onion", "Spring onion"],
-    optional: ["Salt", "Cooking oil", "Shaoxing wine", "Sugar", "White pepper", "Sesame oil", "Soy sauce", "Cornstarch"],
+    need: ["Spare ribs", "Garlic", "Fermented black beans", "Bell pepper", "Onion", "Spring onion"],
+    optional: ["Salt", "Cooking oil", "Sand ginger", "Shaoxing wine", "Sugar", "White pepper", "Sesame oil", "Soy sauce", "Cornstarch"],
     steps: [
       "Cut 500 g spare ribs; rinse fermented black beans and mash lightly with garlic. Toss ribs with beans, soy sauce, cornstarch, and a pinch of sugar.",
       "Brown ribs in a claypot or deep pan 4–5 minutes. Add ginger, chili oil if using, and 1/2 cup water.",

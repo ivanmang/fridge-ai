@@ -75,7 +75,7 @@ export const MORE_W5F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Ground pork"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "White pepper", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep Ground pork and vegetables; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Ground pork and cook until cooked through (74°C / 165°F).",
@@ -97,7 +97,7 @@ export const MORE_W5F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Chicken breast", "Chicken thighs"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "White pepper", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep Chicken breast and Chicken thighs; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Chicken breast and cook until cooked through (74°C / 165°F).",
@@ -141,7 +141,7 @@ export const MORE_W5F: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Ground pork", "Pork chops"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Oyster sauce", "Cornstarch", "Shaoxing wine"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Oyster sauce", "Ginger", "Salt", "White pepper", "Sugar", "Sesame oil", "Cornstarch", "Shaoxing wine"],
     steps: [
       "Prep Ground pork and Pork chops; cut into bite-size pieces. Mix a quick sauce with 1 tbsp soy sauce, 1 tsp oyster sauce if using, and a splash of water.",
       "Heat a wok or pan with a little oil; stir-fry aromatics (garlic/ginger), then add Ground pork and cook until cooked through (74°C / 165°F).",
@@ -185,7 +185,7 @@ export const MORE_W5F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Squid", "Pasta"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Olive oil", "Cheddar", "Onion"],
+    optional: ["Olive oil", "White pepper", "Garlic", "Cooking oil", "Onion", "Cheddar", "Salt", "Soy sauce", "Ginger", "Spring onion", "Sugar", "Sesame oil"],
     steps: [
       "Boil pasta in salted water until al dente; reserve ½ cup pasta water.",
       "Meanwhile sauté garlic/onion and Squid in olive oil until just cooked.",
@@ -207,7 +207,7 @@ export const MORE_W5F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggs", "Tomato"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Shaoxing wine"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Ginger", "Salt", "Garlic", "White pepper", "Sugar", "Shaoxing wine"],
     steps: [
       "Arrange Eggs with Tomato on a heatproof plate; scatter ginger and spring onion.",
       "Steam over high heat 10–15 minutes until cooked through.",
@@ -317,7 +317,7 @@ export const MORE_W5F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggs", "Tomato"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Shaoxing wine"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Ginger", "Salt", "Garlic", "White pepper", "Sugar", "Shaoxing wine"],
     steps: [
       "Arrange Eggs with Tomato on a heatproof plate; scatter ginger and spring onion.",
       "Steam over high heat 10–15 minutes until cooked through.",
@@ -383,7 +383,7 @@ export const MORE_W5F: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Lemon", "Lime"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil", "Shaoxing wine"],
+    optional: ["Soy sauce", "Cooking oil", "Onion", "Spring onion", "Sesame oil", "Ginger", "Salt", "Garlic", "White pepper", "Sugar", "Shaoxing wine"],
     steps: [
       "Arrange Lemon with Lime on a heatproof plate; scatter ginger and spring onion.",
       "Steam over high heat 10–15 minutes until cooked through.",
@@ -647,7 +647,7 @@ export const MORE_W5F: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Tomato", "Zucchini"],
-    optional: ["Cooking oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar", "Sesame oil"],
+    optional: ["Olive oil", "Vinegar", "Cooking oil", "Lemon", "Sesame oil", "Salt", "Soy sauce", "Garlic", "Ginger", "Spring onion", "White pepper", "Sugar"],
     steps: [
       "Prep Tomato and Zucchini; cook any protein through and cool slightly.",
       "Whisk a dressing of soy/vinegar/sesame oil (or lemon + olive oil).",

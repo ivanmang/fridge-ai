@@ -9,7 +9,7 @@ export const MORE_W2E: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Chicken thighs", "Peanuts", "Bell pepper"],
-    optional: ["Garlic", "Ginger", "Spring onion", "Soy sauce", "Chili oil", "Sugar", "Cornstarch", "Vinegar", "Broccoli", "Celery", "Carrots", "Shallot", "Cooking oil", "Salt", "Shaoxing wine", "White pepper", "Oyster sauce"],
+    optional: ["White pepper", "Soy sauce", "Cornstarch", "Garlic", "Vinegar", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Salt", "Ginger", "Sugar", "Shaoxing wine", "Oyster sauce"],
     steps: [
       "Dice 300 g chicken thighs; toss with 1 tsp soy sauce, 1 tsp cornstarch, and a pinch of salt.",
       "Stir-fry chicken in a hot oiled pan until cooked through (74°C / 165°F); remove. Flash-fry diced bell pepper, garlic, and ginger.",
@@ -53,7 +53,7 @@ export const MORE_W2E: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Noodles", "Ground pork"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Peanut butter", "Spring onion", "Sesame oil", "Sichuan peppercorns", "Cooking oil", "Shaoxing wine", "Five-spice powder", "Pickled mustard", "Sugar", "Lettuce", "Peanuts"],
+    optional: ["Soy sauce", "Garlic", "Peanut butter", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Sesame oil", "Butter", "Ginger", "Shaoxing wine", "Five-spice powder", "Sugar"],
     steps: [
       "Boil noodles until tender; drain, reserving ½ cup cooking water.",
       "Brown 150 g ground pork with garlic and ginger until cooked through (74°C / 165°F).",
@@ -74,8 +74,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Pork chops", "Cauliflower", "Garlic", "Ginger", "Dried chili", "Bell pepper", "Spring onion"],
-    optional: ["Salt", "Soy sauce", "Shaoxing wine", "Cooking oil", "Sesame oil", "White pepper", "Oyster sauce", "Sugar"],
+    need: ["Pork chops", "Cauliflower", "Garlic", "Dried chili", "Bell pepper", "Spring onion"],
+    optional: ["Salt", "Soy sauce", "Shaoxing wine", "Cooking oil", "Sand ginger", "Sesame oil", "White pepper", "Oyster sauce", "Sugar"],
     steps: [
       "Cut cauliflower into bite-size florets; blanch 2 minutes and drain well.",
       "Render diced bacon until crisp; add garlic, ginger, and optional chili oil.",
@@ -97,7 +97,7 @@ export const MORE_W2E: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Noodles", "Garlic"],
-    optional: ["Chili oil", "Soy sauce", "Vinegar", "Spring onion", "Sesame seeds", "Sugar"],
+    optional: ["Soy sauce", "Vinegar", "Cooking oil", "Onion", "Spring onion", "Sesame seeds", "Chili oil", "Sugar"],
     steps: [
       "Boil a portion of noodles until tender; drain.",
       "In the serving bowl mix 2 tsp chili oil, 1 tbsp soy sauce, 1 tsp vinegar, minced garlic, and a pinch of sugar.",
@@ -141,7 +141,7 @@ export const MORE_W2E: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Cucumber", "Garlic"],
-    optional: ["Chili oil", "Soy sauce", "Vinegar", "Sugar", "Sesame oil"],
+    optional: ["Soy sauce", "Vinegar", "Cooking oil", "Chili oil", "Salt", "Sesame oil", "Sugar"],
     steps: [
       "Smash and chop 1–2 cucumbers; salt lightly 5 minutes, then drain.",
       "Mix minced garlic with 1 tbsp soy sauce, 1 tsp vinegar, chili oil, and a pinch of sugar.",
@@ -163,7 +163,7 @@ export const MORE_W2E: Recipe[] = [
     time: 20,
     servings: 1,
     need: ["Noodles", "Ground pork"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Spring onion", "Peanuts"],
+    optional: ["Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Peanuts", "Ginger"],
     steps: [
       "Boil noodles; brown 100 g ground pork with garlic until cooked through (74°C / 165°F).",
       "In the bowl mix chili oil, 1 tbsp soy sauce, and minced ginger.",
@@ -185,7 +185,7 @@ export const MORE_W2E: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Beef steak", "Onion"],
-    optional: ["Garlic", "Chili oil", "Soy sauce", "White pepper", "Spring onion"],
+    optional: ["White pepper", "Soy sauce", "Cumin", "Garlic", "Cooking oil", "Spring onion", "Chili oil"],
     steps: [
       "Slice 250 g beef steak thin against the grain; toss with 1 tsp soy sauce.",
       "Sear beef in a very hot oiled pan in batches until just browned; remove.",
@@ -207,7 +207,7 @@ export const MORE_W2E: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Chicken thighs", "Dried mushrooms"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Sugar", "Spring onion", "Peanuts"],
+    optional: ["Soy sauce", "Mushroom", "Garlic", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Peanuts", "Ginger", "Sugar"],
     steps: [
       "Dice chicken thighs; toss with soy sauce and a pinch of sugar.",
       "Stir-fry until cooked through (74°C / 165°F) and lightly crisp at edges.",
@@ -229,7 +229,7 @@ export const MORE_W2E: Recipe[] = [
     time: 30,
     servings: 2,
     need: ["Ground pork", "Cabbage", "Tofu"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "White pepper", "Spring onion"],
+    optional: ["Chicken stock", "White pepper", "Soy sauce", "Garlic", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Ginger"],
     steps: [
       "Shape ground pork into small meatballs or loose crumbles; simmer in salted water until cooked through (74°C / 165°F).",
       "Blanch cabbage and tofu slabs in the same pot 2–3 minutes; arrange in a deep bowl with the pork.",
@@ -272,7 +272,7 @@ export const MORE_W2E: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Lettuce", "Garlic"],
-    optional: ["Chili oil", "Soy sauce", "Sesame oil"],
+    optional: ["Soy sauce", "Cooking oil", "Chili oil", "Sesame oil"],
     steps: [
       "Blanch lettuce leaves 20–30 seconds in salted boiling water; drain and plate.",
       "Sizzle minced garlic in 1 tbsp hot oil (or use chili oil).",
@@ -293,8 +293,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Eggplant", "Ground pork"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Sugar", "Cornstarch", "Spring onion", "Shaoxing wine", "Baking soda", "White pepper", "Cooking oil", "Sichuan peppercorns", "Doubanjiang", "Fermented black beans", "Chicken stock", "Sesame oil"],
+    need: ["Eggplant", "Ground pork", "Garlic", "Mozzarella", "Ginger", "Doubanjiang"],
+    optional: ["Soy sauce", "Shaoxing wine", "Sugar", "Sesame oil", "Salt", "White pepper"],
     steps: [
       "Pan-fry eggplant pieces until soft; set aside. Brown ground pork until cooked through (74°C / 165°F).",
       "Add garlic, ginger, chili oil, 1 tbsp soy sauce, and a pinch of sugar with a splash of water.",
@@ -316,7 +316,7 @@ export const MORE_W2E: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Pickles", "Pork chops"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Spring onion"],
+    optional: ["Soy sauce", "Cabbage", "Garlic", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Ginger"],
     steps: [
       "Slice pork thin; stir-fry with garlic until cooked through (74°C / 165°F).",
       "Add chopped pickles (sour cabbage style) and ginger; stir-fry 2–3 minutes.",
@@ -338,7 +338,7 @@ export const MORE_W2E: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Tofu", "Garlic"],
-    optional: ["Chili oil", "Soy sauce", "Spring onion", "Cornstarch", "White pepper"],
+    optional: ["White pepper", "Soy sauce", "Cooking oil", "Onion", "Spring onion", "Chili oil", "Cornstarch"],
     steps: [
       "Pat tofu dry, cube, and pan-fry until golden on most sides.",
       "Add garlic and chili oil; splash soy sauce and a pinch of white pepper.",
@@ -360,7 +360,7 @@ export const MORE_W2E: Recipe[] = [
     time: 15,
     servings: 1,
     need: ["Noodles", "Cucumber"],
-    optional: ["Chili oil", "Soy sauce", "Vinegar", "Garlic", "Sesame oil", "Sugar"],
+    optional: ["Soy sauce", "Garlic", "Vinegar", "Cooking oil", "Chili oil", "Sesame oil", "Sugar"],
     steps: [
       "Boil noodles, rinse under cold water, and drain well.",
       "Shred cucumber. Mix 1 tbsp soy sauce, 1 tsp vinegar, chili oil, garlic, and a pinch of sugar.",
