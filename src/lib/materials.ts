@@ -190,12 +190,18 @@ export function ensureMaterials(recipe: Recipe): RecipeMaterial[] {
   return deriveMaterials(recipe)
 }
 
-/** Attach materials when missing (idempotent). */
+/**
+ * Attach materials when missing, and keep need/optional aligned with material roles.
+ * Source-synced overlays must drive cores — otherwise Tonight/Shop keep stale need lists.
+ */
 export function withMaterials(recipe: Recipe, overlay?: RecipeMaterial[]): Recipe {
-  if (recipe.materials?.length) return recipe
+  if (recipe.materials?.length) {
+    const legacy = legacyNeedOptional(recipe.materials)
+    return { ...recipe, need: legacy.need, optional: legacy.optional }
+  }
   if (overlay?.length) {
-    // Keep authored need/optional for ranking; overlay is display + Shop hints only.
-    return { ...recipe, materials: overlay }
+    const legacy = legacyNeedOptional(overlay)
+    return { ...recipe, materials: overlay, need: legacy.need, optional: legacy.optional }
   }
   const materials = deriveMaterials(recipe)
   return materials.length ? { ...recipe, materials } : recipe

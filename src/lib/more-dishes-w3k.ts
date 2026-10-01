@@ -8,8 +8,8 @@ export const MORE_W3K: Recipe[] = [
     cuisine: "Western",
     time: 25,
     servings: 2,
-    need: ["Eggs", "Tomato", "Bell pepper", "Zucchini"],
-    optional: ["Onion", "Garlic", "Chili oil", "Salt", "Bread", "Olive oil", "White pepper"],
+    need: ["Garlic", "Shallot", "Bell pepper", "Tomato", "Eggs", "Eggplant", "Zucchini", "Cheddar"],
+    optional: ["Olive oil", "Salt", "White pepper", "Paprika", "Cumin"],
     steps: [
       "Softer onion and bell pepper in oil 5 minutes; add chopped tomato and simmer 8–10 minutes until saucy.",
       "Make wells; crack in 3–4 eggs. Cover until whites set but yolks soft, 5–7 minutes.",
@@ -74,8 +74,8 @@ export const MORE_W3K: Recipe[] = [
     cuisine: "Western",
     time: 20,
     servings: 2,
-    need: ["Pasta", "Thai basil", "Garlic", "Berries"],
-    optional: ["Olive oil", "Cheddar", "Salt", "Lemon"],
+    need: ["Parmesan", "Garlic", "Tomato", "Berries"],
+    optional: ["Salt", "Olive oil"],
     steps: [
       "Boil pasta in salted water until al dente; reserve ½ cup water.",
       "Blend or finely chop basil with garlic, olive oil, and a pinch of salt (cheese optional).",
@@ -140,8 +140,8 @@ export const MORE_W3K: Recipe[] = [
     cuisine: "Western",
     time: 35,
     servings: 2,
-    need: ["Rice", "Mushroom", "Butter", "Chicken breast", "Lemon"],
-    optional: ["Onion", "Garlic", "Cheddar", "Salt", "Olive oil", "Spring onion", "Chicken stock"],
+    need: ["Chicken thighs", "Lemongrass", "Onion", "Mushroom", "Rice", "Spring onion", "Parmesan"],
+    optional: ["Salt", "Olive oil", "Chicken stock"],
     steps: [
       "Sauté onion and mushrooms in butter until browned.",
       "Stir in ¾ cup raw rice 1 minute; add hot water ½ cup at a time, stirring, ~20 minutes until creamy and tender.",
@@ -293,8 +293,8 @@ export const MORE_W3K: Recipe[] = [
     cuisine: "Western",
     time: 12,
     servings: 1,
-    need: ["Bread", "Cheddar", "Tomato", "Cream cheese"],
-    optional: ["Butter", "Olive oil", "Garlic", "White pepper"],
+    need: ["Zucchini", "Tomato", "Garlic", "Thai basil", "Cream cheese", "Butter", "Bread", "Cheddar"],
+    optional: ["Olive oil", "Tomato paste", "Salt", "Vinegar"],
     steps: [
       "Butter bread outside. Fill with cheddar and tomato slices.",
       "Pan-grill both sides until golden and cheese melts.",

@@ -11,8 +11,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 40,
     servings: 3,
-    need: ["Spare ribs", "Pumpkin"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Fermented black beans", "Cornstarch", "Salt", "Sugar", "Spring onion", "Cooking oil", "Oyster sauce", "Shaoxing wine", "Sesame oil"],
+    need: ["Fermented black beans", "Orange", "Spare ribs", "Spring onion", "Garlic", "Ginger"],
+    optional: ["Cornstarch", "White pepper", "Cooking oil", "Salt", "Sugar", "Soy sauce", "Oyster sauce", "Shaoxing wine", "Sesame oil"],
     steps: [
       "Cut 500 g spare ribs into bite-size pieces; cube 400 g pumpkin. Toss ribs with 1 tbsp soy sauce, minced garlic/ginger, a pinch of sugar, and cornstarch if using.",
       "Layer pumpkin in a shallow heatproof dish; arrange ribs on top. Optional: scatter rinsed fermented black beans.",
@@ -33,8 +33,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Beef steak", "Bitter melon", "Beans"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Oyster sauce", "Sugar", "Cornstarch", "Salt", "Baking soda", "Cooking oil", "Shaoxing wine", "Sesame oil", "White pepper"],
+    need: ["Beef steak", "Bitter melon", "Garlic", "Beans"],
+    optional: ["Salt", "Baking soda", "Cooking oil", "Shaoxing wine", "Sugar", "Soy sauce", "Sesame oil", "White pepper", "Cornstarch", "Oyster sauce"],
     steps: [
       "Slice 250 g beef steak thinly; toss with soy sauce and a little cornstarch. Halve bitter melon, scrape seeds, and slice; blanch 1 minute in salted boiling water, drain.",
       "Stir-fry beef on high heat 1–2 minutes until just browned; remove. Soften garlic/ginger, then toss bitter melon 2–3 minutes.",
@@ -56,8 +56,8 @@ export const MORE_W3I: Recipe[] = [
     time: 30,
     servings: 2,
     // Stand-in: Canned tuna for salted fish
-    need: ["Ground pork", "Canned tuna", "Water chestnuts"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Cornstarch", "Sugar", "Salt", "White pepper", "Sesame oil", "Baking soda", "Shaoxing wine"],
+    need: ["Ground pork", "Ginger", "Spring onion", "Water chestnuts"],
+    optional: ["Sesame oil", "Salt", "White pepper", "Baking soda", "Shaoxing wine", "Cornstarch"],
     steps: [
       "Mix 300 g ground pork with drained flaked canned tuna (salted-fish stand-in), minced ginger, 1 tsp soy sauce, cornstarch, and a pinch of sugar and white pepper.",
       "Press into a flat patty in a heatproof dish; make a shallow well in the center.",
@@ -78,8 +78,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Shrimp", "Ginger", "Spring onion"],
-    optional: ["Garlic", "Soy sauce", "Shaoxing wine", "Salt", "Cornstarch", "Sesame oil", "Cooking oil", "White pepper"],
+    need: ["Shrimp", "Spring onion", "Ginger"],
+    optional: ["White pepper", "Cooking oil", "Salt", "Shaoxing wine", "Soy sauce"],
     steps: [
       "Peel and devein 350 g shrimp; toss with a pinch of salt and cornstarch. Slice ginger and cut spring onion into sections.",
       "Stir-fry ginger (and garlic if using) in hot oil until fragrant. Add shrimp; cook 2–3 minutes until pink and opaque.",
@@ -145,8 +145,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["White fish", "Tofu", "Cabbage"],
-    optional: ["Ginger", "Spring onion", "Salt", "White pepper", "Tomato", "Cornstarch", "Soy sauce", "Shaoxing wine", "Sesame oil", "Cooking oil", "Dried chili", "Chicken stock", "Cilantro"],
+    need: ["Salmon", "Ginger", "Mushroom", "Dried chili", "Bean sprouts", "Cabbage", "Tofu", "Spring onion", "Cilantro"],
+    optional: ["Cornstarch", "Soy sauce", "Shaoxing wine", "Sesame oil", "Salt", "White pepper", "Cooking oil", "Chicken stock"],
     steps: [
       "Cut white fish into bite-size pieces; lightly dust with cornstarch if using. Cube tofu; slice ginger.",
       "Bring 4 cups water to a simmer with ginger and tomato if using. Add tofu; cook 3 minutes.",
@@ -189,8 +189,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 3,
-    need: ["Rice", "Chinese sausage", "Shrimp"],
-    optional: ["Dried mushrooms", "Soy sauce", "Spring onion", "Ginger", "Salt", "Sesame oil", "Oyster sauce", "Chicken stock", "Cooking oil", "Onion", "Shaoxing wine", "White pepper", "Cilantro"],
+    need: ["Rice", "Shrimp", "Onion", "Mushroom", "Chinese sausage", "Spring onion", "Cilantro"],
+    optional: ["Oyster sauce", "Soy sauce", "Sesame oil", "Chicken stock", "Salt", "Cooking oil", "Shaoxing wine", "White pepper"],
     steps: [
       "Rinse 1½ cups rice and soak 20 minutes. Slice Chinese sausage; soak and dice dried mushrooms if using.",
       "Drain rice into a heatproof bowl; mix with sausage, mushrooms, soy sauce, ginger, and a pinch of salt. Add water to just cover the rice.",
@@ -212,8 +212,8 @@ export const MORE_W3I: Recipe[] = [
     time: 50,
     servings: 3,
     // Home approximation: Rice + Carrots + Egg
-    need: ["Rice", "Carrots", "Eggs", "Shrimp"],
-    optional: ["Chinese sausage", "Spring onion", "Salt", "White pepper", "Soy sauce", "Cornstarch", "Cooking oil", "Sesame oil", "Garlic", "Chicken stock"],
+    need: ["Flour", "Shrimp", "Chinese sausage", "Garlic", "Onion"],
+    optional: ["Salt", "Cooking oil", "Sesame oil", "Chicken stock", "White pepper"],
     steps: [
       "Cook 1 cup rice until soft and slightly overdone; mash lightly. Grate 1 large carrot; dice Chinese sausage if using. Beat 1 egg.",
       "Mix mashed rice with carrot, sausage, egg, salt, white pepper, and a spoon of cornstarch into a thick batter. Press into a greased pan or dish.",
@@ -234,8 +234,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Eggs", "Shrimp"],
-    optional: ["Salt", "Spring onion", "Soy sauce", "Sesame oil", "White pepper", "Sugar", "Cornstarch", "Cooking oil", "Onion", "Flour", "Garlic", "Shallot", "Chicken stock", "Oyster sauce"],
+    need: ["Onion", "Bean sprouts", "Eggs", "Spring onion", "Flour", "Garlic", "Shallot"],
+    optional: ["Salt", "Sugar", "Cornstarch", "Cooking oil", "Sesame oil", "Turmeric", "Paprika", "Chicken stock", "Oyster sauce", "Soy sauce", "White pepper"],
     steps: [
       "Beat 3 eggs with equal volume warm water (about 3 eggs' worth) and a pinch of salt until smooth; strain if possible.",
       "Peel shrimp; scatter in a shallow dish. Pour egg mixture over; cover loosely.",
@@ -256,8 +256,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Beef steak", "Oyster sauce", "Snow peas", "Celery", "Carrots"],
-    optional: ["Garlic", "Ginger", "Onion", "Soy sauce", "Sugar", "Cornstarch", "Spring onion", "Sesame oil", "Cooking oil", "Shaoxing wine", "White pepper", "Baking soda"],
+    need: ["Beef steak", "Snow peas", "Celery", "Mushroom", "Carrots", "Onion", "Garlic", "Ginger"],
+    optional: ["Cooking oil", "Shaoxing wine", "Soy sauce", "Sesame oil", "Oyster sauce", "Cornstarch", "White pepper", "Baking soda", "Sugar"],
     steps: [
       "Slice 300 g beef thinly; toss with 1 tsp soy sauce and cornstarch. Slice onion if using.",
       "Stir-fry beef on high heat 1–2 minutes until just browned; remove. Soften garlic, ginger, and onion.",
@@ -300,8 +300,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Hong Kong",
     time: 35,
     servings: 2,
-    need: ["Pork chops", "Tomato"],
-    optional: ["Onion", "Ketchup", "Sugar", "Soy sauce", "Salt", "Cornstarch", "Garlic", "Ginger", "Cooking oil", "Shaoxing wine", "White pepper"],
+    need: ["Pork chops", "Onion", "Ginger", "Garlic"],
+    optional: ["Cornstarch", "Cooking oil", "Salt", "Shaoxing wine", "Oyster sauce", "Soy sauce", "Sugar", "White pepper"],
     steps: [
       "Pound 2 pork chops lightly; season with salt and soy sauce. Pan-fry 3–4 minutes per side until cooked through; remove.",
       "Cook chopped tomato and onion with ketchup, a pinch of sugar, and garlic if using until saucy (8–10 minutes).",
@@ -322,8 +322,8 @@ export const MORE_W3I: Recipe[] = [
     time: 50,
     servings: 3,
     // Stand-in: Pork chops for pork belly
-    need: ["Pork chops", "Soy sauce", "Sugar"],
-    optional: ["Ginger", "Garlic", "Spring onion", "Shaoxing wine", "Salt", "Oyster sauce", "White pepper", "Cooking oil", "Cornstarch", "Flour", "Baking soda"],
+    need: ["Fermented tofu", "Pork chops", "Green beans", "Flour"],
+    optional: ["Sugar", "Oyster sauce", "White pepper", "Cooking oil", "Cornstarch", "Baking soda"],
     steps: [
       "Cut 500 g pork chops into large cubes. Blanch briefly; rinse. Slice ginger and smash garlic.",
       "Brown pork in a little oil. Add sugar and cook until lightly caramelized, then soy sauce, ginger, garlic, and Shaoxing wine if using.",
@@ -344,8 +344,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 4,
-    need: ["Eggs", "Soy sauce"],
-    optional: ["Sugar", "Ginger", "Spring onion", "Shaoxing wine", "Salt", "Cooking oil"],
+    need: ["Spring onion", "Eggs", "Cooked rice"],
+    optional: ["Cooking oil", "Soy sauce", "Sugar", "Shaoxing wine"],
     steps: [
       "Hard-boil 4–6 eggs 8–9 minutes; cool in cold water and peel.",
       "Simmer 1/2 cup soy sauce with 1 cup water, 1–2 tsp sugar, ginger, and spring onion 5 minutes.",
@@ -476,8 +476,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 25,
     servings: 2,
-    need: ["Ground beef", "Rice", "Eggs"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Cornstarch", "Sugar", "Salt", "White pepper", "Water spinach", "Cooking oil", "Shaoxing wine", "Sesame oil", "Oyster sauce", "Chicken stock"],
+    need: ["Cooked rice", "Ground beef", "Onion", "Eggs"],
+    optional: ["Cooking oil", "Shaoxing wine", "Sesame oil", "Soy sauce", "Cornstarch", "Oyster sauce", "White pepper", "Chicken stock"],
     steps: [
       "Mix 300 g ground beef with minced ginger, 1 tsp soy sauce, cornstarch, a pinch of sugar, salt, and white pepper until sticky.",
       "Press into a flat patty in a heatproof dish; optional water spinach stems under the meat.",
@@ -520,8 +520,8 @@ export const MORE_W3I: Recipe[] = [
     cuisine: "Cantonese",
     time: 40,
     servings: 3,
-    need: ["Spare ribs", "Fermented black beans"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Sugar", "Cornstarch", "Spring onion", "Bell pepper", "Salt", "Cooking oil", "Onion", "Shaoxing wine", "White pepper", "Sesame oil"],
+    need: ["Spare ribs", "Ginger", "Garlic", "Fermented black beans", "Bell pepper", "Onion", "Spring onion"],
+    optional: ["Salt", "Cooking oil", "Shaoxing wine", "Sugar", "White pepper", "Sesame oil", "Soy sauce", "Cornstarch"],
     steps: [
       "Cut 500 g spare ribs; rinse fermented black beans and mash lightly with garlic. Toss ribs with beans, soy sauce, cornstarch, and a pinch of sugar.",
       "Brown ribs in a claypot or deep pan 4–5 minutes. Add ginger, chili oil if using, and 1/2 cup water.",

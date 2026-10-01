@@ -135,7 +135,16 @@ function cleanIngredientName(raw) {
 
 function isStaple(name) {
   const n = norm(name)
-  return STAPLE_KEYS.some((k) => n === k || n.includes(k) || k.includes(n))
+  if (!n) return false
+  // Exact / phrase match only — never let "rice" hit "rice vinegar" via includes.
+  return STAPLE_KEYS.some((k) => {
+    const key = norm(k)
+    if (!key) return false
+    if (n === key) return true
+    // Multi-word keys may appear as a phrase inside a longer cleaned name.
+    if (key.includes(" ") && (n.includes(key) || key.includes(n))) return true
+    return false
+  })
 }
 
 function isSkipped(name) {
@@ -149,11 +158,41 @@ function mapToCanonical(rawName) {
   const cleaned = cleanIngredientName(rawName)
   if (!cleaned) return null
   if (isSkipped(cleaned)) return null
+
+  // Fridge AI tracks leftover cooked rice for matching — fold uncooked rice lines into Cooked rice.
+  const cleanedNorm = norm(cleaned)
+  if (
+    /^(uncooked |raw |jasmine |long grain |short grain |white |brown )?rice$/.test(cleanedNorm) ||
+    /^(uncooked |raw )?(jasmine |long grain |short grain |white |brown )?rice$/.test(cleanedNorm) ||
+    /jasmine rice|uncooked rice|steamed rice|day[- ]old rice|leftover rice|cooked rice/.test(cleanedNorm) ||
+    cleanedNorm === "米" ||
+    cleanedNorm === "香米" ||
+    cleanedNorm === "白飯" ||
+    cleanedNorm === "飯"
+  ) {
+    const shelfRice = findShelf("Cooked rice")
+    return {
+      canonical: "Cooked rice",
+      raw: rawName,
+      cleaned,
+      shelf: Boolean(shelfRice),
+      staple: false,
+    }
+  }
+
   const shelf = findShelf(cleaned)
-  if (shelf) return { canonical: shelf.name, raw: rawName, cleaned, shelf: true, staple: isStaple(shelf.name) || isStaple(cleaned) }
+  if (shelf) {
+    return {
+      canonical: shelf.name,
+      raw: rawName,
+      cleaned,
+      shelf: true,
+      staple: Boolean(shelf.staple) || isStaple(shelf.name) || isStaple(cleaned),
+    }
+  }
 
   // heuristic canonical for common unlisted staples
-  const n = norm(cleaned)
+  const n = cleanedNorm
   const heuristics = [
     [/^(neutral |vegetable |canola |peanut |corn |cooking )?oils?$/, "Cooking oil"],
     [/^dark soy( sauce)?$/, "Soy sauce"],
@@ -173,10 +212,19 @@ function mapToCanonical(rawName) {
     [/^麻油|香油$/, "Sesame oil"],
     [/^鸡蛋|雞蛋|蛋$/, "Eggs"],
     [/^番茄|西红柿|番茄$/, "Tomato"],
+    [/^鸡粉|雞粉|鸡汤|雞湯|bouillon|chicken stock|chicken broth$/, "Chicken stock"],
   ]
   for (const [re, canonical] of heuristics) {
     if (re.test(n) || re.test(cleaned)) {
-      return { canonical, raw: rawName, cleaned, shelf: Boolean(findShelf(canonical)), staple: true, heuristic: true }
+      const shelfHit = findShelf(canonical)
+      return {
+        canonical,
+        raw: rawName,
+        cleaned,
+        shelf: Boolean(shelfHit),
+        staple: Boolean(shelfHit?.staple) || isStaple(canonical) || true,
+        heuristic: true,
+      }
     }
   }
   return { canonical: cleaned, raw: rawName, cleaned, shelf: false, staple: isStaple(cleaned) }
@@ -436,6 +484,107 @@ async function fetchWolViaWp(url) {
   throw new Error("WOL not found via WP API")
 }
 
+function parseDdcIngredients(html) {
+  // DayDayCook (Next.js RSC): escaped ingredient objects in flight data
+  const structured = []
+  const ingredients = []
+  const re = /\{\\"name\\":\\"([^\\"]*)\\",\\"amount\\":\\"([^\\"]*)\\",\\"group\\":\\"([^\\"]*)\\"\}/g
+  let m
+  const seen = new Set()
+  while ((m = re.exec(html))) {
+    const name = m[1].trim()
+    const amountRaw = (m[2] || "").trim()
+    const groupLabel = m[3] || ""
+    if (!name) continue
+    const key = norm(name)
+    if (seen.has(key)) continue
+    seen.add(key)
+    const parsedAmt = parseLooseAmount(amountRaw)
+    let amount = parsedAmt?.amount
+    let unit = parsedAmt?.unit
+    if (amount == null && amountRaw) {
+      const num = amountRaw.match(/^([\d./½¼¾⅓⅔]+)/)
+      if (num) {
+        const loose = parseLooseAmount(amountRaw)
+        amount = loose?.amount
+        unit = loose?.unit || amountRaw.replace(/^[\d./½¼¾⅓⅔\s]+/, "").trim() || undefined
+      }
+    }
+    const group = inferGroup(groupLabel)
+    const raw = [amountRaw, name].filter(Boolean).join(" ")
+    ingredients.push(raw)
+    structured.push({
+      raw,
+      name,
+      amount,
+      unit,
+      group,
+    })
+  }
+  const titleMatch = html.match(/<title>([^<]+)/i)
+  return {
+    title: titleMatch ? titleMatch[1].trim() : null,
+    ingredients,
+    structured,
+    via: "ddc-rsc",
+  }
+}
+
+function parseAfterworkIngredients(html) {
+  // Squarespace posts rarely ship JSON-LD recipeIngredient; scrape short lines
+  // under 份量 / 材料 / 配料 headings when present.
+  const titleMatch = html.match(/<title>([^<]+)/i)
+  const title = titleMatch ? titleMatch[1].trim() : null
+  const text = html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, "\n")
+  const lines = text
+    .split("\n")
+    .map((l) => l.replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+  const STOP =
+    /^(做法|步驟|步骤|烹調步驟|贴士|貼士|小貼士|厨具|廚具|厨具推介|廚具推介|本食譜|欢迎|歡迎|参观|參觀|Method|Directions|Hints?|Share|Related|Instagram|View this post)/i
+  const START = /^(份量|材料|食材|配料|Ingredients|牛油果青醬|酱料|醬料)\b/i
+  const ings = []
+  let capture = false
+  for (const line of lines) {
+    if (START.test(line) || line === "材料" || line === "食材" || line === "配料") {
+      capture = true
+      // heading-only line: keep capturing but don't treat heading as ingredient
+      if (/[:：]$/.test(line) || /^(份量|材料|食材|配料|Ingredients)$/i.test(line) || /青醬[:：]?$/.test(line)) {
+        continue
+      }
+    }
+    if (!capture) continue
+    if (STOP.test(line)) break
+    if (line.length < 2 || line.length > 50) continue
+    if (/https?:\/\//i.test(line)) continue
+    if (/選購|網店|推介|Instagram|Share|Related/.test(line)) continue
+    // Prefer qty-looking or short food lines (often "蒜 - 2粒")
+    if (/[-–—]/.test(line) || /^[\d./½¼¾⅓⅔]/.test(line) || /[克gml湯匙茶匙杯片粒隻勺]/.test(line)) {
+      ings.push(line.replace(/\s*[-–—]\s*/, " ").trim())
+    }
+  }
+  if (!ings.length) {
+    const ld = parseJsonLdIngredients(html)
+    if (ld.ingredients?.length) {
+      return {
+        title: ld.title || title,
+        ingredients: ld.ingredients,
+        structured: structureFromRawLines(ld.ingredients),
+        via: "afterwork-jsonld",
+      }
+    }
+  }
+  return {
+    title,
+    ingredients: ings,
+    structured: structureFromRawLines(ings),
+    via: "afterwork-html",
+  }
+}
+
 async function fetchSourceIngredients(url) {
   if (cache[url]?.ingredients && cache[url]?.structured && !process.env.REFRESH) return cache[url]
   const host = new URL(url).hostname
@@ -453,6 +602,10 @@ async function fetchSourceIngredients(url) {
         result = parseLkkIngredients(text)
         result.structured = structureFromRawLines(result.ingredients, ["醃料", "调味料", "調味料", "材料"])
         result.via = "lkk-html"
+      } else if (host.includes("daydaycook.com")) {
+        result = parseDdcIngredients(text)
+      } else if (host.includes("afterwork-kitchen.com")) {
+        result = parseAfterworkIngredients(text)
       } else {
         result = parseJsonLdIngredients(text)
         if (!result.ingredients?.length) result = parseWprmFromHtml(text)
@@ -568,7 +721,6 @@ async function main() {
     }
     const score = titleMatchScore(r, src.title)
     const exclusive = byUrl.get(r.sourceUrl).length === 1
-    const tight = exclusive || score >= 4
     for (const m of missing) {
       const key = m.canonical
       const prev = gapCounter.get(key) || { count: 0, staple: m.staple, examples: [] }
@@ -577,41 +729,38 @@ async function main() {
       gapCounter.set(key, prev)
     }
 
-    // Build RecipeMaterial[] suggestions from structured source lines (exclusive / tight only).
+    // Build RecipeMaterial[] from structured SOURCE lines only (exclusive / title-tight).
+    // Never re-append authored need/optional — that re-poisons materials with hallucinations
+    // (e.g. Cooked rice on avocado toast, XO dump leftovers).
     const materials = []
     const seenMat = new Set()
     const structured = src.structured?.length ? src.structured : structureFromRawLines(src.ingredients || [])
-    for (const row of structured) {
-      const mappedRow = mapToCanonical(row.name || row.raw)
-      if (!mappedRow?.shelf && !mappedRow?.heuristic) continue
-      if (!mappedRow.canonical) continue
-      const key = norm(mappedRow.canonical)
-      if (seenMat.has(key)) continue
-      seenMat.add(key)
-      const staple = mappedRow.staple || isStaple(mappedRow.canonical)
-      const inNeed = (r.need || []).some((h) => sameFood(h, mappedRow.canonical))
-      const role = inNeed || (!staple && exclusive) ? (staple && !inNeed ? "staple" : "core") : staple ? "staple" : "optional"
-      materials.push({
-        name: mappedRow.canonical,
-        role: inNeed ? "core" : staple ? "staple" : role,
-        group: row.group || "main",
-        amount: row.amount,
-        unit: row.unit,
-        note: row.note,
-      })
-    }
-    // Ensure all authored need/optional appear even if source parse missed them.
-    for (const name of r.need || []) {
-      const key = norm(name)
-      if (seenMat.has(key)) continue
-      seenMat.add(key)
-      materials.push({ name, role: isStaple(name) ? "staple" : "core", group: "main" })
-    }
-    for (const name of r.optional || []) {
-      const key = norm(name)
-      if (seenMat.has(key)) continue
-      seenMat.add(key)
-      materials.push({ name, role: isStaple(name) ? "staple" : "optional", group: "main" })
+    const titleMin = Number(process.env.TITLE_MIN || 4)
+    const useMaterials = exclusive || score >= titleMin
+    if (useMaterials) {
+      for (const row of structured) {
+        const mappedRow = mapToCanonical(row.name || row.raw)
+        if (!mappedRow?.shelf && !mappedRow?.heuristic) continue
+        if (!mappedRow.canonical) continue
+        const key = norm(mappedRow.canonical)
+        if (seenMat.has(key)) continue
+        seenMat.add(key)
+        const shelfFood = findShelf(mappedRow.canonical)
+        const stapleFlag = Boolean(mappedRow.staple || shelfFood?.staple || isStaple(mappedRow.canonical))
+        const cat = shelfFood?.category
+        // Proteins / veg / carbs / dairy define the plate even when shelf.staple (e.g. Garlic).
+        // Pantry sauces/spices stay staples.
+        const definingCat = cat === "protein" || cat === "veg" || cat === "carb" || cat === "dairy"
+        const role = definingCat ? "core" : stapleFlag ? "staple" : "core"
+        materials.push({
+          name: mappedRow.canonical,
+          role,
+          group: row.group || "main",
+          amount: row.amount,
+          unit: row.unit,
+          note: row.note,
+        })
+      }
     }
 
     dishReports.push({
@@ -626,15 +775,16 @@ async function main() {
       fetchError: src.error || null,
       titleScore: score,
       exclusive,
-      tight,
+      tight: useMaterials,
       sharedWith: byUrl.get(r.sourceUrl).length,
       need: r.need,
       optional: r.optional,
       sourceIngredients: src.ingredients,
       sourceStructured: structured,
       sourceCanonical: sourceCanon.map((m) => m.canonical),
-      materials: tight ? materials : null,
-      materialsAmounted: tight ? materials.filter((m) => m.amount != null).length : 0,
+      materials: useMaterials && materials.length ? materials : null,
+      materialsAmounted: useMaterials ? materials.filter((m) => m.amount != null).length : 0,
+      materialsConfidence: useMaterials && materials.length ? (exclusive || score >= 6 ? "high" : "medium") : "low",
       missing: missing.map((m) => ({
         canonical: m.canonical,
         cleaned: m.cleaned,
@@ -669,6 +819,9 @@ async function main() {
     tightWithExtraNeed: dishReports.filter((d) => d.tight && d.extraNeed?.length).length,
     materialsSuggested: dishReports.filter((d) => d.materials?.length).length,
     materialsWithAmounts: dishReports.filter((d) => (d.materialsAmounted || 0) > 0).length,
+    materialsHigh: dishReports.filter((d) => d.materialsConfidence === "high").length,
+    materialsMedium: dishReports.filter((d) => d.materialsConfidence === "medium").length,
+    materialsLow: dishReports.filter((d) => d.materialsConfidence === "low").length,
     topGaps,
     byHost: {},
   }

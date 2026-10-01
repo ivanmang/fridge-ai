@@ -833,7 +833,7 @@ export const RECIPE_IMAGES: Record<string, string> = {
   "home-roasted-spring-chicken-in-furano-style": "https://static1.squarespace.com/static/5e762e3d21acd35898d85e9c/5e765b5656403358c4993df5/5fc209d03485235c860de281/1644782236610/IMG_0146.jpg?format=1500w", // source-page
   "home-sake-steamed-chicken": "https://cdn.sanity.io/images/0ue7ztht/production/16a8340c251f1aefa16147f16b779144dddab9a5-1000x750.jpg", // source-page
   "home-sake-steamed-clams": "https://static1.squarespace.com/static/5e762e3d21acd35898d85e9c/5e765b5656403358c4993df5/60e527e6ca698a336f9b6af9/1644766381797/P7060106.jpg?format=1500w", // source-page
-  "home-salmon-avocado-bowl": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/smashed_avocado_on_toast_89082_16x9.jpg", // source-page
+  "home-salmon-avocado-bowl": "https://thewoksoflife.com/wp-content/uploads/2021/03/salmon-skin-rice-bowl-9.jpg", // source-page
   "home-salmon-broccoli-pasta": "https://ichef.bbci.co.uk/food/ic/food_16x9_448/recipes/salmon_broccoli_pasta_39926_16x9.jpg", // source-page
   "home-salmon-miso-bowl": "https://thewoksoflife.com/wp-content/uploads/2022/11/Miso-Egg-Drop-Soup-14.jpg", // source-page
   "home-salmon-ochatsuke": "https://cdn.sanity.io/images/0ue7ztht/production/65614d96fe815f5af7847a294039acd788f18c51-1000x750.jpg", // source-page

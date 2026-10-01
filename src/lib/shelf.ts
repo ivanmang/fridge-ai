@@ -213,6 +213,7 @@ export const SHELF: ShelfFood[] = [
     aliases: [
       "steak",
       "beef",
+      "肥牛",
       "牛扒",
       "牛排",
       "牛肉",
@@ -485,6 +486,10 @@ export const SHELF: ShelfFood[] = [
     name: "Tomato",
     aliases: [
       "tomatoes",
+      "cherry tomato",
+      "cherry tomatoes",
+      "車厘茄",
+      "小番茄",
       "番茄",
       "蕃茄",
       "西红柿",
@@ -2181,6 +2186,30 @@ export const SHELF: ShelfFood[] = [
     location: "pantry",
     days: 365,
     staple: true,
+  },
+  {
+    id: "parmesan",
+    name: "Parmesan",
+    aliases: [
+      "parmigiano",
+      "parmigiano-reggiano",
+      "parmesan cheese",
+      "巴馬臣",
+      "巴馬臣芝士",
+      "帕瑪森",
+      "帕瑪森芝士",
+    ],
+    category: "dairy",
+    location: "fridge",
+    days: 60,
+  },
+  {
+    id: "pine-nuts",
+    name: "Pine nuts",
+    aliases: ["pine nut", "pignoli", "松子", "松子仁", "松仁"],
+    category: "pantry",
+    location: "pantry",
+    days: 180,
   },
 ]
 

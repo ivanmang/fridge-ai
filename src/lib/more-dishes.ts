@@ -47,7 +47,7 @@ const MORE_CORE: Recipe[] = [
     time: 15,
     servings: 2,
     need: ["Tomato", "Eggs"],
-    optional: ["Spring onion", "Sugar", "Soy sauce", "Ginger", "Ketchup", "Cornstarch", "Cooking oil", "Salt"],
+    optional: ["Salt", "Cooking oil", "Sugar", "Soy sauce", "Ginger", "Ketchup", "Cornstarch", "Spring onion"],
     steps: [
       "Cut 2–3 tomatoes into wedges. Beat 3 eggs with a pinch of salt.",
       "Scramble the eggs in a hot, lightly oiled pan until just set; transfer out.",
@@ -71,7 +71,7 @@ const MORE_CORE: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Tomato", "Eggs", "Cooked rice"],
-    optional: ["Spring onion", "Soy sauce"],
+    optional: ["Salt", "Cooking oil", "Soy sauce", "Spring onion"],
     steps: [
       "Beat 2 eggs with a pinch of salt. Cut 2 tomatoes into wedges and loosen 2 bowls of cooked rice.",
       "Scramble the eggs in a hot, lightly oiled pan until just set; transfer to a plate.",
@@ -115,7 +115,7 @@ const MORE_CORE: Recipe[] = [
     time: 18,
     servings: 2,
     need: ["Eggs"],
-    optional: ["Soy sauce", "Spring onion", "Sesame oil", "Salt", "Chicken stock", "Cooking oil"],
+    optional: ["Salt", "Soy sauce", "Sesame oil", "Spring onion"],
     steps: [
       "Beat 2 eggs gently with 1 cup of warm water and a pinch of salt. Strain into a shallow heatproof dish.",
       "Steam covered over medium heat 10–12 minutes until just set (eggs fully opaque).",
@@ -183,7 +183,7 @@ const MORE_CORE: Recipe[] = [
     time: 10,
     servings: 2,
     need: ["Pak choi", "Garlic"],
-    optional: ["Soy sauce", "Cooking oil", "Sugar"],
+    optional: ["Cooking oil", "Soy sauce", "Sugar"],
     steps: [
       "Halve or quarter pak choi lengthwise and rinse well. Mince 2 garlic cloves.",
       "Stir-fry garlic in a little oil for 20 seconds, then add pak choi and a splash of water.",
@@ -205,7 +205,7 @@ const MORE_CORE: Recipe[] = [
     time: 12,
     servings: 2,
     need: ["Gai lan", "Garlic"],
-    optional: ["Oyster sauce", "Soy sauce", "Salt", "Cooking oil"],
+    optional: ["Oyster sauce", "Cooking oil", "Salt", "Soy sauce"],
     steps: [
       "Trim gai lan and cut into lengths. Mince 2 garlic cloves.",
       "Blanch or stir-fry stems first, then leaves, until bright and tender.",
@@ -248,8 +248,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Cantonese",
     time: 35,
     servings: 2,
-    need: ["Chicken thighs", "Soy sauce", "Ginger"],
-    optional: ["Spring onion", "Sugar", "Cooked rice", "Shallot", "Cooking oil", "Shaoxing wine", "Cornstarch"],
+    need: ["Chicken breast", "Ginger", "Shallot", "Soy sauce", "Chicken thighs"],
+    optional: ["Onion", "Cooking oil", "Sesame oil", "Shaoxing wine", "Sugar", "Cornstarch", "Spring onion", "Cooked rice"],
     steps: [
       "Pat 2 chicken thighs dry. Slice a few ginger coins.",
       "Brown the skin side in a little oil, then add soy sauce, ginger, a pinch of sugar, and enough water to come halfway up the chicken.",
@@ -270,8 +270,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Chicken breast", "Broccoli", "Garlic", "Gai lan"],
-    optional: ["Soy sauce", "Ginger", "Cornstarch", "Cooking oil", "Oyster sauce", "Chicken stock", "White pepper", "Sugar", "Sesame oil", "Shaoxing wine"],
+    need: ["Chicken breast", "Gai lan", "Mushroom", "Garlic", "Chicken stock", "Broccoli"],
+    optional: ["Cornstarch", "Cooking oil", "Oyster sauce", "Ginger", "Soy sauce", "White pepper", "Sugar", "Sesame oil", "Shaoxing wine"],
     steps: [
       "Slice 250 g chicken and cut broccoli into florets. Mince garlic.",
       "Stir-fry chicken until opaque and cooked through (74°C / 165°F); set aside.",
@@ -315,7 +315,7 @@ const MORE_CORE: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tofu", "Ground pork", "Garlic"],
-    optional: ["Ginger", "Spring onion", "Chili oil", "Soy sauce", "Cooking oil", "Dried chili", "Sichuan peppercorns", "Doubanjiang", "Chicken stock", "Cornstarch", "Sesame oil", "Sugar"],
+    optional: ["Ginger", "Doubanjiang", "Dried chili", "Sichuan peppercorns", "Soy sauce", "Cooking oil", "Chili oil", "Cornstarch", "Spring onion", "Chicken stock"],
     steps: [
       "Cube tofu; mince garlic and ginger. Brown 150 g ground pork in a little oil until cooked through (74°C / 165°F).",
       "Add aromatics, then a splash of water and chili oil if using. Nestle in tofu and simmer 5–7 minutes.",
@@ -338,8 +338,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Chinese",
     time: 18,
     servings: 2,
-    need: ["Tofu", "Tomato"],
-    optional: ["Garlic", "Spring onion", "Soy sauce", "Cooking oil", "Shaoxing wine", "Sugar", "Salt", "Sesame oil", "White pepper", "Cornstarch"],
+    need: ["Tomato", "Silken tofu", "Tofu"],
+    optional: ["Cooking oil", "Spring onion", "Shaoxing wine", "Sugar", "Salt", "Oyster sauce", "Soy sauce", "Sesame oil", "White pepper", "Cornstarch", "Garlic"],
     steps: [
       "Drain a block of tofu and cut into cubes. Chop 2 tomatoes; mince garlic if using.",
       "Cook the tomato and garlic in a lightly oiled pan for 5 minutes, adding a little water to make a sauce.",
@@ -426,8 +426,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Cantonese",
     time: 45,
     servings: 2,
-    need: ["Rice", "Century egg", "Ground pork"],
-    optional: ["Ginger", "Spring onion", "Soy sauce", "Salt", "Cooking oil", "White pepper", "Cornstarch", "Baking soda", "Sesame oil"],
+    need: ["Cooked rice", "Century egg", "Pork chops", "Ginger", "Cilantro", "Onion"],
+    optional: ["Salt", "Cooking oil", "White pepper", "Cornstarch", "Baking soda", "Sesame oil"],
     steps: [
       "Rinse 1/2 cup rice. Slice ginger; chop 1–2 century eggs. Break up 100 g ground pork.",
       "Simmer rice with 5 cups water (and ginger) until thick and creamy, 35–40 minutes, stirring now and then.",
@@ -471,7 +471,7 @@ const MORE_CORE: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["White fish", "Ginger", "Spring onion"],
-    optional: ["Soy sauce", "Sesame oil", "Cilantro", "Cooking oil", "Shaoxing wine", "White pepper", "Sugar", "Salt"],
+    optional: ["Soy sauce", "Cooking oil", "Sesame oil", "Shaoxing wine", "White pepper", "Cilantro"],
     steps: [
       "Pat fish dry. Scatter ginger matchsticks over the fish on a heatproof plate.",
       "Steam over high heat until the fish flakes easily and is opaque throughout (usually 8–12 minutes depending on thickness).",
@@ -514,8 +514,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Chinese",
     time: 15,
     servings: 2,
-    need: ["Noodles", "Spring onion", "Soy sauce"],
-    optional: ["Garlic", "Sesame oil", "Cooking oil", "Sugar"],
+    need: ["Spring onion", "Noodles", "Pork chops"],
+    optional: ["Cooking oil", "Soy sauce", "Sugar"],
     steps: [
       "Cook noodles; drain. Slice a bunch of spring onion.",
       "Warm a little oil in a pan and fry the spring onion (and garlic) until fragrant but not burnt.",
@@ -580,8 +580,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Hong Kong",
     time: 15,
     servings: 2,
-    need: ["Bread", "Eggs", "Milk", "Cream cheese", "Banana"],
-    optional: ["Butter", "Peanut butter", "Sugar"],
+    need: ["Cream cheese", "Banana", "Eggs", "Milk", "Butter"],
+    optional: ["Sugar"],
     steps: [
       "Beat 2 eggs with 1/2 cup milk and a pinch of salt. Soak 4 bread slices briefly.",
       "Pan-fry in butter or oil over medium heat until both sides are golden and the egg is fully set.",
@@ -602,8 +602,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Hong Kong",
     time: 18,
     servings: 2,
-    need: ["Cooked rice", "Luncheon meat", "Eggs", "Carrots"],
-    optional: ["Spring onion", "Soy sauce", "Cooking oil", "Onion", "Shaoxing wine"],
+    need: ["Cooked rice", "Ginger", "Luncheon meat", "Onion", "Carrots", "Eggs", "Snow peas", "Spring onion"],
+    optional: ["Cooking oil", "Shaoxing wine", "Soy sauce", "Fish sauce"],
     steps: [
       "Dice luncheon meat and break up 2 bowls of cold rice. Beat 2 eggs.",
       "Brown the meat in a little oil, scramble in the eggs, then add rice and toss until hot.",
@@ -624,8 +624,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Cantonese",
     time: 30,
     servings: 2,
-    need: ["Rice", "Chinese sausage", "Eggs"],
-    optional: ["Spring onion", "Soy sauce", "Onion", "Salt", "Sugar", "Sesame oil", "White pepper", "Cooking oil", "Shaoxing wine"],
+    need: ["Chinese sausage", "Onion", "Cooked rice", "Eggs", "Bean sprouts", "Spring onion"],
+    optional: ["Salt", "Sugar", "Sesame oil", "Soy sauce", "White pepper", "Cooking oil", "Shaoxing wine"],
     steps: [
       "Rinse 1 cup of rice. Slice 2 Chinese sausages on the diagonal.",
       "Cook rice as usual. In the last 10 minutes, steam the sausage slices on top of the rice (or pan-fry briefly and serve over).",
@@ -646,8 +646,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Korean",
     time: 18,
     servings: 2,
-    need: ["Cooked rice", "Kimchi", "Eggs"],
-    optional: ["Spring onion", "Sesame oil", "Luncheon meat", "Cornstarch", "Soy sauce", "Sugar", "Shaoxing wine", "Cooking oil", "Onion", "Salt"],
+    need: ["Beef steak", "Eggs", "Onion", "Bell pepper", "Kimchi", "Cooked rice", "Spring onion", "Gochugaru"],
+    optional: ["Cornstarch", "Sesame oil", "Soy sauce", "Sugar", "Shaoxing wine", "Cooking oil", "Salt"],
     steps: [
       "Chop kimchi. Beat 2 eggs. Break up cold rice.",
       "Stir-fry kimchi (and diced luncheon meat if using), add rice, and toss until hot.",
@@ -668,8 +668,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Chinese",
     time: 10,
     servings: 2,
-    need: ["Cucumber", "Garlic"],
-    optional: ["Vinegar", "Sesame oil", "Soy sauce", "Spring onion", "Cilantro", "Salt", "Sugar", "Oyster sauce", "Sesame seeds", "Cooking oil"],
+    need: ["Cucumber", "Bell pepper", "Garlic", "Onion", "Cilantro"],
+    optional: ["Salt", "Sugar", "Soy sauce", "Oyster sauce", "Vinegar", "Sesame seeds", "Sesame oil", "Cooking oil"],
     steps: [
       "Smash cucumber with the side of a knife and tear into chunks. Mince garlic.",
       "Toss with garlic, vinegar, soy sauce, and sesame oil.",
@@ -827,7 +827,7 @@ const MORE_CORE: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggs", "Ground pork"],
-    optional: ["Spring onion", "Oyster sauce", "Soy sauce", "White pepper", "Cornstarch", "Salt", "Cooking oil"],
+    optional: ["Soy sauce", "Shaoxing wine", "Salt", "Sesame oil", "Spring onion"],
     steps: [
       "Marinate 120 g ground pork with a little oyster sauce and white pepper. Spread in a shallow dish and steam until the pork is cooked through (74°C / 165°F), about 6–8 minutes.",
       "Beat 3 eggs with about 1 cup warm water and a pinch of salt. Gently pour over the pork.",
@@ -851,7 +851,7 @@ const MORE_CORE: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Beef steak", "Broccoli"],
-    optional: ["Garlic", "Ginger", "Oyster sauce", "Soy sauce", "Cornstarch", "Carrots", "Cooking oil", "Salt", "Sesame oil", "Baking soda", "White pepper", "Sugar", "Shaoxing wine"],
+    optional: ["Soy sauce", "Cornstarch", "Oyster sauce", "Garlic", "Ginger", "Cooking oil", "Carrots", "Shaoxing wine"],
     steps: [
       "Slice 250 g beef thin against the grain; toss with a little soy sauce and cornstarch. Cut broccoli into florets.",
       "Blanch or stir-fry broccoli until bright green and tender-crisp; set aside. Sear the beef in a hot oiled pan until just browned and cooked through.",
@@ -875,7 +875,7 @@ const MORE_CORE: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Tofu"],
-    optional: ["Garlic", "Spring onion", "Bell pepper", "White pepper", "Cornstarch", "Eggs", "Salt", "Cooking oil"],
+    optional: ["Cornstarch", "Garlic", "Spring onion", "Salt", "White pepper", "Cooking oil"],
     steps: [
       "Pat tofu dry and cut into cubes. Dust lightly with cornstarch (dip in a little beaten egg if you want a thicker crust).",
       "Pan-fry in a thin layer of oil, turning, until golden and crisp on most sides.",
@@ -899,7 +899,7 @@ const MORE_CORE: Recipe[] = [
     time: 20,
     servings: 2,
     need: ["Cooked rice", "Eggs", "Ginger"],
-    optional: ["Chicken breast", "Spring onion", "Soy sauce", "Salt", "Cooking oil", "Cornstarch"],
+    optional: ["Spring onion", "Soy sauce", "Cooking oil", "Salt"],
     steps: [
       "Mince a thumb of ginger. Break up 2 bowls of cold rice; beat 2 eggs. Dice chicken if using.",
       "Scramble eggs and set aside. Stir-fry chicken until cooked through (74°C / 165°F) if using, then fry ginger until fragrant.",
@@ -922,8 +922,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Chinese",
     time: 20,
     servings: 2,
-    need: ["Tomato", "Tofu", "Eggs"],
-    optional: ["Ginger", "Spring onion", "Mushroom", "Soy sauce", "Cornstarch", "Chicken stock", "Ketchup", "Salt", "Sugar", "Sesame oil", "Cooking oil"],
+    need: ["Tofu", "Mushroom", "Eggs", "Tomato", "Ginger", "Spring onion"],
+    optional: ["Cornstarch", "Chicken stock", "Ketchup", "Salt", "Sugar", "Sesame oil", "Cooking oil"],
     steps: [
       "Cut 2 tomatoes into chunks and tofu into cubes. Softly beat 2 eggs.",
       "Sauté tomato (and ginger) in a little oil until juicy, add 3 cups water or stock and the tofu, and simmer 5–8 minutes.",
@@ -946,8 +946,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Hong Kong",
     time: 35,
     servings: 3,
-    need: ["Chicken thighs", "Potato", "Garlic"],
-    optional: ["Onion", "Oyster sauce", "Soy sauce", "Sugar", "Spring onion"],
+    need: ["Potato", "Garlic", "Shallot", "Spring onion"],
+    optional: ["Oyster sauce", "Sugar"],
     steps: [
       "Cut 400 g chicken thighs into chunks; peel and chunk 2 potatoes. Marinate chicken briefly with oyster sauce if using.",
       "Brown the chicken in a little oil until the surface is coloured; remove. Soften garlic (and onion), then add potato and a cup of water; cover until potato starts to soften.",
@@ -970,8 +970,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Cantonese",
     time: 20,
     servings: 2,
-    need: ["Tofu", "Oyster sauce"],
-    optional: ["Eggs", "Spring onion", "Mushroom", "Cornstarch", "Garlic"],
+    need: ["Tofu", "Spring onion", "Eggs"],
+    optional: ["Oyster sauce"],
     steps: [
       "Cut tofu into thick slices; pat dry. Optionally dust with cornstarch and brush with beaten egg.",
       "Pan-fry both sides until golden. Add sliced mushroom if using.",
@@ -995,7 +995,7 @@ const MORE_CORE: Recipe[] = [
     time: 25,
     servings: 2,
     need: ["Eggplant", "Garlic"],
-    optional: ["Ground pork", "Soy sauce", "Oyster sauce", "Vinegar", "Spring onion", "Bell pepper", "Sugar", "Cornstarch", "Shaoxing wine", "Sesame oil", "White pepper", "Cooking oil", "Ginger", "Dried chili"],
+    optional: ["Soy sauce", "Sugar", "Vinegar", "Cornstarch", "Cooking oil", "Spring onion"],
     steps: [
       "Cut eggplant into bite-size pieces. Steam or pan-fry with a little oil until soft (8–12 minutes).",
       "In a pan, cook minced pork if using until browned and cooked through (74°C / 165°F), then add lots of garlic.",
@@ -1018,8 +1018,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Chinese",
     time: 12,
     servings: 2,
-    need: ["Cabbage", "Garlic", "Glass noodles"],
-    optional: ["Soy sauce", "Spring onion", "Chili oil", "Vinegar", "White pepper", "Sesame oil", "Sugar", "Cooking oil", "Ginger", "Dried chili", "Salt"],
+    need: ["Glass noodles", "Cabbage", "Ginger", "Garlic", "Dried chili", "Spring onion"],
+    optional: ["Soy sauce", "Vinegar", "White pepper", "Sesame oil", "Sugar", "Cooking oil", "Salt"],
     steps: [
       "Slice 1/4–1/2 cabbage into ribbons. Slice garlic.",
       "Stir-fry garlic in a hot oiled pan 15 seconds, then add cabbage and a splash of water; cook 3–5 minutes until wilted but still crisp.",
@@ -1086,8 +1086,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Western",
     time: 25,
     servings: 2,
-    need: ["Pasta", "Bacon", "Tomato"],
-    optional: ["Garlic", "Onion", "Spinach", "Olive oil", "Chicken stock", "White pepper"],
+    need: ["Bacon", "Garlic", "Dried chili", "Pasta", "Tomato", "Spinach", "Parmesan"],
+    optional: ["Olive oil", "Chicken stock", "White pepper"],
     steps: [
       "Boil pasta in salted water until al dente; reserve a cup of cooking water.",
       "Fry bacon until crisp; soften onion/garlic if using, then add chopped tomato and cook until saucy.",
@@ -1110,8 +1110,8 @@ const MORE_CORE: Recipe[] = [
     cuisine: "Western",
     time: 10,
     servings: 1,
-    need: ["Eggs", "Bread"],
-    optional: ["Butter", "Milk", "Bacon", "Tomato", "White pepper"],
+    need: ["Butter", "Eggs", "Milk", "Bread", "Salmon"],
+    optional: ["Salt"],
     steps: [
       "Toast bread. Softly beat 2 eggs with a splash of milk if using.",
       "Melt butter on low heat; scramble eggs gently until just set (no raw runny white).",

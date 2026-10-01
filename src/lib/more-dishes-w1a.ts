@@ -33,8 +33,8 @@ export const MORE_W1A: Recipe[] = [
     cuisine: "Hong Kong",
     time: 30,
     servings: 2,
-    need: ["Beef steak", "Noodles", "Peanut butter"],
-    optional: ["Onion", "Garlic", "Soy sauce", "Chili oil", "Spring onion", "Bean sprouts", "Tomato", "Salt", "White pepper", "Sesame oil", "Vinegar", "Shrimp", "Cooking oil", "Eggs"],
+    need: ["Beef steak", "Instant noodles", "Satay sauce"],
+    optional: ["Spring onion", "Salt", "Soy sauce"],
     steps: [
       "Slice 250 g beef steak thinly. Mix 2 tbsp peanut butter with 1 tbsp soy sauce, a splash of water, and chili oil if using into a satay paste.",
       "Boil noodles until tender; drain. Soften onion/garlic in a pot, add 3 cups water and the satay paste; simmer 5 minutes.",
@@ -56,7 +56,7 @@ export const MORE_W1A: Recipe[] = [
     time: 45,
     servings: 2,
     need: ["Pork chops", "Cooked rice", "Eggs", "Tomato", "Cheddar", "Butter"],
-    optional: ["Onion", "Ketchup", "Sugar", "Flour", "Salt", "Cornstarch", "White pepper", "Five-spice powder", "Oyster sauce", "Shaoxing wine", "Soy sauce", "Cooking oil", "Garlic", "Sesame oil"],
+    optional: ["Onion", "Ketchup", "Flour", "Salt", "Cooking oil"],
     steps: [
       "Pound 2 pork chops lightly; season with salt. Dust with flour if using. Beat 1 egg and dip chops, then pan-fry 3–4 minutes per side until cooked through (74°C / 165°F).",
       "Cook chopped tomato and onion with ketchup and a pinch of sugar into a thick sauce (8–10 minutes). Loosen 2 bowls of cooked rice in a baking dish.",
@@ -101,8 +101,8 @@ export const MORE_W1A: Recipe[] = [
     time: 45,
     servings: 3,
     // Stand-in: Coconut milk + Soy sauce for curry base (curry powder mentioned in steps only)
-    need: ["Chicken thighs", "Potato", "Onion", "Coconut milk", "Chicken wings", "Curry powder"],
-    optional: ["Garlic", "Carrots", "Soy sauce", "Sugar", "Cooked rice", "Salt", "Spring onion", "Ginger", "Cooking oil", "Shaoxing wine", "Oyster sauce", "Cornstarch", "Sesame oil"],
+    need: ["Chicken thighs", "Potato", "Onion", "Coconut milk", "Curry powder"],
+    optional: ["Garlic", "Carrots", "Soy sauce", "Cooking oil", "Cooked rice"],
     steps: [
       "Cut 500 g chicken thighs into chunks; peel and cube 2 potatoes and 1 onion. Marinate chicken briefly with soy sauce if using.",
       "Brown chicken in oil 4–5 minutes; remove. Soften onion and garlic, then stir in 1–2 tsp curry powder (pantry spice) until fragrant.",
@@ -124,8 +124,8 @@ export const MORE_W1A: Recipe[] = [
     time: 70,
     servings: 3,
     // Stand-in: Beef steak for brisket; Coconut milk for curry base
-    need: ["Beef steak", "Potato", "Onion", "Coconut milk"],
-    optional: ["Carrots", "Garlic", "Soy sauce", "Sugar", "Salt", "Cooking oil", "Shallot", "Chicken stock"],
+    need: ["Beef steak", "Garlic", "Shallot", "Lemongrass", "Curry powder", "Onion", "Potato", "Carrots", "Coconut milk"],
+    optional: ["Cooking oil", "Turmeric", "Chicken stock", "Sugar", "Tomato paste", "Salt"],
     steps: [
       "Cut 400 g beef steak into large cubes (stand-in for brisket). Cube 2 potatoes and 1 onion.",
       "Brown beef well on all sides (5–6 minutes). Soften onion and garlic; add 1–2 tsp curry powder and toast 30 seconds.",
@@ -221,12 +221,12 @@ export const MORE_W1A: Recipe[] = [
       { name: "Soy sauce", role: "staple", group: "marinade", note: "to season", zhNote: "調味" },
       { name: "Salt", role: "staple", group: "marinade" },
       { name: "Cooking oil", role: "staple", group: "main" },
-      { name: "Onion", role: "optional", group: "sauce", amount: 0.5, unit: "piece", note: "for gravy", zhNote: "汁用" },
+      { name: "Onion", role: "core", group: "sauce", amount: 0.5, unit: "piece", note: "for gravy", zhNote: "汁用" },
       { name: "Butter", role: "optional", group: "sauce", amount: 1, unit: "tbsp" },
-      { name: "Ketchup", role: "optional", group: "sauce", amount: 3, unit: "tbsp", note: "gravy", zhNote: "茄汁汁" },
+      { name: "Ketchup", role: "core", group: "sauce", amount: 3, unit: "tbsp", note: "gravy", zhNote: "茄汁汁" },
     ],
-    need: ["Chicken breast", "Cooked rice", "Eggs"],
-    optional: ["Flour", "Soy sauce", "Salt", "Cooking oil", "Onion", "Butter", "Ketchup"],
+    need: ["Chicken breast", "Cooked rice", "Eggs", "Onion", "Ketchup"],
+    optional: ["Flour", "Soy sauce", "Salt", "Cooking oil", "Butter"],
     steps: [
       "Pound 2 chicken breasts flat; season with salt and soy sauce. Dust with flour if using, dip in beaten egg, and pan-fry 4–5 minutes per side until 74°C / 165°F.",
       "Optional gravy: soften onion in butter, add ketchup and a splash of water; simmer 3 minutes.",

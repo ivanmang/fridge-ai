@@ -30,8 +30,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Chicken thighs", "Eggs", "Cooked rice", "Onion"],
-    optional: ["Soy sauce", "Sugar", "Spring onion", "Ginger", "Chicken stock"],
+    need: ["Chicken thighs", "Onion", "Eggs", "Rice", "Spring onion"],
+    optional: ["Dashi", "Soy sauce", "Mirin", "Sugar"],
     steps: [
       "Slice chicken and onion. Simmer onion with ½ cup water, 2 tbsp soy sauce, and 1 tsp sugar.",
       "Add chicken; cook until done (74°C / 165°F), about 6–8 minutes.",
@@ -74,8 +74,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 25,
     servings: 2,
-    need: ["Chicken thighs"],
-    optional: ["Soy sauce", "Sugar", "Honey", "Ginger", "Garlic", "Sesame seeds", "Spring onion", "Sesame oil", "Cornstarch", "Cooking oil"],
+    need: ["Chicken thighs", "Ginger"],
+    optional: ["Mirin", "Soy sauce", "Sugar", "Sesame oil", "Cornstarch", "Cooking oil"],
     steps: [
       "Pat 400 g chicken thighs dry; pan-sear skin-side down until golden, then flip.",
       "Add 2 tbsp soy sauce, 1 tbsp sugar or honey, and a little ginger; simmer until chicken reaches 74°C / 165°F and glaze thickens.",
@@ -96,8 +96,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 18,
     servings: 2,
-    need: ["Salmon"],
-    optional: ["Soy sauce", "Sugar", "Honey", "Ginger", "Sesame seeds", "Shaoxing wine", "Cornstarch", "Salt", "White pepper", "Garlic", "Cooking oil"],
+    need: ["Ginger", "Rice", "Salmon", "Nori"],
+    optional: ["Soy sauce", "Mirin", "Honey", "Cornstarch", "Salt", "White pepper", "Cooking oil", "Sesame seeds"],
     steps: [
       "Pan-sear salmon 3–4 minutes skin-side down; flip.",
       "Add 1 tbsp soy sauce, 1 tsp sugar or honey, and ginger; spoon glaze over fish 2–3 minutes until just opaque.",
@@ -162,8 +162,8 @@ export const MORE_W2F: Recipe[] = [
     cuisine: "Japanese",
     time: 20,
     servings: 2,
-    need: ["Noodles", "Cabbage", "Pork chops"],
-    optional: ["Carrots", "Bean sprouts", "Soy sauce", "Ketchup", "Garlic", "Spring onion", "Oyster sauce", "Cooking oil", "Onion"],
+    need: ["Mushroom", "Onion", "Carrots", "Cabbage", "Bell pepper", "Noodles", "Spring onion"],
+    optional: ["Mirin", "Oyster sauce", "Cooking oil", "Sesame seeds"],
     steps: [
       "Slice pork thin; stir-fry until cooked through (74°C / 165°F). Add cabbage and carrot shreds.",
       "Add boiled noodles with 1 tbsp soy sauce and 1 tsp ketchup; toss on high heat.",

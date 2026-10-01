@@ -30,8 +30,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 30,
     servings: 2,
-    need: ["Pork chops", "Cabbage", "Bell pepper", "Carrots", "Tofu"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Sugar", "Spring onion", "Onion", "Cooking oil", "Shaoxing wine", "Sesame oil", "Oyster sauce", "Hoisin sauce", "Doubanjiang", "Cornstarch"],
+    need: ["Carrots", "Tofu", "Onion", "Garlic", "Cabbage", "Pork chops", "Hoisin sauce", "Doubanjiang"],
+    optional: ["White pepper", "Cooking oil", "Shaoxing wine", "Sesame oil", "Oyster sauce", "Soy sauce", "Sugar", "Cornstarch"],
     steps: [
       "Simmer 2 pork chops in water 12–15 minutes until just cooked; cool and slice thin.",
       "Stir-fry garlic and ginger; add pork slices and fry until edges curl and lightly browned.",
@@ -74,8 +74,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Cauliflower", "Bacon", "Pork chops"],
-    optional: ["Garlic", "Ginger", "Chili oil", "Soy sauce", "Bell pepper", "Salt", "Shaoxing wine", "Cooking oil", "Sesame oil", "White pepper", "Oyster sauce", "Sugar", "Spring onion"],
+    need: ["Pork chops", "Cauliflower", "Garlic", "Ginger", "Dried chili", "Bell pepper", "Spring onion"],
+    optional: ["Salt", "Soy sauce", "Shaoxing wine", "Cooking oil", "Sesame oil", "White pepper", "Oyster sauce", "Sugar"],
     steps: [
       "Cut cauliflower into bite-size florets; blanch 2 minutes and drain well.",
       "Render diced bacon until crisp; add garlic, ginger, and optional chili oil.",
@@ -118,8 +118,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 25,
     servings: 2,
-    need: ["Pork chops", "Carrots", "Bell pepper", "Broccoli"],
-    optional: ["Garlic", "Ginger", "Spring onion", "Soy sauce", "Vinegar", "Sugar", "Chili oil", "Cornstarch", "Cooking oil", "Shaoxing wine", "Salt", "White pepper"],
+    need: ["Pork chops", "Broccoli", "Carrots", "Bell pepper"],
+    optional: ["Cornstarch", "Cooking oil", "White pepper", "Shaoxing wine", "Vinegar", "Sugar", "Salt", "Chili oil"],
     steps: [
       "Slice pork into thin shreds; toss with 1 tsp soy sauce and 1 tsp cornstarch.",
       "Stir-fry pork until cooked through (74°C / 165°F); remove. Stir-fry carrot and pepper shreds with garlic and ginger.",
@@ -249,8 +249,8 @@ export const MORE_W2E: Recipe[] = [
     cuisine: "Sichuan",
     time: 35,
     servings: 2,
-    need: ["Wonton wrappers", "Ground pork"],
-    optional: ["Garlic", "Ginger", "Soy sauce", "Chili oil", "Vinegar", "Spring onion", "Sesame oil", "Shaoxing wine", "Salt", "Sugar", "Cooking oil", "White pepper"],
+    need: ["Ground pork", "Spring onion", "Wonton wrappers", "Garlic"],
+    optional: ["Sesame oil", "Soy sauce", "Shaoxing wine", "Salt", "Sugar", "Cooking oil", "White pepper", "Vinegar", "Chili oil"],
     steps: [
       "Mix 200 g ground pork with minced ginger, 1 tsp soy sauce, and a pinch of salt. Wrap in wonton skins.",
       "Boil wontons until they float and pork is cooked through (74°C / 165°F), about 4–5 minutes.",

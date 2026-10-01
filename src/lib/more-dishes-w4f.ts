@@ -96,8 +96,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Thai",
     time: 18,
     servings: 2,
-    need: ["Ground pork", "Thai basil"],
-    optional: ["Garlic", "Onion", "Soy sauce", "Sugar", "Chili oil", "Cooked rice", "Eggs", "Cooking oil", "Dried chili", "Oyster sauce"],
+    need: ["Garlic", "Dried chili", "Pork chops", "Thai basil"],
+    optional: ["Cooking oil", "Sugar", "Fish sauce", "Oyster sauce", "Soy sauce"],
     steps: [
       "Mince 3 garlic cloves; slice onion if using. Pick a big handful of Thai basil.",
       "Stir-fry garlic/onion; add 300 g ground pork and cook 5–7 minutes until pork reaches 74°C / 165°F.",
@@ -270,8 +270,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Thai",
     time: 25,
     servings: 2,
-    need: ["Noodles", "Coconut milk", "Shrimp", "Curry powder"],
-    optional: ["Lemongrass", "Garlic", "Thai basil", "Salt", "Sugar", "Chili oil", "Zucchini", "Dried chili", "Shallot", "Ginger", "Cilantro", "Cooking oil", "Chicken stock"],
+    need: ["Shallot", "Garlic", "Ginger", "Cilantro", "Lime", "Curry powder", "Shrimp paste", "Coconut milk", "Noodles", "Pickled mustard"],
+    optional: ["Turmeric", "Ground coriander", "Cooking oil", "Chicken stock", "Sugar", "Fish sauce"],
     steps: [
       "Cook noodles; drain. Soften garlic and bruised lemongrass if using; add 1 cup coconut milk and 1 cup water.",
       "Simmer 5 minutes; add 200 g shrimp (and zucchini) until shrimp are pink 3–4 minutes.",
@@ -336,8 +336,8 @@ export const MORE_W4F: Recipe[] = [
     cuisine: "Thai",
     time: 25,
     servings: 2,
-    need: ["Shrimp", "Coconut milk", "Curry powder"],
-    optional: ["Onion", "Garlic", "Zucchini", "Salt", "Sugar", "Cooked rice", "Thai basil", "Cooking oil", "Ginger", "Cilantro"],
+    need: ["Garlic", "Ginger", "Curry powder", "Onion", "Bell pepper", "Coconut milk", "Cilantro"],
+    optional: ["Cooking oil", "Sugar", "Salt"],
     steps: [
       "Peel 300 g shrimp. Soften onion/garlic; stir in 1–2 tsp curry powder until fragrant.",
       "Add 1 cup coconut milk and a splash of water; simmer 3 minutes. Add zucchini if using.",
